@@ -12,21 +12,21 @@
     <title>PSR :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602332892" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602342810" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602342810" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602342810" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602342810" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602342810" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602342810" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602342810" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602342810" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602342810" rel="stylesheet">
     
-    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602332892" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602342810" rel="stylesheet">
     
     
 
-    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602332892"></script>
+    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602342810"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,11 +52,29 @@
     "@type":"Article",
     "headline":"PSR",
     "url":"https:\/\/kejyun.github.io\/laravel5-book\/design-pattern\/psr\/",
-    "keywords":[ 
-    "mobile", "web", "ai", "backend", "open source"
+    "keywords":[
+    
+      
+        
+        "laravel"
+      
+        , 
+        "laravel 學習筆記"
+      
+        , 
+        "KJ"
+      
+        , 
+        "kejyun"
+      
+    
     ],
     "image":{
-        "@type":"ImageObject", 
+        "@type":"ImageObject",
+        "url" :
+        
+          "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+        
         "width":"1200",
         "height":"627"
     },
@@ -67,7 +85,7 @@
         "url":"https:\/\/kejyun.github.io\/laravel5-book\/",
         "logo":{
             "@type":"ImageObject",
-            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
             "width":"357",
             "height":"60"
         }
@@ -91,7 +109,11 @@
 <script type="application/ld+json">
 	{
 		"@context":"http://schema.org",
-		"@type": "BlogPosting", 
+		"@type": "BlogPosting",
+		"image":
+		
+			"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+		
 		"url": "https:\/\/kejyun.github.io\/laravel5-book\/design-pattern\/psr\/",
 		"headline": "PSR",
 		"alternativeHeadline": "PSR",
@@ -129,20 +151,21 @@
 			"url": "https:\/\/kejyun.github.io\/laravel5-book\/",
 			"logo": {
 				"@type": "ImageObject",
-				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 				"width":"357",
 				"height":"60"
 			}
 		},
 		"mainEntityOfPage": "True",
 		"keywords": [ 
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
 		"articleBody": "PSR (php standard recommendations) 為了讓大家開發的套件，能夠更輕鬆地整合到自己的專案當中，在 PHP 社群中大家一起定義了一些標準的程式碼撰寫規則\n但是 Laravel 5.0.x 版本之前，Laravel 都沒有真正的遵照 PSR 的規範去撰寫程式碼，直到 Laravel 5.1 LTS 版本時，Laravel 終於將所有的程式碼遵照 PSR-2 及 PSR-4 的程式碼撰寫規則了，詳細的規則說明大家可以自己參考相關的說明文件。\n而為了讓自己專案的開發也能夠遵照 PSR 規則，除了自己一個檔案一個檔案自己修改外，也可以用 PHP Coding Standards Fixer 套件去幫我們自動地將程式修改成遵照 PSR 規則的程式！\nPHP Coding Standards Fixer 安裝使用教學 使用 compser 下載套件 使用 composer 將 php-cs-fixer 安裝到全域（global）目錄下\n$ composer global require fabpot\/php-cs-fixer 設定 composer bin 目錄到環境變數中 我們必須要將我們家目錄下的全域 ~\/.composer\/vendor\/bin 目錄，設到環境變數中，這樣我們在命令列就可以直接執行 ~\/.composer\/vendor\/bin 下面的可執行檔案了\n$ export PATH=\u0026#34;$PATH:$HOME\/.composer\/vendor\/bin\u0026#34;  我們可以直接在命令列下這樣的指令就可以了，但每次開啟新的 Terminal 視窗時，都要再重新的設定一次這樣的環境變數，所以我們也可以把這個設定寫在 ~\/.bash_profile 檔案中，這樣每次執行 Terminal 時，就會自動將 ~\/.composer\/vendor\/bin 設到環境變數中了！\n 使用 php-cs-fixer 修正 PHP 檔案 設定完成後，我們就可以使用 php-cs-fixer fix \/path\/to\/project --level=psr2 這樣的指令去修正我們專案目錄下的檔案了\n一些 php-cs-fixer 相關的指令會像這樣:\n$ php-cs-fixer fix \/path\/to\/project --level=psr0 $ php-cs-fixer fix \/path\/to\/project --level=psr1 $ php-cs-fixer fix \/path\/to\/project --level=psr2 $ php-cs-fixer fix \/path\/to\/project --level=symfony 設定 Sublime 使用 php-cs-fixer 修正程式碼 在 Sublime 上方工具列 Tools\\Bulid System\\New Build System 我們可以新增一個新的建立指令，指令中我們輸入像這樣的指令：\n{ \u0026#34;shell_cmd\u0026#34;: \u0026#34;php-cs-fixer fix $file --level=psr2\u0026#34; } 將新的指令檔案名稱取為 php-cs-fixer.sublime-bulid，這樣我們回到 Sublime 去開啟任一 PHP 檔案，只要按下 Command（⌘）\u002bB，Sublime 就會自動幫我們執行 php-cs-fixer 的 shell script 指令，去修正我們的 PHP 檔案了！！\nphp-cs-fixer 使用小技巧 我們可以將修改 ~\/.bash_profile 檔案，將使用 php-cs-fixer 修正 Terminal 目前目錄的 PHP 指令加入，這樣我們只要用 Terminal 瀏覽到我們想要做 php-cs-fixer 的目錄下，我們每次只需要下 phpCSFixerThisFolder 指令就可以了，這樣就不用記住也不用打那麼落落長的 php-cs-fixer 指令了！\nalias phpCSFixerThisFolder=\u0026#34;php-cs-fixer fix .\/ --level=psr2\u0026#34; PSR 中文文件  PSR-1 - Basic Coding Standard PSR-2 - Coding Style Guide PSR-3 - 日誌介面 PSR-4 - Autoloader  參考資料  PHP-FIG — PHP Framework Interop Group PHP: The Right Way - 繁體中文 PHP Coding Standards Fixer PHP-CS-Fixer Adopting PSR-2 - laracasts  "
 	}
 </script>
+
   
 
   
@@ -213,7 +236,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
   	}
 ],
@@ -226,7 +249,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
 	}
 ],
@@ -292,7 +315,7 @@
 		  "name": "Laravel 5 學習筆記",
 		  "logo": {
 		    "@type": "ImageObject",
-		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 		    "height": 60,
 		    "width": 107
 		  }
@@ -302,8 +325,11 @@
 			"@type": "localBusiness",
 			"name": "Laravel 5 學習筆記",
 			"image":"https:\/\/kejyun.github.io\/laravel5-book\/",
+			
 			"priceRange":"$$",
-			"telephone":"",
+			
+
+			
 			"address": {
 				"@type": "PostalAddress",
 				"streetAddress": "",
@@ -324,7 +350,7 @@
 			"query-input": "required name=search_term"
 		},
 		"keywords":[
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"hasPart": [
 			{
@@ -334,7 +360,7 @@
 				"headline": "KeJyun Laravel 5 學習筆記",
 				"cssSelector": "#header",
 				"potentialAction": [],
-				"@graph": 
+				"@graph":
 				[]
 			},
 			{
@@ -358,6 +384,7 @@
 	}
 ]
 </script>
+
   
 
   
@@ -391,14 +418,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602332892"></script>
-<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602332892"></script>
+<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602342810"></script>
+<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602342810"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/kejyun.github.io\/laravel5-book\/";
     
 </script>
-<script type="text/javascript" src="/laravel5-book/js/search.js?1602332892"></script>
+<script type="text/javascript" src="/laravel5-book/js/search.js?1602342810"></script>
 
     
   </div>
@@ -2706,7 +2733,7 @@
                 <div id="top-bar">
                 
                 
-                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <div id="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
                     <span id="sidebar-toggle-span">
                         <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
                           <i class="fas fa-bars"></i>
@@ -2765,6 +2792,16 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63729120282, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63729120282, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63729120282, loc:(*time.Location)(0x6c47f60)}, &#34;title&#34;:&#34;PSR&#34;, &#34;weight&#34;:2}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -2828,6 +2865,16 @@ $ php-cs-fixer fix /path/to/project --level<span style="color:#f92672">=</span>s
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63729120282, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63729120282, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63729120282, loc:(*time.Location)(0x6c47f60)}, &#34;title&#34;:&#34;PSR&#34;, &#34;weight&#34;:2}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -4535,19 +4582,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/laravel5-book/js/clipboard.min.js?1602332892"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602332892"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602332892"></script>
-    <script src="/laravel5-book/js/jquery.sticky.js?1602332892"></script>
-    <script src="/laravel5-book/js/featherlight.min.js?1602332892"></script>
-    <script src="/laravel5-book/js/highlight.pack.js?1602332892"></script>
+    <script src="/laravel5-book/js/clipboard.min.js?1602342810"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602342810"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602342810"></script>
+    <script src="/laravel5-book/js/jquery.sticky.js?1602342810"></script>
+    <script src="/laravel5-book/js/featherlight.min.js?1602342810"></script>
+    <script src="/laravel5-book/js/highlight.pack.js?1602342810"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602332892"></script>
-    <script src="/laravel5-book/js/learn.js?1602332892"></script>
-    <script src="/laravel5-book/js/hugo-learn.js?1602332892"></script>
+    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602342810"></script>
+    <script src="/laravel5-book/js/learn.js?1602342810"></script>
+    <script src="/laravel5-book/js/hugo-learn.js?1602342810"></script>
 
-    <link href="/laravel5-book/mermaid/mermaid.css?1602332892" rel="stylesheet" />
-    <script src="/laravel5-book/mermaid/mermaid.js?1602332892"></script>
+    <link href="/laravel5-book/mermaid/mermaid.css?1602342810" rel="stylesheet" />
+    <script src="/laravel5-book/mermaid/mermaid.js?1602342810"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

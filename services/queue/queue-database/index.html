@@ -12,21 +12,21 @@
     <title>Database Queue :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602332893" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602342811" rel="stylesheet">
     
-    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602332893" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602342811" rel="stylesheet">
     
     
 
-    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602332893"></script>
+    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602342811"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,11 +52,29 @@
     "@type":"Article",
     "headline":"Database Queue",
     "url":"https:\/\/kejyun.github.io\/laravel5-book\/services\/queue\/queue-database\/",
-    "keywords":[ 
-    "mobile", "web", "ai", "backend", "open source"
+    "keywords":[
+    
+      
+        
+        "laravel"
+      
+        , 
+        "laravel 學習筆記"
+      
+        , 
+        "KJ"
+      
+        , 
+        "kejyun"
+      
+    
     ],
     "image":{
-        "@type":"ImageObject", 
+        "@type":"ImageObject",
+        "url" :
+        
+          "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+        
         "width":"1200",
         "height":"627"
     },
@@ -67,7 +85,7 @@
         "url":"https:\/\/kejyun.github.io\/laravel5-book\/",
         "logo":{
             "@type":"ImageObject",
-            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
             "width":"357",
             "height":"60"
         }
@@ -91,7 +109,11 @@
 <script type="application/ld+json">
 	{
 		"@context":"http://schema.org",
-		"@type": "BlogPosting", 
+		"@type": "BlogPosting",
+		"image":
+		
+			"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+		
 		"url": "https:\/\/kejyun.github.io\/laravel5-book\/services\/queue\/queue-database\/",
 		"headline": "Database Queue",
 		"alternativeHeadline": "Database Queue",
@@ -129,20 +151,21 @@
 			"url": "https:\/\/kejyun.github.io\/laravel5-book\/",
 			"logo": {
 				"@type": "ImageObject",
-				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 				"width":"357",
 				"height":"60"
 			}
 		},
 		"mainEntityOfPage": "True",
 		"keywords": [ 
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
 		"articleBody": "資料庫隊列（Database Queue） 我們可以使用 database 的隊列設定，在自己的資料庫建立隊列資料表\n產生隊列資料表 我們可以使用 php artisan queue:table 指令去產生隊列的 Migration\n$ php artisan queue:table 所以執行命令後，你可以找到像是 database\/migrations\/2015_05_26_225627_create_queue_jobs_table.php 這樣的隊列 Migration 檔案\n Migration 檔名日期 2015_05_26_225627 每個人皆不同，會依照你建立當時的時間去產生\n 產生的隊列 Migration 會長的像這樣：\n\u0026lt;?php use Illuminate\\Database\\Schema\\Blueprint; use Illuminate\\Database\\Migrations\\Migration; class CreateQueueJobsTable extends Migration { \/** * Run the migrations. * * @return void *\/ public function up() { Schema::create(\u0026#39;jobs\u0026#39;, function(Blueprint $table) { $table-\u0026gt;bigIncrements(\u0026#39;id\u0026#39;); $table-\u0026gt;string(\u0026#39;queue\u0026#39;); $table-\u0026gt;text(\u0026#39;payload\u0026#39;); $table-\u0026gt;tinyInteger(\u0026#39;attempts\u0026#39;)-\u0026gt;unsigned(); $table-\u0026gt;tinyInteger(\u0026#39;reserved\u0026#39;)-\u0026gt;unsigned(); $table-\u0026gt;unsignedInteger(\u0026#39;reserved_at\u0026#39;)-\u0026gt;nullable(); $table-\u0026gt;unsignedInteger(\u0026#39;available_at\u0026#39;); $table-\u0026gt;unsignedInteger(\u0026#39;created_at\u0026#39;); }); } \/** * Reverse the migrations. * * @return void *\/ public function down() { Schema::drop(\u0026#39;jobs\u0026#39;); } } 建立隊列資料表 執行 php artisan migrate 將隊列資料表新增至資料庫\n設定隊列驅動 在 config\/queue.php 檔案中設定資料庫隊列驅動設定，設定如下：\n\/\/ config\/queue.php return [ \u0026#39;default\u0026#39; =\u0026gt; \u0026#39;database\u0026#39;, \u0026#39;connections\u0026#39; =\u0026gt; [ \u0026#39;database\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;database\u0026#39;, \u0026#39;table\u0026#39; =\u0026gt; \u0026#39;jobs\u0026#39;, \u0026#39;queue\u0026#39; =\u0026gt; \u0026#39;default\u0026#39;, \u0026#39;expire\u0026#39; =\u0026gt; 60, \u0026#39;connection_name\u0026#39;=\u0026gt;\u0026#39;\u0026#39;, ], ], ]; 建立隊列工作 我們可以使用 \\Queue::push(\u0027App\\Commands\\SendEmail@fire\u0027, $queue_data); 的方法去新增要執行的隊列\n第一個參數是執行隊列需要呼叫的類別名稱位置（App\\Commands\\SendEmail）及方法（fire）\n類別名稱需要正確的指定類別的命名空間（namespace），可以指定這個隊列要執行的類別方法，只要將方法使用 @ 加在後方即可（@customMethod）\n若沒有指定用哪個方法，Laravel 預設會執行 fire 的類別方法（@fire）\n我們使用隊列來寄送 Email，設定隊列的方式大概像這樣：\n\/\/ 需要傳送給隊列處理的資料 $queue_data = [ \u0026#39;email\u0026#39; =\u0026gt; \u0026#39;kejyun@gmail.com\u0026#39;, \u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, ]; \/\/ 建立隊列 $queue_id = \\Queue::push(\u0026#39;App\\Commands\\SendEmail@fire\u0026#39;, $queue_data); 在 App\\Commands\\Sendmail.php 檔案大概會像這樣：\n\u0026lt;?php namespace App\\Commands; class SendEmail { \/** * 執行隊列 * * @return void *\/ public function fire($job, $data) { \/\/ 寄送 Email  \\Mail::send(\u0026#39;emails.welcome\u0026#39;, [], function($message) use ($data) { $message-\u0026gt;to($data[\u0026#39;email\u0026#39;], $data[\u0026#39;name\u0026#39;])-\u0026gt;subject(\u0026#39;歡迎使用 Laravel 5 資料庫隊列寄送 Email!!!\u0026#39;); }); \/\/ 執行成功，刪除隊列  $job-\u0026gt;delete(); } } fire 方法中的 $job 變數會接受該隊列的實例，$data 變數會接收建立隊列時傳入的資料\n像我要使用隊列寄送 Email，則會將使用者的相關資訊傳送到這個隊列來，讓隊列能正確的發送正確的 Email 資訊給使用者！\n在隊列執行完成無誤後，我們必須要使用 $job-\u0026gt;delete(); 將隊列資料刪除，若沒有刪除 Laravel 下次再出理到該資料時，則會視為隊列處理失敗，進而嘗試重新處理\n監聽隊列工作 我們會在 shell 中執行 php artisan queue:listen 去持續的監聽隊列資料的狀況，若有新增隊列到資料表時，Laravel 則會開始處理隊列的資料\n$ php artisan queue:listen 也可以針對 queue 去設定相關參數及優先權\n$ php artisan artisan queue:work --queue=instant,high,medium,default,low --delay=1 --memory=512 --sleep=15 --tries=1 --env=dev --daemon 這樣我們就可以正常的使用隊列去幫我們寄信摟！！\n參考資料  隊列 - Laravel.tw Queues in Laravel with Redis  "
 	}
 </script>
+
   
 
   
@@ -221,7 +244,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
   	}
 ],
@@ -234,7 +257,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
 	}
 ],
@@ -300,7 +323,7 @@
 		  "name": "Laravel 5 學習筆記",
 		  "logo": {
 		    "@type": "ImageObject",
-		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 		    "height": 60,
 		    "width": 107
 		  }
@@ -310,8 +333,11 @@
 			"@type": "localBusiness",
 			"name": "Laravel 5 學習筆記",
 			"image":"https:\/\/kejyun.github.io\/laravel5-book\/",
+			
 			"priceRange":"$$",
-			"telephone":"",
+			
+
+			
 			"address": {
 				"@type": "PostalAddress",
 				"streetAddress": "",
@@ -332,7 +358,7 @@
 			"query-input": "required name=search_term"
 		},
 		"keywords":[
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"hasPart": [
 			{
@@ -342,7 +368,7 @@
 				"headline": "KeJyun Laravel 5 學習筆記",
 				"cssSelector": "#header",
 				"potentialAction": [],
-				"@graph": 
+				"@graph":
 				[]
 			},
 			{
@@ -366,6 +392,7 @@
 	}
 ]
 </script>
+
   
 
   
@@ -399,14 +426,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602332893"></script>
-<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602332893"></script>
+<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602342811"></script>
+<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602342811"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/kejyun.github.io\/laravel5-book\/";
     
 </script>
-<script type="text/javascript" src="/laravel5-book/js/search.js?1602332893"></script>
+<script type="text/javascript" src="/laravel5-book/js/search.js?1602342811"></script>
 
     
   </div>
@@ -2714,7 +2741,7 @@
                 <div id="top-bar">
                 
                 
-                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <div id="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
                     <span id="sidebar-toggle-span">
                         <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
                           <i class="fas fa-bars"></i>
@@ -2779,6 +2806,16 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;title&#34;:&#34;Database Queue&#34;, &#34;weight&#34;:2}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -2911,6 +2948,16 @@ $queue_id = \Queue::push(&#39;App\Commands\SendEmail@fire&#39;, $queue_data);
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;title&#34;:&#34;Database Queue&#34;, &#34;weight&#34;:2}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -4622,19 +4669,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/laravel5-book/js/clipboard.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/jquery.sticky.js?1602332893"></script>
-    <script src="/laravel5-book/js/featherlight.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/highlight.pack.js?1602332893"></script>
+    <script src="/laravel5-book/js/clipboard.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/jquery.sticky.js?1602342811"></script>
+    <script src="/laravel5-book/js/featherlight.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/highlight.pack.js?1602342811"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602332893"></script>
-    <script src="/laravel5-book/js/learn.js?1602332893"></script>
-    <script src="/laravel5-book/js/hugo-learn.js?1602332893"></script>
+    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602342811"></script>
+    <script src="/laravel5-book/js/learn.js?1602342811"></script>
+    <script src="/laravel5-book/js/hugo-learn.js?1602342811"></script>
 
-    <link href="/laravel5-book/mermaid/mermaid.css?1602332893" rel="stylesheet" />
-    <script src="/laravel5-book/mermaid/mermaid.js?1602332893"></script>
+    <link href="/laravel5-book/mermaid/mermaid.css?1602342811" rel="stylesheet" />
+    <script src="/laravel5-book/mermaid/mermaid.js?1602342811"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

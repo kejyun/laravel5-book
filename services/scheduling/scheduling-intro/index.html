@@ -12,21 +12,21 @@
     <title>任務排程（Scheduling） :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602332892" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602332892" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602342811" rel="stylesheet">
     
-    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602332892" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602342811" rel="stylesheet">
     
     
 
-    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602332892"></script>
+    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602342811"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,11 +52,29 @@
     "@type":"Article",
     "headline":"任務排程（Scheduling）",
     "url":"https:\/\/kejyun.github.io\/laravel5-book\/services\/scheduling\/scheduling-intro\/",
-    "keywords":[ 
-    "mobile", "web", "ai", "backend", "open source"
+    "keywords":[
+    
+      
+        
+        "laravel"
+      
+        , 
+        "laravel 學習筆記"
+      
+        , 
+        "KJ"
+      
+        , 
+        "kejyun"
+      
+    
     ],
     "image":{
-        "@type":"ImageObject", 
+        "@type":"ImageObject",
+        "url" :
+        
+          "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+        
         "width":"1200",
         "height":"627"
     },
@@ -67,7 +85,7 @@
         "url":"https:\/\/kejyun.github.io\/laravel5-book\/",
         "logo":{
             "@type":"ImageObject",
-            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
             "width":"357",
             "height":"60"
         }
@@ -91,7 +109,11 @@
 <script type="application/ld+json">
 	{
 		"@context":"http://schema.org",
-		"@type": "BlogPosting", 
+		"@type": "BlogPosting",
+		"image":
+		
+			"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+		
 		"url": "https:\/\/kejyun.github.io\/laravel5-book\/services\/scheduling\/scheduling-intro\/",
 		"headline": "任務排程（Scheduling）",
 		"alternativeHeadline": "任務排程（Scheduling）",
@@ -129,20 +151,21 @@
 			"url": "https:\/\/kejyun.github.io\/laravel5-book\/",
 			"logo": {
 				"@type": "ImageObject",
-				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 				"width":"357",
 				"height":"60"
 			}
 		},
 		"mainEntityOfPage": "True",
 		"keywords": [ 
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
 		"articleBody": "任務排程（Scheduling） 我們通常會把一些每小時、每 6 小時、每日、每週、每月等等之類固定時間要做的工作丟到 Linux 系統的 crontab 中去執行，通常像是每日要統計昨天網站的活動資訊做數據分析之類的工作，這類的工作通常會花費比較久的時間\n在 Linux 設定排程工作 我們通常會在命令列用 $ crontab -e 的方式去編輯排程工作\n$ crontab -e 在用到 crontab 的時候，我們需要瞭解怎麼設定排程工作的執行時間，整個的 crontab 的設定可能會像這樣：\n# 每天凌晨 3 點統計昨天的 Pageview 0 3 * * * \/usr\/bin\/php \/home\/kejyun\/laravel4\/artisan cronjob:statisticYesterdayPageview 在前方可以看到有 5 個數字可以做設定，依序分別代表的意思為：\n 分鐘 (0-59) 小時 (0-23) 每個月第幾天 (1-31) 月份 (1-12) 每週的第幾天 (0-6) 0：星期日 1：星期一 2：星期二 3：星期三 4：星期四 5：星期五 6：星期六  這 5 個參數之間用空白隔開，每個參數除了設定單一個數字，也可以用逗號(,)去隔開設定相同單位的時間設定，像是：\n# 每天凌晨 4 點及 16 點寄送廣告信 0 4,16 * * * \/usr\/bin\/php \/home\/kejyun\/laravel4\/artisan cronjob:sendCommercialMail 這裏有一些相關的設定範例可以當作參考：\n# 每小時的第 18 分鐘執行 18 * * * * # 8 點 10 分執行 10 8 * * * # 8 點的每分鐘執行一次（共執行 60 次） * 8 * * * # 在每個禮拜二每小時的第 18 分鐘執行 18 * * * 2 # 你也可以每隔一段時間去執行 crontab # 如果我們每 15 分鐘要去執行，你可以用這樣的格式 *\/15 # 這樣的意思是將分鐘數，切割成（除以）每 15 分鐘執行 *\/15 * * * * # 每 2 小時執行 0 *\/2 * * * # 每 2 小時又 20 分鐘執行 *\/20 *\/2 * * * 小提醒\n 系統的 crontab 運作方式是每分鐘會到設定的 crontab 找看看有沒有符合現在這個時間的排程工作，所以像是 * 8 * * * 這樣的設定，因為沒有明確指定分鐘，在 8 點每分鐘檢查的 60 次都符合條件，所以會執行 60 次，若僅要 8 點時執行一次，請明確設定要執行的分鐘條件，像是 0 8 * * *\n 使用 Laravel 5.2 Scheduling 設定排程工作 因為 Linux 每分鐘都會去檢查當時是否有排程需要執行的工作，符合條件的時間就會執行，Laravel 利用這個特性，告訴排程每分鐘都要執行 Laravel 的 schedule:run 的指令\n* * * * * php \/path\/to\/artisan schedule:run \u0026gt;\u0026gt; \/dev\/null 2\u0026gt;\u0026amp;1 之後 Laravel 每分鐘就會執行 app\/Console\/Command\/Kernal@schedule 的程式，Laravel 會依照 schedule 裡面的設定時間，執行符合條件的排程工作\n排程範例 假如我們有一個排程每分鐘都會紀錄他執行的時間，程式碼會放在 app\/Console\/Command\/TestLog.php，程式碼會像是：\n\u0026lt;?php namespace App\\Console\\Commands; use Illuminate\\Console\\Command; use File; class TestLog extends Command { \/\/ 命令名稱  protected $signature = \u0026#39;test:Log\u0026#39;; \/\/ 說明文字  protected $description = \u0026#39;[測試] Log 檔案\u0026#39;; public function __construct() { parent::__construct(); } \/\/ Console 執行的程式  public function handle() { \/\/ 檔案紀錄在 storage\/test.log  $log_file_path = storage_path(\u0026#39;test.log\u0026#39;); \/\/ 記錄當時的時間  $log_info = [ \u0026#39;date\u0026#39;=\u0026gt;date(\u0026#39;Y-m-d H:i:s\u0026#39;) ]; \/\/ 記錄 JSON 字串  $log_info_json = json_encode($log_info) . \u0026#34;\\r\\n\u0026#34;; \/\/ 記錄 Log  File::append($log_file_path, $log_info_json); } } 以上排程的命令是 php artisan test:Log，執行之後就會記錄當時執行的時間\n排程程式建立好之後，在 app\/Console\/Command\/Kernal.php 定義此排程的工作，並設定每分鐘執行一次，程式碼會像是：\n\u0026lt;?php namespace App\\Console; use Illuminate\\Console\\Scheduling\\Schedule; use Illuminate\\Foundation\\Console\\Kernel as ConsoleKernel; class Kernel extends ConsoleKernel { \/\/ 定義應用程式的 Artisan 指令  protected $commands = [ \\App\\Console\\Commands\\TestLog::class, ]; \/\/ 定義應用程式的排程  protected function schedule(Schedule $schedule) { \/\/ 每分鐘執行 Artisan 命令 test:Log  $schedule-\u0026gt;command(\u0026#39;test:Log\u0026#39;)-\u0026gt;everyMinute(); } } 這樣你就可以在 storage\/test.log 每分鐘看到像這樣的紀錄，這樣就表示你的排程設定成功了！！\n{\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:12:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:13:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:14:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:15:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:16:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:17:07\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:18:09\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:19:05\u0026quot;} 你也可以使用其他 Laravel 提供的時間方法去定義要執行的時間\n   方法 說明     -\u0026gt;cron(\u0027* * * * * *\u0027); 自訂 Cron 排成時間   -\u0026gt;everyMinute(); 每分鐘執行   -\u0026gt;everyFiveMinutes(); 每 5 分鐘執行   -\u0026gt;everyTenMinutes(); 每 10 分鐘執行   -\u0026gt;everyThirtyMinutes(); 每 30 分鐘執行   -\u0026gt;hourly(); 每小時執行   -\u0026gt;daily(); 每天執行   -\u0026gt;dailyAt(\u0026lsquo;13:00\u0026rsquo;); 每天 13:00 執行   -\u0026gt;twiceDaily(1, 13); 每天 1:00 及 13:00 執行   -\u0026gt;weekly(); 每週執行   -\u0026gt;monthly(); 每月執行   -\u0026gt;yearly(); 每年執行   -\u0026gt;sundays() 每週日執行   -\u0026gt;mondays() 每週一執行   -\u0026gt;tuesdays() 每週二執行   -\u0026gt;wednesdays() 每週三執行   -\u0026gt;thursdays() 每週四執行   -\u0026gt;fridays() 每週五執行   -\u0026gt;saturdays() 每週六執行   -\u0026gt;when(Closure) 每當符合條件就執行（return true）    避免重複執行排程 排程預設每次符合條件就要執行，但若我們執行一個需要跑很久的程式，在下一次符合條件的時間若上一個同樣的工作還沒有執行完，我們就不執行的話，我們可以用 -\u0026gt;withoutOverlapping() 方法去避免排程程式重複執行，像是\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;)-\u0026gt;withoutOverlapping(); 輸出執行結果 我們的在執行 Artisan 指令時，我們通常會在畫面上列印一些執行狀態，像是 $this-\u0026gt;info(\u0027把我顯示在畫面上\u0027);，如果我們想要知道排程執行時，這些顯示在畫面的文字記錄下來，我們可以用\n   方法 說明     -\u0026gt;sendOutputTo($filePath); 將結果輸出到檔案（複寫該檔案）   -\u0026gt;appendOutputTo($filePath); 將結果附加在檔案後面（不複寫檔案）   -\u0026gt;emailOutputTo(\u0027foo@example.com\u0027); 將結果寄送到指定 Email    *** 將結果輸出到檔案（複寫該檔案） ***\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;sendOutputTo($filePath); *** 將結果附加在檔案後面（不複寫檔案） ***\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;appendOutputTo($filePath); *** 將結果寄送到指定 Email ***\n$schedule-\u0026gt;command(\u0026#39;foo\u0026#39;) -\u0026gt;daily() -\u0026gt;sendOutputTo($filePath) -\u0026gt;emailOutputTo(\u0026#39;foo@example.com\u0026#39;); 排程觸發 我們可以在排程執行前後，分別使用 -\u0026gt;before() 或 -\u0026gt;after() 去執行排程其他的工作\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;before(function () { \/\/ 在排程執行前觸發 }) -\u0026gt;after(function () { \/\/ 在排程執行完成後觸發 }); 參考資料  crontab.guru - the cron schedule expression editor A visual crontab editor Task Scheduling - Laravel 5.2  "
 	}
 </script>
+
   
 
   
@@ -221,7 +244,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
   	}
 ],
@@ -234,7 +257,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
 	}
 ],
@@ -300,7 +323,7 @@
 		  "name": "Laravel 5 學習筆記",
 		  "logo": {
 		    "@type": "ImageObject",
-		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 		    "height": 60,
 		    "width": 107
 		  }
@@ -310,8 +333,11 @@
 			"@type": "localBusiness",
 			"name": "Laravel 5 學習筆記",
 			"image":"https:\/\/kejyun.github.io\/laravel5-book\/",
+			
 			"priceRange":"$$",
-			"telephone":"",
+			
+
+			
 			"address": {
 				"@type": "PostalAddress",
 				"streetAddress": "",
@@ -332,7 +358,7 @@
 			"query-input": "required name=search_term"
 		},
 		"keywords":[
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"hasPart": [
 			{
@@ -342,7 +368,7 @@
 				"headline": "KeJyun Laravel 5 學習筆記",
 				"cssSelector": "#header",
 				"potentialAction": [],
-				"@graph": 
+				"@graph":
 				[]
 			},
 			{
@@ -366,6 +392,7 @@
 	}
 ]
 </script>
+
   
 
   
@@ -399,14 +426,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602332892"></script>
-<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602332892"></script>
+<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602342811"></script>
+<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602342811"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/kejyun.github.io\/laravel5-book\/";
     
 </script>
-<script type="text/javascript" src="/laravel5-book/js/search.js?1602332892"></script>
+<script type="text/javascript" src="/laravel5-book/js/search.js?1602342811"></script>
 
     
   </div>
@@ -2714,7 +2741,7 @@
                 <div id="top-bar">
                 
                 
-                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <div id="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
                     <span id="sidebar-toggle-span">
                         <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
                           <i class="fas fa-bars"></i>
@@ -2773,6 +2800,16 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;title&#34;:&#34;任務排程（Scheduling）&#34;, &#34;weight&#34;:10}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -3067,6 +3104,16 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;title&#34;:&#34;任務排程（Scheduling）&#34;, &#34;weight&#34;:10}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -4774,19 +4821,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/laravel5-book/js/clipboard.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/jquery.sticky.js?1602332893"></script>
-    <script src="/laravel5-book/js/featherlight.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/highlight.pack.js?1602332893"></script>
+    <script src="/laravel5-book/js/clipboard.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/jquery.sticky.js?1602342811"></script>
+    <script src="/laravel5-book/js/featherlight.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/highlight.pack.js?1602342811"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602332893"></script>
-    <script src="/laravel5-book/js/learn.js?1602332893"></script>
-    <script src="/laravel5-book/js/hugo-learn.js?1602332893"></script>
+    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602342811"></script>
+    <script src="/laravel5-book/js/learn.js?1602342811"></script>
+    <script src="/laravel5-book/js/hugo-learn.js?1602342811"></script>
 
-    <link href="/laravel5-book/mermaid/mermaid.css?1602332893" rel="stylesheet" />
-    <script src="/laravel5-book/mermaid/mermaid.js?1602332893"></script>
+    <link href="/laravel5-book/mermaid/mermaid.css?1602342811" rel="stylesheet" />
+    <script src="/laravel5-book/mermaid/mermaid.js?1602342811"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -12,21 +12,21 @@
     <title>日誌巨集 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602332893" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602342811" rel="stylesheet">
     
-    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602332893" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602342811" rel="stylesheet">
     
     
 
-    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602332893"></script>
+    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602342811"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,11 +52,29 @@
     "@type":"Article",
     "headline":"日誌巨集",
     "url":"https:\/\/kejyun.github.io\/laravel5-book\/services\/errors-logs\/errors-log-macro\/",
-    "keywords":[ 
-    "mobile", "web", "ai", "backend", "open source"
+    "keywords":[
+    
+      
+        
+        "laravel"
+      
+        , 
+        "laravel 學習筆記"
+      
+        , 
+        "KJ"
+      
+        , 
+        "kejyun"
+      
+    
     ],
     "image":{
-        "@type":"ImageObject", 
+        "@type":"ImageObject",
+        "url" :
+        
+          "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+        
         "width":"1200",
         "height":"627"
     },
@@ -67,7 +85,7 @@
         "url":"https:\/\/kejyun.github.io\/laravel5-book\/",
         "logo":{
             "@type":"ImageObject",
-            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
             "width":"357",
             "height":"60"
         }
@@ -91,7 +109,11 @@
 <script type="application/ld+json">
 	{
 		"@context":"http://schema.org",
-		"@type": "BlogPosting", 
+		"@type": "BlogPosting",
+		"image":
+		
+			"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+		
 		"url": "https:\/\/kejyun.github.io\/laravel5-book\/services\/errors-logs\/errors-log-macro\/",
 		"headline": "日誌巨集",
 		"alternativeHeadline": "日誌巨集",
@@ -129,20 +151,21 @@
 			"url": "https:\/\/kejyun.github.io\/laravel5-book\/",
 			"logo": {
 				"@type": "ImageObject",
-				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 				"width":"357",
 				"height":"60"
 			}
 		},
 		"mainEntityOfPage": "True",
 		"keywords": [ 
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
 		"articleBody": "日誌巨集 前言 我們會用 Laravel 內建的 Response 去回應服務的訊息，我們可能會用的回應會像這樣：\n\/\/ 建立 JSON 回應 return Response::json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]); return response()-\u0026gt;json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]); \/\/ 建立 JSONP 回應 return Response::json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]) -\u0026gt;setCallback($request-\u0026gt;input(\u0026#39;callback\u0026#39;)); return response()-\u0026gt;json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]) -\u0026gt;setCallback($request-\u0026gt;input(\u0026#39;callback\u0026#39;)); \/\/ 建立檔案下載的回應 return response()-\u0026gt;download($pathToFile); return response()-\u0026gt;download($pathToFile, $name, $headers); return response()-\u0026gt;download($pathToFile)-\u0026gt;deleteFileAfterSend(true); 在這樣的使用下，我們可以很容易的回應訊息給使用者，但是在伺服器發生程式例外錯誤 (Exception) 時，我們可能也需要回應像是這樣的資料：\nreturn Response::json([\u0026#39;status\u0026#39; =\u0026gt; \u0026#39;failure\u0026#39;, \u0026#39;error_code\u0026#39; =\u0026gt; \u0026#39;5566\u0026#39;]); return response()-\u0026gt;json([\u0026#39;status\u0026#39; =\u0026gt; \u0026#39;failure\u0026#39;, \u0026#39;error_code\u0026#39; =\u0026gt; \u0026#39;5566\u0026#39;]); 在我們用 Laravel 做 API 給手機用的時候，更需要有這些錯誤狀態的資料，所以我們沒辦法直接像網頁一樣跳出整個的錯誤 debug 畫面\n但我們若想在 API 回應給手機這樣的錯誤資訊時，也能夠將例外錯誤記錄下來，以便我們進行除錯，我們可以做一個 Response 的巨集，去處理紀錄我們的回應\n建立服務提供者 我們在命令列輸入 php artisan make:provider ResponseServiceProvider 建立回應的服務提供者\n$ php artisan make:provider ResponseServiceProvider 該服務提供者檔案會被建立在 app\/Providers\/ResponseServiceProvider.php 中，命名空間為 App\\Providers\\ResponseServiceProvider\n 我們不一定要將服務提供者的檔案放到 app\/Providers 目錄中，我們可以依照自己專案的需求，將他移動到像是 app\/KeJyun\/Providers 目錄中，這樣命名空間就會變成 App\\KeJyun\\Providers\\ResponseServiceProvider，檔案放置的位置隨自己專案需求而定，只要遵照 PSR-4 的規定去設定命名空間及檔案位置即可\n 我新增了一個名稱為 jsonLog 的 Response 巨集，該巨集會回應 json 資料，並依照記錄層級紀錄我們傳給他的資訊，ResponseServiceProvider 程式會像這樣\n\u0026lt;?php namespace App\\KeJyun\\Providers; \/\/ app\/KeJyun\/Providers\/ResponseServiceProvider.php  use Illuminate\\Support\\ServiceProvider; use Response, Log; class ResponseServiceProvider extends ServiceProvider { \/** * Bootstrap the application services. * * @return void *\/ public function boot() { \/** * 註冊 Response 記錄錯誤巨集 * * @param Array $response_data 回傳的 json 資料 * @param Array|Object|String $log_data 紀錄的資料 * @param String $log_level 紀錄資料的等級（預設為 info） * * @return Response $response 回應的 json 資料 * * @access public * @author KeJyun kejyun@gmail.com * @date 2015-06-06 *\/ Response::macro(\u0026#39;jsonLog\u0026#39;, function( $response_data, $log_data =\u0026#39;No Data Be log!!!\u0026#39;, $log_level = \u0026#39;info\u0026#39; ) { \/\/ 增加 Log檔案錯訊息間距以便閱讀  Log::debug(\u0026#34;\\n\\n\\n\\n\\n\u0026#34;); Log::debug($response_data); Log::debug(\u0026#34;\\n\\n\u0026#34;); switch ($log_level) { case \u0026#39;debug\u0026#39;: Log::debug($log_data); break; case \u0026#39;notice\u0026#39;: Log::notice($log_data); break; case \u0026#39;warning\u0026#39;: Log::warning($log_data); break; case \u0026#39;error\u0026#39;: Log::error($log_data); break; case \u0026#39;critical\u0026#39;: Log::critical($log_data); break; case \u0026#39;alert\u0026#39;: Log::alert($log_data); break; case \u0026#39;info\u0026#39;: default: Log::info($log_data); break; } \/\/ 增加 Log檔案錯訊息間距以便閱讀  Log::debug(\u0026#34;\\n\\n\\n\\n\\n\u0026#34;); return Response::json($response_data); }); } \/** * Register the application services. * * @return void *\/ public function register() { \/\/  } } 設定服務提供者 設定完自己的 jsonLog 紀錄巨集後，我們需要到 config\/app.php 設定這個 Response 服務提供者，我的命名空間為 App\\KeJyun\\Providers\\ResponseServiceProvider，所以設定會像這樣：\n\/\/ config\/app.php \u0026#39;providers\u0026#39; =\u0026gt; [ \/\/ 其他的服務提供者 \u0026#39;App\\KeJyun\\Providers\\ResponseServiceProvider\u0026#39;, ], 設定完之後，Laravel 在啟動時就會自動載入該服務提供者了\n使用自定的 Response 巨集 jsonLog 在我們撰寫商業邏輯時若發生無法預期的例外狀況，我們會想要紀錄該例外狀況的資料，我們就可以這樣使用 Response jsonLog 巨集：\ntry{ \/\/ 商業邏輯處理 } catch (Exception $exception) { $response_data = [ \u0026#39;status\u0026#39;=\u0026gt;\u0026#39;failure\u0026#39;, \u0026#39;error_code\u0026#39;=\u0026gt;5566, ]; return response()-\u0026gt;jsonLog($response_data, $exception, \u0026#39;alert\u0026#39;); } 這樣在系統發生預期之外的例外時，我們也有參考的資料可以幫我們進行除錯了！！\n參考資料  HTTP 回應：回應巨集 - Laravel.tw 服務提供者 - Laravel.tw  "
 	}
 </script>
+
   
 
   
@@ -221,7 +244,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
   	}
 ],
@@ -234,7 +257,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
 	}
 ],
@@ -300,7 +323,7 @@
 		  "name": "Laravel 5 學習筆記",
 		  "logo": {
 		    "@type": "ImageObject",
-		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 		    "height": 60,
 		    "width": 107
 		  }
@@ -310,8 +333,11 @@
 			"@type": "localBusiness",
 			"name": "Laravel 5 學習筆記",
 			"image":"https:\/\/kejyun.github.io\/laravel5-book\/",
+			
 			"priceRange":"$$",
-			"telephone":"",
+			
+
+			
 			"address": {
 				"@type": "PostalAddress",
 				"streetAddress": "",
@@ -332,7 +358,7 @@
 			"query-input": "required name=search_term"
 		},
 		"keywords":[
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"hasPart": [
 			{
@@ -342,7 +368,7 @@
 				"headline": "KeJyun Laravel 5 學習筆記",
 				"cssSelector": "#header",
 				"potentialAction": [],
-				"@graph": 
+				"@graph":
 				[]
 			},
 			{
@@ -366,6 +392,7 @@
 	}
 ]
 </script>
+
   
 
   
@@ -399,14 +426,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602332893"></script>
-<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602332893"></script>
+<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602342811"></script>
+<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602342811"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/kejyun.github.io\/laravel5-book\/";
     
 </script>
-<script type="text/javascript" src="/laravel5-book/js/search.js?1602332893"></script>
+<script type="text/javascript" src="/laravel5-book/js/search.js?1602342811"></script>
 
     
   </div>
@@ -2714,7 +2741,7 @@
                 <div id="top-bar">
                 
                 
-                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <div id="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
                     <span id="sidebar-toggle-span">
                         <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
                           <i class="fas fa-bars"></i>
@@ -2779,6 +2806,16 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;title&#34;:&#34;日誌巨集&#34;, &#34;weight&#34;:3}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -2936,6 +2973,16 @@ return response()-&gt;json([&#39;status&#39; =&gt; &#39;failure&#39;, &#39;error
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;title&#34;:&#34;日誌巨集&#34;, &#34;weight&#34;:3}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -4647,19 +4694,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/laravel5-book/js/clipboard.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/jquery.sticky.js?1602332893"></script>
-    <script src="/laravel5-book/js/featherlight.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/highlight.pack.js?1602332893"></script>
+    <script src="/laravel5-book/js/clipboard.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/jquery.sticky.js?1602342811"></script>
+    <script src="/laravel5-book/js/featherlight.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/highlight.pack.js?1602342811"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602332893"></script>
-    <script src="/laravel5-book/js/learn.js?1602332893"></script>
-    <script src="/laravel5-book/js/hugo-learn.js?1602332893"></script>
+    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602342811"></script>
+    <script src="/laravel5-book/js/learn.js?1602342811"></script>
+    <script src="/laravel5-book/js/hugo-learn.js?1602342811"></script>
 
-    <link href="/laravel5-book/mermaid/mermaid.css?1602332893" rel="stylesheet" />
-    <script src="/laravel5-book/mermaid/mermaid.js?1602332893"></script>
+    <link href="/laravel5-book/mermaid/mermaid.css?1602342811" rel="stylesheet" />
+    <script src="/laravel5-book/mermaid/mermaid.js?1602342811"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

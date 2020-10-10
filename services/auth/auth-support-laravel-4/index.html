@@ -12,21 +12,21 @@
     <title>認證支援 Laravel 4 Session :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602332893" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602342811" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602342811" rel="stylesheet">
     
-    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602332893" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602342811" rel="stylesheet">
     
     
 
-    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602332893"></script>
+    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602342811"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,11 +52,29 @@
     "@type":"Article",
     "headline":"認證支援 Laravel 4 Session",
     "url":"https:\/\/kejyun.github.io\/laravel5-book\/services\/auth\/auth-support-laravel-4\/",
-    "keywords":[ 
-    "mobile", "web", "ai", "backend", "open source"
+    "keywords":[
+    
+      
+        
+        "laravel"
+      
+        , 
+        "laravel 學習筆記"
+      
+        , 
+        "KJ"
+      
+        , 
+        "kejyun"
+      
+    
     ],
     "image":{
-        "@type":"ImageObject", 
+        "@type":"ImageObject",
+        "url" :
+        
+          "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+        
         "width":"1200",
         "height":"627"
     },
@@ -67,7 +85,7 @@
         "url":"https:\/\/kejyun.github.io\/laravel5-book\/",
         "logo":{
             "@type":"ImageObject",
-            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
             "width":"357",
             "height":"60"
         }
@@ -91,7 +109,11 @@
 <script type="application/ld+json">
 	{
 		"@context":"http://schema.org",
-		"@type": "BlogPosting", 
+		"@type": "BlogPosting",
+		"image":
+		
+			"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+		
 		"url": "https:\/\/kejyun.github.io\/laravel5-book\/services\/auth\/auth-support-laravel-4\/",
 		"headline": "認證支援 Laravel 4 Session",
 		"alternativeHeadline": "認證支援 Laravel 4 Session",
@@ -129,20 +151,21 @@
 			"url": "https:\/\/kejyun.github.io\/laravel5-book\/",
 			"logo": {
 				"@type": "ImageObject",
-				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 				"width":"357",
 				"height":"60"
 			}
 		},
 		"mainEntityOfPage": "True",
 		"keywords": [ 
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
 		"articleBody": "Laravel 5 認證支援 Laravel 4 Session Step1. Laravel 4 加密方式支援 AES Laravel 4 因為加密方式支援 rijndael-128，不支援 AES，所以無法使用 php 7.1 執行 Laravel 4 專案，在 Laravel 4 中的 app\/config\/app.php 檔案可以看到金鑰及加密方式的設定：\n\u0026lt;?php \/\/ Laravel 4 \/\/ app\/config\/app.php return [ \u0026#39;key\u0026#39; =\u0026gt; \u0026#39;randomStringLength32xxxxxxxxxxxx\u0026#39; \u0026#39;cipher\u0026#39; =\u0026gt; MCRYPT_RIJNDAEL_128, ]; Laravel 4 安裝 tomgrohl\/laravel4-php71-encrypter 套件支援 AES 加密\ncomposer require tomgrohl\/laravel4-php71-encrypter 修改 Nginx 設定使用 PHP 7.1\nserver { root \u0026quot;\/home\/kejyun\/web\/laravel-4-project\/public\u0026quot;; location ~ [^\/]\\.php(\/|$) { fastcgi_pass unix:\/run\/php\/php7.1-fpm.sock; } } 修改 Laravel 4 加密方式支援 AES-256\nAES-256 金鑰需要長度 32 的字串，AES-128 需要長度 16 的字串，我們支援 AES-256 所以需要將金鑰長度設定為 32\n\u0026lt;?php \/\/ Laravel 4 \/\/ app\/config\/app.php return [ \u0026#39;key\u0026#39; =\u0026gt; \u0026#39;randomStringLength32xxxxxxxxxxxx\u0026#39; \u0026#39;cipher\u0026#39; =\u0026gt; \u0026#39;AES-256-CBC\u0026#39;, ]; Step2. 修改 Laravel 5 金鑰格式 在使用 php artisan key:generate 產生 APP_KEY 時會產生 base64 的金鑰，但這樣格式的金鑰在 Laravel 4 是不支援的\n# .env APP_KEY=base64:z\u002bldCPR\/vzxMBzZ6k\u002bmptblu82qbeSM\u002bkK5ZVKOUdFg= 所以需要將 Laravel 4 的金鑰直接貼到 .env 檔案，不要經過 base64 的加密\n# .env APP_KEY=randomStringLength32xxxxxxxxxxxx Step3. 修改 Laravel 5 Cookie 加密方式 由於 Laravel 4 會將 Cookie 的資料經過 serialize，但 Laravel 5 不會將 Cookie serialize，所以為了讓 Laravel 5 可以正常讀取 Laravel 4 的 Cookie，需要將 Laravel 5 serialize 的功能打開。\n在 app\/Http\/Middleware\/EncryptCookies.php 檔案中可以設定靜態變數 $serialize 為 true 即可。\n\u0026lt;?php \/\/ app\/Http\/Middleware\/EncryptCookies.php namespace App\\Http\\Middleware; use Illuminate\\Cookie\\Middleware\\EncryptCookies as Middleware; class EncryptCookies extends Middleware { protected static $serialize = true; } Step4. 修改 Laravel 5 Auth 驗證方式 Laravel 4的驗證 Auth 方法與 Laravel 5 有些許不同，主要是在取得 session 名稱 的方法有點不同，在 Laravel 4 的 vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php 可以看到 getName() 與 getRecallerName() 函式與 Laravel 5 不同\nLaravel 4 Guard\n vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php\n \u0026lt;?php namespace Illuminate\\Auth; \/\/ Laravel 4 \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php  use Illuminate\\Cookie\\CookieJar; use Illuminate\\Events\\Dispatcher; use Symfony\\Component\\HttpFoundation\\Request; use Illuminate\\Session\\Store as SessionStore; use Symfony\\Component\\HttpFoundation\\Response; class Guard { \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.md5(get_class($this)); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.md5(get_class($this)); } } Laravel 5 Session Guard\n vendor\/laravel\/framework\/src\/Illuminate\/Auth\/SessionGuard.php\n \u0026lt;?php \/\/ Laravel 5 \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/SessionGuard.php  namespace Illuminate\\Auth; class SessionGuard implements StatefulGuard, SupportsBasicAuth { \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.$this-\u0026gt;name.\u0026#39;_\u0026#39;.sha1(static::class); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.$this-\u0026gt;name.\u0026#39;_\u0026#39;.sha1(static::class); } } 為了讓 Laravel 5 支援 Laravel 4 的 Session，則必須要將取得 Session 名稱 方法修改為 Laravel 4 的方式\nLaravel 5 目錄建立 app\/Auth\/Laravel4SessionGuard.php 檔案，繼承原本 Illuminate\\Auth\\SessionGuard 的方法，並加入 getName() 及 getRecallerName() 方法修改為 Laravel 4 的方法\n\u0026lt;?php namespace App\\Auth; use Auth; use Illuminate\\Auth\\SessionGuard; use Illuminate\\Contracts\\Auth\\Guard; class Laravel4SessionGuard extends SessionGuard implements Guard { protected $laravel4_guard_class_name = \u0026#39;Illuminate\\Auth\\Guard\u0026#39;; \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.md5($this-\u0026gt;laravel4_guard_class_name); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.md5($this-\u0026gt;laravel4_guard_class_name); } \/** * Extend Auth for Laravel 4 *\/ public static function AuthExtend() { \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/AuthManager.php  \/\/ - createSessionDriver  Auth::extend(\u0026#39;laravel4Session\u0026#39;, function ($app, $name, array $config) { $provider = Auth::createUserProvider($config[\u0026#39;provider\u0026#39;]); $guard = new Laravel4SessionGuard($name, $provider, $app[\u0026#39;session.store\u0026#39;]); \/\/ When using the remember me functionality of the authentication services we  \/\/ will need to be set the encryption instance of the guard, which allows  \/\/ secure, encrypted cookie values to get generated for those cookies.  if (method_exists($guard, \u0026#39;setCookieJar\u0026#39;)) { $guard-\u0026gt;setCookieJar($app[\u0026#39;cookie\u0026#39;]); } if (method_exists($guard, \u0026#39;setDispatcher\u0026#39;)) { $guard-\u0026gt;setDispatcher($app[\u0026#39;events\u0026#39;]); } if (method_exists($guard, \u0026#39;setRequest\u0026#39;)) { $guard-\u0026gt;setRequest($app-\u0026gt;refresh(\u0026#39;request\u0026#39;, $guard, \u0026#39;setRequest\u0026#39;)); } return $guard; }); } } 修改 config\/auth.php 設定檔案\n\u0026lt;?php return [ \u0026#39;defaults\u0026#39; =\u0026gt; [ \/\/ \u0026#39;guard\u0026#39; =\u0026gt; \u0026#39;web\u0026#39;,  \u0026#39;guard\u0026#39; =\u0026gt; \u0026#39;laravel4_web\u0026#39;, \u0026#39;passwords\u0026#39; =\u0026gt; \u0026#39;users\u0026#39;, ], \u0026#39;guards\u0026#39; =\u0026gt; [ \u0026#39;laravel4_web\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;laravel4Session\u0026#39;, \u0026#39;provider\u0026#39; =\u0026gt; \u0026#39;users\u0026#39;, ], ], ]; Laravel 5 使用自訂驗證方法\n在 Laravel 5 中的 app\/Providers\/AuthServiceProvider.php 檔案中呼叫 Laravel4SessionGuard::AuthExtend(); 方法，之後即可讀取到 Laravel 4 產生的 Session 驗證資料\n\u0026lt;?php \/\/ Laravel 5 \/\/ app\/Providers\/AuthServiceProvider.php  namespace App\\Providers; use App\\Auth\\Laravel4SessionGuard; use Illuminate\\Support\\Facades\\Gate; use Illuminate\\Foundation\\Support\\Providers\\AuthServiceProvider as ServiceProvider; class AuthServiceProvider extends ServiceProvider { \/** * Register any authentication \/ authorization services. * * @return void *\/ public function boot() { $this-\u0026gt;registerPolicies(); \/\/ 設定 Laravel 4 Auth  Laravel4SessionGuard::AuthExtend(); } } 參考資料  tomgrohl\/laravel4-php71-encrypter: Laravel 4.2 Encrypter for PHP 7.1\u002b The only supported ciphers are AES-128-CBC and AES-256-CBC · Issue #9080 · laravel\/framework Laravel 5.6.30 breaks passport · Issue #795 · laravel\/passport Authentication - Laravel - The PHP Framework For Web Artisans How to Create a Custom Authentication Guard in Laravel  "
 	}
 </script>
+
   
 
   
@@ -221,7 +244,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
   	}
 ],
@@ -234,7 +257,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
 	}
 ],
@@ -300,7 +323,7 @@
 		  "name": "Laravel 5 學習筆記",
 		  "logo": {
 		    "@type": "ImageObject",
-		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 		    "height": 60,
 		    "width": 107
 		  }
@@ -310,8 +333,11 @@
 			"@type": "localBusiness",
 			"name": "Laravel 5 學習筆記",
 			"image":"https:\/\/kejyun.github.io\/laravel5-book\/",
+			
 			"priceRange":"$$",
-			"telephone":"",
+			
+
+			
 			"address": {
 				"@type": "PostalAddress",
 				"streetAddress": "",
@@ -332,7 +358,7 @@
 			"query-input": "required name=search_term"
 		},
 		"keywords":[
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"hasPart": [
 			{
@@ -342,7 +368,7 @@
 				"headline": "KeJyun Laravel 5 學習筆記",
 				"cssSelector": "#header",
 				"potentialAction": [],
-				"@graph": 
+				"@graph":
 				[]
 			},
 			{
@@ -366,6 +392,7 @@
 	}
 ]
 </script>
+
   
 
   
@@ -399,14 +426,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602332893"></script>
-<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602332893"></script>
+<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602342811"></script>
+<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602342811"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/kejyun.github.io\/laravel5-book\/";
     
 </script>
-<script type="text/javascript" src="/laravel5-book/js/search.js?1602332893"></script>
+<script type="text/javascript" src="/laravel5-book/js/search.js?1602342811"></script>
 
     
   </div>
@@ -2714,7 +2741,7 @@
                 <div id="top-bar">
                 
                 
-                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <div id="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
                     <span id="sidebar-toggle-span">
                         <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
                           <i class="fas fa-bars"></i>
@@ -2779,6 +2806,16 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;title&#34;:&#34;認證支援 Laravel 4 Session&#34;, &#34;weight&#34;:2}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -3028,6 +3065,16 @@ APP_KEY<span style="color:#f92672">=</span>randomStringLength32xxxxxxxxxxxx
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;title&#34;:&#34;認證支援 Laravel 4 Session&#34;, &#34;weight&#34;:2}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -4736,19 +4783,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/laravel5-book/js/clipboard.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/jquery.sticky.js?1602332893"></script>
-    <script src="/laravel5-book/js/featherlight.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/highlight.pack.js?1602332893"></script>
+    <script src="/laravel5-book/js/clipboard.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/jquery.sticky.js?1602342811"></script>
+    <script src="/laravel5-book/js/featherlight.min.js?1602342811"></script>
+    <script src="/laravel5-book/js/highlight.pack.js?1602342811"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602332893"></script>
-    <script src="/laravel5-book/js/learn.js?1602332893"></script>
-    <script src="/laravel5-book/js/hugo-learn.js?1602332893"></script>
+    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602342811"></script>
+    <script src="/laravel5-book/js/learn.js?1602342811"></script>
+    <script src="/laravel5-book/js/hugo-learn.js?1602342811"></script>
 
-    <link href="/laravel5-book/mermaid/mermaid.css?1602332893" rel="stylesheet" />
-    <script src="/laravel5-book/mermaid/mermaid.js?1602332893"></script>
+    <link href="/laravel5-book/mermaid/mermaid.css?1602342811" rel="stylesheet" />
+    <script src="/laravel5-book/mermaid/mermaid.js?1602342811"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

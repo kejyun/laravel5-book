@@ -12,21 +12,21 @@
     <title>視圖介紹 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602332893" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602332893" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1602342812" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1602342812" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1602342812" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1602342812" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1602342812" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1602342812" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1602342812" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1602342812" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1602342812" rel="stylesheet">
     
-    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602332893" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1602342812" rel="stylesheet">
     
     
 
-    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602332893"></script>
+    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1602342812"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,11 +52,29 @@
     "@type":"Article",
     "headline":"視圖介紹",
     "url":"https:\/\/kejyun.github.io\/laravel5-book\/view\/view-intro\/",
-    "keywords":[ 
-    "mobile", "web", "ai", "backend", "open source"
+    "keywords":[
+    
+      
+        
+        "laravel"
+      
+        , 
+        "laravel 學習筆記"
+      
+        , 
+        "KJ"
+      
+        , 
+        "kejyun"
+      
+    
     ],
     "image":{
-        "@type":"ImageObject", 
+        "@type":"ImageObject",
+        "url" :
+        
+          "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+        
         "width":"1200",
         "height":"627"
     },
@@ -67,7 +85,7 @@
         "url":"https:\/\/kejyun.github.io\/laravel5-book\/",
         "logo":{
             "@type":"ImageObject",
-            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
             "width":"357",
             "height":"60"
         }
@@ -91,7 +109,11 @@
 <script type="application/ld+json">
 	{
 		"@context":"http://schema.org",
-		"@type": "BlogPosting", 
+		"@type": "BlogPosting",
+		"image":
+		
+			"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+		
 		"url": "https:\/\/kejyun.github.io\/laravel5-book\/view\/view-intro\/",
 		"headline": "視圖介紹",
 		"alternativeHeadline": "視圖介紹",
@@ -129,20 +151,21 @@
 			"url": "https:\/\/kejyun.github.io\/laravel5-book\/",
 			"logo": {
 				"@type": "ImageObject",
-				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 				"width":"357",
 				"height":"60"
 			}
 		},
 		"mainEntityOfPage": "True",
 		"keywords": [ 
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
 		"articleBody": "視圖介紹 這裏會介紹如何在 Laravel 5 處理視圖（View）\nLaravel 的視圖是放在 resource\/views 目錄內\n建立共用的視圖 我們網頁常常會出現 header 跟 footer 在不同的視圖中為相同的狀況，唯一有變的只有中間的內容隨著不同的請求而有變動，如果有這樣的設計需求，我們可以替所有視圖建立共用的視圖，假設我們把這個共用的視圖放在 resource\/view\/app.blade.php 下，其內容可能是：\n\u0026lt;!-- resource\/view\/app.blade.php --\u0026gt; \u0026lt;!doctype html\u0026gt; \u0026lt;html lang=\u0026#34;zh-TW\u0026#34;\u0026gt; \u0026lt;head\u0026gt; \u0026lt;meta charset=\u0026#34;UTF-8\u0026#34;\u0026gt; \u0026lt;title\u0026gt;我的網站\u0026lt;\/title\u0026gt; \u0026lt;\/head\u0026gt; \u0026lt;body\u0026gt; \u0026lt;div class=\u0026#34;container\u0026#34;\u0026gt; @yield(\u0026#39;content\u0026#39;) \u0026lt;\/div\u0026gt; @yield(\u0026#39;other_info\u0026#39;) \u0026lt;\/body\u0026gt; \u0026lt;\/html\u0026gt; 如果我們要顯示文章的資訊在 content 中，文章的說明在 other_info 中，我們可以在 blade 中這樣設定：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) \u0026lt;h1\u0026gt;文章標題\u0026lt;\/h1\u0026gt; \u0026lt;p\u0026gt; Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \u0026lt;\/p\u0026gt; @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 這樣 Laravel 就會幫我們把相對應的資訊塞到 app.blade.php 當中相對應的位置\n引入共用的視圖 假如我們要在特定的某幾頁使用 Facebook 留言板，像是：\n\u0026lt;div id=\u0026#34;fb-root\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; \u0026lt;script\u0026gt;(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = \u0026#34;\/\/connect.facebook.net\/zh_TW\/sdk.js#xfbml=1\u0026amp;version=v2.3\u0026amp;appId=12345566\u0026#34;; fjs.parentNode.insertBefore(js, fjs); }(document, \u0026#39;script\u0026#39;, \u0026#39;facebook-jssdk\u0026#39;));\u0026lt;\/script\u0026gt; \u0026lt;div class=\u0026#34;fb-comments\u0026#34; data-href=\u0026#34;http:\/\/laravel5-book.kejyun.com\/\u0026#34; data-numposts=\u0026#34;5\u0026#34; data-colorscheme=\u0026#34;light\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; 但我們不想要這些相同的程式碼片段散落在各個不同的視圖中，我們可以把它整理在 resource\/views\/vendor\/_fbcomment.blade.php 當中\n然後在文章視圖當中我們就可以這樣去引入 Facebook 留言板：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) \u0026lt;h1\u0026gt;文章標題\u0026lt;\/h1\u0026gt; \u0026lt;p\u0026gt; Lorem ipsum dolor sit amet \u0026lt;\/p\u0026gt; @include(\u0026#39;vendor\/_fbcomment\u0026#39;) @include(\u0026#39;vendor._fbcomment\u0026#39;) @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 傳入變數到引用的視圖當中 在我們新增與編輯文章的視圖當中，幾乎所有的視圖都是一樣的，不一樣的地方可能只有「表單處理的 action 不同（create \u0026amp; edit）」、「送出的按鈕文字不同（新增違章 \u0026amp; 編輯文章）」\n但我們還是希望兩個視圖能夠一起被引用，把其他不同的地方當作變數傳入，就可以達到視圖重構的效果，避免類似的視圖重複出現在不同地方，像是：\n\u0026lt;!-- resource\/view\/partials\/articles\/_form.blade.php --\u0026gt; {!! Form::label(\u0026#39;title\u0026#39;,\u0026#39;標題\u0026#39;) !!} {!! Form::text(\u0026#39;title\u0026#39;, null) !!} {!! Form::label(\u0026#39;content\u0026#39;,\u0026#39;內文\u0026#39;) !!} {!! Form::text(\u0026#39;content\u0026#39;, null) !!} {!! Form::submit($submitButtonText) !!} 當我們要引用表單的視圖，則必須把按鈕的文字傳送給表單，像是：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) @include(\u0026#39;partials\/articles\/_form\u0026#39;, [\u0026#39;submitButtonText\u0026#39; =\u0026gt; \u0026#39;新增文章\u0026#39;]) @include(\u0026#39;partials\/articles\/_form\u0026#39;, [\u0026#39;submitButtonText\u0026#39; =\u0026gt; \u0026#39;編輯文章\u0026#39;]) @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 備註 引用或載入視圖路徑 在使用 blade 中的 @extend() 或 @include() 函數，他所參照的視圖相對位置是從 resource\/views\/ 開始的\n所以如果你的視圖是放在 resource\/views\/partials\/other.blade.php 中，你要引用或載入的話則可以用 . 或 \/ 去指定相對的視圖位置，像是：\n\u0026lt;!-- 引用 --\u0026gt; @extend(\u0026#39;partials._other\u0026#39;) @extend(\u0026#39;partials\/_other\u0026#39;) \u0026lt;!-- 載入 --\u0026gt; @include(\u0026#39;partials._other\u0026#39;) @include(\u0026#39;partials\/_other\u0026#39;) 設計模式 樣板檔案名稱 通常若不是完整的視圖，僅是部分的視圖，通常會將檔案名稱最前面加上底線 _，用來告知團隊程式設計師這個 blade 視圖不是完整的視圖\n參考資訊  View Partials and Form Reuse - Laracasts  "
 	}
 </script>
+
   
 
   
@@ -213,7 +236,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
   	}
 ],
@@ -226,7 +249,7 @@
 	{
 		"@type": "Organization",
 		"name": "KeJyun",
-		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
 		]
 	}
 ],
@@ -292,7 +315,7 @@
 		  "name": "Laravel 5 學習筆記",
 		  "logo": {
 		    "@type": "ImageObject",
-		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.png",
+		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
 		    "height": 60,
 		    "width": 107
 		  }
@@ -302,8 +325,11 @@
 			"@type": "localBusiness",
 			"name": "Laravel 5 學習筆記",
 			"image":"https:\/\/kejyun.github.io\/laravel5-book\/",
+			
 			"priceRange":"$$",
-			"telephone":"",
+			
+
+			
 			"address": {
 				"@type": "PostalAddress",
 				"streetAddress": "",
@@ -324,7 +350,7 @@
 			"query-input": "required name=search_term"
 		},
 		"keywords":[
-			"mobile", "web", "ai", "backend", "open source"
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
 		],
 		"hasPart": [
 			{
@@ -334,7 +360,7 @@
 				"headline": "KeJyun Laravel 5 學習筆記",
 				"cssSelector": "#header",
 				"potentialAction": [],
-				"@graph": 
+				"@graph":
 				[]
 			},
 			{
@@ -358,6 +384,7 @@
 	}
 ]
 </script>
+
   
 
   
@@ -391,14 +418,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602332893"></script>
-<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602332893"></script>
+<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1602342812"></script>
+<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1602342812"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/kejyun.github.io\/laravel5-book\/";
     
 </script>
-<script type="text/javascript" src="/laravel5-book/js/search.js?1602332893"></script>
+<script type="text/javascript" src="/laravel5-book/js/search.js?1602342812"></script>
 
     
   </div>
@@ -2706,7 +2733,7 @@
                 <div id="top-bar">
                 
                 
-                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <div id="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList">
                     <span id="sidebar-toggle-span">
                         <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
                           <i class="fas fa-bars"></i>
@@ -2765,6 +2792,16 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;resources&#34;:[]map[string]interface {}{map[string]interface {}{&#34;icon&#34;:[]interface {}{111, 222}}}, &#34;title&#34;:&#34;視圖介紹&#34;, &#34;weight&#34;:1}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -2897,6 +2934,16 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+<pre>
+<code class="language-html" data-lang="json">
+maps.Params{&#34;author&#34;:&#34;KeJyun&#34;, &#34;chapter&#34;:true, &#34;contenttypes&#34;:[]string{&#34;Article&#34;, &#34;Website&#34;, &#34;BreadcrumbList&#34;, &#34;BlogPosting&#34;, &#34;Person&#34;}, &#34;date&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;draft&#34;:false, &#34;iscjklanguage&#34;:false, &#34;lastmod&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;pre&#34;:&#34;&#34;, &#34;publishdate&#34;:time.Time{wall:0x0, ext:63734390682, loc:(*time.Location)(0x6c47f60)}, &#34;resources&#34;:[]map[string]interface {}{map[string]interface {}{&#34;icon&#34;:[]interface {}{111, 222}}}, &#34;title&#34;:&#34;視圖介紹&#34;, &#34;weight&#34;:1}
+maps.Params{&#34;adsense&#34;:maps.Params{&#34;article_slot&#34;:&#34;5417606383&#34;, &#34;client&#34;:&#34;ca-pub-1990193713845546&#34;}, &#34;author&#34;:&#34;KeJyun&#34;, &#34;contact&#34;:&#34;kj@kejyun.com&#34;, &#34;copyright&#34;:&#34;© 2020 KeJyun. All rights reserved.&#34;, &#34;description&#34;:&#34;KeJyun Laravel 5 學習筆記&#34;, &#34;disableassetsbusting&#34;:false, &#34;disablebreadcrumb&#34;:false, &#34;disableinlinecopytoclipboard&#34;:false, &#34;disablelanguageswitchingbutton&#34;:false, &#34;disablenextprev&#34;:false, &#34;disablesearch&#34;:false, &#34;disableshortcutstitle&#34;:false, &#34;editurl&#34;:&#34;&#34;, &#34;images&#34;:[]interface {}{&#34;images/bg.jpg&#34;}, &#34;imageurl&#34;:&#34;images/bg.jpg&#34;, &#34;keywords&#34;:[]interface {}{&#34;laravel&#34;, &#34;laravel 學習筆記&#34;, &#34;KJ&#34;, &#34;kejyun&#34;}, &#34;logourl&#34;:&#34;images/logo.jpeg&#34;, &#34;mainSections&#34;:[]string{&#34;services&#34;}, &#34;mainsections&#34;:[]string{&#34;services&#34;}, &#34;name&#34;:&#34;KeJyun&#34;, &#34;ordersectionsby&#34;:&#34;weight&#34;, &#34;phone&#34;:&#34;&#34;, &#34;pricerange&#34;:&#34;$$&#34;, &#34;primaryauthor&#34;:&#34;KeJyun&#34;, &#34;primarylocation&#34;:&#34;Taiwan&#34;, &#34;showvisitedlinks&#34;:true, &#34;social&#34;:maps.Params{&#34;facebook&#34;:&#34;kejyunTaiwan&#34;, &#34;facebook_admin&#34;:&#34;&#34;, &#34;github&#34;:&#34;kejyun&#34;, &#34;googleplus&#34;:&#34;&#34;, &#34;instagram&#34;:&#34;&#34;, &#34;linkedin&#34;:&#34;&#34;, &#34;pinterest&#34;:&#34;&#34;, &#34;twitter&#34;:&#34;&#34;, &#34;twitter_domain&#34;:&#34;&#34;, &#34;website&#34;:&#34;https://kejyun.github.io/laravel5-book/&#34;, &#34;youtube&#34;:&#34;&#34;}, &#34;themevariant&#34;:&#34;mine&#34;}
+
+
+</code>
+</pre>
 
 
 
@@ -4601,19 +4648,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/laravel5-book/js/clipboard.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/jquery.sticky.js?1602332893"></script>
-    <script src="/laravel5-book/js/featherlight.min.js?1602332893"></script>
-    <script src="/laravel5-book/js/highlight.pack.js?1602332893"></script>
+    <script src="/laravel5-book/js/clipboard.min.js?1602342812"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1602342812"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1602342812"></script>
+    <script src="/laravel5-book/js/jquery.sticky.js?1602342812"></script>
+    <script src="/laravel5-book/js/featherlight.min.js?1602342812"></script>
+    <script src="/laravel5-book/js/highlight.pack.js?1602342812"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602332893"></script>
-    <script src="/laravel5-book/js/learn.js?1602332893"></script>
-    <script src="/laravel5-book/js/hugo-learn.js?1602332893"></script>
+    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1602342812"></script>
+    <script src="/laravel5-book/js/learn.js?1602342812"></script>
+    <script src="/laravel5-book/js/hugo-learn.js?1602342812"></script>
 
-    <link href="/laravel5-book/mermaid/mermaid.css?1602332893" rel="stylesheet" />
-    <script src="/laravel5-book/mermaid/mermaid.js?1602332893"></script>
+    <link href="/laravel5-book/mermaid/mermaid.css?1602342812" rel="stylesheet" />
+    <script src="/laravel5-book/mermaid/mermaid.js?1602342812"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
