@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>單元測試 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/services/unit-test/</link>
+    <description>Recent content in 單元測試 on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/services/unit-test/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>POST CSRF 錯誤</title>
+      <link>https://laravel5-book.kejyun.com/services/unit-test/unit-test-post-csrf/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/unit-test/unit-test-post-csrf/</guid>
+      <description>POST CSRF 錯誤 當我們在使用 Unit test 做 POST 測試時，測試的程式可能像：
+&amp;lt;?php class UserTest extends TestCase { /** * 測試註冊 */ public function testSignup() { $parameters = [ &amp;#39;email&amp;#39;=&amp;gt;&amp;#39;kejyun@gmail.com&amp;#39;, &amp;#39;name&amp;#39;=&amp;gt;&amp;#39;KeJyun&amp;#39; ]; // 傳送參數  $response = $this-&amp;gt;call(&amp;#39;POST&amp;#39;, &amp;#39;/signup&amp;#39;, $parameters); $this-&amp;gt;assertEquals(200, $response-&amp;gt;getStatusCode()); } } 在執行單元測試後，你會收到一個 TokenMismatchException 的例外錯誤，這個部分是 Middleware VerifyCsrfToken 的驗證錯誤
+這是因為 Laravel 5 在所有的 POST、PUT、DELETE 的路由方法中，都會預設加入 CSRF Token 的檢查，他會檢查 POST 過來的資料中 _token 的資料值與 Session 中的 token 是否相符，或是驗證標頭中的 X-CSRF-TOKEN 是否相符。
+所以在我們每一次做 POST、PUT、DELETE 的請求時，我們都必須要將 CSRF Token 帶入檢查，才能執行後面的程式動作，我們可以用這樣的方式帶入 CSRF Token：</description>
+    </item>
+    
+    <item>
+      <title>Ajax Request &amp; JSON Response</title>
+      <link>https://laravel5-book.kejyun.com/services/unit-test/unit-test-ajax-request-json-response/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/unit-test/unit-test-ajax-request-json-response/</guid>
+      <description>Ajax Request &amp;amp; JSON Response 在 Unit test 需要模擬 Ajax 請求時，可以在 $server 參數設定下列設定
+$server = [ &#39;HTTP_X-Requested-With&#39; =&amp;gt; &#39;XMLHttpRequest&#39;, // Ajax Request &#39;HTTP_ACCEPT&#39;=&amp;gt; &#39;application/json&#39;, // 請求 JSON Response ]; &amp;lt;?php class ServerTest { public function testAjaxRequestAndJsonResponse() { $uri = &amp;#39;/test/ajax&amp;#39;; $server = [ &amp;#39;HTTP_X-Requested-With&amp;#39; =&amp;gt; &amp;#39;XMLHttpRequest&amp;#39;, // Ajax Request  &amp;#39;HTTP_ACCEPT&amp;#39;=&amp;gt; &amp;#39;application/json&amp;#39;, // 請求 JSON Response  ]; $res = $this-&amp;gt;call(&amp;#39;POST&amp;#39;, $uri, $parameters, $cookies, $files, $server); } } 當設定完 HTTP_X-Requested-With 為 XMLHttpRequest 時，Laravel 會把這個請求視為 Ajax 請求，所以在呼叫 request()-&amp;gt;ajax() 方法時會回傳 true</description>
+    </item>
+    
+    <item>
+      <title>Assert</title>
+      <link>https://laravel5-book.kejyun.com/services/unit-test/unit-test-assert/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/unit-test/unit-test-assert/</guid>
+      <description>Assert 狀態碼測試 assertOk ： 測試回傳狀態碼為 200 assertForbidden ： 測試回傳狀態碼為 403 assertNotFound ： 測試回傳狀態碼為 404 assertSuccessful ： 測試回傳狀態碼為 200 ~ 299 &amp;lt;?php $response = $this-&amp;gt;json(&amp;#39;GET&amp;#39;, &amp;#39;/api/status-code&amp;#39;); // 測試狀態碼 $response-&amp;gt;assertOk(); // 狀態碼 200 $response-&amp;gt;assertNotFound(); // 狀態碼 404 $response-&amp;gt;assertForbidden(); // 狀態碼 403 $response-&amp;gt;assertSuccessful(); // 狀態碼 200 ~ 299 assertStatus ： 測試指定狀態碼 &amp;lt;?php $response = $this-&amp;gt;json(&amp;#39;GET&amp;#39;, &amp;#39;/api/status-code&amp;#39;); // 測試狀態碼 $response-&amp;gt;assertStatus(201); // 狀態碼 201 assertRedirect ： 測試是否為重新導向狀態碼  重新導向狀態碼：201, 301, 302, 303, 307, 308
+ &amp;lt;?</description>
+    </item>
+    
+    <item>
+      <title>單元測試登入及上傳檔案</title>
+      <link>https://laravel5-book.kejyun.com/services/unit-test/unit-test-login-and-upload-file/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/unit-test/unit-test-login-and-upload-file/</guid>
+      <description>單元測試登入及上傳檔案 登入使用者 $User = User::find(12345); $this-&amp;gt;be($User); 上傳檔案 // 設定上傳檔案 $post_file = new UploadedFile($path, $name, filesize($path), &amp;#39;image/png&amp;#39;, null, true); // 呼叫上傳網址 $response = $this-&amp;gt;call(&amp;#39;POST&amp;#39;, &amp;#39;/photo/store&amp;#39;, [], [], $post_file); // 取得回傳內容 $content = json_decode($response-&amp;gt;getContent()); dump($content); 參考資料  php - How to test file upload in Laravel 5.2 - Stack Overflow How to mock authentication user on unit test in Laravel?  </description>
+    </item>
+    
+    <item>
+      <title>變更請求網址</title>
+      <link>https://laravel5-book.kejyun.com/services/unit-test/unit-test-change-root-url/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/unit-test/unit-test-change-root-url/</guid>
+      <description>Unit test 變更請求網址(Root Url) 在單元測試(Unit test)的時候，測試網址預設會抓取 .env 檔案的 APP_URL，但若同個專案有不同的網址時，則需要再寫測試時變更為特定的網址
+可以在 setUp() 函式使用 \URL::forceRootUrl() 強制轉換網址，這樣就可以使用指定的網址進行測試了
+&amp;lt;?php class TestCase { function setUp(): void { parent::setUp(); $app_url= &amp;#34;http://kejyun.com&amp;#34;; \URL::forceRootUrl($app_url); } } </description>
+    </item>
+    
+  </channel>
+</rss>

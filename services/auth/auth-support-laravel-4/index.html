@@ -1,0 +1,4758 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.73.0" />
+    <meta name="description" content="KeJyun Laravel 5 學習筆記">
+<meta name="author" content="KeJyun">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>認證支援 Laravel 4 Session :: Laravel 5 學習筆記</title>
+
+    
+    <link href="/css/nucleus.css?1602331905" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1602331905" rel="stylesheet">
+    <link href="/css/hybrid.css?1602331905" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1602331905" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1602331905" rel="stylesheet">
+    <link href="/css/auto-complete.css?1602331905" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1602331905" rel="stylesheet">
+    <link href="/css/theme.css?1602331905" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1602331905" rel="stylesheet">
+    
+    <link href="/css/theme-mine.css?1602331905" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1602331905"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    <style type="text/css">
+    #chapter p {
+      text-align:left;
+    }
+</style>
+
+
+
+
+  
+    
+
+<script type="application/ld+json">
+{
+    "@context":"http://schema.org",
+    "@type":"Article",
+    "headline":"認證支援 Laravel 4 Session",
+    "url":"https:\/\/laravel5-book.kejyun.com\/services\/auth\/auth-support-laravel-4\/",
+    "keywords":[ 
+    "mobile", "web", "ai", "backend", "open source"
+    ],
+    "image":{
+        "@type":"ImageObject", 
+        "width":"1200",
+        "height":"627"
+    },
+    "mainEntityOfPage":"True",
+    "publisher":{
+        "@type":"Organization",
+        "name":"KeJyun",
+        "url":"https:\/\/laravel5-book.kejyun.com\/",
+        "logo":{
+            "@type":"ImageObject",
+            "url":"https:\/\/laravel5-book.kejyun.com\/images\/logo.png",
+            "width":"357",
+            "height":"60"
+        }
+    },
+    "dateCreated":"2020-08-30T21:24:42\u002b08:00",
+    "datePublished":"2020-08-30T21:24:42\u002b08:00",
+    
+    
+    "author":"KJ",
+    "creator":"KJ",
+    
+    "dateModified":"2020-08-30T21:24:42\u002b08:00",
+    "articleSection":"TechArticle"
+}
+</script>
+
+  
+
+  
+    
+<script type="application/ld+json">
+	{
+		"@context":"http://schema.org",
+		"@type": "BlogPosting", 
+		"url": "https:\/\/laravel5-book.kejyun.com\/services\/auth\/auth-support-laravel-4\/",
+		"headline": "認證支援 Laravel 4 Session",
+		"alternativeHeadline": "認證支援 Laravel 4 Session",
+		"dateCreated": "2020-08-30T21:24:42\u002b08:00",
+		"datePublished": "2020-08-30T21:24:42\u002b08:00",
+		"dateModified": "2020-08-30T21:24:42\u002b08:00",
+		"inLanguage": "zh-TW",
+		"isFamilyFriendly": "true",
+		"copyrightYear": "2020",
+		"copyrightHolder": "KeJyun",
+		"contentLocation": {
+			"@type": "Place",
+			"name": ""
+		},
+		
+		"accountablePerson": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/laravel5-book.kejyun.com\/"
+		},
+		"author": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/laravel5-book.kejyun.com\/"
+		},
+		"creator": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/laravel5-book.kejyun.com\/"
+		},
+		
+		"publisher": {
+			"@type": "Organization",
+			"name": "KeJyun",
+			"url": "https:\/\/laravel5-book.kejyun.com\/",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https:\/\/laravel5-book.kejyun.com\/images\/logo.png",
+				"width":"357",
+				"height":"60"
+			}
+		},
+		"mainEntityOfPage": "True",
+		"keywords": [ 
+			"mobile", "web", "ai", "backend", "open source"
+		],
+		"genre":["KeJyun"],
+		"articleSection": "KeJyun",
+		"articleBody": "Laravel 5 認證支援 Laravel 4 Session Step1. Laravel 4 加密方式支援 AES Laravel 4 因為加密方式支援 rijndael-128，不支援 AES，所以無法使用 php 7.1 執行 Laravel 4 專案，在 Laravel 4 中的 app\/config\/app.php 檔案可以看到金鑰及加密方式的設定：\n\u0026lt;?php \/\/ Laravel 4 \/\/ app\/config\/app.php return [ \u0026#39;key\u0026#39; =\u0026gt; \u0026#39;randomStringLength32xxxxxxxxxxxx\u0026#39; \u0026#39;cipher\u0026#39; =\u0026gt; MCRYPT_RIJNDAEL_128, ]; Laravel 4 安裝 tomgrohl\/laravel4-php71-encrypter 套件支援 AES 加密\ncomposer require tomgrohl\/laravel4-php71-encrypter 修改 Nginx 設定使用 PHP 7.1\nserver { root \u0026quot;\/home\/kejyun\/web\/laravel-4-project\/public\u0026quot;; location ~ [^\/]\\.php(\/|$) { fastcgi_pass unix:\/run\/php\/php7.1-fpm.sock; } } 修改 Laravel 4 加密方式支援 AES-256\nAES-256 金鑰需要長度 32 的字串，AES-128 需要長度 16 的字串，我們支援 AES-256 所以需要將金鑰長度設定為 32\n\u0026lt;?php \/\/ Laravel 4 \/\/ app\/config\/app.php return [ \u0026#39;key\u0026#39; =\u0026gt; \u0026#39;randomStringLength32xxxxxxxxxxxx\u0026#39; \u0026#39;cipher\u0026#39; =\u0026gt; \u0026#39;AES-256-CBC\u0026#39;, ]; Step2. 修改 Laravel 5 金鑰格式 在使用 php artisan key:generate 產生 APP_KEY 時會產生 base64 的金鑰，但這樣格式的金鑰在 Laravel 4 是不支援的\n# .env APP_KEY=base64:z\u002bldCPR\/vzxMBzZ6k\u002bmptblu82qbeSM\u002bkK5ZVKOUdFg= 所以需要將 Laravel 4 的金鑰直接貼到 .env 檔案，不要經過 base64 的加密\n# .env APP_KEY=randomStringLength32xxxxxxxxxxxx Step3. 修改 Laravel 5 Cookie 加密方式 由於 Laravel 4 會將 Cookie 的資料經過 serialize，但 Laravel 5 不會將 Cookie serialize，所以為了讓 Laravel 5 可以正常讀取 Laravel 4 的 Cookie，需要將 Laravel 5 serialize 的功能打開。\n在 app\/Http\/Middleware\/EncryptCookies.php 檔案中可以設定靜態變數 $serialize 為 true 即可。\n\u0026lt;?php \/\/ app\/Http\/Middleware\/EncryptCookies.php namespace App\\Http\\Middleware; use Illuminate\\Cookie\\Middleware\\EncryptCookies as Middleware; class EncryptCookies extends Middleware { protected static $serialize = true; } Step4. 修改 Laravel 5 Auth 驗證方式 Laravel 4的驗證 Auth 方法與 Laravel 5 有些許不同，主要是在取得 session 名稱 的方法有點不同，在 Laravel 4 的 vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php 可以看到 getName() 與 getRecallerName() 函式與 Laravel 5 不同\nLaravel 4 Guard\n vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php\n \u0026lt;?php namespace Illuminate\\Auth; \/\/ Laravel 4 \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php  use Illuminate\\Cookie\\CookieJar; use Illuminate\\Events\\Dispatcher; use Symfony\\Component\\HttpFoundation\\Request; use Illuminate\\Session\\Store as SessionStore; use Symfony\\Component\\HttpFoundation\\Response; class Guard { \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.md5(get_class($this)); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.md5(get_class($this)); } } Laravel 5 Session Guard\n vendor\/laravel\/framework\/src\/Illuminate\/Auth\/SessionGuard.php\n \u0026lt;?php \/\/ Laravel 5 \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/SessionGuard.php  namespace Illuminate\\Auth; class SessionGuard implements StatefulGuard, SupportsBasicAuth { \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.$this-\u0026gt;name.\u0026#39;_\u0026#39;.sha1(static::class); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.$this-\u0026gt;name.\u0026#39;_\u0026#39;.sha1(static::class); } } 為了讓 Laravel 5 支援 Laravel 4 的 Session，則必須要將取得 Session 名稱 方法修改為 Laravel 4 的方式\nLaravel 5 目錄建立 app\/Auth\/Laravel4SessionGuard.php 檔案，繼承原本 Illuminate\\Auth\\SessionGuard 的方法，並加入 getName() 及 getRecallerName() 方法修改為 Laravel 4 的方法\n\u0026lt;?php namespace App\\Auth; use Auth; use Illuminate\\Auth\\SessionGuard; use Illuminate\\Contracts\\Auth\\Guard; class Laravel4SessionGuard extends SessionGuard implements Guard { protected $laravel4_guard_class_name = \u0026#39;Illuminate\\Auth\\Guard\u0026#39;; \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.md5($this-\u0026gt;laravel4_guard_class_name); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.md5($this-\u0026gt;laravel4_guard_class_name); } \/** * Extend Auth for Laravel 4 *\/ public static function AuthExtend() { \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/AuthManager.php  \/\/ - createSessionDriver  Auth::extend(\u0026#39;laravel4Session\u0026#39;, function ($app, $name, array $config) { $provider = Auth::createUserProvider($config[\u0026#39;provider\u0026#39;]); $guard = new Laravel4SessionGuard($name, $provider, $app[\u0026#39;session.store\u0026#39;]); \/\/ When using the remember me functionality of the authentication services we  \/\/ will need to be set the encryption instance of the guard, which allows  \/\/ secure, encrypted cookie values to get generated for those cookies.  if (method_exists($guard, \u0026#39;setCookieJar\u0026#39;)) { $guard-\u0026gt;setCookieJar($app[\u0026#39;cookie\u0026#39;]); } if (method_exists($guard, \u0026#39;setDispatcher\u0026#39;)) { $guard-\u0026gt;setDispatcher($app[\u0026#39;events\u0026#39;]); } if (method_exists($guard, \u0026#39;setRequest\u0026#39;)) { $guard-\u0026gt;setRequest($app-\u0026gt;refresh(\u0026#39;request\u0026#39;, $guard, \u0026#39;setRequest\u0026#39;)); } return $guard; }); } } 修改 config\/auth.php 設定檔案\n\u0026lt;?php return [ \u0026#39;defaults\u0026#39; =\u0026gt; [ \/\/ \u0026#39;guard\u0026#39; =\u0026gt; \u0026#39;web\u0026#39;,  \u0026#39;guard\u0026#39; =\u0026gt; \u0026#39;laravel4_web\u0026#39;, \u0026#39;passwords\u0026#39; =\u0026gt; \u0026#39;users\u0026#39;, ], \u0026#39;guards\u0026#39; =\u0026gt; [ \u0026#39;laravel4_web\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;laravel4Session\u0026#39;, \u0026#39;provider\u0026#39; =\u0026gt; \u0026#39;users\u0026#39;, ], ], ]; Laravel 5 使用自訂驗證方法\n在 Laravel 5 中的 app\/Providers\/AuthServiceProvider.php 檔案中呼叫 Laravel4SessionGuard::AuthExtend(); 方法，之後即可讀取到 Laravel 4 產生的 Session 驗證資料\n\u0026lt;?php \/\/ Laravel 5 \/\/ app\/Providers\/AuthServiceProvider.php  namespace App\\Providers; use App\\Auth\\Laravel4SessionGuard; use Illuminate\\Support\\Facades\\Gate; use Illuminate\\Foundation\\Support\\Providers\\AuthServiceProvider as ServiceProvider; class AuthServiceProvider extends ServiceProvider { \/** * Register any authentication \/ authorization services. * * @return void *\/ public function boot() { $this-\u0026gt;registerPolicies(); \/\/ 設定 Laravel 4 Auth  Laravel4SessionGuard::AuthExtend(); } } 參考資料  tomgrohl\/laravel4-php71-encrypter: Laravel 4.2 Encrypter for PHP 7.1\u002b The only supported ciphers are AES-128-CBC and AES-256-CBC · Issue #9080 · laravel\/framework Laravel 5.6.30 breaks passport · Issue #795 · laravel\/passport Authentication - Laravel - The PHP Framework For Web Artisans How to Create a Custom Authentication Guard in Laravel  "
+	}
+</script>
+  
+
+  
+    
+
+
+
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": 
+	[{
+		"@type": "ListItem",
+			"position": 1,
+			"item": {
+				"@id": "https:\/\/laravel5-book.kejyun.com\/",
+				"name": "Home"
+			}
+	},""
+	{
+	"@type": "ListItem",
+		"position":  2 ,
+		"item": {
+			"@id": "https:\/\/laravel5-book.kejyun.com\/services",
+			"name": "Services"
+		}
+	}, """"
+	{
+	"@type": "ListItem",
+		"position":  3 ,
+		"item": {
+			"@id": "https:\/\/laravel5-book.kejyun.com\/services\/auth",
+			"name": "Auth"
+		}
+	}, """"
+	{
+	"@type": "ListItem",
+		"position":  4 ,
+		"item": {
+			"@id": "https:\/\/laravel5-book.kejyun.com\/services\/auth\/auth-support-laravel-4",
+			"name": "Auth support laravel 4"
+		}
+	}""""
+	]
+}
+</script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+
+<script type="application/ld+json">
+{
+"@context": "http://www.schema.org",
+"@type": "Person",
+"@id": "https:\/\/laravel5-book.kejyun.com\/services\/auth\/auth-support-laravel-4\/",
+"name": "KJ",
+"alternateName": "KJ",
+"nationality": "Taiwan",
+
+"affiliation": [
+	{
+		"@type": "Organization",
+		"name": "KeJyun",
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		]
+  	}
+],
+
+"gender": "male",
+"Description": "IT Manager",
+"disambiguatingDescription": "Hi I\u0027m Web Developer in Taiwan",
+
+"worksFor": [
+	{
+		"@type": "Organization",
+		"name": "KeJyun",
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		]
+	}
+],
+"url": "https:\/\/laravel5-book.kejyun.com\/",
+"image": "https:\/\/laravel5-book.kejyun.com\/company\/team\/KeJyun.png",
+
+"sameAs": [ "\n\n\n\n\n\n\"https://ca.linkedin.com/in/kejyun/en\",\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"\"\n"
+	]
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+<script type="application/ld+json">
+[
+	{
+		"@context": "http://schema.org",
+		"@type": "Webpage",
+		"specialty": "KeJyun Laravel 5 學習筆記",
+		"mainContentOfPage": {
+			"@context": "http://schema.org/",
+			"@type": "WebPageElement",
+			"cssSelector": ".body-content"
+		},
+		"primaryImageOfPage": "https:\/\/laravel5-book.kejyun.com\/images\/bg.jpg"
+	},
+	{
+		"@context": "http://schema.org",
+		"@type": "WebSite",
+		"@id": "https:\/\/laravel5-book.kejyun.com\/",
+		"additionalType": ["CreativeWork", "Person"],
+		"url": "https:\/\/laravel5-book.kejyun.com\/",
+		"name": "Laravel 5 學習筆記",
+		"alternateName": "Laravel 5 學習筆記",
+		"headline": "KeJyun Laravel 5 學習筆記",
+		"image": "https:\/\/laravel5-book.kejyun.com\/images\/bg.jpg",
+		"inLanguage": "zh-TW",
+		"author": "KeJyun",
+		"description": "KeJyun Laravel 5 學習筆記",
+		"disambiguatingDescription": "KeJyun Laravel 5 學習筆記",
+		"isFamilyFriendly": "http://schema.org/True",
+		"contentRating": "NR",
+		"sourceOrganization": "Laravel 5 學習筆記",
+		"publisher": {
+		  "@type": "Organization",
+		  "name": "Laravel 5 學習筆記",
+		  "logo": {
+		    "@type": "ImageObject",
+		    "url": "https:\/\/laravel5-book.kejyun.com\/images\/logo.png",
+		    "height": 60,
+		    "width": 107
+		  }
+		},
+		"mainEntity": {
+			"@context": "http://schema.org",
+			"@type": "localBusiness",
+			"name": "Laravel 5 學習筆記",
+			"image":"https:\/\/laravel5-book.kejyun.com\/",
+			"priceRange":"$$",
+			"telephone":"",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "",
+				"addressLocality": "",
+				"addressRegion": "",
+				"addressCountry": "",
+				"postalCode": ""
+			},
+			"aggregateRating": {
+				"@type": "AggregateRating",
+				"ratingValue": "4.5",
+				"reviewCount": "50"
+			}
+		},
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https:\/\/laravel5-book.kejyun.com\/?search={search_term}",
+			"query-input": "required name=search_term"
+		},
+		"keywords":[
+			"mobile", "web", "ai", "backend", "open source"
+		],
+		"hasPart": [
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPHeader",
+				"@id": "#header",
+				"headline": "KeJyun Laravel 5 學習筆記",
+				"cssSelector": "#header",
+				"potentialAction": [],
+				"@graph": 
+				[]
+			},
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPSidebar",
+				"cssSelector": "#sidebar",
+				"citation": [
+				
+				]
+			},
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPFooter",
+				"cssSelector": ".footer",
+				"@id": "#footer",
+				"copyrightHolder":"Laravel 5 學習筆記",
+				"publisher": "Laravel 5 學習筆記",
+				"copyrightYear":"2020"
+			}
+		]
+	}
+]
+</script>
+  
+
+  
+  </head>
+  <body class="" data-url="/services/auth/auth-support-laravel-4/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" 
+  href="https://laravel5-book.kejyun.com/"
+>
+  <img style="border-radius: 50%!important;height:auto;vertical-align: middle;" 
+    alt="" 
+    width="50" height="50" 
+    class=""
+    src="https://avatars1.githubusercontent.com/u/1586089?s=460&amp;u=184ce5bff7ceee1a681cabd2bf7b9d13e8edca67&amp;v=4"
+  >
+  <span style="vertical-align:middle;">
+  Laravel 5 學習筆記
+  </span>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1602331905"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1602331905"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1602331905"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/environment/" title="環境" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/environment/">
+          <b>X. </b>環境
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/dot-env-file/" title=".env 檔案" class="dd-item ">
+        <a href="/environment/dot-env-file/">
+        .env 檔案
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/homestead/install-with-homestead/" title="Homestead" class="dd-item ">
+        <a href="/environment/homestead/install-with-homestead/">
+        Homestead
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/install-composer/" title="Composer 安裝" class="dd-item ">
+        <a href="/environment/install-composer/">
+        Composer 安裝
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/debug/" title="除錯" class="dd-item ">
+        <a href="/environment/debug/">
+        除錯
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/" title="Database" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/">
+          <b>X. </b>Database
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/migration/" title="Migration (遷移)" class="dd-item ">
+        <a href="/database/migration/">
+        Migration (遷移)
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/model/" title="Eloquent Model (模型)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/model/">
+          Eloquent Model (模型)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-config/" title="Eloquent 設定" class="dd-item ">
+        <a href="/database/model/eloquent-config/">
+        Eloquent 設定
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-relationships/" title="Eloquent 關聯" class="dd-item ">
+        <a href="/database/model/eloquent-relationships/">
+        Eloquent 關聯
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-magic-function/" title="Eloquent 魔術函式" class="dd-item ">
+        <a href="/database/model/eloquent-magic-function/">
+        Eloquent 魔術函式
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-apply/" title="使用 Eloquent" class="dd-item ">
+        <a href="/database/model/eloquent-apply/">
+        使用 Eloquent
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-lock/" title="鎖定資料 Lock" class="dd-item ">
+        <a href="/database/model/eloquent-lock/">
+        鎖定資料 Lock
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-tips/" title="Eloquent 小技巧" class="dd-item ">
+        <a href="/database/model/eloquent-tips/">
+        Eloquent 小技巧
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-sub-query/" title="子查詢" class="dd-item ">
+        <a href="/database/model/eloquent-sub-query/">
+        子查詢
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/qa/" title="資料庫常見問題" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/qa/">
+          資料庫常見問題
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/qa/cannot-get-querylog/" title="資料庫常見問題：無法取得查詢 Log" class="dd-item ">
+        <a href="/database/qa/cannot-get-querylog/">
+        資料庫常見問題：無法取得查詢 Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/qa/cannot-mass-insert/" title="使用大量資料的方式新增時無法新增" class="dd-item ">
+        <a href="/database/qa/cannot-mass-insert/">
+        使用大量資料的方式新增時無法新增
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/qa/cannot-mass-insert-with-extend-model/" title="使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增" class="dd-item ">
+        <a href="/database/qa/cannot-mass-insert-with-extend-model/">
+        使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/postgresql/" title="PostgreSQL" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/postgresql/">
+          PostgreSQL
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/postgresql/install-odbc-driver/" title="安裝 PostgreSQL ODBC driver" class="dd-item ">
+        <a href="/database/postgresql/install-odbc-driver/">
+        安裝 PostgreSQL ODBC driver
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/redis/" title="Redis" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/redis/">
+          Redis
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/redis/aws-cluster/aws-cluster/" title="AWS Redis 設定" class="dd-item ">
+        <a href="/database/redis/aws-cluster/aws-cluster/">
+        AWS Redis 設定
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/" title="Http" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/">
+          <b>X. </b>Http
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/request/" title="Request 請求" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/request/">
+          Request 請求
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/request/request/" title="HTTP 請求" class="dd-item ">
+        <a href="/http/request/request/">
+        HTTP 請求
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/request/request-cookie/" title="Cookie" class="dd-item ">
+        <a href="/http/request/request-cookie/">
+        Cookie
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/route/" title="Route 路由" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/route/">
+          Route 路由
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/route/sub-domain-route/" title="子網域路由（Sub-Domain Route）" class="dd-item ">
+        <a href="/http/route/sub-domain-route/">
+        子網域路由（Sub-Domain Route）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/middleware/" title="中介層（Middleware）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/middleware/">
+          中介層（Middleware）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/middleware/middleware-intro/" title="中介層介紹" class="dd-item ">
+        <a href="/http/middleware/middleware-intro/">
+        中介層介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/middleware/etag-middleware/" title="ETag Middleware" class="dd-item ">
+        <a href="/http/middleware/etag-middleware/">
+        ETag Middleware
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/view/" title="視圖 (View)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/view/">
+          <b>X. </b>視圖 (View)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/view/view-intro/" title="視圖介紹" class="dd-item ">
+        <a href="/view/view-intro/">
+        視圖介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/view/view-inject-class/" title="將 Class 綁定到視圖" class="dd-item ">
+        <a href="/view/view-inject-class/">
+        將 Class 綁定到視圖
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/" title="服務" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/services/">
+          <b>X. </b>服務
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/auth/" title="認證（Auth）" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/services/auth/">
+          認證（Auth）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/auth/auth-login/" title="認證登入" class="dd-item ">
+        <a href="/services/auth/auth-login/">
+        認證登入
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/auth/auth-support-laravel-4/" title="認證支援 Laravel 4 Session" class="dd-item active">
+        <a href="/services/auth/auth-support-laravel-4/">
+        認證支援 Laravel 4 Session
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/mail/" title="郵件（Mail）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/mail/">
+          郵件（Mail）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/mail/mail-gmail/" title="使用 Gmail 寄信" class="dd-item ">
+        <a href="/services/mail/mail-gmail/">
+        使用 Gmail 寄信
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/mail/mail-mailgun/" title="使用 Mailgun 寄信" class="dd-item ">
+        <a href="/services/mail/mail-mailgun/">
+        使用 Mailgun 寄信
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/queue/" title="隊列（Queue）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/queue/">
+          隊列（Queue）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-intro/" title="隊列介紹" class="dd-item ">
+        <a href="/services/queue/queue-intro/">
+        隊列介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-database/" title="Database Queue" class="dd-item ">
+        <a href="/services/queue/queue-database/">
+        Database Queue
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-async/" title="非同步資料庫隊列（Async Database Queue）" class="dd-item ">
+        <a href="/services/queue/queue-async/">
+        非同步資料庫隊列（Async Database Queue）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-supervisor/" title="Supervisor 啟動 queue" class="dd-item ">
+        <a href="/services/queue/queue-supervisor/">
+        Supervisor 啟動 queue
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/helpers/" title="輔助方法 (Helpers)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/helpers/">
+          輔助方法 (Helpers)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/helpers/custom-helpers/" title="自定義輔助方法" class="dd-item ">
+        <a href="/services/helpers/custom-helpers/">
+        自定義輔助方法
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/helpers/request-helpers/" title="請求資訊" class="dd-item ">
+        <a href="/services/helpers/request-helpers/">
+        請求資訊
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/unit-test/" title="單元測試" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/unit-test/">
+          單元測試
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-post-csrf/" title="POST CSRF 錯誤" class="dd-item ">
+        <a href="/services/unit-test/unit-test-post-csrf/">
+        POST CSRF 錯誤
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-ajax-request-json-response/" title="Ajax Request &amp; JSON Response" class="dd-item ">
+        <a href="/services/unit-test/unit-test-ajax-request-json-response/">
+        Ajax Request &amp; JSON Response
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-assert/" title="Assert" class="dd-item ">
+        <a href="/services/unit-test/unit-test-assert/">
+        Assert
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-login-and-upload-file/" title="單元測試登入及上傳檔案" class="dd-item ">
+        <a href="/services/unit-test/unit-test-login-and-upload-file/">
+        單元測試登入及上傳檔案
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-change-root-url/" title="變更請求網址" class="dd-item ">
+        <a href="/services/unit-test/unit-test-change-root-url/">
+        變更請求網址
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/errors-logs/" title="錯誤與日誌 Log" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/errors-logs/">
+          錯誤與日誌 Log
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/errors-show-exception-in-cli/" title="在單元測試顯示例外" class="dd-item ">
+        <a href="/services/errors-logs/errors-show-exception-in-cli/">
+        在單元測試顯示例外
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/errors-log-level/" title="日誌記錄層級" class="dd-item ">
+        <a href="/services/errors-logs/errors-log-level/">
+        日誌記錄層級
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/errors-log-macro/" title="日誌巨集" class="dd-item ">
+        <a href="/services/errors-logs/errors-log-macro/">
+        日誌巨集
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/errors-logs/packages/" title="日誌套件" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/errors-logs/packages/">
+          日誌套件
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/packages/errors-log-packages-log-viewer/" title="Log Viewer" class="dd-item ">
+        <a href="/services/errors-logs/packages/errors-log-packages-log-viewer/">
+        Log Viewer
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/packages/errors-log-packages-slack-log/" title="Slack Log" class="dd-item ">
+        <a href="/services/errors-logs/packages/errors-log-packages-slack-log/">
+        Slack Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/errors-logs/service/" title="日誌服務" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/errors-logs/service/">
+          日誌服務
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-understand-io/" title="Understand.io" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-understand-io/">
+        Understand.io
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-sentry-io/" title="Sentry.io" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-sentry-io/">
+        Sentry.io
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-bugsnag/" title="Bugsnag" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-bugsnag/">
+        Bugsnag
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-rollbar/" title="Rollbar" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-rollbar/">
+        Rollbar
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-cloudwatch/" title="CloudWatch Log" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-cloudwatch/">
+        CloudWatch Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/encryption/encryption-intro/" title="加密（encryption）" class="dd-item ">
+        <a href="/services/encryption/encryption-intro/">
+        加密（encryption）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/hashing/hashing-intro/" title="雜湊（Hashing）" class="dd-item ">
+        <a href="/services/hashing/hashing-intro/">
+        雜湊（Hashing）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/response/response-intro/" title="回應（Response）" class="dd-item ">
+        <a href="/services/response/response-intro/">
+        回應（Response）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/scheduling/scheduling-intro/" title="任務排程（Scheduling）" class="dd-item ">
+        <a href="/services/scheduling/scheduling-intro/">
+        任務排程（Scheduling）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/laravel-mix/" title="Laravel Mix" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/laravel-mix/">
+          Laravel Mix
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/laravel-mix/laravel-mix-intro/" title="Laravel Mix 介紹" class="dd-item ">
+        <a href="/services/laravel-mix/laravel-mix-intro/">
+        Laravel Mix 介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/laravel-mix/laravel-mix-live-reload/" title="LiveReload" class="dd-item ">
+        <a href="/services/laravel-mix/laravel-mix-live-reload/">
+        LiveReload
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/laravel-mix/laravel-mix-browser-sync/" title="BrowserSync" class="dd-item ">
+        <a href="/services/laravel-mix/laravel-mix-browser-sync/">
+        BrowserSync
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/compass/compass-intro/" title="Compass" class="dd-item ">
+        <a href="/services/compass/compass-intro/">
+        Compass
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/api/" title="API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/api/">
+          <b>X. </b>API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/api/api-intro/" title="API 介紹" class="dd-item ">
+        <a href="/api/api-intro/">
+        API 介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/design-pattern/" title="設計模式" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/design-pattern/">
+          <b>X. </b>設計模式
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/service-container/" title="服務容器（Service Container）" class="dd-item ">
+        <a href="/design-pattern/service-container/">
+        服務容器（Service Container）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/psr/" title="PSR" class="dd-item ">
+        <a href="/design-pattern/psr/">
+        PSR
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/model/" title="Model" class="dd-item ">
+        <a href="/design-pattern/model/">
+        Model
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/learning-resource/" title="學習資源" class="dd-item ">
+        <a href="/design-pattern/learning-resource/">
+        學習資源
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/structure/" title="程式架構規範" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/structure/">
+          <b>X. </b>程式架構規範
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/structure/service-repository-structure-principle/" title="Service &amp; Repository 架構設計準則（2017 年版本）" class="dd-item ">
+        <a href="/structure/service-repository-structure-principle/">
+        Service &amp; Repository 架構設計準則（2017 年版本）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/structure/combination-cache-manager-structure-principle/" title="Combination &amp; Cache 架構設計準則（2019 年版本）" class="dd-item ">
+        <a href="/structure/combination-cache-manager-structure-principle/">
+        Combination &amp; Cache 架構設計準則（2019 年版本）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/kejyun"><i class='fab fa-github'></i> Github repo</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://laravel5-book.kejyun.com/tags"><i class='fas fa-tags'></i> Tags</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>首頁</a> > <a href='/services/'>服務</a> > <a href='/services/auth/'>認證（Auth）</a> > 認證支援 Laravel 4 Session
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+          <div id="chapter">
+        
+        <div id="body-inner">
+          
+
+        
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<h1 id="laravel-5-認證支援-laravel-4-session">Laravel 5 認證支援 Laravel 4 Session</h1>
+<h2 id="step1-laravel-4-加密方式支援-aes">Step1. Laravel 4 加密方式支援 AES</h2>
+<p>Laravel 4 因為加密方式支援 <code>rijndael-128</code>，不支援 <code>AES</code>，所以無法使用 <code>php 7.1</code> 執行 Laravel 4 專案，在 <code>Laravel 4</code> 中的 <code>app/config/app.php</code> 檔案可以看到金鑰及加密方式的設定：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#75715e">// Laravel 4
+</span><span style="color:#75715e">// app/config/app.php
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> [
+    <span style="color:#e6db74">&#39;key&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;randomStringLength32xxxxxxxxxxxx&#39;</span>
+    <span style="color:#e6db74">&#39;cipher&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">MCRYPT_RIJNDAEL_128</span>,
+];
+</code></pre></div><p><em>Laravel 4 安裝 <a href="https://github.com/tomgrohl/laravel4-php71-encrypter">tomgrohl/laravel4-php71-encrypter</a> 套件支援 AES 加密</em></p>
+<pre><code>composer require tomgrohl/laravel4-php71-encrypter
+</code></pre><p><em>修改 Nginx 設定使用 PHP 7.1</em></p>
+<pre><code>server {
+    root &quot;/home/kejyun/web/laravel-4-project/public&quot;;
+
+    location ~ [^/]\.php(/|$) {
+        fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+    }
+}
+</code></pre><p><em>修改 Laravel 4 加密方式支援 AES-256</em></p>
+<p><code>AES-256</code> 金鑰需要長度 <code>32</code> 的字串，<code>AES-128</code> 需要長度 <code>16</code> 的字串，我們支援 <code>AES-256</code> 所以需要將金鑰長度設定為 <code>32</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#75715e">// Laravel 4
+</span><span style="color:#75715e">// app/config/app.php
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">return</span> [
+    <span style="color:#e6db74">&#39;key&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;randomStringLength32xxxxxxxxxxxx&#39;</span>
+    <span style="color:#e6db74">&#39;cipher&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;AES-256-CBC&#39;</span>,
+];
+</code></pre></div><h2 id="step2-修改-laravel-5-金鑰格式">Step2. 修改 Laravel 5 金鑰格式</h2>
+<p>在使用 <code>php artisan key:generate</code> 產生 <code>APP_KEY</code> 時會產生 base64 的金鑰，但這樣格式的金鑰在 Laravel 4 是不支援的</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># .env</span>
+APP_KEY<span style="color:#f92672">=</span>base64:z+ldCPR/vzxMBzZ6k+mptblu82qbeSM+kK5ZVKOUdFg<span style="color:#f92672">=</span>
+</code></pre></div><p>所以需要將 Laravel 4 的金鑰直接貼到 <code>.env</code> 檔案，不要經過 base64 的加密</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># .env</span>
+APP_KEY<span style="color:#f92672">=</span>randomStringLength32xxxxxxxxxxxx
+</code></pre></div><h2 id="step3-修改-laravel-5-cookie-加密方式">Step3. 修改 Laravel 5 Cookie 加密方式</h2>
+<p>由於 <code>Laravel 4</code> 會將 Cookie 的資料經過 <em>serialize</em>，但 <code>Laravel 5</code> 不會將 Cookie <em>serialize</em>，所以為了讓 <code>Laravel 5</code> 可以正常讀取 Laravel 4 的 Cookie，需要將 <code>Laravel 5</code> <em>serialize</em> 的功能打開。</p>
+<p>在 <code>app/Http/Middleware/EncryptCookies.php</code> 檔案中可以設定靜態變數 <code>$serialize</code> 為 <code>true</code> 即可。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#75715e">// app/Http/Middleware/EncryptCookies.php
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Http\Middleware</span>;
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Cookie\Middleware\EncryptCookies</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Middleware</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EncryptCookies</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Middleware</span>
+{
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">static</span> $serialize <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+}
+</code></pre></div><h2 id="step4-修改-laravel-5-auth-驗證方式">Step4. 修改 Laravel 5 Auth 驗證方式</h2>
+<p><code>Laravel 4</code>的驗證 <code>Auth</code> 方法與 <code>Laravel 5</code> 有些許不同，主要是在取得 <code>session 名稱</code> 的方法有點不同，在 <code>Laravel 4</code> 的 <code>vendor/laravel/framework/src/Illuminate/Auth/Guard.php</code> 可以看到 <code>getName()</code> 與 <code>getRecallerName()</code> 函式與 <code>Laravel 5</code> 不同</p>
+<p><em>Laravel 4 Guard</em></p>
+<blockquote>
+<p>vendor/laravel/framework/src/Illuminate/Auth/Guard.php</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span> <span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">Illuminate\Auth</span>;
+
+<span style="color:#75715e">// Laravel 4
+</span><span style="color:#75715e">// vendor/laravel/framework/src/Illuminate/Auth/Guard.php
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Cookie\CookieJar</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Events\Dispatcher</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Request</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Session\Store</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">SessionStore</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Symfony\Component\HttpFoundation\Response</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Guard</span> {
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">	 * Get a unique identifier for the auth session value.
+</span><span style="color:#e6db74">	 *
+</span><span style="color:#e6db74">	 * @return string
+</span><span style="color:#e6db74">	 */</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getName</span>()
+	{
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;login_&#39;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">md5</span>(<span style="color:#a6e22e">get_class</span>($this));
+	}
+
+	<span style="color:#e6db74">/**
+</span><span style="color:#e6db74">	 * Get the name of the cookie used to store the &#34;recaller&#34;.
+</span><span style="color:#e6db74">	 *
+</span><span style="color:#e6db74">	 * @return string
+</span><span style="color:#e6db74">	 */</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getRecallerName</span>()
+	{
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;remember_&#39;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">md5</span>(<span style="color:#a6e22e">get_class</span>($this));
+	}
+}
+</code></pre></div><p><em>Laravel 5 Session Guard</em></p>
+<blockquote>
+<p>vendor/laravel/framework/src/Illuminate/Auth/SessionGuard.php</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#75715e">// Laravel 5
+</span><span style="color:#75715e">// vendor/laravel/framework/src/Illuminate/Auth/SessionGuard.php
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">Illuminate\Auth</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SessionGuard</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">StatefulGuard</span>, <span style="color:#a6e22e">SupportsBasicAuth</span>
+{
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Get a unique identifier for the auth session value.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return string
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getName</span>()
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;login_&#39;</span><span style="color:#f92672">.</span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#39;_&#39;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sha1</span>(<span style="color:#66d9ef">static</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>);
+    }
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Get the name of the cookie used to store the &#34;recaller&#34;.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return string
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getRecallerName</span>()
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;remember_&#39;</span><span style="color:#f92672">.</span>$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#39;_&#39;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sha1</span>(<span style="color:#66d9ef">static</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>);
+    }
+}
+</code></pre></div><p>為了讓 <code>Laravel 5</code> 支援 <code>Laravel 4</code> 的 Session，則必須要將取得 <code>Session 名稱</code> 方法修改為 <code>Laravel 4</code> 的方式</p>
+<p><code>Laravel 5</code> 目錄建立 <code>app/Auth/Laravel4SessionGuard.php</code> 檔案，繼承原本 <code>Illuminate\Auth\SessionGuard</code> 的方法，並加入 <code>getName()</code> 及 <code>getRecallerName()</code> 方法修改為 <code>Laravel 4</code> 的方法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Auth</span>;
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Auth</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Auth\SessionGuard</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Contracts\Auth\Guard</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Laravel4SessionGuard</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">SessionGuard</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">Guard</span> {
+    <span style="color:#66d9ef">protected</span> $laravel4_guard_class_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Illuminate\Auth\Guard&#39;</span>;
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Get a unique identifier for the auth session value.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return string
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getName</span>()
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;login_&#39;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">md5</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">laravel4_guard_class_name</span>);
+    }
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Get the name of the cookie used to store the &#34;recaller&#34;.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return string
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getRecallerName</span>()
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;remember_&#39;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">md5</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">laravel4_guard_class_name</span>);
+    }
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Extend Auth for Laravel 4
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">AuthExtend</span>()
+    {
+        <span style="color:#75715e">// vendor/laravel/framework/src/Illuminate/Auth/AuthManager.php
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// - createSessionDriver
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">extend</span>(<span style="color:#e6db74">&#39;laravel4Session&#39;</span>, <span style="color:#66d9ef">function</span> ($app, $name, <span style="color:#66d9ef">array</span> $config) {
+
+            $provider <span style="color:#f92672">=</span> <span style="color:#a6e22e">Auth</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createUserProvider</span>($config[<span style="color:#e6db74">&#39;provider&#39;</span>]);
+            $guard <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Laravel4SessionGuard</span>($name, $provider, $app[<span style="color:#e6db74">&#39;session.store&#39;</span>]);
+
+            <span style="color:#75715e">// When using the remember me functionality of the authentication services we
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// will need to be set the encryption instance of the guard, which allows
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// secure, encrypted cookie values to get generated for those cookies.
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">method_exists</span>($guard, <span style="color:#e6db74">&#39;setCookieJar&#39;</span>)) {
+                $guard<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setCookieJar</span>($app[<span style="color:#e6db74">&#39;cookie&#39;</span>]);
+            }
+
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">method_exists</span>($guard, <span style="color:#e6db74">&#39;setDispatcher&#39;</span>)) {
+                $guard<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setDispatcher</span>($app[<span style="color:#e6db74">&#39;events&#39;</span>]);
+            }
+
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">method_exists</span>($guard, <span style="color:#e6db74">&#39;setRequest&#39;</span>)) {
+                $guard<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setRequest</span>($app<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">refresh</span>(<span style="color:#e6db74">&#39;request&#39;</span>, $guard, <span style="color:#e6db74">&#39;setRequest&#39;</span>));
+            }
+
+            <span style="color:#66d9ef">return</span> $guard;
+        });
+    }
+}
+</code></pre></div><p><em>修改 <code>config/auth.php</code> 設定檔案</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">return</span> [
+    <span style="color:#e6db74">&#39;defaults&#39;</span> <span style="color:#f92672">=&gt;</span> [
+        <span style="color:#75715e">// &#39;guard&#39; =&gt; &#39;web&#39;,
+</span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#39;guard&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;laravel4_web&#39;</span>,
+        <span style="color:#e6db74">&#39;passwords&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;users&#39;</span>,
+    ],
+    <span style="color:#e6db74">&#39;guards&#39;</span> <span style="color:#f92672">=&gt;</span> [
+        <span style="color:#e6db74">&#39;laravel4_web&#39;</span> <span style="color:#f92672">=&gt;</span> [
+            <span style="color:#e6db74">&#39;driver&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;laravel4Session&#39;</span>,
+            <span style="color:#e6db74">&#39;provider&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;users&#39;</span>,
+        ],
+    ],
+];
+</code></pre></div><p><em>Laravel 5 使用自訂驗證方法</em></p>
+<p>在 <code>Laravel 5</code> 中的 <code>app/Providers/AuthServiceProvider.php</code> 檔案中呼叫 <code>Laravel4SessionGuard::AuthExtend();</code> 方法，之後即可讀取到 <code>Laravel 4</code> 產生的 Session 驗證資料</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#75715e">// Laravel 5
+</span><span style="color:#75715e">// app/Providers/AuthServiceProvider.php
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Providers</span>;
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Auth\Laravel4SessionGuard</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Gate</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Foundation\Support\Providers\AuthServiceProvider</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ServiceProvider</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthServiceProvider</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">ServiceProvider</span>
+{
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Register any authentication / authorization services.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return void
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">boot</span>()
+    {
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">registerPolicies</span>();
+
+        <span style="color:#75715e">// 設定 Laravel 4 Auth
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">Laravel4SessionGuard</span><span style="color:#f92672">::</span><span style="color:#a6e22e">AuthExtend</span>();
+    }
+}
+</code></pre></div><h2 id="參考資料">參考資料</h2>
+<ul>
+<li><a href="https://github.com/tomgrohl/laravel4-php71-encrypter">tomgrohl/laravel4-php71-encrypter: Laravel 4.2 Encrypter for PHP 7.1+</a></li>
+<li><a href="https://github.com/laravel/framework/issues/9080">The only supported ciphers are AES-128-CBC and AES-256-CBC · Issue #9080 · laravel/framework</a></li>
+<li><a href="https://github.com/laravel/passport/issues/795">Laravel 5.6.30 breaks passport · Issue #795 · laravel/passport</a></li>
+<li><a href="https://laravel.com/docs/5.8/authentication#adding-custom-guards">Authentication - Laravel - The PHP Framework For Web Artisans</a></li>
+<li><a href="https://code.tutsplus.com/tutorials/how-to-create-a-custom-authentication-guard-in-laravel--cms-29667">How to Create a Custom Authentication Guard in Laravel</a></li>
+</ul>
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+            </div> 
+        
+        </div> 
+        
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-31063691-12', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+<div class="notices note">
+  <p>KeJyun 最新新書推薦
+    <br /> - Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站
+    <br /> - Laravel框架开发详解：从零基础到运用框架快速开发PHP网站
+  </p>
+</div>
+
+
+<table>
+    <tr>
+        <td colspan="2">
+            <p>Laravel 是 PHP 的框架（Framework），提供了很多開發網站或 API 所需的工具及環境，經過簡單的設定就可以完成資料的處理及顯示，使開發者可以很優雅且快速的開發出各個不同的產品。本書適合有
+                PHP 基礎的人，但不知道要怎麼選擇框架，或者不用框架的人也能夠明白它的好處。</p>
+            <p>雖然 WordPress 也能夠架站，但如果有客製化需求，要開發各式各樣的網站，或提供 App 使用的 API，如此一來你只能選擇用框架，而 Laravel 是目前最受歡迎的。</p>
+            <p>本書將解說為什麼要使用框架，以及理解框架的優缺點後，要怎麼選擇框架，並用框架快速建構一個網站。除非必要，否則書中會避免專業技術用語，盡量使用最生活化易懂的例子及語氣，讓大家更容易進入 Laravel 的世界。</p>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:30%;">
+            <img src="https://i.imgur.com/RYcmwgY.png"
+                 alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+            />
+        </td>
+        <td>
+            <h3 style="font-size:16px;">
+                購書連結
+            </h3>
+            <ul>
+                <li>
+                    <a href="https://goo.gl/Juv97M"
+                       target="_blank"
+                       alt="博客來-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+                    >
+                        博客來
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/fa5dWf"
+                       target="_blank"
+                       alt="天瓏網路書店-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+                    >
+                        天瓏網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/Ym73kH"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站-金石堂網路書店"
+                    >
+                        金石堂網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/hMnBCs"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站- TAAZE 讀冊生活"
+                    >
+                        TAAZE 讀冊生活
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/QiRqXo"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站 - PChome 24h書店"
+                    >
+                        PCHome 24h書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/nGhPnU"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場－－優雅運用框架快速開發 PHP 網站"
+                    >
+                        商務印書館網上書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/RptkyY"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站-洪可郡 - 三民網路書店"
+                    >
+                        三民網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/5dXGQ8"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站, 城邦阅读花园 - 马来西亚最大网路书店"
+                    >
+                        城邦阅读花园
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/6Zy8yK"
+                       target="_blank"
+                       alt="華文網網路書店：Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站．電腦與網路/程式語言◎知．識．服．務．新．思．路◎"
+                    >
+                        華文網網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/o9msPz"
+                       target="_blank"
+                       alt="新絲路網路書店-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站．電腦與網路/程式語言"
+                    >
+                        新絲路網路書店
+                    </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:30%;">
+            <img src="https://i.imgur.com/CurSW2g.jpg"
+                 alt="Laravel框架开发详解：从零基础到运用框架快速开发PHP网站"
+            />
+        </td>
+        <td>
+            <h3 style="font-size:16px;">
+                購書連結
+            </h3>
+            <ul>
+                <li>
+                    <a href="http://bit.ly/2EneIxw"
+                       target="_blank"
+                       alt="《Laravel框架开发详解：从零基础到运用框架快速开发PHP网站》(洪可郡（KeJyun）)【摘要 书评 试读】- 京东图书"
+                    >
+                        北京大学出版社
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2zSxOI2"
+                       target="_blank"
+                       alt="天瓏網路書店-Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站"
+                    >
+                        天瓏網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://amzn.to/2RKeN1y"
+                       target="_blank"
+                       alt="《Laravel框架开发详解:从零基础到运用框架快速开发PHP网站》 洪可郡 (KeJyun)【摘要 书评 试读】图书"
+                    >
+                        Amazon
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2ru0qmu"
+                       target="_blank"
+                       alt="《正版全新 Laravel框架开发详解：从零基础到运用框架快速开发PHP网站 洪可郡 北京大学出版社》【摘要 书评 试读】- 京东图书"
+                    >
+                        蓝墨水图书专营店
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2Qnrjao"
+                       target="_blank"
+                       alt="正版 Laravel框架开发详解：从零基础到运用框架快速开发PHP网站 计算机与互联网 网页制作 Web技术 程序设计 洪可郡-tmall.com天猫"
+                    >
+                        天猫
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2PstkNn"
+                       target="_blank"
+                       alt="Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站（簡體書）-洪可郡 - 三民網路書店"
+                    >
+                        三民網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2E7jbnk"
+                       target="_blank"
+                       alt="博客來-Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站"
+                    >
+                        博客來
+                    </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/services/auth/auth-login/" title="認證登入"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/services/mail/" title="郵件（Mail）" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1602331905"></script>
+    <script src="/js/perfect-scrollbar.min.js?1602331905"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1602331905"></script>
+    <script src="/js/jquery.sticky.js?1602331905"></script>
+    <script src="/js/featherlight.min.js?1602331905"></script>
+    <script src="/js/highlight.pack.js?1602331905"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1602331905"></script>
+    <script src="/js/learn.js?1602331905"></script>
+    <script src="/js/hugo-learn.js?1602331905"></script>
+
+    <link href="/mermaid/mermaid.css?1602331905" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1602331905"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+  </body>
+</html>
+

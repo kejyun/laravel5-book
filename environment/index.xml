@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>環境 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/environment/</link>
+    <description>Recent content in 環境 on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/environment/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>.env 檔案</title>
+      <link>https://laravel5-book.kejyun.com/environment/dot-env-file/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/environment/dot-env-file/</guid>
+      <description>.env 檔案 Laravel 4 .env 檔案 在 Laravel 4 的時候，我們通常會在 /bootstrap/start.php 中，去設定我們的 hostname 是屬於哪一種開發環境，再針對不同的開發環境有不同的設定檔（.env.*.php）
+&amp;lt;?php $env = $app-&amp;gt;detectEnvironment(array( &amp;#39;local&amp;#39; =&amp;gt; array( &amp;#39;KeJyun-Macbook&amp;#39; ), &amp;#39;dev&amp;#39; =&amp;gt; [], &amp;#39;testing&amp;#39; =&amp;gt; [], &amp;#39;staging&amp;#39; =&amp;gt; [], )); .env.*.php 設定檔通常放在根目錄下，這些檔案不會在版本控制當中
+app/ bootstrap/ public/ vendor/ .env.php .env.local.php .env.dev.php .env.testing.php .env.staging.php 在 Laravel 4 .env 設定檔案長的會像是這樣：
+&amp;lt;?php return [ &amp;#39;DB_USERNAME&amp;#39; =&amp;gt; &amp;#39;root&amp;#39;, &amp;#39;DB_PASSWORD&amp;#39; =&amp;gt; &amp;#39;password&amp;#39;, ]; 我們的 config 檔案就可以使用 $_ENV 去讀取當前環境的設定檔資料
+&amp;lt;?php $_ENV[&amp;#39;DB_USERNAME&amp;#39;] $_ENV[&amp;#39;DB_PASSWORD&amp;#39;] Laravel 5 .env 檔案 在 Laravel 5 使用 .</description>
+    </item>
+    
+    <item>
+      <title>Homestead</title>
+      <link>https://laravel5-book.kejyun.com/environment/homestead/install-with-homestead/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/environment/homestead/install-with-homestead/</guid>
+      <description>Homestead 常常我我們需要開發Web Application時候，都需要花很長的時間把環境建置起來，而Homestead以讓我們透過簡單的設定檔，輕鬆的建置好整個執行環境，讓我們能夠更專注於在開發上
+ OSX El Capitan 10.11.3
+  Laravel 5.2
+  Vagrant 1.8.1
+  Virtualbox 5.0.14
+ 安裝 Virtualbox 從 VirtualBox 官方網站 下載並安裝 VirtualBox
+下載連結：http://download.virtualbox.org/virtualbox/5.0.14/VirtualBox-5.0.14-105127-OSX.dmg
+安裝 Vagrant 從 Vagrant 官方網站 下載並安裝 Vagrant
+下載連結：https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1.dmg
+安裝 Homestead Vagrant Box 在 VirtualBox 及 Vagrant 安裝完後，使用下列指令將 Homestead 加入您的虛擬主機中
+vagrant box add laravel/homestead 使用 Git 複製 Laravel homestead 並建立 Homestead 設定檔 $ git clone https://github.com/laravel/homestead.git Homestead $ cd Homestead ~/Homestead$ bash init.</description>
+    </item>
+    
+    <item>
+      <title>Composer 安裝</title>
+      <link>https://laravel5-book.kejyun.com/environment/install-composer/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/environment/install-composer/</guid>
+      <description>Composer 安裝 Carbon 1 is deprecated, see how to migrate to Carbon 2. 在安裝 Laravel 時會跑出 Carbon 的版本過舊問題
+$ composer install Loading composer repositories with package information Installing dependencies (including require-dev) from lock file Warning: The lock file is not up to date with the latest changes in composer.json. You may be getting outdated dependencies. Run update to update them. Nothing to install or update Package phpunit/phpunit-mock-objects is abandoned, you should avoid using it.</description>
+    </item>
+    
+    <item>
+      <title>除錯</title>
+      <link>https://laravel5-book.kejyun.com/environment/debug/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/environment/debug/</guid>
+      <description>環境除錯 Laravel 5 : Parse error: syntax error, unexpected &amp;lsquo;?&amp;rsquo;, expecting variable (T_VARIABLE) 當安裝 Laravel 5.5 時，出現 Parse error: syntax error, unexpected &#39;?&#39;, expecting variable (T_VARIABLE) 的訊息
+ You need to install PHP version 7.1 because nullable types were introduced in 7.1:
+ ?string $value 要解決這個問題只需要使用 php &amp;gt; 7.1.3 版本即可
+參考資料  php - Laravel 5 : Parse error: syntax error, unexpected &amp;lsquo;?&amp;rsquo;, expecting variable (T_VARIABLE) - Stack Overflow  </description>
+    </item>
+    
+  </channel>
+</rss>

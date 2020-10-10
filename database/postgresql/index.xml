@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PostgreSQL on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/database/postgresql/</link>
+    <description>Recent content in PostgreSQL on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Mon, 21 Sep 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/database/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>安裝 PostgreSQL ODBC driver</title>
+      <link>https://laravel5-book.kejyun.com/database/postgresql/install-odbc-driver/</link>
+      <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/postgresql/install-odbc-driver/</guid>
+      <description>環境：OS X
+  日期：2015-03-29
+  PHP：5.6
+ 在我們在 Laravel 使用 PostgreSQL 去做 Migration 的時候，我們會看到像下面這樣的錯誤訊息：
+$ php artisan migrate [PDOException] could not find driver $ 這表示我們沒有相關的連線驅動程式去連線到 PostgreSQL，所以我們需要安裝我們所需要的驅動程式
+在 OS X 的 PHP 相關環境我是用 brew 去安裝的，如果你也是用 brew 去安裝，可以先看看自己的套件是用哪一個版本的 PHP
+$ brew list autoconf git libpng mhash php56 readline zlib freetype icu4c libtool nvm php56-mcrypt unixodbc gettext jpeg mcrypt openssl postgresql wget 然後搜尋現在 brew 支援的 PostgreSQL 驅動程式
+$ brew search pgsql osm2pgsql	php54-pdo-pgsql php55-pdo-pgsql php56-pdo-pgsql 我們找到我們 php 5.</description>
+    </item>
+    
+  </channel>
+</rss>

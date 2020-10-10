@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eloquent Model (模型) on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/database/model/</link>
+    <description>Recent content in Eloquent Model (模型) on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/database/model/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Eloquent 設定</title>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-config/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-config/</guid>
+      <description>Eloquent 設定 設定可以大量新增的欄位 Eloquent 為了避免特定欄位（像是 id, created_at &amp;hellip;）被使用者故意傳入大量（Mass）資料去進行修改，所以 Eloquent 會自動保護欄位不被大量異動（Mass Assignment），像是：
+// 新增 App\User::Create([ &amp;#39;first_name&amp;#39;=&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;last_name&amp;#39; =&amp;gt; &amp;#39;Hong&amp;#39;, &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;kejyun@gmail.com&amp;#39;, ]); // 更新 $user = App\User::find(&amp;#39;1&amp;#39;); $user-&amp;gt;update([ &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;hello@gmail.com&amp;#39;, ]); 如果我們需要異動這些欄位，需要在 Model 裡面設定 $fillable 的欄位，這樣就可以使用大量資料的方式，去新增或異動資料表欄位資料。
+class User extends Model { protected $fillable = [&amp;#39;first_name&amp;#39;, &amp;#39;last_name&amp;#39;, &amp;#39;email&amp;#39;]; } 設定需要被保護的欄位 我們也可以使用 $guarded 指定某些欄位需要被保護，能被大量新增或異動
+class User extends Model { protected $guarded = [&amp;#39;id&amp;#39;, &amp;#39;password&amp;#39;]; } 我們也可以設定所有欄位都不能被大量新增或異動
+class User extends Model { protected $guarded = [&amp;#39;*&amp;#39;]; } 設定欄位為時間資料欄位 我們可以很簡單的使用 Carbon 去做時間的資料處理，預設的 created_at 與 updated_at 是使用 Carbon 當作儲存的資料格式</description>
+    </item>
+    
+    <item>
+      <title>Eloquent 關聯</title>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-relationships/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-relationships/</guid>
+      <description>Eloquent 關聯 假如我們有兩個模型，「文章（Article）」及「使用者（Users）」，假設一個情境，1 個使用者可以寫多篇的文章，但 1 篇文章只能被 1 個使用者發表
+如果我們想要透過關聯關係，從使用者模型去取得使用者的文章，就像：
+// 取得使用者編號 1 的物件 $user = \App\Users::find(1); // 取得使用者的所有發表的文章 $user-&amp;gt;articles(); 我們會想要使用者模型內設定這樣的關聯關係，就像：
+class Users extends Model { // 設定使用者擁有許多文章 public function articles() { return $this-&amp;gt;hasMany(&amp;#39;App\Article&amp;#39;); } } 如果我們想透過關聯關係，從文章模型去取得是哪一個使用者發表文章，就像：
+// 取得文章編號 1 的物件 $article = \App\Article::find(1); // 取得發表文章的使用者資訊 $user = $article-&amp;gt;user(); class Article extends Model { // 設定文章屬於某一的使用者 public function user() { return $this-&amp;gt;belongsTo(&amp;#39;App\User&amp;#39;); } public function owner() { return $this-&amp;gt;belongsTo(&amp;#39;App\User&amp;#39;); } public function writer() { return $this-&amp;gt;belongsTo(&amp;#39;App\User&amp;#39;); } } 設定關聯屬性的函式名稱可以自訂，看自己覺得什麼樣的名稱適合自己就可以了，自訂完後一樣可以使用關聯的方式，撈取出發表文章使用者的資訊</description>
+    </item>
+    
+    <item>
+      <title>Eloquent 魔術函式</title>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-magic-function/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-magic-function/</guid>
+      <description>Eloquent 魔術函式 預先處理被異動的欄位資料 在使用 Eloquent 新增或異動資料時，我們可能想要對輸入的資料做預先的處理，我們可以使用 Laravel 提供的魔術函式 setNameAttribute() 去預先處理欄位資料。
+如果我們要預先處理文章模型（Article）的發布時間欄位（published_at），我們的魔術函式就會是像：
+class Article extends Model { public function setPublishedAtAttribute($date) { // 將傳入的 Y-m-d 時間設為 datetime 格式的現在時間 $this-&amp;gt;attributes[&amp;#39;published_at&amp;#39;] = Carbon::createFromFormat(&amp;#39;Y-m-d&amp;#39;, $date); // 將傳入的 Y-m-d 時間設為 datetime 格式的凌晨零時 00:00:00 $this-&amp;gt;attributes[&amp;#39;published_at&amp;#39;] = Carbon::parse($date); } }  魔術函式 setNameAttribute() 中，若遇到欄位名稱有底線的狀況，則將名稱設為駝峰式大小寫（Camel-Case），像是 published_at 則變成 PublishedAt
+ 自定義 query 處理函式 假如我們要讀取發表的文章，但是發表的時間 published_at 必須過去的時間，設定於未來發表時間的文章不能被撈取出來，我們可以用這樣的方式去撈取：
+// 取得已經發表的文章，依照發表時間降冪（Desc）排序 $article = \App\Article::latest(&amp;#39;published_at&amp;#39;) -&amp;gt;where(&amp;#39;published_at&amp;#39;, &amp;#39;&amp;lt;=&amp;#39;, Carbon::now()) -&amp;gt;get(); 我們可以簡化這個 query，把它寫在 Model 用函式的方式做處理，這樣我們就可以用這樣去取得已發表的文章：
+// 取得已經發表的文章，依照發表時間降冪（Desc）排序 $article = \App\Article::latest(&amp;#39;published_at&amp;#39;) -&amp;gt;published() -&amp;gt;get(); 而 Model 裡面我們用 scopeName 魔術函式的方式去設定 published()：</description>
+    </item>
+    
+    <item>
+      <title>使用 Eloquent</title>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-apply/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-apply/</guid>
+      <description>使用 Eloquent 新增資料 大量指定新增資料 // 新增 \App\User::Create([ &amp;#39;first_name&amp;#39;=&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;last_name&amp;#39; =&amp;gt; &amp;#39;Hong&amp;#39;, &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;kejyun@gmail.com&amp;#39;, ]); 填入要新增的資料 // 使用者的資料 $user_data = [ &amp;#39;first_name&amp;#39;=&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;last_name&amp;#39; =&amp;gt; &amp;#39;Hong&amp;#39;, &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;kejyun@gmail.com&amp;#39;, ]; $user = new \App\User; // 填入要新增的資料 $user-&amp;gt;fill($user_info); // 儲存資料 $user-&amp;gt;save(); </description>
+    </item>
+    
+    <item>
+      <title>鎖定資料 Lock</title>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-lock/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-lock/</guid>
+      <description>鎖定資料 Lock 鎖定資料有 shared lock (sharedLock) 與 lock for update (lockForUpdate)，兩者都可以避面同一行資料被其他的 transaction update
+在 Laravel 鎖定資料庫資料 範例 sharedLock DB::table(&amp;#39;users&amp;#39;) -&amp;gt;where(&amp;#39;votes&amp;#39;, &amp;#39;&amp;gt;&amp;#39;, 100) -&amp;gt;sharedLock() -&amp;gt;get(); select * from `users` where `votes` &amp;gt; &amp;#39;100&amp;#39; lock in share mode DB::table(&amp;#39;tasks&amp;#39;) -&amp;gt;select(&amp;#39;details&amp;#39;, &amp;#39;created_at&amp;#39;) -&amp;gt;whereDate(&amp;#39;created_at&amp;#39;, &amp;#39;=&amp;#39;, &amp;#39;2011-11-11&amp;#39;) -&amp;gt;sharedLock() -&amp;gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = &amp;#39;2011-11-11&amp;#39; lock in share mode 可以使用 -&amp;gt;sharedLock() 或 -&amp;gt;lock(false) 去做 sharedLock
+lockForUpdate DB::table(&amp;#39;users&amp;#39;)-&amp;gt;where(&amp;#39;votes&amp;#39;, &amp;#39;&amp;gt;&amp;#39;, 100)-&amp;gt;lockForUpdate()-&amp;gt;get(); select * from `users` where `votes` &amp;gt; &amp;#39;100&amp;#39; for update DB::table(&amp;#39;tasks&amp;#39;) -&amp;gt;select(&amp;#39;details&amp;#39;, &amp;#39;created_at&amp;#39;) -&amp;gt;whereDate(&amp;#39;created_at&amp;#39;, &amp;#39;&amp;gt;&amp;#39;, &amp;#39;2016-11-24&amp;#39;) -&amp;gt;lockForUpdate() -&amp;gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = &amp;#39;2016-11-24&amp;#39; for update 可以使用 -&amp;gt;lockForUpdate() 或 -&amp;gt;lock(true) 去做 lockForUpdate</description>
+    </item>
+    
+    <item>
+      <title>Eloquent 小技巧</title>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-tips/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-tips/</guid>
+      <description>Eloquent 小技巧 取得主鍵名稱 - getKeyName() User Eloquent 物件
+&amp;lt;?php use Illuminate\Database\Eloquent\Model; class User extends Model { protected $table = &amp;#39;user&amp;#39;; protected $primaryKey = &amp;#39;user_id&amp;#39;; } 取得主鍵名稱
+&amp;lt;?php $User = new User; $primary_key_name = $User-&amp;gt;getKeyName(); // user_id </description>
+    </item>
+    
+    <item>
+      <title>子查詢</title>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-sub-query/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-sub-query/</guid>
+      <description>子查詢 當我想要計算子查詢的數量時，會想要執行像下方的 SQL 查詢語法
+SELECT count(*) FROM ( SELECT UID FROM `posts` WHERE `status` = 1 GROUP BY `user_id` ) sub 在 Eloquent 可以用下面方式達到子查詢的目的
+&amp;lt;?php // Eloquent Builder instance $SubQuery = Posts::where(&amp;#39;status&amp;#39;, 1) -&amp;gt;groupBy(&amp;#39;user_id&amp;#39;); $count = DB::table( DB::raw(&amp;#34;({$SubQuery-&amp;gt;toSql()}) as sub&amp;#34;) ) -&amp;gt;mergeBindings($SubQuery-&amp;gt;getQuery()) -&amp;gt;count(); 記得當你的子查詢結束後，若有更多的條件需要執行，則必須將查詢條件放在 mergeBindings() 方法後方，否則原本 SubQuery 的查詢資料順序會綁定錯誤
+$count = DB::table( DB::raw(&amp;#34;({$SubQuery-&amp;gt;toSql()}) as sub&amp;#34;) ) // -&amp;gt;where(..) 這裡會出錯 -&amp;gt;mergeBindings($SubQuery-&amp;gt;getQuery()) // -&amp;gt;where(..) 正確 -&amp;gt;count(); Laravel v5.6.12 (2018-03-14) 之後，加入了 fromSub() 及 fromRaw() 的方法可以直接產生子查詢語法</description>
+    </item>
+    
+  </channel>
+</rss>

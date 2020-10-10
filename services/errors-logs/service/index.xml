@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>日誌服務 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/services/errors-logs/service/</link>
+    <description>Recent content in 日誌服務 on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/services/errors-logs/service/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Understand.io</title>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-understand-io/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-understand-io/</guid>
+      <description>Understand.io  紀錄 Laravel Log
+ 在 understand/understand-laravel5 套件 github，依照步驟安裝 Understand.io
+1.安裝套件
+composer require understand/understand-laravel5 2.加入套件設定
+在 config/app.php 檔案中加入設定
+&amp;lt;?php // config/app.php return [ &amp;#39;providers&amp;#39; =&amp;gt; [ Understand\UnderstandLaravel5\UnderstandLaravel5ServiceProvider::class, ], ] 3.設定 .env 檔案
+UNDERSTAND_ENABLED=true UNDERSTAND_TOKEN=&amp;lt;API TOKEN 放這裡&amp;gt; 4.紀錄 Log
+&amp;lt;?php \Log::error(&amp;#39;Understand.io test error&amp;#39;); 參考資料  Understand.io - Online Event and Log Management understand/understand-laravel5  </description>
+    </item>
+    
+    <item>
+      <title>Sentry.io</title>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-sentry-io/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-sentry-io/</guid>
+      <description>Sentry.io  紀錄 Laravel Exception
+ 1.安裝套件
+composer require sentry/sentry-laravel 2.加入套件設定
+在 config/app.php 檔案中加入設定
+&amp;lt;?php // config/app.php return [ &amp;#39;providers&amp;#39; =&amp;gt; [ Sentry\SentryLaravel\SentryLaravelServiceProvider::class, ], &amp;#39;aliases&amp;#39; =&amp;gt; [ &amp;#39;Sentry&amp;#39; =&amp;gt; Sentry\SentryLaravel\SentryFacade::class, ], ] 3.錯誤處理加入 Sentry 設定
+在 config/app.php 檔案中加入設定
+&amp;lt;?php class Handler extends ExceptionHandler { public function report(Exception $e) { if (app()-&amp;gt;bound(&amp;#39;sentry&amp;#39;) &amp;amp;&amp;amp; $this-&amp;gt;shouldReport($e)) { app(&amp;#39;sentry&amp;#39;)-&amp;gt;captureException($e); } return parent::report($e); } } 4.發佈設定
+php artisan vendor:publish --provider=&amp;#34;Sentry\SentryLaravel\SentryLaravelServiceProvider&amp;#34; 5.設定 .env 檔案
+SENTRY_LARAVEL_DSN=https://&amp;lt;SENTRY_DSN_URL&amp;gt; 參考資料  Sentry | Error Tracking Software — JavaScript, Python, PHP, Ruby, more  </description>
+    </item>
+    
+    <item>
+      <title>Bugsnag</title>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-bugsnag/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-bugsnag/</guid>
+      <description>Bugsnag  版本：Laravel 5.0 ~ 5.6
+  紀錄指定的錯誤訊息及系統錯誤
+ 1. 安裝
+composer require &amp;#34;bugsnag/bugsnag-laravel:^2.0&amp;#34; 2. 設定 config/app.php
+&amp;lt;?php // config/app.php return [ &amp;#39;providers&amp;#39; =&amp;gt; [ Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class, ], ]; 3. 設定 API KEY
+到 .env 檔案設定 API KEY，根據官方安裝引導可以取得此 API KEY
+# .env BUGSNAG_API_KEY=&amp;lt;API_KEY&amp;gt; 3. 設定檔
+Laravel 5.6
+&amp;lt;?php // config/logging.php: return [ &amp;#39;channels&amp;#39; =&amp;gt; [ &amp;#39;stack&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;stack&amp;#39;, // Add bugsnag to the stack:  &amp;#39;channels&amp;#39; =&amp;gt; [&amp;#39;single&amp;#39;, &amp;#39;bugsnag&amp;#39;], ], // Create a bugsnag logging channel:  &amp;#39;bugsnag&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;bugsnag&amp;#39;, ], ], ] Laravel 5.</description>
+    </item>
+    
+    <item>
+      <title>Rollbar</title>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-rollbar/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-rollbar/</guid>
+      <description>Rollbar 1. 安裝
+composer require rollbar/rollbar-laravel 2. 設定 config/app.php
+ Laravel 5.5 以上不用做這個設定
+ &amp;lt;?php // config/app.php return [ &amp;#39;providers&amp;#39; =&amp;gt; [ Rollbar\Laravel\RollbarServiceProvider::class, ], ]; 3. 設定 API KEY
+到 .env 檔案設定 API KEY，根據官方安裝引導可以取得此 API KEY
+# .env ROLLBAR_TOKEN=&amp;lt;API_KEY&amp;gt; 4. 發送錯誤訊息到 rollbar
+try { throw new Exception(&amp;#39;Hello there is something wrong&amp;#39;); } catch (Exception $exception) { Log::debug($exception); Log::debug(&amp;#39;Hello my test&amp;#39;); } 5. 檢視 rollbar 錯誤訊息
+錯誤訊息 dashboard
+個別錯誤訊息
+參考資料  Error Tracking &amp;amp; Crash Reporting for Software Developers - Rollbar Rollbar Doc - Laravel  </description>
+    </item>
+    
+    <item>
+      <title>CloudWatch Log</title>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-cloudwatch/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-cloudwatch/</guid>
+      <description>CloudWatch Log 參考資料  Using AWS CloudWatch for Laravel Logs on Forge – James Fairhurst – Medium jamesfairhurst/laravel-cloudwatch-logs-lambda-slack: Use AWS CloudWatch Logs &amp;amp; Lambda to post Laravel Log messages to Slack maxbanton/cwh: Amazon Web Services CloudWatch Logs Handler for Monolog library  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,5146 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.73.0" />
+    <meta name="description" content="KeJyun Laravel 5 學習筆記">
+<meta name="author" content="KeJyun">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Service &amp; Repository 架構設計準則（2017 年版本） :: Laravel 5 學習筆記</title>
+
+    
+    <link href="/css/nucleus.css?1602331906" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1602331906" rel="stylesheet">
+    <link href="/css/hybrid.css?1602331906" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1602331906" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1602331906" rel="stylesheet">
+    <link href="/css/auto-complete.css?1602331906" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1602331906" rel="stylesheet">
+    <link href="/css/theme.css?1602331906" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1602331906" rel="stylesheet">
+    
+    <link href="/css/theme-mine.css?1602331906" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1602331906"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    <style type="text/css">
+    #chapter p {
+      text-align:left;
+    }
+</style>
+
+
+
+
+  
+    
+
+<script type="application/ld+json">
+{
+    "@context":"http://schema.org",
+    "@type":"Article",
+    "headline":"Service \u0026 Repository 架構設計準則（2017 年版本）",
+    "url":"https:\/\/laravel5-book.kejyun.com\/structure\/service-repository-structure-principle\/",
+    "keywords":[ 
+    "mobile", "web", "ai", "backend", "open source"
+    ],
+    "image":{
+        "@type":"ImageObject", 
+        "width":"1200",
+        "height":"627"
+    },
+    "mainEntityOfPage":"True",
+    "publisher":{
+        "@type":"Organization",
+        "name":"KeJyun",
+        "url":"https:\/\/laravel5-book.kejyun.com\/",
+        "logo":{
+            "@type":"ImageObject",
+            "url":"https:\/\/laravel5-book.kejyun.com\/images\/logo.png",
+            "width":"357",
+            "height":"60"
+        }
+    },
+    "dateCreated":"2020-09-20T21:24:42\u002b08:00",
+    "datePublished":"2020-09-20T21:24:42\u002b08:00",
+    
+    
+    "author":"KJ",
+    "creator":"KJ",
+    
+    "dateModified":"2020-09-20T21:24:42\u002b08:00",
+    "articleSection":"TechArticle"
+}
+</script>
+
+  
+
+  
+    
+<script type="application/ld+json">
+	{
+		"@context":"http://schema.org",
+		"@type": "BlogPosting", 
+		"url": "https:\/\/laravel5-book.kejyun.com\/structure\/service-repository-structure-principle\/",
+		"headline": "Service \u0026 Repository 架構設計準則（2017 年版本）",
+		"alternativeHeadline": "Service \u0026 Repository 架構設計準則（2017 年版本）",
+		"dateCreated": "2020-09-20T21:24:42\u002b08:00",
+		"datePublished": "2020-09-20T21:24:42\u002b08:00",
+		"dateModified": "2020-09-20T21:24:42\u002b08:00",
+		"inLanguage": "zh-TW",
+		"isFamilyFriendly": "true",
+		"copyrightYear": "2020",
+		"copyrightHolder": "KeJyun",
+		"contentLocation": {
+			"@type": "Place",
+			"name": ""
+		},
+		
+		"accountablePerson": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/laravel5-book.kejyun.com\/"
+		},
+		"author": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/laravel5-book.kejyun.com\/"
+		},
+		"creator": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/laravel5-book.kejyun.com\/"
+		},
+		
+		"publisher": {
+			"@type": "Organization",
+			"name": "KeJyun",
+			"url": "https:\/\/laravel5-book.kejyun.com\/",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https:\/\/laravel5-book.kejyun.com\/images\/logo.png",
+				"width":"357",
+				"height":"60"
+			}
+		},
+		"mainEntityOfPage": "True",
+		"keywords": [ 
+			"mobile", "web", "ai", "backend", "open source"
+		],
+		"genre":["KeJyun"],
+		"articleSection": "KeJyun",
+		"articleBody": "Service \u0026amp; Repository 架構設計準則（2017 年版本） 傳統的 MVC（Model, View, Controller） 框架，當 Controller 收到請求之後，我們會在 Controller 內直接透過 Model 去撈取資料庫的資料，並在 Controller 做資料驗證、整合、快取、商業邏輯判斷\u0026hellip;等等的工作。\n當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。\n所以我們會想要做到 減少重複的程式碼、提高維護開發的效率，所以將程式碼依照分類及分層抽出獨立控管，讓不同類型的程式專心處理自己相關的商業邏輯，讓開發維護更容易。\n隨著程式架構的演進會發展出更多不同的架構，所以這個設計架構準則也是會隨著時間做演進的。\n資料層級需求分析 Service (服務)\n我們原本在 Controller 處理請求時，會針對使用者的請求，做不同商業邏輯的處理，而同樣的商業邏輯可能會被不同的 Controller 存取，為了讓同個商業邏輯程式能夠重複使用，所以我會分出一層 Service (服務) ，將這些商業邏輯放在裡面，供不同的 Controller 存取。\n在 Service 方法中，會針對目前商業邏輯的資料進行蒐集與彙整，處理過後再回傳給 Controller\nRepository (資源庫)\n在不同 Service 可能會需要對資料庫撈取同樣的資料，為了避免撈取資料的邏輯重複出現在不同的地方，我們會分出一層 Repository (資源庫)，將同樣撈取 Model (模型) 資料的邏輯都寫在一起，供不同的 Service 存取。\n在 Repository 中，會在 function 名稱中指出這個方法是要撈什麼樣的資料，這樣方法可以重用，也可以讓程式有可讀性，不需要再去看 Model sql 條件的邏輯，判斷是在做什麼樣的處理\n e.g. PostRepository-\u0026gt;getWeekTopPosts(); \/\/ 取得本週熱門文章\n Model (模型)\n在 Model 中我們僅會寫對資料表對 Eloquent 相關的設定，像是 primaryKey (主鍵名稱) 或 table (資料表名稱)，讓 Model 能夠越乾淨越好，將一些撈取資料的邏輯都往 Repository 集中整理。\nPresenter (資料呈現)\n在 Model 我們有一些資料可能會想要有不同的呈現方式，像是文章發布時間 created_at 我們可能會想要呈現出像是 5 秒前、15 分鐘前、6 小時前 這樣的資料，這些資料因為是隨著時間不同而去動態變化，所以需要用程式去計算與 created_at 的時間差，再去看要如何呈現這筆資料。\n為了能夠讓這些不同資料呈現方式的邏輯能夠重複使用，且不污染 Model 的程式，所以我會分出一層 Presenter (資料呈現)  去輔助 Model 資料的呈現\n e.g. Post-\u0026gt;presenter()-\u0026gt;created_at_human_time;\n  laracasts\/Presenter  Cache (快取)\n在使用 Repositoy 去對 Model 做存取得時候，如果我們資料沒有做異動，我們會將資料存放在快取中，直接讀取快取的資料，而減少對資料庫的存取，提高資料的存取效率\n而我們需要對 資料快取的設定、清除 及 快取鍵值 去做管理，快取像是協助 Repository 做資料的存取，所以我會分出一層 Cache (快取)  去輔助 Repository 做快取的處理\nChecker (檢查器)\n而每個商業邏輯需要驗證的資料不同，有些欄位在不同商業邏輯會有必填與非必填不同的差異，像是在做使用者身份驗證時，若有 Email 驗證及手機驗證，在 Email 驗證時，手機欄位為非必填欄位，在做手機驗證時， Email 為非必填欄位，但兩者皆為使用者的資料，無法強制使用者兩個欄位資料皆為必填，但在某些商業頁邏輯是必要的，但基本的資料驗證規則還是一樣，像是資料最長長度、email 格式\u0026hellip;等等。\n所以為了能夠重複使用共用的驗證器規則，所以建構了一個 Checker（檢查器） 的結構，去呼叫不同的 Validator 去檢查資料，像是同一個 Controller 處理的資料可能含有「會員」、「商品」資料，所以同時需要呼叫 會員驗證器（UserValidator） 及 商品驗證器（GoodsValidator） 的驗證規則去驗證資料，所以就透過 Checker（檢查器） 去呼叫不同的驗證器，來達到驗證不同資料的功能，輔助 Controller 做資料驗證。\nValidator (驗證器)\n為了讓資料驗證方法能夠重複使用，不需要在不同的地方去驗證相同的東西，這樣會造成驗證邏輯重複出現，若有需要異動驗證規則時，會難以維護。\n所以我沒有選擇將這些驗證的邏輯寫在 Services、Repository 或 Model 中。\n所以我會分出一層 Validator (驗證器) 輔助 Checker（檢查器） 做資料驗證。\nConcrete (服務組合)\n我們會在 Controller 去呼叫各個不同的 Service 去做資料的判斷處理，有時候不同的 Controller 會有相同呼叫 Service 的邏輯順序及組合的資料，為了減少重複程式，所以我會分出一層 Concrete (服務組合) 去協助 Controller 去做不同 Service 資料的整合撈取\n像是我們在許多 Controller 方法中，我們都要使用 $PostService-\u0026gt;find($post_id); 去找文章資料，並用 $UserService-\u0026gt;find($post_user_id); 去找文章作者相關資訊，這些在 Controller 重複出現的呼叫 Service 邏輯我們就可以寫在 Concrete 中去做呼叫\nConstant (常數)\n我們在做 Model 資料的撈取或是條件判斷時，可能會需要用 Post::where(\u0027status\u0027, 1)-\u0026gt;get() 或 $Post-\u0026gt;status == 1 去做資料的存取，但像 status 為 1 這種資料對我們是難以做閱讀的，需要知道 1 代表是什麼意思才知道此段程式的邏輯。\n所以我會分出一層 Constant (常數) 輔助做資料的識別，我會將狀態設為可識別的靜態變數，像是 PostConstant::STATUS_PUBLISH = 1;，所以在做程式判斷時，可以用 Post::where(\u0027status\u0027, PostConstant::STATUS_PUBLISH)-\u0026gt;get() 或 $Post-\u0026gt;status == PostConstant::STATUS_PUBLISH 去做判斷。\n 在 Constant 的變數皆為靜態變數，所以可以供任何類別去做存取。\n Support (支援)\n我可能會對一資源的資料做簡單的邏輯判斷，不需要依賴任何的 資料控制結構，像是 Service、Repository 或 Model，所以我會分出一層 Support (常數) 去做共用的輔助方法。\n像是我們可以用 PostSupport::getAllPostStatus() 去撈取文章的所有狀態，或者用 GoogleAnalyticSupport::api() 去對 GA 的 API 做存取。\n 在 Support 的方法皆為靜態方法，所以可以供任何類別去做存取。\n ExceptionCode (例外代碼)\n我們在做 API 的資料存取時，會針對不同的例外狀況回傳不同的 錯誤代碼 (error_code)，而同一個錯誤代碼可能在不同的 Controller 或 Service 被回傳，像是文章找不到我們會回傳錯誤代碼 10000001，為了管理及閱讀性方便，我會分出一層 ExceptionCode (例外代碼) 去做共用的例外代碼管理。\n像是找不到文章的代碼我會設為 PostExceptionCode::POST_NOT_FOUND = 10000001;，所以在程式中只要看到 PostExceptionCode::POST_NOT_FOUND 就可以馬上知道這個是找不到文章的錯誤代碼。\n 在 ExceptionCode 的變數皆為靜態變數，所以可以供任何類別去做存取。\n 資料層級結構 資料控制結構  Controller (控制器)  Concrete (服務組合)  Service (服務)  Repository (資源庫)  Model (模型) Presenter (資料呈現)   Cache (快取)     Checker (檢查器)  Validator (驗證器)      獨立結構  Constant (常數) Support (支援) ExceptionCode (例外代碼)  架構圖 結構說明 資料控制結構\n   結構名稱 說明     Controller (控制器) 控制要使用哪些 Service 或 Concrete 的商業邏輯，去組合出使用者請求需要的資料，並做資料的資料交易控制 (transaction) ，並使用 Checker 去檢查任何使用者傳進來的資料，確保資料的正確性   Service (服務) 做資料的驗證，並組合不同的 Repository 資料成商業邏輯，供 Controller 或 Concrete 存取   Repository (資源庫) 撈取屬於自己 Model 不同條件下的資料，並做快取控制，供 Service 存取   Model (模型) 資料表存取相關設定   Presenter (資料呈現) 協助 Model 做資料呈現處理   Cache (快取) 協助 Repository 做快取資料的控制   Checker (檢查器) 協助 Controller 做資料驗證   Validator (驗證器) 協助 Checker 做資料驗證   Concrete (服務組合) 協助 Controller 組合不同 Service 的資料成商業邏輯    獨立結構\n   結構名稱 說明     Constant (常數) 共用變數名稱設定   Support (支援) 共用方法   ExceptionCode (例外代碼) 共用例外代碼設定    架構使用原則 資料控制結構 存取限制 不能跨 2 階層以上存取\n Controller 不能存取 Repository Controller 不能存取 Validator Service 不能存取 Model  低階層的不能存取高階層的資料\n Model 不能存取 Repository Repository 不能存取 Service Validator 不能存取 Checker  同一個資料類型，不能互相呼叫\n避免同一類型類別呼叫，造成 new 物件的時候有無窮迴圈\nPostService 存取 UserService，UserService 存取 PostsService 造成無窮迴圈\n Concrete 不能呼叫 Concrete Service 不能呼叫 Service Checker 不能呼叫 Checker Validator 不能呼叫 Validator Repository 不能呼叫 Repository Cache 不能呼叫 Cache     結構名稱 可存取 可被存取     Controller (控制器) Checker、Concrete、Service、DB transaction -   Concrete (服務組合) Service Controller   Service (服務) Repository、Validator Controller、Concrete   Checker (檢查器) Validator Controller   Validator (驗證器) - Checker   Repository (資源庫) 自己的 Model、自己的 Cache Service   Cache (服務) - Repository   Model (模型) 自己的 Presenter Repository   Presenter (資料呈現) - Model    View (視圖) 使用限制 View 的職責是負責顯示資料，所有的資料應由 Controller 準備好再傳給 View，所以不要在 View 內有複雜的程式判斷邏輯，在 View 裡面只有 if, for, foreach 跟 echo 列印 的程式，僅需要將資料呈現在對的 HTML 裡面，不要再對資料重複處理過。\n像是文章的網址可能會因為類型不同會有不同的網址，像是一般文章網址可能為 http:\/\/kejyun.com\/post\/1，而影音文章網址可能為 http:\/\/kejyun.com\/video\/2，兩者的資料皆為 Post 資料表的資料，在 View 中要顯示網址應為 echo $Post-\u0026gt;post_url; 將網址印出，post_url 則是在傳給 View 之前就經過邏輯判斷的資料，而不是在 View 中判斷不同文章類型（PostConstant::POST_TYPE_NORMAL, PostConstant::POST_TYPE_VIDEO）在 View 中顯示不同的網址資料。\n之後若文章網址邏輯需要修改，則需要到各個 View 中去修改，很容易漏改道造成系統程式出錯\n\u0026lt;a href=\u0026#34;{{ $Post-\u0026gt;post_url }}\u0026#34;\u0026gt; {{ $Post-\u0026gt;Title }}\u0026lt;\/a\u0026gt; 結構範例說明 Controller (控制器)  可以存取結構：Checker、Concrete、Service、DB transaction\n  可以被存取結構：無\n 處理 HTTP 請求的入口，依照需求呼叫 Concrete 或 Service 去做資料的存取，大部分情況呼叫 Service 去組合需要的資料就好，若相同的組合邏輯在不同的 Controller 都有用到，那就使用 Concrete 去組合不同的 Service\n要確保所有 Service 商業邏輯都正確跑完才允許對資料做異動，並避免 Transaction 在 Controller 及 Service 被重複呼叫，導致無法正確鎖定資料狀態，所以使用 Controller 當作資料交易（Transaction）的控制點\n\u0026lt;?php class PostController extends Controller { public function __construct( PostConcrete $PostConcrete, PostService $PostService, CommentService $CommentService, PostChecker $PostChecker ) { $this-\u0026gt;PostConcrete = $PostConcrete; $this-\u0026gt;PostService = $PostService; $this-\u0026gt;CommentService = $CommentService; $this-\u0026gt;PostChecker = $PostChecker; } \/\/ 顯示文章  public function show($post_id) { try { \/\/ 驗證資料  $input = [ \u0026#39;post_id\u0026#39; =\u0026gt; $post_id ]; $this-\u0026gt;PostChecker-\u0026gt;checkShow($input); \/\/ 撈取文章  $Post = $this-\u0026gt;PostConcrete-\u0026gt;findPost($post_id); \/\/ 撈取文章留言  $Comment = $this-\u0026gt;CommentService-\u0026gt;getCommentByPostId(post_id); } catch (Exception $exception) { throw $exception } } \/\/ 更新文章  public function update($post_id) { try { \/\/ 驗證資料  $input = request()-\u0026gt;all(); $input[\u0026#39;post_id\u0026#39;] = $post_id; $this-\u0026gt;PostChecker-\u0026gt;checkUpdate($input); \/\/ 交易開始  DB::beginTransaction(); \/\/ 更新文章  $Post = $this-\u0026gt;PostService-\u0026gt;update($post_id, $input); \/\/ 交易結束  DB::commit(); } catch (Exception $exception) { \/\/ 交易失敗  DB::rollBack(); throw $exception } } } Concrete (服務組合)  可以存取結構：Service\n  可以被存取結構：Controller\n 使用不同 Service 撈取資料，將不同資料組合成商業邏輯，供 Controller 做存取\n\u0026lt;?php class PostConcrete { public function __construct( PostService $PostService, UserService $UserService ) { $this-\u0026gt;PostService = $PostService; $this-\u0026gt;UserService = $UserService; } \/\/ 撈取文章資料  public function findPost($post_id){ try { \/\/ 撈取文章  $Post = $this-\u0026gt;PostService-\u0026gt;findPost($post_id); \/\/ 撈取文章作者資料  $user_id = $Post-\u0026gt;user_id; $Post-\u0026gt;user = $this-\u0026gt;UserService-\u0026gt;findUser($user_id); return $Post; } catch (Exception $exception) { throw $exception } } } Service (服務)  可以存取結構：Repository\n  可以被存取結構：Controller、Concrete\n 透過 Validator 驗證傳入的資料，並使用不同的 Repository 撈取資料，將不同資料組合成商業邏輯 使用 Repository 的 Cache 清除 Service 中撈取資料的快取\n\u0026lt;?php class PostService { public function __construct( PostRepository $PostRepository, PostTagRepository $PostTagRepository ) { $this-\u0026gt;PostRepository = $PostRepository; $this-\u0026gt;PostTagRepository = $PostTagRepository; } \/\/ 撈取文章  public function findPost($post_id) { try { \/\/ 撈取文章  $Post = $this-\u0026gt;PostRepository-\u0026gt;find($post_id); \/\/ 撈取文章標籤  $Post-\u0026gt;tag = $this-\u0026gt;PostTagRepository-\u0026gt;getByPostId($post_id); return $Post; } catch (Exception $exception) { throw $exception } } public function clearPostCache($post_id) { try { $Post = $this-\u0026gt;findPost($post_id); \/\/ 清除文章快取  $this-\u0026gt;PostRepository-\u0026gt;cache()-\u0026gt;clearPostCache($Post); \/\/ 清除文章標籤快取  $this-\u0026gt;PostTagCache-\u0026gt;clearPostTagCache($Post-\u0026gt;tag); } catch (Exception $exception) { throw $exception } } } Checker (檢查器)  可以存取結構：Validator\n  可以被存取結構：Controller\n 協助 Controller 驗證資料的正確性，若驗證錯誤則丟處例外，Controller 根據例外代碼去做處理\n\u0026lt;?php class PostValidator { public function checkFindPost($input){ \/\/ 驗證文章資料  $this-\u0026gt;PostValidator-\u0026gt;validatePostId($input); $this-\u0026gt;PostValidator-\u0026gt;validatePostContent($input); \/\/ 驗證會員資料  $this-\u0026gt;MemberValidator-\u0026gt;validateMemberId($input); } } Validator (驗證器)  可以存取結構：無\n  可以被存取結構：Checker\n 協助 Checker 驗證資料的正確性，若驗證錯誤則丟處例外，Checker 根據例外代碼去做處理\n\u0026lt;?php class PostValidator { public function validatePostId($input){ \/\/ 設定驗證規則  $rules = [ \u0026#39;post_id\u0026#39; =\u0026gt; [ \u0026#39;required\u0026#39;, \u0026#39;max:20\u0026#39;, ], ]; \/\/ 開始驗證  $this-\u0026gt;validator = Validator::make($input, $rules); if ($this-\u0026gt;validator-\u0026gt;fails()) { throw new Exception( \u0026#39;文章編號格式錯誤\u0026#39;, PostExceptionCode::POST_ID_FORMAT_ERROR ); } } } Repository (資源庫)  可以存取結構：自己的 Model、自己的 Cache\n  可以被存取結構：Service\n 僅能撈取屬於自己的 Model 資料，像 PostRepository 僅能存取 Post Model (模型) 的資料，並使用不同條件撈取 Model 的資料，供 Service 做存取\n\u0026lt;?php class PostRepository { public function __construct( Post $Post, PostCache $PostCache ) { $this-\u0026gt;Post = $Post; $this-\u0026gt;PostCache = $PostCache; } public function cache() { return $this-\u0026gt;PostCache; } public function find($post_id) { try { $cache_key = $this-\u0026gt;cache()-\u0026gt;getPostCacheKey($post_id); if (Cache::has($cache_key)) { \/\/ 有快取資料  $Post = Cache::get($cache_key); return $Post; } \/\/ 撈取資料庫文章資料  $Post = $this-\u0026gt;Post-\u0026gt;find($post_id); if(!is_null($Post)) { \/\/ 紀錄快取  $this-\u0026gt;cache()-\u0026gt;putPost($Post); } return $Post; } catch (Exception $exception) { throw $exception } } public function findLatestPost() { try { $cache_key = $this-\u0026gt;cache()-\u0026gt;getLatestPostCacheKey($post_id); if (Cache::has($cache_key)) { \/\/ 有快取資料  $$Posts = Cache::get($cache_key); return $Post; } \/\/ 撈取資料庫文章資料  $Post = $this-\u0026gt;Post -\u0026gt;order(\u0026#39;created_at\u0026#39;, \u0026#39;desc\u0026#39;) -\u0026gt;first(); if(!is_null($Post)) { \/\/ 紀錄快取  $this-\u0026gt;cache()-\u0026gt;putLatestPost($Post); } return $Post; } catch (Exception $exception) { throw $exception } } } Cache (快取)  可以存取結構：無\n  可以被存取結構：Repository\n 協助 Repository 做快取資料的控制，快取鍵值的管理、資料讀取及清除\n\u0026lt;?php class PostCache { public function getPostCacheKey($post_id) { \/\/ 撈取文章快取鍵值  } public function putPost(Post $Post) { \/\/ 紀錄文章快取  } public function clearPostCache(Post $Post) { \/\/ 清除文章快取  } } Model (模型)  可以存取結構：無\n  可以被存取結構：Repository\n Eloquent 存取資料表相關設定，使用 Eloquent 直接存取資料表資料\n\u0026lt;?php class Post extends Model { protected $table = \u0026#39;post\u0026#39;; protected $fillable = []; protected $primaryKey = \u0026#39;id\u0026#39;; protected $dates = [\u0026#39;created_at\u0026#39;, \u0026#39;updated_at\u0026#39;]; protected $presenter = \u0026#39;PostPresenter\u0026#39;; } Presenter (資料呈現)  可以存取結構：無\n  可以被存取結構：Model\n 提供 Model 的資料用其他方式呈現\n\u0026lt;?php class PostPresenter extends Presenter { public function created_at_human_time() { return $this-\u0026gt;created_at-\u0026gt;diffForHumans(); } } Constant (常數)  可以存取結構：無\n  可以被存取結構：無限制\n 資料皆為靜態變數，可以供所有資料層級 (e.g. Controller、Service、Repository) 做存取\n\u0026lt;?php class PostConstant { const POST_TYPE_PUBLIC = \u0026#39;P\u0026#39;; const POST_TYPE_DELETE = \u0026#39;D\u0026#39;; } Support (支援)  可以存取結構：無\n  可以被存取結構：無限制\n 方法皆為靜態變數，可以供所有資料層級 (e.g. Controller、Service、Repository) 做存取\n若有其他可供全域共用的方法皆寫在 Support 靜態方法供大家存取\n\u0026lt;?php class PostSupport { \/\/ 撈取所有文章類型  public static function getAllPostType() { $all_post_type = [ PostConstant::POST_TYPE_PUBLIC, PostConstant::POST_TYPE_DELETE, ]; return $all_post_type; } } ExceptionCode (例外代碼)  可以存取結構：無\n  可以被存取結構：無限制\n 資料皆為靜態變數，可以供所有資料層級 (e.g. Controller、Service、Repository) 做存取\n\u0026lt;?php class PostExceptionCode { const POST_ID_FORMAT_ERROR = 10000001; const POST_NOT_FOUND = 10000002; const POST_TAG_NOT_FOUND = 10000003; } "
+	}
+</script>
+  
+
+  
+    
+
+
+
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": 
+	[{
+		"@type": "ListItem",
+			"position": 1,
+			"item": {
+				"@id": "https:\/\/laravel5-book.kejyun.com\/",
+				"name": "Home"
+			}
+	},""
+	{
+	"@type": "ListItem",
+		"position":  2 ,
+		"item": {
+			"@id": "https:\/\/laravel5-book.kejyun.com\/structure",
+			"name": "Structure"
+		}
+	}, """"
+	{
+	"@type": "ListItem",
+		"position":  3 ,
+		"item": {
+			"@id": "https:\/\/laravel5-book.kejyun.com\/structure\/service-repository-structure-principle",
+			"name": "Service repository structure principle"
+		}
+	}""""
+	]
+}
+</script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+
+<script type="application/ld+json">
+{
+"@context": "http://www.schema.org",
+"@type": "Person",
+"@id": "https:\/\/laravel5-book.kejyun.com\/structure\/service-repository-structure-principle\/",
+"name": "KJ",
+"alternateName": "KJ",
+"nationality": "Taiwan",
+
+"affiliation": [
+	{
+		"@type": "Organization",
+		"name": "KeJyun",
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		]
+  	}
+],
+
+"gender": "male",
+"Description": "IT Manager",
+"disambiguatingDescription": "Hi I\u0027m Web Developer in Taiwan",
+
+"worksFor": [
+	{
+		"@type": "Organization",
+		"name": "KeJyun",
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		]
+	}
+],
+"url": "https:\/\/laravel5-book.kejyun.com\/",
+"image": "https:\/\/laravel5-book.kejyun.com\/company\/team\/KeJyun.png",
+
+"sameAs": [ "\n\n\n\n\n\n\"https://ca.linkedin.com/in/kejyun/en\",\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"\"\n"
+	]
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+<script type="application/ld+json">
+[
+	{
+		"@context": "http://schema.org",
+		"@type": "Webpage",
+		"specialty": "KeJyun Laravel 5 學習筆記",
+		"mainContentOfPage": {
+			"@context": "http://schema.org/",
+			"@type": "WebPageElement",
+			"cssSelector": ".body-content"
+		},
+		"primaryImageOfPage": "https:\/\/laravel5-book.kejyun.com\/images\/bg.jpg"
+	},
+	{
+		"@context": "http://schema.org",
+		"@type": "WebSite",
+		"@id": "https:\/\/laravel5-book.kejyun.com\/",
+		"additionalType": ["CreativeWork", "Person"],
+		"url": "https:\/\/laravel5-book.kejyun.com\/",
+		"name": "Laravel 5 學習筆記",
+		"alternateName": "Laravel 5 學習筆記",
+		"headline": "KeJyun Laravel 5 學習筆記",
+		"image": "https:\/\/laravel5-book.kejyun.com\/images\/bg.jpg",
+		"inLanguage": "zh-TW",
+		"author": "KeJyun",
+		"description": "KeJyun Laravel 5 學習筆記",
+		"disambiguatingDescription": "KeJyun Laravel 5 學習筆記",
+		"isFamilyFriendly": "http://schema.org/True",
+		"contentRating": "NR",
+		"sourceOrganization": "Laravel 5 學習筆記",
+		"publisher": {
+		  "@type": "Organization",
+		  "name": "Laravel 5 學習筆記",
+		  "logo": {
+		    "@type": "ImageObject",
+		    "url": "https:\/\/laravel5-book.kejyun.com\/images\/logo.png",
+		    "height": 60,
+		    "width": 107
+		  }
+		},
+		"mainEntity": {
+			"@context": "http://schema.org",
+			"@type": "localBusiness",
+			"name": "Laravel 5 學習筆記",
+			"image":"https:\/\/laravel5-book.kejyun.com\/",
+			"priceRange":"$$",
+			"telephone":"",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "",
+				"addressLocality": "",
+				"addressRegion": "",
+				"addressCountry": "",
+				"postalCode": ""
+			},
+			"aggregateRating": {
+				"@type": "AggregateRating",
+				"ratingValue": "4.5",
+				"reviewCount": "50"
+			}
+		},
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https:\/\/laravel5-book.kejyun.com\/?search={search_term}",
+			"query-input": "required name=search_term"
+		},
+		"keywords":[
+			"mobile", "web", "ai", "backend", "open source"
+		],
+		"hasPart": [
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPHeader",
+				"@id": "#header",
+				"headline": "KeJyun Laravel 5 學習筆記",
+				"cssSelector": "#header",
+				"potentialAction": [],
+				"@graph": 
+				[]
+			},
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPSidebar",
+				"cssSelector": "#sidebar",
+				"citation": [
+				
+				]
+			},
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPFooter",
+				"cssSelector": ".footer",
+				"@id": "#footer",
+				"copyrightHolder":"Laravel 5 學習筆記",
+				"publisher": "Laravel 5 學習筆記",
+				"copyrightYear":"2020"
+			}
+		]
+	}
+]
+</script>
+  
+
+  
+  </head>
+  <body class="" data-url="/structure/service-repository-structure-principle/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" 
+  href="https://laravel5-book.kejyun.com/"
+>
+  <img style="border-radius: 50%!important;height:auto;vertical-align: middle;" 
+    alt="" 
+    width="50" height="50" 
+    class=""
+    src="https://avatars1.githubusercontent.com/u/1586089?s=460&amp;u=184ce5bff7ceee1a681cabd2bf7b9d13e8edca67&amp;v=4"
+  >
+  <span style="vertical-align:middle;">
+  Laravel 5 學習筆記
+  </span>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1602331906"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1602331906"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1602331906"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/environment/" title="環境" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/environment/">
+          <b>X. </b>環境
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/dot-env-file/" title=".env 檔案" class="dd-item ">
+        <a href="/environment/dot-env-file/">
+        .env 檔案
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/homestead/install-with-homestead/" title="Homestead" class="dd-item ">
+        <a href="/environment/homestead/install-with-homestead/">
+        Homestead
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/install-composer/" title="Composer 安裝" class="dd-item ">
+        <a href="/environment/install-composer/">
+        Composer 安裝
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/debug/" title="除錯" class="dd-item ">
+        <a href="/environment/debug/">
+        除錯
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/" title="Database" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/">
+          <b>X. </b>Database
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/migration/" title="Migration (遷移)" class="dd-item ">
+        <a href="/database/migration/">
+        Migration (遷移)
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/model/" title="Eloquent Model (模型)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/model/">
+          Eloquent Model (模型)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-config/" title="Eloquent 設定" class="dd-item ">
+        <a href="/database/model/eloquent-config/">
+        Eloquent 設定
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-relationships/" title="Eloquent 關聯" class="dd-item ">
+        <a href="/database/model/eloquent-relationships/">
+        Eloquent 關聯
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-magic-function/" title="Eloquent 魔術函式" class="dd-item ">
+        <a href="/database/model/eloquent-magic-function/">
+        Eloquent 魔術函式
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-apply/" title="使用 Eloquent" class="dd-item ">
+        <a href="/database/model/eloquent-apply/">
+        使用 Eloquent
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-lock/" title="鎖定資料 Lock" class="dd-item ">
+        <a href="/database/model/eloquent-lock/">
+        鎖定資料 Lock
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-tips/" title="Eloquent 小技巧" class="dd-item ">
+        <a href="/database/model/eloquent-tips/">
+        Eloquent 小技巧
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-sub-query/" title="子查詢" class="dd-item ">
+        <a href="/database/model/eloquent-sub-query/">
+        子查詢
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/qa/" title="資料庫常見問題" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/qa/">
+          資料庫常見問題
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/qa/cannot-get-querylog/" title="資料庫常見問題：無法取得查詢 Log" class="dd-item ">
+        <a href="/database/qa/cannot-get-querylog/">
+        資料庫常見問題：無法取得查詢 Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/qa/cannot-mass-insert/" title="使用大量資料的方式新增時無法新增" class="dd-item ">
+        <a href="/database/qa/cannot-mass-insert/">
+        使用大量資料的方式新增時無法新增
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/qa/cannot-mass-insert-with-extend-model/" title="使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增" class="dd-item ">
+        <a href="/database/qa/cannot-mass-insert-with-extend-model/">
+        使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/postgresql/" title="PostgreSQL" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/postgresql/">
+          PostgreSQL
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/postgresql/install-odbc-driver/" title="安裝 PostgreSQL ODBC driver" class="dd-item ">
+        <a href="/database/postgresql/install-odbc-driver/">
+        安裝 PostgreSQL ODBC driver
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/redis/" title="Redis" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/redis/">
+          Redis
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/redis/aws-cluster/aws-cluster/" title="AWS Redis 設定" class="dd-item ">
+        <a href="/database/redis/aws-cluster/aws-cluster/">
+        AWS Redis 設定
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/" title="Http" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/">
+          <b>X. </b>Http
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/request/" title="Request 請求" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/request/">
+          Request 請求
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/request/request/" title="HTTP 請求" class="dd-item ">
+        <a href="/http/request/request/">
+        HTTP 請求
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/request/request-cookie/" title="Cookie" class="dd-item ">
+        <a href="/http/request/request-cookie/">
+        Cookie
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/route/" title="Route 路由" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/route/">
+          Route 路由
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/route/sub-domain-route/" title="子網域路由（Sub-Domain Route）" class="dd-item ">
+        <a href="/http/route/sub-domain-route/">
+        子網域路由（Sub-Domain Route）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/middleware/" title="中介層（Middleware）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/middleware/">
+          中介層（Middleware）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/middleware/middleware-intro/" title="中介層介紹" class="dd-item ">
+        <a href="/http/middleware/middleware-intro/">
+        中介層介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/middleware/etag-middleware/" title="ETag Middleware" class="dd-item ">
+        <a href="/http/middleware/etag-middleware/">
+        ETag Middleware
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/view/" title="視圖 (View)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/view/">
+          <b>X. </b>視圖 (View)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/view/view-intro/" title="視圖介紹" class="dd-item ">
+        <a href="/view/view-intro/">
+        視圖介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/view/view-inject-class/" title="將 Class 綁定到視圖" class="dd-item ">
+        <a href="/view/view-inject-class/">
+        將 Class 綁定到視圖
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/" title="服務" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/">
+          <b>X. </b>服務
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/auth/" title="認證（Auth）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/auth/">
+          認證（Auth）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/auth/auth-login/" title="認證登入" class="dd-item ">
+        <a href="/services/auth/auth-login/">
+        認證登入
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/auth/auth-support-laravel-4/" title="認證支援 Laravel 4 Session" class="dd-item ">
+        <a href="/services/auth/auth-support-laravel-4/">
+        認證支援 Laravel 4 Session
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/mail/" title="郵件（Mail）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/mail/">
+          郵件（Mail）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/mail/mail-gmail/" title="使用 Gmail 寄信" class="dd-item ">
+        <a href="/services/mail/mail-gmail/">
+        使用 Gmail 寄信
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/mail/mail-mailgun/" title="使用 Mailgun 寄信" class="dd-item ">
+        <a href="/services/mail/mail-mailgun/">
+        使用 Mailgun 寄信
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/queue/" title="隊列（Queue）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/queue/">
+          隊列（Queue）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-intro/" title="隊列介紹" class="dd-item ">
+        <a href="/services/queue/queue-intro/">
+        隊列介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-database/" title="Database Queue" class="dd-item ">
+        <a href="/services/queue/queue-database/">
+        Database Queue
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-async/" title="非同步資料庫隊列（Async Database Queue）" class="dd-item ">
+        <a href="/services/queue/queue-async/">
+        非同步資料庫隊列（Async Database Queue）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-supervisor/" title="Supervisor 啟動 queue" class="dd-item ">
+        <a href="/services/queue/queue-supervisor/">
+        Supervisor 啟動 queue
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/helpers/" title="輔助方法 (Helpers)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/helpers/">
+          輔助方法 (Helpers)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/helpers/custom-helpers/" title="自定義輔助方法" class="dd-item ">
+        <a href="/services/helpers/custom-helpers/">
+        自定義輔助方法
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/helpers/request-helpers/" title="請求資訊" class="dd-item ">
+        <a href="/services/helpers/request-helpers/">
+        請求資訊
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/unit-test/" title="單元測試" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/unit-test/">
+          單元測試
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-post-csrf/" title="POST CSRF 錯誤" class="dd-item ">
+        <a href="/services/unit-test/unit-test-post-csrf/">
+        POST CSRF 錯誤
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-ajax-request-json-response/" title="Ajax Request &amp; JSON Response" class="dd-item ">
+        <a href="/services/unit-test/unit-test-ajax-request-json-response/">
+        Ajax Request &amp; JSON Response
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-assert/" title="Assert" class="dd-item ">
+        <a href="/services/unit-test/unit-test-assert/">
+        Assert
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-login-and-upload-file/" title="單元測試登入及上傳檔案" class="dd-item ">
+        <a href="/services/unit-test/unit-test-login-and-upload-file/">
+        單元測試登入及上傳檔案
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-change-root-url/" title="變更請求網址" class="dd-item ">
+        <a href="/services/unit-test/unit-test-change-root-url/">
+        變更請求網址
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/errors-logs/" title="錯誤與日誌 Log" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/errors-logs/">
+          錯誤與日誌 Log
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/errors-show-exception-in-cli/" title="在單元測試顯示例外" class="dd-item ">
+        <a href="/services/errors-logs/errors-show-exception-in-cli/">
+        在單元測試顯示例外
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/errors-log-level/" title="日誌記錄層級" class="dd-item ">
+        <a href="/services/errors-logs/errors-log-level/">
+        日誌記錄層級
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/errors-log-macro/" title="日誌巨集" class="dd-item ">
+        <a href="/services/errors-logs/errors-log-macro/">
+        日誌巨集
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/errors-logs/packages/" title="日誌套件" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/errors-logs/packages/">
+          日誌套件
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/packages/errors-log-packages-log-viewer/" title="Log Viewer" class="dd-item ">
+        <a href="/services/errors-logs/packages/errors-log-packages-log-viewer/">
+        Log Viewer
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/packages/errors-log-packages-slack-log/" title="Slack Log" class="dd-item ">
+        <a href="/services/errors-logs/packages/errors-log-packages-slack-log/">
+        Slack Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/errors-logs/service/" title="日誌服務" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/errors-logs/service/">
+          日誌服務
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-understand-io/" title="Understand.io" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-understand-io/">
+        Understand.io
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-sentry-io/" title="Sentry.io" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-sentry-io/">
+        Sentry.io
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-bugsnag/" title="Bugsnag" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-bugsnag/">
+        Bugsnag
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-rollbar/" title="Rollbar" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-rollbar/">
+        Rollbar
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-cloudwatch/" title="CloudWatch Log" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-cloudwatch/">
+        CloudWatch Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/encryption/encryption-intro/" title="加密（encryption）" class="dd-item ">
+        <a href="/services/encryption/encryption-intro/">
+        加密（encryption）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/hashing/hashing-intro/" title="雜湊（Hashing）" class="dd-item ">
+        <a href="/services/hashing/hashing-intro/">
+        雜湊（Hashing）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/response/response-intro/" title="回應（Response）" class="dd-item ">
+        <a href="/services/response/response-intro/">
+        回應（Response）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/scheduling/scheduling-intro/" title="任務排程（Scheduling）" class="dd-item ">
+        <a href="/services/scheduling/scheduling-intro/">
+        任務排程（Scheduling）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/laravel-mix/" title="Laravel Mix" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/laravel-mix/">
+          Laravel Mix
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/laravel-mix/laravel-mix-intro/" title="Laravel Mix 介紹" class="dd-item ">
+        <a href="/services/laravel-mix/laravel-mix-intro/">
+        Laravel Mix 介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/laravel-mix/laravel-mix-live-reload/" title="LiveReload" class="dd-item ">
+        <a href="/services/laravel-mix/laravel-mix-live-reload/">
+        LiveReload
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/laravel-mix/laravel-mix-browser-sync/" title="BrowserSync" class="dd-item ">
+        <a href="/services/laravel-mix/laravel-mix-browser-sync/">
+        BrowserSync
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/compass/compass-intro/" title="Compass" class="dd-item ">
+        <a href="/services/compass/compass-intro/">
+        Compass
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/api/" title="API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/api/">
+          <b>X. </b>API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/api/api-intro/" title="API 介紹" class="dd-item ">
+        <a href="/api/api-intro/">
+        API 介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/design-pattern/" title="設計模式" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/design-pattern/">
+          <b>X. </b>設計模式
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/service-container/" title="服務容器（Service Container）" class="dd-item ">
+        <a href="/design-pattern/service-container/">
+        服務容器（Service Container）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/psr/" title="PSR" class="dd-item ">
+        <a href="/design-pattern/psr/">
+        PSR
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/model/" title="Model" class="dd-item ">
+        <a href="/design-pattern/model/">
+        Model
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/learning-resource/" title="學習資源" class="dd-item ">
+        <a href="/design-pattern/learning-resource/">
+        學習資源
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/structure/" title="程式架構規範" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/structure/">
+          <b>X. </b>程式架構規範
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/structure/service-repository-structure-principle/" title="Service &amp; Repository 架構設計準則（2017 年版本）" class="dd-item active">
+        <a href="/structure/service-repository-structure-principle/">
+        Service &amp; Repository 架構設計準則（2017 年版本）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/structure/combination-cache-manager-structure-principle/" title="Combination &amp; Cache 架構設計準則（2019 年版本）" class="dd-item ">
+        <a href="/structure/combination-cache-manager-structure-principle/">
+        Combination &amp; Cache 架構設計準則（2019 年版本）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/kejyun"><i class='fab fa-github'></i> Github repo</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://laravel5-book.kejyun.com/tags"><i class='fas fa-tags'></i> Tags</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>首頁</a> > <a href='/structure/'>程式架構規範</a> > Service & Repository 架構設計準則（2017 年版本）
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+          <div id="chapter">
+        
+        <div id="body-inner">
+          
+
+        
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<h1 id="service--repository-架構設計準則2017-年版本">Service &amp; Repository 架構設計準則（2017 年版本）</h1>
+<p>傳統的 MVC（Model, View, Controller） 框架，當 Controller 收到請求之後，我們會在 Controller 內直接透過 Model 去撈取資料庫的資料，並在 Controller 做資料驗證、整合、快取、商業邏輯判斷&hellip;等等的工作。</p>
+<p>當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。</p>
+<p>所以我們會想要做到 <code>減少重複的程式碼</code>、<code>提高維護開發的效率</code>，所以將程式碼依照<code>分類</code>及<code>分層</code>抽出獨立控管，讓不同類型的程式專心處理自己相關的商業邏輯，讓開發維護更容易。</p>
+<p>隨著程式架構的演進會發展出更多不同的架構，所以這個設計架構準則也是會隨著時間做演進的。</p>
+<h2 id="資料層級需求分析">資料層級需求分析</h2>
+<p><em><strong>Service (服務)</strong></em></p>
+<p>我們原本在 Controller 處理請求時，會針對使用者的請求，做不同商業邏輯的處理，而同樣的商業邏輯可能會被不同的 Controller 存取，為了讓同個商業邏輯程式能夠重複使用，所以我會分出一層 <code>Service (服務)</code> ，將這些商業邏輯放在裡面，供不同的 Controller 存取。</p>
+<p>在 <code>Service</code> 方法中，會針對目前商業邏輯的資料進行蒐集與彙整，處理過後再回傳給 <code>Controller</code></p>
+<p><em><strong>Repository (資源庫)</strong></em></p>
+<p>在不同 <code>Service</code> 可能會需要對資料庫撈取同樣的資料，為了避免撈取資料的邏輯重複出現在不同的地方，我們會分出一層 <code>Repository (資源庫)</code>，將同樣撈取 <code>Model (模型)</code> 資料的邏輯都寫在一起，供不同的 <code>Service</code> 存取。</p>
+<p>在 <code>Repository</code> 中，會在 function 名稱中指出這個方法是要撈什麼樣的資料，這樣方法可以重用，也可以讓程式有可讀性，不需要再去看 <code>Model</code> sql 條件的邏輯，判斷是在做什麼樣的處理</p>
+<blockquote>
+<p>e.g. PostRepository-&gt;getWeekTopPosts();  // 取得本週熱門文章</p>
+</blockquote>
+<p><em><strong>Model (模型)</strong></em></p>
+<p>在 Model 中我們僅會寫對資料表對 Eloquent 相關的設定，像是 <code>primaryKey (主鍵名稱)</code> 或 <code>table (資料表名稱)</code>，讓 Model 能夠越乾淨越好，將一些撈取資料的邏輯都往 <code>Repository</code> 集中整理。</p>
+<p><em><strong>Presenter (資料呈現)</strong></em></p>
+<p>在 Model 我們有一些資料可能會想要有不同的呈現方式，像是文章發布時間 <code>created_at</code> 我們可能會想要呈現出像是 <code>5 秒前</code>、<code>15 分鐘前</code>、<code>6 小時前</code> 這樣的資料，這些資料因為是隨著時間不同而去動態變化，所以需要用程式去計算與 <code>created_at</code> 的時間差，再去看要如何呈現這筆資料。</p>
+<p>為了能夠讓這些不同資料呈現方式的邏輯能夠重複使用，且不污染 <code>Model</code> 的程式，所以我會分出一層 <code>Presenter (資料呈現) </code> 去輔助 <code>Model</code> 資料的呈現</p>
+<blockquote>
+<p>e.g. Post-&gt;presenter()-&gt;created_at_human_time;</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/laracasts/Presenter">laracasts/Presenter</a></li>
+</ul>
+<p><em><strong>Cache (快取)</strong></em></p>
+<p>在使用 <code>Repositoy</code> 去對 <code>Model</code> 做存取得時候，如果我們資料沒有做異動，我們會將資料存放在快取中，直接讀取快取的資料，而減少對資料庫的存取，提高資料的存取效率</p>
+<p>而我們需要對 <code>資料快取的設定、清除</code> 及 <code>快取鍵值</code> 去做管理，快取像是協助 <code>Repository</code> 做資料的存取，所以我會分出一層 <code>Cache (快取) </code> 去輔助 <code>Repository</code> 做快取的處理</p>
+<p><em><strong>Checker (檢查器)</strong></em></p>
+<p>而每個商業邏輯需要驗證的資料不同，有些欄位在不同商業邏輯會有必填與非必填不同的差異，像是在做使用者身份驗證時，若有 Email 驗證及手機驗證，在 Email 驗證時，手機欄位為非必填欄位，在做手機驗證時， Email 為非必填欄位，但兩者皆為使用者的資料，無法強制使用者兩個欄位資料皆為必填，但在某些商業頁邏輯是必要的，但基本的資料驗證規則還是一樣，像是資料最長長度、email 格式&hellip;等等。</p>
+<p>所以為了能夠重複使用共用的驗證器規則，所以建構了一個 <code>Checker（檢查器）</code> 的結構，去呼叫不同的 <code>Validator</code> 去檢查資料，像是同一個 Controller 處理的資料可能含有「會員」、「商品」資料，所以同時需要呼叫 <code>會員驗證器（UserValidator）</code> 及 <code>商品驗證器（GoodsValidator）</code> 的驗證規則去驗證資料，所以就透過 <code>Checker（檢查器）</code> 去呼叫不同的驗證器，來達到驗證不同資料的功能，輔助 Controller 做資料驗證。</p>
+<p><em><strong>Validator (驗證器)</strong></em></p>
+<p>為了讓資料驗證方法能夠重複使用，不需要在不同的地方去驗證相同的東西，這樣會造成驗證邏輯重複出現，若有需要異動驗證規則時，會難以維護。</p>
+<p>所以我沒有選擇將這些驗證的邏輯寫在 <code>Services</code>、<code>Repository</code> 或 <code>Model</code> 中。</p>
+<p>所以我會分出一層 <code>Validator (驗證器)</code> 輔助 <code>Checker（檢查器）</code> 做資料驗證。</p>
+<p><em><strong>Concrete (服務組合)</strong></em></p>
+<p>我們會在 <code>Controller</code> 去呼叫各個不同的 <code>Service</code> 去做資料的判斷處理，有時候不同的 <code>Controller</code> 會有相同呼叫 <code>Service</code> 的邏輯順序及組合的資料，為了減少重複程式，所以我會分出一層 <code>Concrete (服務組合)</code> 去協助 <code>Controller</code> 去做不同 <code>Service</code> 資料的整合撈取</p>
+<p>像是我們在許多 <code>Controller</code> 方法中，我們都要使用 <code>$PostService-&gt;find($post_id);</code> 去找文章資料，並用 <code>$UserService-&gt;find($post_user_id);</code> 去找文章作者相關資訊，這些在 <code>Controller</code> 重複出現的呼叫 <code>Service</code> 邏輯我們就可以寫在 <code>Concrete</code> 中去做呼叫</p>
+<p><em><strong>Constant (常數)</strong></em></p>
+<p>我們在做 <code>Model</code> 資料的撈取或是條件判斷時，可能會需要用 <code>Post::where('status', 1)-&gt;get()</code> 或 <code>$Post-&gt;status == 1</code> 去做資料的存取，但像 <code>status 為 1</code> 這種資料對我們是難以做閱讀的，需要知道 1 代表是什麼意思才知道此段程式的邏輯。</p>
+<p>所以我會分出一層 <code>Constant (常數)</code> 輔助做資料的識別，我會將狀態設為可識別的靜態變數，像是 <code>PostConstant::STATUS_PUBLISH = 1;</code>，所以在做程式判斷時，可以用 <code>Post::where('status', PostConstant::STATUS_PUBLISH)-&gt;get()</code> 或 <code>$Post-&gt;status == PostConstant::STATUS_PUBLISH</code> 去做判斷。</p>
+<blockquote>
+<p>在 <code>Constant</code> 的變數皆為<code>靜態變數</code>，所以可以供任何類別去做存取。</p>
+</blockquote>
+<p><em><strong>Support (支援)</strong></em></p>
+<p>我可能會對一資源的資料做簡單的邏輯判斷，不需要依賴任何的 <code>資料控制結構</code>，像是 <code>Service</code>、<code>Repository</code> 或 <code>Model</code>，所以我會分出一層 <code>Support (常數)</code> 去做共用的輔助方法。</p>
+<p>像是我們可以用 <code>PostSupport::getAllPostStatus()</code> 去撈取文章的所有狀態，或者用 <code>GoogleAnalyticSupport::api()</code> 去對 GA 的 API 做存取。</p>
+<blockquote>
+<p>在 <code>Support</code> 的方法皆為<code>靜態方法</code>，所以可以供任何類別去做存取。</p>
+</blockquote>
+<p><em><strong>ExceptionCode (例外代碼)</strong></em></p>
+<p>我們在做 API 的資料存取時，會針對不同的例外狀況回傳不同的 <code>錯誤代碼 (error_code)</code>，而同一個錯誤代碼可能在不同的 <code>Controller</code> 或 <code>Service</code> 被回傳，像是文章找不到我們會回傳錯誤代碼 <code>10000001</code>，為了管理及閱讀性方便，我會分出一層 <code>ExceptionCode (例外代碼)</code> 去做共用的例外代碼管理。</p>
+<p>像是找不到文章的代碼我會設為 <code>PostExceptionCode::POST_NOT_FOUND = 10000001;</code>，所以在程式中只要看到 <code>PostExceptionCode::POST_NOT_FOUND</code> 就可以馬上知道這個是找不到文章的錯誤代碼。</p>
+<blockquote>
+<p>在 <code>ExceptionCode</code> 的變數皆為<code>靜態變數</code>，所以可以供任何類別去做存取。</p>
+</blockquote>
+<h2 id="資料層級結構">資料層級結構</h2>
+<h3 id="資料控制結構"><em><strong>資料控制結構</strong></em></h3>
+<ul>
+<li>Controller (控制器)
+<ul>
+<li>Concrete (服務組合)
+<ul>
+<li>Service (服務)
+<ul>
+<li>Repository (資源庫)
+<ul>
+<li>Model (模型)</li>
+<li>Presenter (資料呈現)</li>
+</ul>
+</li>
+<li>Cache (快取)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Checker (檢查器)
+<ul>
+<li>Validator (驗證器)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="獨立結構"><em><strong>獨立結構</strong></em></h3>
+<ul>
+<li>Constant (常數)</li>
+<li>Support (支援)</li>
+<li>ExceptionCode (例外代碼)</li>
+</ul>
+<h3 id="架構圖"><em><strong>架構圖</strong></em></h3>
+<p><img src="../images/access-structure.png" alt="架構圖"></p>
+<h2 id="結構說明">結構說明</h2>
+<p><em><strong>資料控制結構</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>結構名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Controller (控制器)</td>
+<td>控制要使用哪些 Service 或 Concrete 的商業邏輯，去組合出使用者請求需要的資料，並做資料的資料交易控制 (transaction) ，並使用 Checker 去檢查任何使用者傳進來的資料，確保資料的正確性</td>
+</tr>
+<tr>
+<td>Service (服務)</td>
+<td>做資料的驗證，並組合不同的 Repository 資料成商業邏輯，供 Controller 或 Concrete 存取</td>
+</tr>
+<tr>
+<td>Repository (資源庫)</td>
+<td>撈取屬於自己 Model 不同條件下的資料，並做快取控制，供 Service 存取</td>
+</tr>
+<tr>
+<td>Model (模型)</td>
+<td>資料表存取相關設定</td>
+</tr>
+<tr>
+<td>Presenter (資料呈現)</td>
+<td>協助 Model 做資料呈現處理</td>
+</tr>
+<tr>
+<td>Cache (快取)</td>
+<td>協助 Repository 做快取資料的控制</td>
+</tr>
+<tr>
+<td>Checker (檢查器)</td>
+<td>協助 Controller 做資料驗證</td>
+</tr>
+<tr>
+<td>Validator (驗證器)</td>
+<td>協助 Checker 做資料驗證</td>
+</tr>
+<tr>
+<td>Concrete (服務組合)</td>
+<td>協助 Controller 組合不同 Service 的資料成商業邏輯</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>獨立結構</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>結構名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constant (常數)</td>
+<td>共用變數名稱設定</td>
+</tr>
+<tr>
+<td>Support (支援)</td>
+<td>共用方法</td>
+</tr>
+<tr>
+<td>ExceptionCode (例外代碼)</td>
+<td>共用例外代碼設定</td>
+</tr>
+</tbody>
+</table>
+<h2 id="架構使用原則">架構使用原則</h2>
+<h3 id="資料控制結構-1">資料控制結構</h3>
+<h4 id="存取限制"><em><strong>存取限制</strong></em></h4>
+<p><em><strong>不能跨 2 階層以上存取</strong></em></p>
+<ul>
+<li>Controller 不能存取 Repository</li>
+<li>Controller 不能存取 Validator</li>
+<li>Service 不能存取 Model</li>
+</ul>
+<p><em><strong>低階層的不能存取高階層的資料</strong></em></p>
+<ul>
+<li>Model 不能存取 Repository</li>
+<li>Repository 不能存取 Service</li>
+<li>Validator 不能存取 Checker</li>
+</ul>
+<p><em><strong>同一個資料類型，不能互相呼叫</strong></em></p>
+<p>避免同一類型類別呼叫，造成 new 物件的時候有無窮迴圈</p>
+<p>PostService 存取 UserService，UserService 存取 PostsService 造成無窮迴圈</p>
+<ul>
+<li>Concrete 不能呼叫 Concrete</li>
+<li>Service 不能呼叫 Service</li>
+<li>Checker 不能呼叫 Checker</li>
+<li>Validator 不能呼叫 Validator</li>
+<li>Repository 不能呼叫 Repository</li>
+<li>Cache 不能呼叫 Cache</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>結構名稱</th>
+<th>可存取</th>
+<th>可被存取</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Controller (控制器)</td>
+<td>Checker、Concrete、Service、DB transaction</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Concrete (服務組合)</td>
+<td>Service</td>
+<td>Controller</td>
+</tr>
+<tr>
+<td>Service (服務)</td>
+<td>Repository、Validator</td>
+<td>Controller、Concrete</td>
+</tr>
+<tr>
+<td>Checker (檢查器)</td>
+<td>Validator</td>
+<td>Controller</td>
+</tr>
+<tr>
+<td>Validator (驗證器)</td>
+<td>-</td>
+<td>Checker</td>
+</tr>
+<tr>
+<td>Repository (資源庫)</td>
+<td>自己的 Model、自己的 Cache</td>
+<td>Service</td>
+</tr>
+<tr>
+<td>Cache (服務)</td>
+<td>-</td>
+<td>Repository</td>
+</tr>
+<tr>
+<td>Model (模型)</td>
+<td>自己的 Presenter</td>
+<td>Repository</td>
+</tr>
+<tr>
+<td>Presenter (資料呈現)</td>
+<td>-</td>
+<td>Model</td>
+</tr>
+</tbody>
+</table>
+<h3 id="view-視圖-使用限制">View (視圖) 使用限制</h3>
+<p><code>View</code> 的職責是負責顯示資料，所有的資料應由 <code>Controller</code> 準備好再傳給 <code>View</code>，所以<code>不要</code>在 <code>View</code> 內有複雜的程式判斷邏輯，在 <code>View</code> 裡面只有 <code>if</code>, <code>for</code>, <code>foreach</code> 跟 <code>echo 列印</code> 的程式，僅需要將資料呈現在對的 HTML 裡面，不要再對資料重複處理過。</p>
+<p>像是文章的網址可能會因為類型不同會有不同的網址，像是一般文章網址可能為 <code>http://kejyun.com/post/1</code>，而影音文章網址可能為 <code>http://kejyun.com/video/2</code>，兩者的資料皆為 Post 資料表的資料，在 <code>View</code> 中要顯示網址應為 <code>echo $Post-&gt;post_url;</code> 將網址印出，<code>post_url</code> 則是在傳給 <code>View</code> 之前就經過邏輯判斷的資料，而不是在 <code>View</code> 中判斷不同文章類型（<code>PostConstant::POST_TYPE_NORMAL</code>, <code>PostConstant::POST_TYPE_VIDEO</code>）在 View 中顯示不同的網址資料。</p>
+<p>之後若文章網址邏輯需要修改，則需要到各個 View 中去修改，很容易漏改道造成系統程式出錯</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ $Post-&gt;post_url }}&#34;</span>&gt; {{ $Post-&gt;Title }}&lt;/<span style="color:#f92672">a</span>&gt;
+</code></pre></div><h2 id="結構範例說明">結構範例說明</h2>
+<h3 id="controller-控制器">Controller (控制器)</h3>
+<blockquote>
+<p>可以存取結構：<code>Checker</code>、<code>Concrete</code>、<code>Service</code>、<code>DB transaction</code></p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：無</p>
+</blockquote>
+<p>處理 HTTP 請求的入口，依照需求呼叫 Concrete 或 Service 去做資料的存取，大部分情況呼叫 Service 去組合需要的資料就好，若相同的組合邏輯在不同的 Controller 都有用到，那就使用 Concrete 去組合不同的 Service</p>
+<p>要確保所有 Service 商業邏輯都正確跑完才允許對資料做異動，並避免 Transaction 在 Controller 及 Service 被重複呼叫，導致無法正確鎖定資料狀態，所以使用 Controller 當作資料交易（Transaction）的控制點</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostController</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Controller</span>
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct(
+        <span style="color:#a6e22e">PostConcrete</span> $PostConcrete,
+        <span style="color:#a6e22e">PostService</span> $PostService,
+        <span style="color:#a6e22e">CommentService</span> $CommentService,
+        <span style="color:#a6e22e">PostChecker</span> $PostChecker
+    )
+    {
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostConcrete</span> <span style="color:#f92672">=</span> $PostConcrete;
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostService</span> <span style="color:#f92672">=</span> $PostService;
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">CommentService</span> <span style="color:#f92672">=</span> $CommentService;
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostChecker</span> <span style="color:#f92672">=</span> $PostChecker;
+    }
+
+    <span style="color:#75715e">// 顯示文章
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">show</span>($post_id) {
+        <span style="color:#66d9ef">try</span> {
+            <span style="color:#75715e">// 驗證資料
+</span><span style="color:#75715e"></span>            $input <span style="color:#f92672">=</span> [
+                <span style="color:#e6db74">&#39;post_id&#39;</span> <span style="color:#f92672">=&gt;</span> $post_id
+            ];
+            $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostChecker</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">checkShow</span>($input);
+
+            <span style="color:#75715e">// 撈取文章
+</span><span style="color:#75715e"></span>            $Post <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostConcrete</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">findPost</span>($post_id);
+
+            <span style="color:#75715e">// 撈取文章留言
+</span><span style="color:#75715e"></span>            $Comment <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">CommentService</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getCommentByPostId</span>(<span style="color:#a6e22e">post_id</span>);
+        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">Exception</span> $exception) {
+            <span style="color:#66d9ef">throw</span> $exception
+        }
+    }
+
+    <span style="color:#75715e">// 更新文章
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">update</span>($post_id) {
+        <span style="color:#66d9ef">try</span> {
+            <span style="color:#75715e">// 驗證資料
+</span><span style="color:#75715e"></span>            $input <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">all</span>();
+            $input[<span style="color:#e6db74">&#39;post_id&#39;</span>] <span style="color:#f92672">=</span> $post_id;
+            $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostChecker</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">checkUpdate</span>($input);
+
+            <span style="color:#75715e">// 交易開始
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">DB</span><span style="color:#f92672">::</span><span style="color:#a6e22e">beginTransaction</span>();
+
+            <span style="color:#75715e">// 更新文章
+</span><span style="color:#75715e"></span>            $Post <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostService</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">update</span>($post_id, $input);
+
+            <span style="color:#75715e">// 交易結束
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">DB</span><span style="color:#f92672">::</span><span style="color:#a6e22e">commit</span>();
+        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">Exception</span> $exception) {
+            <span style="color:#75715e">// 交易失敗
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">DB</span><span style="color:#f92672">::</span><span style="color:#a6e22e">rollBack</span>();
+            <span style="color:#66d9ef">throw</span> $exception
+        }
+    }
+}
+</code></pre></div><h3 id="concrete-服務組合">Concrete (服務組合)</h3>
+<blockquote>
+<p>可以存取結構：<code>Service</code></p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：<code>Controller</code></p>
+</blockquote>
+<p>使用不同 Service 撈取資料，將不同資料組合成商業邏輯，供 Controller 做存取</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostConcrete</span> {
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct(
+        <span style="color:#a6e22e">PostService</span> $PostService,
+        <span style="color:#a6e22e">UserService</span> $UserService
+    )
+    {
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostService</span> <span style="color:#f92672">=</span> $PostService;
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">UserService</span> <span style="color:#f92672">=</span> $UserService;
+    }
+
+    <span style="color:#75715e">// 撈取文章資料
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">findPost</span>($post_id){
+        <span style="color:#66d9ef">try</span> {
+            <span style="color:#75715e">// 撈取文章
+</span><span style="color:#75715e"></span>            $Post <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostService</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">findPost</span>($post_id);
+            <span style="color:#75715e">// 撈取文章作者資料
+</span><span style="color:#75715e"></span>            $user_id <span style="color:#f92672">=</span> $Post<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">user_id</span>;
+            $Post<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">UserService</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">findUser</span>($user_id);
+
+            <span style="color:#66d9ef">return</span> $Post;
+        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">Exception</span> $exception) {
+            <span style="color:#66d9ef">throw</span> $exception
+        }
+    }
+}
+</code></pre></div><h3 id="service-服務">Service (服務)</h3>
+<blockquote>
+<p>可以存取結構：<code>Repository</code></p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：<code>Controller</code>、<code>Concrete</code></p>
+</blockquote>
+<p>透過 Validator 驗證傳入的資料，並使用不同的 Repository 撈取資料，將不同資料組合成商業邏輯
+使用 Repository 的 Cache 清除 Service 中撈取資料的快取</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostService</span> {
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct(
+        <span style="color:#a6e22e">PostRepository</span> $PostRepository,
+        <span style="color:#a6e22e">PostTagRepository</span> $PostTagRepository
+    )
+    {
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostRepository</span> <span style="color:#f92672">=</span> $PostRepository;
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostTagRepository</span> <span style="color:#f92672">=</span> $PostTagRepository;
+    }
+
+    <span style="color:#75715e">// 撈取文章
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">findPost</span>($post_id) {
+        <span style="color:#66d9ef">try</span> {
+            <span style="color:#75715e">// 撈取文章
+</span><span style="color:#75715e"></span>            $Post <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostRepository</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">find</span>($post_id);
+            <span style="color:#75715e">// 撈取文章標籤
+</span><span style="color:#75715e"></span>            $Post<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">tag</span> <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostTagRepository</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getByPostId</span>($post_id);
+
+            <span style="color:#66d9ef">return</span> $Post;
+        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">Exception</span> $exception) {
+            <span style="color:#66d9ef">throw</span> $exception
+        }
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">clearPostCache</span>($post_id) {
+        <span style="color:#66d9ef">try</span> {
+            $Post <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">findPost</span>($post_id);
+            <span style="color:#75715e">// 清除文章快取
+</span><span style="color:#75715e"></span>            $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostRepository</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">cache</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">clearPostCache</span>($Post);
+            <span style="color:#75715e">// 清除文章標籤快取
+</span><span style="color:#75715e"></span>            $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostTagCache</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">clearPostTagCache</span>($Post<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">tag</span>);
+        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">Exception</span> $exception) {
+            <span style="color:#66d9ef">throw</span> $exception
+        }
+    }
+}
+</code></pre></div><h3 id="checker-檢查器">Checker (檢查器)</h3>
+<blockquote>
+<p>可以存取結構：<code>Validator</code></p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：<code>Controller</code></p>
+</blockquote>
+<p>協助 Controller 驗證資料的正確性，若驗證錯誤則丟處例外，Controller 根據例外代碼去做處理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostValidator</span> {
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">checkFindPost</span>($input){
+        <span style="color:#75715e">// 驗證文章資料
+</span><span style="color:#75715e"></span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostValidator</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">validatePostId</span>($input);
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostValidator</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">validatePostContent</span>($input);
+
+        <span style="color:#75715e">// 驗證會員資料
+</span><span style="color:#75715e"></span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">MemberValidator</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">validateMemberId</span>($input);
+    }
+}
+</code></pre></div><h3 id="validator-驗證器">Validator (驗證器)</h3>
+<blockquote>
+<p>可以存取結構：無</p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：<code>Checker</code></p>
+</blockquote>
+<p>協助 Checker 驗證資料的正確性，若驗證錯誤則丟處例外，Checker 根據例外代碼去做處理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostValidator</span> {
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">validatePostId</span>($input){
+        <span style="color:#75715e">// 設定驗證規則
+</span><span style="color:#75715e"></span>        $rules <span style="color:#f92672">=</span> [
+            <span style="color:#e6db74">&#39;post_id&#39;</span> <span style="color:#f92672">=&gt;</span> [
+                <span style="color:#e6db74">&#39;required&#39;</span>,
+                <span style="color:#e6db74">&#39;max:20&#39;</span>,
+            ],
+        ];
+
+        <span style="color:#75715e">// 開始驗證
+</span><span style="color:#75715e"></span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">validator</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Validator</span><span style="color:#f92672">::</span><span style="color:#a6e22e">make</span>($input, $rules);
+
+        <span style="color:#66d9ef">if</span> ($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">validator</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">fails</span>()) {
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Exception</span>(
+                <span style="color:#e6db74">&#39;文章編號格式錯誤&#39;</span>,
+                <span style="color:#a6e22e">PostExceptionCode</span><span style="color:#f92672">::</span><span style="color:#a6e22e">POST_ID_FORMAT_ERROR</span>
+            );
+        }
+    }
+}
+</code></pre></div><h3 id="repository-資源庫">Repository (資源庫)</h3>
+<blockquote>
+<p>可以存取結構：自己的 Model、自己的 Cache</p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：<code>Service</code></p>
+</blockquote>
+<p>僅能撈取屬於自己的 Model 資料，像 <code>PostRepository</code> 僅能存取 <code>Post</code> Model (模型) 的資料，並使用不同條件撈取 Model 的資料，供 Service 做存取</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostRepository</span> {
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct(
+        <span style="color:#a6e22e">Post</span> $Post,
+        <span style="color:#a6e22e">PostCache</span> $PostCache
+    )
+    {
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">Post</span> <span style="color:#f92672">=</span> $Post;
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostCache</span> <span style="color:#f92672">=</span> $PostCache;
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">cache</span>() {
+        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">PostCache</span>;
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">find</span>($post_id) {
+        <span style="color:#66d9ef">try</span> {
+            $cache_key <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">cache</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getPostCacheKey</span>($post_id);
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">Cache</span><span style="color:#f92672">::</span><span style="color:#a6e22e">has</span>($cache_key)) {
+                <span style="color:#75715e">// 有快取資料
+</span><span style="color:#75715e"></span>                $Post <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cache</span><span style="color:#f92672">::</span><span style="color:#a6e22e">get</span>($cache_key);
+                <span style="color:#66d9ef">return</span> $Post;
+            }
+
+            <span style="color:#75715e">// 撈取資料庫文章資料
+</span><span style="color:#75715e"></span>            $Post <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">Post</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">find</span>($post_id);
+
+            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">is_null</span>($Post)) {
+                <span style="color:#75715e">// 紀錄快取
+</span><span style="color:#75715e"></span>                $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">cache</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">putPost</span>($Post);
+            }
+
+            <span style="color:#66d9ef">return</span> $Post;
+        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">Exception</span> $exception) {
+            <span style="color:#66d9ef">throw</span> $exception
+        }
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">findLatestPost</span>() {
+        <span style="color:#66d9ef">try</span> {
+            $cache_key <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">cache</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getLatestPostCacheKey</span>($post_id);
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">Cache</span><span style="color:#f92672">::</span><span style="color:#a6e22e">has</span>($cache_key)) {
+                <span style="color:#75715e">// 有快取資料
+</span><span style="color:#75715e"></span>                $$Posts <span style="color:#f92672">=</span> <span style="color:#a6e22e">Cache</span><span style="color:#f92672">::</span><span style="color:#a6e22e">get</span>($cache_key);
+                <span style="color:#66d9ef">return</span> $Post;
+            }
+
+            <span style="color:#75715e">// 撈取資料庫文章資料
+</span><span style="color:#75715e"></span>            $Post <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">Post</span>
+                <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">order</span>(<span style="color:#e6db74">&#39;created_at&#39;</span>, <span style="color:#e6db74">&#39;desc&#39;</span>)
+                <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">first</span>();
+
+            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">is_null</span>($Post)) {
+                <span style="color:#75715e">// 紀錄快取
+</span><span style="color:#75715e"></span>                $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">cache</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">putLatestPost</span>($Post);
+            }
+
+            <span style="color:#66d9ef">return</span> $Post;
+        } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">Exception</span> $exception) {
+            <span style="color:#66d9ef">throw</span> $exception
+        }
+    }
+}
+</code></pre></div><h3 id="cache-快取">Cache (快取)</h3>
+<blockquote>
+<p>可以存取結構：無</p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：<code>Repository</code></p>
+</blockquote>
+<p>協助 Repository 做快取資料的控制，快取鍵值的管理、資料讀取及清除</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostCache</span> {
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getPostCacheKey</span>($post_id) {
+        <span style="color:#75715e">// 撈取文章快取鍵值
+</span><span style="color:#75715e"></span>    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">putPost</span>(<span style="color:#a6e22e">Post</span> $Post) {
+        <span style="color:#75715e">// 紀錄文章快取
+</span><span style="color:#75715e"></span>    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">clearPostCache</span>(<span style="color:#a6e22e">Post</span> $Post) {
+        <span style="color:#75715e">// 清除文章快取
+</span><span style="color:#75715e"></span>    }
+}
+</code></pre></div><h3 id="model-模型">Model (模型)</h3>
+<blockquote>
+<p>可以存取結構：無</p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：<code>Repository</code></p>
+</blockquote>
+<p>Eloquent 存取資料表相關設定，使用 Eloquent 直接存取資料表資料</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Post</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Model</span>
+{
+    <span style="color:#66d9ef">protected</span> $table <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;post&#39;</span>;
+
+    <span style="color:#66d9ef">protected</span> $fillable <span style="color:#f92672">=</span> [];
+
+    <span style="color:#66d9ef">protected</span> $primaryKey <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;id&#39;</span>;
+
+    <span style="color:#66d9ef">protected</span> $dates <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;created_at&#39;</span>, <span style="color:#e6db74">&#39;updated_at&#39;</span>];
+
+    <span style="color:#66d9ef">protected</span> $presenter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;PostPresenter&#39;</span>;
+}
+</code></pre></div><h3 id="presenter-資料呈現">Presenter (資料呈現)</h3>
+<blockquote>
+<p>可以存取結構：無</p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：<code>Model</code></p>
+</blockquote>
+<p>提供 Model 的資料用其他方式呈現</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostPresenter</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Presenter</span>
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">created_at_human_time</span>()
+    {
+        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">created_at</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffForHumans</span>();
+    }
+}
+</code></pre></div><h3 id="constant-常數">Constant (常數)</h3>
+<blockquote>
+<p>可以存取結構：無</p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：無限制</p>
+</blockquote>
+<p>資料皆為靜態變數，可以供所有資料層級 (e.g. Controller、Service、Repository) 做存取</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostConstant</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">POST_TYPE_PUBLIC</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;P&#39;</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">POST_TYPE_DELETE</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;D&#39;</span>;
+}
+</code></pre></div><h3 id="support-支援">Support (支援)</h3>
+<blockquote>
+<p>可以存取結構：無</p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：無限制</p>
+</blockquote>
+<p>方法皆為靜態變數，可以供所有資料層級 (e.g. Controller、Service、Repository) 做存取</p>
+<p>若有其他可供全域共用的方法皆寫在 Support 靜態方法供大家存取</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostSupport</span> {
+    <span style="color:#75715e">// 撈取所有文章類型
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAllPostType</span>() {
+        $all_post_type <span style="color:#f92672">=</span> [
+            <span style="color:#a6e22e">PostConstant</span><span style="color:#f92672">::</span><span style="color:#a6e22e">POST_TYPE_PUBLIC</span>,
+            <span style="color:#a6e22e">PostConstant</span><span style="color:#f92672">::</span><span style="color:#a6e22e">POST_TYPE_DELETE</span>,
+        ];
+        <span style="color:#66d9ef">return</span> $all_post_type;
+    }
+}
+</code></pre></div><h3 id="exceptioncode-例外代碼">ExceptionCode (例外代碼)</h3>
+<blockquote>
+<p>可以存取結構：無</p>
+</blockquote>
+<blockquote>
+<p>可以被存取結構：無限制</p>
+</blockquote>
+<p>資料皆為靜態變數，可以供所有資料層級 (e.g. Controller、Service、Repository) 做存取</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostExceptionCode</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">POST_ID_FORMAT_ERROR</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000001</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">POST_NOT_FOUND</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000002</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">POST_TAG_NOT_FOUND</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000003</span>;
+}
+</code></pre></div>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+            </div> 
+        
+        </div> 
+        
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-31063691-12', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+<div class="notices note">
+  <p>KeJyun 最新新書推薦
+    <br /> - Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站
+    <br /> - Laravel框架开发详解：从零基础到运用框架快速开发PHP网站
+  </p>
+</div>
+
+
+<table>
+    <tr>
+        <td colspan="2">
+            <p>Laravel 是 PHP 的框架（Framework），提供了很多開發網站或 API 所需的工具及環境，經過簡單的設定就可以完成資料的處理及顯示，使開發者可以很優雅且快速的開發出各個不同的產品。本書適合有
+                PHP 基礎的人，但不知道要怎麼選擇框架，或者不用框架的人也能夠明白它的好處。</p>
+            <p>雖然 WordPress 也能夠架站，但如果有客製化需求，要開發各式各樣的網站，或提供 App 使用的 API，如此一來你只能選擇用框架，而 Laravel 是目前最受歡迎的。</p>
+            <p>本書將解說為什麼要使用框架，以及理解框架的優缺點後，要怎麼選擇框架，並用框架快速建構一個網站。除非必要，否則書中會避免專業技術用語，盡量使用最生活化易懂的例子及語氣，讓大家更容易進入 Laravel 的世界。</p>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:30%;">
+            <img src="https://i.imgur.com/RYcmwgY.png"
+                 alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+            />
+        </td>
+        <td>
+            <h3 style="font-size:16px;">
+                購書連結
+            </h3>
+            <ul>
+                <li>
+                    <a href="https://goo.gl/Juv97M"
+                       target="_blank"
+                       alt="博客來-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+                    >
+                        博客來
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/fa5dWf"
+                       target="_blank"
+                       alt="天瓏網路書店-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+                    >
+                        天瓏網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/Ym73kH"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站-金石堂網路書店"
+                    >
+                        金石堂網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/hMnBCs"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站- TAAZE 讀冊生活"
+                    >
+                        TAAZE 讀冊生活
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/QiRqXo"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站 - PChome 24h書店"
+                    >
+                        PCHome 24h書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/nGhPnU"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場－－優雅運用框架快速開發 PHP 網站"
+                    >
+                        商務印書館網上書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/RptkyY"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站-洪可郡 - 三民網路書店"
+                    >
+                        三民網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/5dXGQ8"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站, 城邦阅读花园 - 马来西亚最大网路书店"
+                    >
+                        城邦阅读花园
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/6Zy8yK"
+                       target="_blank"
+                       alt="華文網網路書店：Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站．電腦與網路/程式語言◎知．識．服．務．新．思．路◎"
+                    >
+                        華文網網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/o9msPz"
+                       target="_blank"
+                       alt="新絲路網路書店-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站．電腦與網路/程式語言"
+                    >
+                        新絲路網路書店
+                    </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:30%;">
+            <img src="https://i.imgur.com/CurSW2g.jpg"
+                 alt="Laravel框架开发详解：从零基础到运用框架快速开发PHP网站"
+            />
+        </td>
+        <td>
+            <h3 style="font-size:16px;">
+                購書連結
+            </h3>
+            <ul>
+                <li>
+                    <a href="http://bit.ly/2EneIxw"
+                       target="_blank"
+                       alt="《Laravel框架开发详解：从零基础到运用框架快速开发PHP网站》(洪可郡（KeJyun）)【摘要 书评 试读】- 京东图书"
+                    >
+                        北京大学出版社
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2zSxOI2"
+                       target="_blank"
+                       alt="天瓏網路書店-Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站"
+                    >
+                        天瓏網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://amzn.to/2RKeN1y"
+                       target="_blank"
+                       alt="《Laravel框架开发详解:从零基础到运用框架快速开发PHP网站》 洪可郡 (KeJyun)【摘要 书评 试读】图书"
+                    >
+                        Amazon
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2ru0qmu"
+                       target="_blank"
+                       alt="《正版全新 Laravel框架开发详解：从零基础到运用框架快速开发PHP网站 洪可郡 北京大学出版社》【摘要 书评 试读】- 京东图书"
+                    >
+                        蓝墨水图书专营店
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2Qnrjao"
+                       target="_blank"
+                       alt="正版 Laravel框架开发详解：从零基础到运用框架快速开发PHP网站 计算机与互联网 网页制作 Web技术 程序设计 洪可郡-tmall.com天猫"
+                    >
+                        天猫
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2PstkNn"
+                       target="_blank"
+                       alt="Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站（簡體書）-洪可郡 - 三民網路書店"
+                    >
+                        三民網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2E7jbnk"
+                       target="_blank"
+                       alt="博客來-Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站"
+                    >
+                        博客來
+                    </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/structure/" title="程式架構規範"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/structure/combination-cache-manager-structure-principle/" title="Combination &amp; Cache 架構設計準則（2019 年版本）" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1602331906"></script>
+    <script src="/js/perfect-scrollbar.min.js?1602331906"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1602331906"></script>
+    <script src="/js/jquery.sticky.js?1602331906"></script>
+    <script src="/js/featherlight.min.js?1602331906"></script>
+    <script src="/js/highlight.pack.js?1602331906"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1602331906"></script>
+    <script src="/js/learn.js?1602331906"></script>
+    <script src="/js/hugo-learn.js?1602331906"></script>
+
+    <link href="/mermaid/mermaid.css?1602331906" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1602331906"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+  </body>
+</html>
+

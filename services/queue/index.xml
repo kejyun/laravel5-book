@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>隊列（Queue） on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/services/queue/</link>
+    <description>Recent content in 隊列（Queue） on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/services/queue/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>隊列介紹</title>
+      <link>https://laravel5-book.kejyun.com/services/queue/queue-intro/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/queue/queue-intro/</guid>
+      <description>隊列介紹 Laravel 隊列的設定檔在 config/queue.php，在這裡你可以設定你想要用什麼樣的隊列（Queue）服務去執行你的隊列，而 Laravel 預設有支援 database、Beanstalkd、IronMQ、Amazon SQS、Redis 這幾種隊列的服務。
+我們通常會將一些需要花比較久時間處理的工作丟給隊列去背景執行，讓使用者能夠快速的的到網站的回應，像是我們在寄送帳號認證信件時，因為透過郵件伺服器去寄送可能會花費比較久的時間，所以我們會將這類的工作丟到隊列去執行，所以使用者的認證信件就會延遲的發送到他們的信箱，但是使用者在瀏覽網站時卻可以有更好的體驗！
+指令 在使用 Queue 去幫我們做工作的時候，我們在系統背景需要執行傾聽 Queue 是否有工作的指令，像是 php artisan queue:listen，這樣 Queue 中有新工作需要做，才能夠正常的去執行。
+$ php artisan queue:listen 執行 Queue 指令有一些相關的參數，可以依照自己的環境去調校
+$php artisan queue:listen [--queue[=&amp;quot;...&amp;quot;]] [--delay[=&amp;quot;...&amp;quot;]] [--memory[=&amp;quot;...&amp;quot;]] [--timeout[=&amp;quot;...&amp;quot;]] [--sleep[=&amp;quot;...&amp;quot;]] [--tries[=&amp;quot;...”]]    參數 說明 指令     queue 設定優先執行的工作順序 php artisan queue:listen --queue=high,low   delay 在執行的工作發生錯誤時，要延遲多久重新執行（單位：秒），預設 0 秒 php artisan queue:listen --delay=10   memory 執行工作最多能夠使用的記憶體上限（單位：MB），預設 128 MB php artisan queue:listen --memory=1024   timeout 執行的工作做長執行的時間是多長（單位：秒），預設 60 秒 php artisan queue:listen --timeout=3600   sleep 在沒有找到可以做的工作時，需要間隔多少秒再去檢查有無新的工作（單位：秒），預設 3 秒 php artisan queue:listen --sleep=10   tries 工作執行失敗時，最多重新嘗試執行幾次（單位：次數），預設 0，不重新嘗試 php artisan queue:listen --tries=3    </description>
+    </item>
+    
+    <item>
+      <title>Database Queue</title>
+      <link>https://laravel5-book.kejyun.com/services/queue/queue-database/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/queue/queue-database/</guid>
+      <description>資料庫隊列（Database Queue） 我們可以使用 database 的隊列設定，在自己的資料庫建立隊列資料表
+產生隊列資料表 我們可以使用 php artisan queue:table 指令去產生隊列的 Migration
+$ php artisan queue:table 所以執行命令後，你可以找到像是 database/migrations/2015_05_26_225627_create_queue_jobs_table.php 這樣的隊列 Migration 檔案
+ Migration 檔名日期 2015_05_26_225627 每個人皆不同，會依照你建立當時的時間去產生
+ 產生的隊列 Migration 會長的像這樣：
+&amp;lt;?php use Illuminate\Database\Schema\Blueprint; use Illuminate\Database\Migrations\Migration; class CreateQueueJobsTable extends Migration { /** * Run the migrations. * * @return void */ public function up() { Schema::create(&amp;#39;jobs&amp;#39;, function(Blueprint $table) { $table-&amp;gt;bigIncrements(&amp;#39;id&amp;#39;); $table-&amp;gt;string(&amp;#39;queue&amp;#39;); $table-&amp;gt;text(&amp;#39;payload&amp;#39;); $table-&amp;gt;tinyInteger(&amp;#39;attempts&amp;#39;)-&amp;gt;unsigned(); $table-&amp;gt;tinyInteger(&amp;#39;reserved&amp;#39;)-&amp;gt;unsigned(); $table-&amp;gt;unsignedInteger(&amp;#39;reserved_at&amp;#39;)-&amp;gt;nullable(); $table-&amp;gt;unsignedInteger(&amp;#39;available_at&amp;#39;); $table-&amp;gt;unsignedInteger(&amp;#39;created_at&amp;#39;); }); } /** * Reverse the migrations.</description>
+    </item>
+    
+    <item>
+      <title>非同步資料庫隊列（Async Database Queue）</title>
+      <link>https://laravel5-book.kejyun.com/services/queue/queue-async/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/queue/queue-async/</guid>
+      <description>非同步資料庫隊列（Async Database Queue） 在我們使用 Laravel 提供的資料庫隊列（Database Queue）時，我們需要在命令列執行 php artisan queue:listen 指令，持續的去監聽是否有需要執行的 Queue。
+barryvdh/laravel-async-queue 隊列套件，可以讓我們不用持續的監聽隊列資料，並在使用隊列時，立即的使用 shell 在背景執行隊列的工作。
+目前（2015-06-01） 套件 0.4.x 版本有支援 Laravel 5
+安裝 $ composer require &amp;#39;barryvdh/laravel-async-queue:0.4.*@dev&amp;#39; 加入 Service Provider 在 config/app.php 檔案中加入 &#39;Barryvdh\Queue\AsyncServiceProvider&#39;
+// config/app.php return [ &amp;#39;providers&amp;#39; =&amp;gt; [ &amp;#39;Barryvdh\Queue\AsyncServiceProvider&amp;#39;, ] ]; 產生隊列資料表 barryvdh/laravel-async-queue 隊列套件使用原生的資料庫隊列資料表（Database Queue）去時做的，所以我們可以使用 php artisan queue:table 指令去產生隊列的 Migration
+$ php artisan queue:table 所以執行命令後，你可以找到像是 database/migrations/2015_05_26_225627_create_queue_jobs_table.php 這樣的隊列 Migration 檔案
+ Migration 檔名日期 2015_05_26_225627 每個人皆不同，會依照你建立當時的時間去產生
+ 產生的隊列 Migration 會長的像這樣：</description>
+    </item>
+    
+    <item>
+      <title>Supervisor 啟動 queue</title>
+      <link>https://laravel5-book.kejyun.com/services/queue/queue-supervisor/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/queue/queue-supervisor/</guid>
+      <description>Supervisor 啟動 queue 安裝 Supervisor sudo apt-get install supervisor 設定檔案路徑 /etc/supervisor/conf.d 設定 vim /etc/supervisor/conf.d/laravel-worker.conf 設定檔案 [program:laravel-worker] process_name=%(program_name)s_%(process_num)02d command=php /home/forge/app.com/artisan artisan queue:work --queue=instant,high,medium,default,low --delay=1 --memory=512 --sleep=15 --tries=1 --env=dev --daemon autostart=true autorestart=true user=www-data numprocs=8 redirect_stderr=true stdout_logfile=/home/forge/app.com/worker.log 啟動 Supervisor sudo supervisorctl reread sudo supervisorctl update sudo supervisorctl start laravel-worker:* 停止 Supervisor sudo supervisorctl stop laravel-worker:* 重新啟動 Supervisor 若當 Laravel 設定檔有做異動時，需要重啟 Supervisor 以讀取新的設定
+# 重新啟動指定的 worker supervisorctl restart laravel-worker: # 重新啟動所有的 worker supervisorctl restart all 參考資料  Queues - Laravel - The PHP Framework For Web Artisans supervisord - how to restart only certain processes using supervisorctl?</description>
+    </item>
+    
+  </channel>
+</rss>

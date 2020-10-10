@@ -1,0 +1,4623 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.73.0" />
+    <meta name="description" content="KeJyun Laravel 5 學習筆記">
+<meta name="author" content="KeJyun">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>視圖介紹 :: Laravel 5 學習筆記</title>
+
+    
+    <link href="/css/nucleus.css?1602331906" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1602331906" rel="stylesheet">
+    <link href="/css/hybrid.css?1602331906" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1602331906" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1602331906" rel="stylesheet">
+    <link href="/css/auto-complete.css?1602331906" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1602331906" rel="stylesheet">
+    <link href="/css/theme.css?1602331906" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1602331906" rel="stylesheet">
+    
+    <link href="/css/theme-mine.css?1602331906" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1602331906"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    <style type="text/css">
+    #chapter p {
+      text-align:left;
+    }
+</style>
+
+
+
+
+  
+    
+
+<script type="application/ld+json">
+{
+    "@context":"http://schema.org",
+    "@type":"Article",
+    "headline":"視圖介紹",
+    "url":"https:\/\/laravel5-book.kejyun.com\/view\/view-intro\/",
+    "keywords":[ 
+    "mobile", "web", "ai", "backend", "open source"
+    ],
+    "image":{
+        "@type":"ImageObject", 
+        "width":"1200",
+        "height":"627"
+    },
+    "mainEntityOfPage":"True",
+    "publisher":{
+        "@type":"Organization",
+        "name":"KeJyun",
+        "url":"https:\/\/laravel5-book.kejyun.com\/",
+        "logo":{
+            "@type":"ImageObject",
+            "url":"https:\/\/laravel5-book.kejyun.com\/images\/logo.png",
+            "width":"357",
+            "height":"60"
+        }
+    },
+    "dateCreated":"2020-08-30T21:24:42\u002b08:00",
+    "datePublished":"2020-08-30T21:24:42\u002b08:00",
+    
+    
+    "author":"KJ",
+    "creator":"KJ",
+    
+    "dateModified":"2020-08-30T21:24:42\u002b08:00",
+    "articleSection":"TechArticle"
+}
+</script>
+
+  
+
+  
+    
+<script type="application/ld+json">
+	{
+		"@context":"http://schema.org",
+		"@type": "BlogPosting", 
+		"url": "https:\/\/laravel5-book.kejyun.com\/view\/view-intro\/",
+		"headline": "視圖介紹",
+		"alternativeHeadline": "視圖介紹",
+		"dateCreated": "2020-08-30T21:24:42\u002b08:00",
+		"datePublished": "2020-08-30T21:24:42\u002b08:00",
+		"dateModified": "2020-08-30T21:24:42\u002b08:00",
+		"inLanguage": "zh-TW",
+		"isFamilyFriendly": "true",
+		"copyrightYear": "2020",
+		"copyrightHolder": "KeJyun",
+		"contentLocation": {
+			"@type": "Place",
+			"name": ""
+		},
+		
+		"accountablePerson": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/laravel5-book.kejyun.com\/"
+		},
+		"author": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/laravel5-book.kejyun.com\/"
+		},
+		"creator": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/laravel5-book.kejyun.com\/"
+		},
+		
+		"publisher": {
+			"@type": "Organization",
+			"name": "KeJyun",
+			"url": "https:\/\/laravel5-book.kejyun.com\/",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https:\/\/laravel5-book.kejyun.com\/images\/logo.png",
+				"width":"357",
+				"height":"60"
+			}
+		},
+		"mainEntityOfPage": "True",
+		"keywords": [ 
+			"mobile", "web", "ai", "backend", "open source"
+		],
+		"genre":["KeJyun"],
+		"articleSection": "KeJyun",
+		"articleBody": "視圖介紹 這裏會介紹如何在 Laravel 5 處理視圖（View）\nLaravel 的視圖是放在 resource\/views 目錄內\n建立共用的視圖 我們網頁常常會出現 header 跟 footer 在不同的視圖中為相同的狀況，唯一有變的只有中間的內容隨著不同的請求而有變動，如果有這樣的設計需求，我們可以替所有視圖建立共用的視圖，假設我們把這個共用的視圖放在 resource\/view\/app.blade.php 下，其內容可能是：\n\u0026lt;!-- resource\/view\/app.blade.php --\u0026gt; \u0026lt;!doctype html\u0026gt; \u0026lt;html lang=\u0026#34;zh-TW\u0026#34;\u0026gt; \u0026lt;head\u0026gt; \u0026lt;meta charset=\u0026#34;UTF-8\u0026#34;\u0026gt; \u0026lt;title\u0026gt;我的網站\u0026lt;\/title\u0026gt; \u0026lt;\/head\u0026gt; \u0026lt;body\u0026gt; \u0026lt;div class=\u0026#34;container\u0026#34;\u0026gt; @yield(\u0026#39;content\u0026#39;) \u0026lt;\/div\u0026gt; @yield(\u0026#39;other_info\u0026#39;) \u0026lt;\/body\u0026gt; \u0026lt;\/html\u0026gt; 如果我們要顯示文章的資訊在 content 中，文章的說明在 other_info 中，我們可以在 blade 中這樣設定：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) \u0026lt;h1\u0026gt;文章標題\u0026lt;\/h1\u0026gt; \u0026lt;p\u0026gt; Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \u0026lt;\/p\u0026gt; @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 這樣 Laravel 就會幫我們把相對應的資訊塞到 app.blade.php 當中相對應的位置\n引入共用的視圖 假如我們要在特定的某幾頁使用 Facebook 留言板，像是：\n\u0026lt;div id=\u0026#34;fb-root\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; \u0026lt;script\u0026gt;(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = \u0026#34;\/\/connect.facebook.net\/zh_TW\/sdk.js#xfbml=1\u0026amp;version=v2.3\u0026amp;appId=12345566\u0026#34;; fjs.parentNode.insertBefore(js, fjs); }(document, \u0026#39;script\u0026#39;, \u0026#39;facebook-jssdk\u0026#39;));\u0026lt;\/script\u0026gt; \u0026lt;div class=\u0026#34;fb-comments\u0026#34; data-href=\u0026#34;http:\/\/laravel5-book.kejyun.com\/\u0026#34; data-numposts=\u0026#34;5\u0026#34; data-colorscheme=\u0026#34;light\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; 但我們不想要這些相同的程式碼片段散落在各個不同的視圖中，我們可以把它整理在 resource\/views\/vendor\/_fbcomment.blade.php 當中\n然後在文章視圖當中我們就可以這樣去引入 Facebook 留言板：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) \u0026lt;h1\u0026gt;文章標題\u0026lt;\/h1\u0026gt; \u0026lt;p\u0026gt; Lorem ipsum dolor sit amet \u0026lt;\/p\u0026gt; @include(\u0026#39;vendor\/_fbcomment\u0026#39;) @include(\u0026#39;vendor._fbcomment\u0026#39;) @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 傳入變數到引用的視圖當中 在我們新增與編輯文章的視圖當中，幾乎所有的視圖都是一樣的，不一樣的地方可能只有「表單處理的 action 不同（create \u0026amp; edit）」、「送出的按鈕文字不同（新增違章 \u0026amp; 編輯文章）」\n但我們還是希望兩個視圖能夠一起被引用，把其他不同的地方當作變數傳入，就可以達到視圖重構的效果，避免類似的視圖重複出現在不同地方，像是：\n\u0026lt;!-- resource\/view\/partials\/articles\/_form.blade.php --\u0026gt; {!! Form::label(\u0026#39;title\u0026#39;,\u0026#39;標題\u0026#39;) !!} {!! Form::text(\u0026#39;title\u0026#39;, null) !!} {!! Form::label(\u0026#39;content\u0026#39;,\u0026#39;內文\u0026#39;) !!} {!! Form::text(\u0026#39;content\u0026#39;, null) !!} {!! Form::submit($submitButtonText) !!} 當我們要引用表單的視圖，則必須把按鈕的文字傳送給表單，像是：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) @include(\u0026#39;partials\/articles\/_form\u0026#39;, [\u0026#39;submitButtonText\u0026#39; =\u0026gt; \u0026#39;新增文章\u0026#39;]) @include(\u0026#39;partials\/articles\/_form\u0026#39;, [\u0026#39;submitButtonText\u0026#39; =\u0026gt; \u0026#39;編輯文章\u0026#39;]) @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 備註 引用或載入視圖路徑 在使用 blade 中的 @extend() 或 @include() 函數，他所參照的視圖相對位置是從 resource\/views\/ 開始的\n所以如果你的視圖是放在 resource\/views\/partials\/other.blade.php 中，你要引用或載入的話則可以用 . 或 \/ 去指定相對的視圖位置，像是：\n\u0026lt;!-- 引用 --\u0026gt; @extend(\u0026#39;partials._other\u0026#39;) @extend(\u0026#39;partials\/_other\u0026#39;) \u0026lt;!-- 載入 --\u0026gt; @include(\u0026#39;partials._other\u0026#39;) @include(\u0026#39;partials\/_other\u0026#39;) 設計模式 樣板檔案名稱 通常若不是完整的視圖，僅是部分的視圖，通常會將檔案名稱最前面加上底線 _，用來告知團隊程式設計師這個 blade 視圖不是完整的視圖\n參考資訊  View Partials and Form Reuse - Laracasts  "
+	}
+</script>
+  
+
+  
+    
+
+
+
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": 
+	[{
+		"@type": "ListItem",
+			"position": 1,
+			"item": {
+				"@id": "https:\/\/laravel5-book.kejyun.com\/",
+				"name": "Home"
+			}
+	},""
+	{
+	"@type": "ListItem",
+		"position":  2 ,
+		"item": {
+			"@id": "https:\/\/laravel5-book.kejyun.com\/view",
+			"name": "View"
+		}
+	}, """"
+	{
+	"@type": "ListItem",
+		"position":  3 ,
+		"item": {
+			"@id": "https:\/\/laravel5-book.kejyun.com\/view\/view-intro",
+			"name": "View intro"
+		}
+	}""""
+	]
+}
+</script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+
+<script type="application/ld+json">
+{
+"@context": "http://www.schema.org",
+"@type": "Person",
+"@id": "https:\/\/laravel5-book.kejyun.com\/view\/view-intro\/",
+"name": "KJ",
+"alternateName": "KJ",
+"nationality": "Taiwan",
+
+"affiliation": [
+	{
+		"@type": "Organization",
+		"name": "KeJyun",
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		]
+  	}
+],
+
+"gender": "male",
+"Description": "IT Manager",
+"disambiguatingDescription": "Hi I\u0027m Web Developer in Taiwan",
+
+"worksFor": [
+	{
+		"@type": "Organization",
+		"name": "KeJyun",
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://laravel5-book.kejyun.com/\"\n"
+		]
+	}
+],
+"url": "https:\/\/laravel5-book.kejyun.com\/",
+"image": "https:\/\/laravel5-book.kejyun.com\/company\/team\/KeJyun.png",
+
+"sameAs": [ "\n\n\n\n\n\n\"https://ca.linkedin.com/in/kejyun/en\",\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"\"\n"
+	]
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+<script type="application/ld+json">
+[
+	{
+		"@context": "http://schema.org",
+		"@type": "Webpage",
+		"specialty": "KeJyun Laravel 5 學習筆記",
+		"mainContentOfPage": {
+			"@context": "http://schema.org/",
+			"@type": "WebPageElement",
+			"cssSelector": ".body-content"
+		},
+		"primaryImageOfPage": "https:\/\/laravel5-book.kejyun.com\/images\/bg.jpg"
+	},
+	{
+		"@context": "http://schema.org",
+		"@type": "WebSite",
+		"@id": "https:\/\/laravel5-book.kejyun.com\/",
+		"additionalType": ["CreativeWork", "Person"],
+		"url": "https:\/\/laravel5-book.kejyun.com\/",
+		"name": "Laravel 5 學習筆記",
+		"alternateName": "Laravel 5 學習筆記",
+		"headline": "KeJyun Laravel 5 學習筆記",
+		"image": "https:\/\/laravel5-book.kejyun.com\/images\/bg.jpg",
+		"inLanguage": "zh-TW",
+		"author": "KeJyun",
+		"description": "KeJyun Laravel 5 學習筆記",
+		"disambiguatingDescription": "KeJyun Laravel 5 學習筆記",
+		"isFamilyFriendly": "http://schema.org/True",
+		"contentRating": "NR",
+		"sourceOrganization": "Laravel 5 學習筆記",
+		"publisher": {
+		  "@type": "Organization",
+		  "name": "Laravel 5 學習筆記",
+		  "logo": {
+		    "@type": "ImageObject",
+		    "url": "https:\/\/laravel5-book.kejyun.com\/images\/logo.png",
+		    "height": 60,
+		    "width": 107
+		  }
+		},
+		"mainEntity": {
+			"@context": "http://schema.org",
+			"@type": "localBusiness",
+			"name": "Laravel 5 學習筆記",
+			"image":"https:\/\/laravel5-book.kejyun.com\/",
+			"priceRange":"$$",
+			"telephone":"",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "",
+				"addressLocality": "",
+				"addressRegion": "",
+				"addressCountry": "",
+				"postalCode": ""
+			},
+			"aggregateRating": {
+				"@type": "AggregateRating",
+				"ratingValue": "4.5",
+				"reviewCount": "50"
+			}
+		},
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https:\/\/laravel5-book.kejyun.com\/?search={search_term}",
+			"query-input": "required name=search_term"
+		},
+		"keywords":[
+			"mobile", "web", "ai", "backend", "open source"
+		],
+		"hasPart": [
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPHeader",
+				"@id": "#header",
+				"headline": "KeJyun Laravel 5 學習筆記",
+				"cssSelector": "#header",
+				"potentialAction": [],
+				"@graph": 
+				[]
+			},
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPSidebar",
+				"cssSelector": "#sidebar",
+				"citation": [
+				
+				]
+			},
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPFooter",
+				"cssSelector": ".footer",
+				"@id": "#footer",
+				"copyrightHolder":"Laravel 5 學習筆記",
+				"publisher": "Laravel 5 學習筆記",
+				"copyrightYear":"2020"
+			}
+		]
+	}
+]
+</script>
+  
+
+  
+  </head>
+  <body class="" data-url="/view/view-intro/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" 
+  href="https://laravel5-book.kejyun.com/"
+>
+  <img style="border-radius: 50%!important;height:auto;vertical-align: middle;" 
+    alt="" 
+    width="50" height="50" 
+    class=""
+    src="https://avatars1.githubusercontent.com/u/1586089?s=460&amp;u=184ce5bff7ceee1a681cabd2bf7b9d13e8edca67&amp;v=4"
+  >
+  <span style="vertical-align:middle;">
+  Laravel 5 學習筆記
+  </span>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1602331906"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1602331906"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1602331906"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/environment/" title="環境" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/environment/">
+          <b>X. </b>環境
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/dot-env-file/" title=".env 檔案" class="dd-item ">
+        <a href="/environment/dot-env-file/">
+        .env 檔案
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/homestead/install-with-homestead/" title="Homestead" class="dd-item ">
+        <a href="/environment/homestead/install-with-homestead/">
+        Homestead
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/install-composer/" title="Composer 安裝" class="dd-item ">
+        <a href="/environment/install-composer/">
+        Composer 安裝
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/environment/debug/" title="除錯" class="dd-item ">
+        <a href="/environment/debug/">
+        除錯
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/" title="Database" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/">
+          <b>X. </b>Database
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/migration/" title="Migration (遷移)" class="dd-item ">
+        <a href="/database/migration/">
+        Migration (遷移)
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/model/" title="Eloquent Model (模型)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/model/">
+          Eloquent Model (模型)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-config/" title="Eloquent 設定" class="dd-item ">
+        <a href="/database/model/eloquent-config/">
+        Eloquent 設定
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-relationships/" title="Eloquent 關聯" class="dd-item ">
+        <a href="/database/model/eloquent-relationships/">
+        Eloquent 關聯
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-magic-function/" title="Eloquent 魔術函式" class="dd-item ">
+        <a href="/database/model/eloquent-magic-function/">
+        Eloquent 魔術函式
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-apply/" title="使用 Eloquent" class="dd-item ">
+        <a href="/database/model/eloquent-apply/">
+        使用 Eloquent
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-lock/" title="鎖定資料 Lock" class="dd-item ">
+        <a href="/database/model/eloquent-lock/">
+        鎖定資料 Lock
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-tips/" title="Eloquent 小技巧" class="dd-item ">
+        <a href="/database/model/eloquent-tips/">
+        Eloquent 小技巧
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/model/eloquent-sub-query/" title="子查詢" class="dd-item ">
+        <a href="/database/model/eloquent-sub-query/">
+        子查詢
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/qa/" title="資料庫常見問題" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/qa/">
+          資料庫常見問題
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/qa/cannot-get-querylog/" title="資料庫常見問題：無法取得查詢 Log" class="dd-item ">
+        <a href="/database/qa/cannot-get-querylog/">
+        資料庫常見問題：無法取得查詢 Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/qa/cannot-mass-insert/" title="使用大量資料的方式新增時無法新增" class="dd-item ">
+        <a href="/database/qa/cannot-mass-insert/">
+        使用大量資料的方式新增時無法新增
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/qa/cannot-mass-insert-with-extend-model/" title="使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增" class="dd-item ">
+        <a href="/database/qa/cannot-mass-insert-with-extend-model/">
+        使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/postgresql/" title="PostgreSQL" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/postgresql/">
+          PostgreSQL
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/postgresql/install-odbc-driver/" title="安裝 PostgreSQL ODBC driver" class="dd-item ">
+        <a href="/database/postgresql/install-odbc-driver/">
+        安裝 PostgreSQL ODBC driver
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/database/redis/" title="Redis" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/database/redis/">
+          Redis
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/database/redis/aws-cluster/aws-cluster/" title="AWS Redis 設定" class="dd-item ">
+        <a href="/database/redis/aws-cluster/aws-cluster/">
+        AWS Redis 設定
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/" title="Http" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/">
+          <b>X. </b>Http
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/request/" title="Request 請求" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/request/">
+          Request 請求
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/request/request/" title="HTTP 請求" class="dd-item ">
+        <a href="/http/request/request/">
+        HTTP 請求
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/request/request-cookie/" title="Cookie" class="dd-item ">
+        <a href="/http/request/request-cookie/">
+        Cookie
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/route/" title="Route 路由" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/route/">
+          Route 路由
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/route/sub-domain-route/" title="子網域路由（Sub-Domain Route）" class="dd-item ">
+        <a href="/http/route/sub-domain-route/">
+        子網域路由（Sub-Domain Route）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/http/middleware/" title="中介層（Middleware）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/http/middleware/">
+          中介層（Middleware）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/middleware/middleware-intro/" title="中介層介紹" class="dd-item ">
+        <a href="/http/middleware/middleware-intro/">
+        中介層介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/http/middleware/etag-middleware/" title="ETag Middleware" class="dd-item ">
+        <a href="/http/middleware/etag-middleware/">
+        ETag Middleware
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/view/" title="視圖 (View)" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/view/">
+          <b>X. </b>視圖 (View)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/view/view-intro/" title="視圖介紹" class="dd-item active">
+        <a href="/view/view-intro/">
+        視圖介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/view/view-inject-class/" title="將 Class 綁定到視圖" class="dd-item ">
+        <a href="/view/view-inject-class/">
+        將 Class 綁定到視圖
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/" title="服務" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/">
+          <b>X. </b>服務
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/auth/" title="認證（Auth）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/auth/">
+          認證（Auth）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/auth/auth-login/" title="認證登入" class="dd-item ">
+        <a href="/services/auth/auth-login/">
+        認證登入
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/auth/auth-support-laravel-4/" title="認證支援 Laravel 4 Session" class="dd-item ">
+        <a href="/services/auth/auth-support-laravel-4/">
+        認證支援 Laravel 4 Session
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/mail/" title="郵件（Mail）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/mail/">
+          郵件（Mail）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/mail/mail-gmail/" title="使用 Gmail 寄信" class="dd-item ">
+        <a href="/services/mail/mail-gmail/">
+        使用 Gmail 寄信
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/mail/mail-mailgun/" title="使用 Mailgun 寄信" class="dd-item ">
+        <a href="/services/mail/mail-mailgun/">
+        使用 Mailgun 寄信
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/queue/" title="隊列（Queue）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/queue/">
+          隊列（Queue）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-intro/" title="隊列介紹" class="dd-item ">
+        <a href="/services/queue/queue-intro/">
+        隊列介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-database/" title="Database Queue" class="dd-item ">
+        <a href="/services/queue/queue-database/">
+        Database Queue
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-async/" title="非同步資料庫隊列（Async Database Queue）" class="dd-item ">
+        <a href="/services/queue/queue-async/">
+        非同步資料庫隊列（Async Database Queue）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/queue/queue-supervisor/" title="Supervisor 啟動 queue" class="dd-item ">
+        <a href="/services/queue/queue-supervisor/">
+        Supervisor 啟動 queue
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/helpers/" title="輔助方法 (Helpers)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/helpers/">
+          輔助方法 (Helpers)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/helpers/custom-helpers/" title="自定義輔助方法" class="dd-item ">
+        <a href="/services/helpers/custom-helpers/">
+        自定義輔助方法
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/helpers/request-helpers/" title="請求資訊" class="dd-item ">
+        <a href="/services/helpers/request-helpers/">
+        請求資訊
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/unit-test/" title="單元測試" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/unit-test/">
+          單元測試
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-post-csrf/" title="POST CSRF 錯誤" class="dd-item ">
+        <a href="/services/unit-test/unit-test-post-csrf/">
+        POST CSRF 錯誤
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-ajax-request-json-response/" title="Ajax Request &amp; JSON Response" class="dd-item ">
+        <a href="/services/unit-test/unit-test-ajax-request-json-response/">
+        Ajax Request &amp; JSON Response
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-assert/" title="Assert" class="dd-item ">
+        <a href="/services/unit-test/unit-test-assert/">
+        Assert
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-login-and-upload-file/" title="單元測試登入及上傳檔案" class="dd-item ">
+        <a href="/services/unit-test/unit-test-login-and-upload-file/">
+        單元測試登入及上傳檔案
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/unit-test/unit-test-change-root-url/" title="變更請求網址" class="dd-item ">
+        <a href="/services/unit-test/unit-test-change-root-url/">
+        變更請求網址
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/errors-logs/" title="錯誤與日誌 Log" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/errors-logs/">
+          錯誤與日誌 Log
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/errors-show-exception-in-cli/" title="在單元測試顯示例外" class="dd-item ">
+        <a href="/services/errors-logs/errors-show-exception-in-cli/">
+        在單元測試顯示例外
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/errors-log-level/" title="日誌記錄層級" class="dd-item ">
+        <a href="/services/errors-logs/errors-log-level/">
+        日誌記錄層級
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/errors-log-macro/" title="日誌巨集" class="dd-item ">
+        <a href="/services/errors-logs/errors-log-macro/">
+        日誌巨集
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/errors-logs/packages/" title="日誌套件" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/errors-logs/packages/">
+          日誌套件
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/packages/errors-log-packages-log-viewer/" title="Log Viewer" class="dd-item ">
+        <a href="/services/errors-logs/packages/errors-log-packages-log-viewer/">
+        Log Viewer
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/packages/errors-log-packages-slack-log/" title="Slack Log" class="dd-item ">
+        <a href="/services/errors-logs/packages/errors-log-packages-slack-log/">
+        Slack Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/errors-logs/service/" title="日誌服務" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/errors-logs/service/">
+          日誌服務
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-understand-io/" title="Understand.io" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-understand-io/">
+        Understand.io
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-sentry-io/" title="Sentry.io" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-sentry-io/">
+        Sentry.io
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-bugsnag/" title="Bugsnag" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-bugsnag/">
+        Bugsnag
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-rollbar/" title="Rollbar" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-rollbar/">
+        Rollbar
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/errors-logs/service/errors-log-service-cloudwatch/" title="CloudWatch Log" class="dd-item ">
+        <a href="/services/errors-logs/service/errors-log-service-cloudwatch/">
+        CloudWatch Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/encryption/encryption-intro/" title="加密（encryption）" class="dd-item ">
+        <a href="/services/encryption/encryption-intro/">
+        加密（encryption）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/hashing/hashing-intro/" title="雜湊（Hashing）" class="dd-item ">
+        <a href="/services/hashing/hashing-intro/">
+        雜湊（Hashing）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/response/response-intro/" title="回應（Response）" class="dd-item ">
+        <a href="/services/response/response-intro/">
+        回應（Response）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/scheduling/scheduling-intro/" title="任務排程（Scheduling）" class="dd-item ">
+        <a href="/services/scheduling/scheduling-intro/">
+        任務排程（Scheduling）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/services/laravel-mix/" title="Laravel Mix" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/services/laravel-mix/">
+          Laravel Mix
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/laravel-mix/laravel-mix-intro/" title="Laravel Mix 介紹" class="dd-item ">
+        <a href="/services/laravel-mix/laravel-mix-intro/">
+        Laravel Mix 介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/laravel-mix/laravel-mix-live-reload/" title="LiveReload" class="dd-item ">
+        <a href="/services/laravel-mix/laravel-mix-live-reload/">
+        LiveReload
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/laravel-mix/laravel-mix-browser-sync/" title="BrowserSync" class="dd-item ">
+        <a href="/services/laravel-mix/laravel-mix-browser-sync/">
+        BrowserSync
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/services/compass/compass-intro/" title="Compass" class="dd-item ">
+        <a href="/services/compass/compass-intro/">
+        Compass
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/api/" title="API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/api/">
+          <b>X. </b>API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/api/api-intro/" title="API 介紹" class="dd-item ">
+        <a href="/api/api-intro/">
+        API 介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/design-pattern/" title="設計模式" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/design-pattern/">
+          <b>X. </b>設計模式
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/service-container/" title="服務容器（Service Container）" class="dd-item ">
+        <a href="/design-pattern/service-container/">
+        服務容器（Service Container）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/psr/" title="PSR" class="dd-item ">
+        <a href="/design-pattern/psr/">
+        PSR
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/model/" title="Model" class="dd-item ">
+        <a href="/design-pattern/model/">
+        Model
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/design-pattern/learning-resource/" title="學習資源" class="dd-item ">
+        <a href="/design-pattern/learning-resource/">
+        學習資源
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/structure/" title="程式架構規範" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/structure/">
+          <b>X. </b>程式架構規範
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/structure/service-repository-structure-principle/" title="Service &amp; Repository 架構設計準則（2017 年版本）" class="dd-item ">
+        <a href="/structure/service-repository-structure-principle/">
+        Service &amp; Repository 架構設計準則（2017 年版本）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/structure/combination-cache-manager-structure-principle/" title="Combination &amp; Cache 架構設計準則（2019 年版本）" class="dd-item ">
+        <a href="/structure/combination-cache-manager-structure-principle/">
+        Combination &amp; Cache 架構設計準則（2019 年版本）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/kejyun"><i class='fab fa-github'></i> Github repo</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://laravel5-book.kejyun.com/tags"><i class='fas fa-tags'></i> Tags</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>首頁</a> > <a href='/view/'>視圖 (View)</a> > 視圖介紹
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+          <div id="chapter">
+        
+        <div id="body-inner">
+          
+
+        
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<h1 id="視圖介紹">視圖介紹</h1>
+<p>這裏會介紹如何在 Laravel 5 處理視圖（View）</p>
+<p>Laravel 的視圖是放在 <code>resource/views</code> 目錄內</p>
+<h2 id="建立共用的視圖">建立共用的視圖</h2>
+<p>我們網頁常常會出現 header 跟 footer 在不同的視圖中為相同的狀況，唯一有變的只有中間的內容隨著不同的請求而有變動，如果有這樣的設計需求，我們可以替所有視圖建立共用的視圖，假設我們把這個共用的視圖放在 <code>resource/view/app.blade.php</code> 下，其內容可能是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- resource/view/app.blade.php --&gt;</span>
+<span style="color:#75715e">&lt;!doctype html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;zh-TW&#34;</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;我的網站&lt;/<span style="color:#f92672">title</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+
+&lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+        @yield(&#39;content&#39;)
+    &lt;/<span style="color:#f92672">div</span>&gt;
+
+    @yield(&#39;other_info&#39;)
+&lt;/<span style="color:#f92672">body</span>&gt;
+
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>如果我們要顯示文章的資訊在 <code>content</code> 中，文章的說明在 <code>other_info</code> 中，我們可以在 blade 中這樣設定：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- resource/view/article.blade.php --&gt;</span>
+@extend(&#39;app&#39;)
+
+@section(&#39;content&#39;)
+    &lt;<span style="color:#f92672">h1</span>&gt;文章標題&lt;/<span style="color:#f92672">h1</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.
+    &lt;/<span style="color:#f92672">p</span>&gt;
+@stop
+
+
+@section(&#39;other_info&#39;)
+    其他資訊
+@stop
+</code></pre></div><p>這樣 Laravel 就會幫我們把相對應的資訊塞到 <code>app.blade.php</code> 當中相對應的位置</p>
+<h2 id="引入共用的視圖">引入共用的視圖</h2>
+<p>假如我們要在特定的某幾頁使用 <a href="https://developers.facebook.com/docs/plugins/comments">Facebook 留言板</a>，像是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fb-root&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+&lt;<span style="color:#f92672">script</span>&gt;(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">d</span>, <span style="color:#a6e22e">s</span>, <span style="color:#a6e22e">id</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">js</span>, <span style="color:#a6e22e">fjs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">getElementsByTagName</span>(<span style="color:#a6e22e">s</span>)[<span style="color:#ae81ff">0</span>];
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">getElementById</span>(<span style="color:#a6e22e">id</span>)) <span style="color:#66d9ef">return</span>;
+  <span style="color:#a6e22e">js</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">createElement</span>(<span style="color:#a6e22e">s</span>); <span style="color:#a6e22e">js</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">id</span>;
+  <span style="color:#a6e22e">js</span>.<span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;//connect.facebook.net/zh_TW/sdk.js#xfbml=1&amp;version=v2.3&amp;appId=12345566&#34;</span>;
+  <span style="color:#a6e22e">fjs</span>.<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">insertBefore</span>(<span style="color:#a6e22e">js</span>, <span style="color:#a6e22e">fjs</span>);
+}(document, <span style="color:#e6db74">&#39;script&#39;</span>, <span style="color:#e6db74">&#39;facebook-jssdk&#39;</span>));&lt;/<span style="color:#f92672">script</span>&gt;
+
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fb-comments&#34;</span> <span style="color:#a6e22e">data-href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://laravel5-book.kejyun.com/&#34;</span> <span style="color:#a6e22e">data-numposts</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;5&#34;</span> <span style="color:#a6e22e">data-colorscheme</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;light&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>但我們不想要這些相同的程式碼片段散落在各個不同的視圖中，我們可以把它整理在 <code>resource/views/vendor/_fbcomment.blade.php</code> 當中</p>
+<p>然後在文章視圖當中我們就可以這樣去引入 <a href="https://developers.facebook.com/docs/plugins/comments">Facebook 留言板</a>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- resource/view/article.blade.php --&gt;</span>
+@extend(&#39;app&#39;)
+
+@section(&#39;content&#39;)
+    &lt;<span style="color:#f92672">h1</span>&gt;文章標題&lt;/<span style="color:#f92672">h1</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;
+        Lorem ipsum dolor sit amet
+    &lt;/<span style="color:#f92672">p</span>&gt;
+
+    @include(&#39;vendor/_fbcomment&#39;)
+    @include(&#39;vendor._fbcomment&#39;)
+@stop
+
+
+@section(&#39;other_info&#39;)
+    其他資訊
+@stop
+</code></pre></div><h2 id="傳入變數到引用的視圖當中">傳入變數到引用的視圖當中</h2>
+<p>在我們新增與編輯文章的視圖當中，幾乎所有的視圖都是一樣的，不一樣的地方可能只有「表單處理的 action 不同（create &amp; edit）」、「送出的按鈕文字不同（新增違章 &amp; 編輯文章）」</p>
+<p>但我們還是希望兩個視圖能夠一起被引用，把其他不同的地方當作變數傳入，就可以達到視圖重構的效果，避免類似的視圖重複出現在不同地方，像是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- resource/view/partials/articles/_form.blade.php --&gt;</span>
+{!! Form::label(&#39;title&#39;,&#39;標題&#39;) !!}
+{!! Form::text(&#39;title&#39;, null) !!}
+
+{!! Form::label(&#39;content&#39;,&#39;內文&#39;) !!}
+{!! Form::text(&#39;content&#39;, null) !!}
+
+{!! Form::submit($submitButtonText) !!}
+</code></pre></div><p>當我們要引用表單的視圖，則必須把按鈕的文字傳送給表單，像是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- resource/view/article.blade.php --&gt;</span>
+@extend(&#39;app&#39;)
+
+@section(&#39;content&#39;)
+  @include(&#39;partials/articles/_form&#39;, [&#39;submitButtonText&#39; =&gt; &#39;新增文章&#39;])
+
+  @include(&#39;partials/articles/_form&#39;, [&#39;submitButtonText&#39; =&gt; &#39;編輯文章&#39;])
+@stop
+
+
+@section(&#39;other_info&#39;)
+    其他資訊
+@stop
+</code></pre></div><h2 id="備註">備註</h2>
+<h3 id="引用或載入視圖路徑">引用或載入視圖路徑</h3>
+<p>在使用 blade 中的 <code>@extend()</code> 或 <code>@include()</code> 函數，他所參照的視圖相對位置是從 <code>resource/views/</code> 開始的</p>
+<p>所以如果你的視圖是放在 <code>resource/views/partials/other.blade.php</code> 中，你要引用或載入的話則可以用 <code>.</code> 或 <code>/</code> 去指定相對的視圖位置，像是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- 引用 --&gt;</span>
+@extend(&#39;partials._other&#39;)
+@extend(&#39;partials/_other&#39;)
+
+<span style="color:#75715e">&lt;!-- 載入 --&gt;</span>
+@include(&#39;partials._other&#39;)
+@include(&#39;partials/_other&#39;)
+</code></pre></div><h3 id="設計模式">設計模式</h3>
+<h4 id="樣板檔案名稱">樣板檔案名稱</h4>
+<p>通常若不是完整的視圖，僅是部分的視圖，通常會將檔案名稱最前面加上底線 <code>_</code>，用來告知團隊程式設計師這個 blade 視圖不是完整的視圖</p>
+<h2 id="參考資訊">參考資訊</h2>
+<ul>
+<li><a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/13">View Partials and Form Reuse - Laracasts</a></li>
+</ul>
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+            </div> 
+        
+        </div> 
+        
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-31063691-12', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+<div class="notices note">
+  <p>KeJyun 最新新書推薦
+    <br /> - Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站
+    <br /> - Laravel框架开发详解：从零基础到运用框架快速开发PHP网站
+  </p>
+</div>
+
+
+<table>
+    <tr>
+        <td colspan="2">
+            <p>Laravel 是 PHP 的框架（Framework），提供了很多開發網站或 API 所需的工具及環境，經過簡單的設定就可以完成資料的處理及顯示，使開發者可以很優雅且快速的開發出各個不同的產品。本書適合有
+                PHP 基礎的人，但不知道要怎麼選擇框架，或者不用框架的人也能夠明白它的好處。</p>
+            <p>雖然 WordPress 也能夠架站，但如果有客製化需求，要開發各式各樣的網站，或提供 App 使用的 API，如此一來你只能選擇用框架，而 Laravel 是目前最受歡迎的。</p>
+            <p>本書將解說為什麼要使用框架，以及理解框架的優缺點後，要怎麼選擇框架，並用框架快速建構一個網站。除非必要，否則書中會避免專業技術用語，盡量使用最生活化易懂的例子及語氣，讓大家更容易進入 Laravel 的世界。</p>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:30%;">
+            <img src="https://i.imgur.com/RYcmwgY.png"
+                 alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+            />
+        </td>
+        <td>
+            <h3 style="font-size:16px;">
+                購書連結
+            </h3>
+            <ul>
+                <li>
+                    <a href="https://goo.gl/Juv97M"
+                       target="_blank"
+                       alt="博客來-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+                    >
+                        博客來
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/fa5dWf"
+                       target="_blank"
+                       alt="天瓏網路書店-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+                    >
+                        天瓏網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/Ym73kH"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站-金石堂網路書店"
+                    >
+                        金石堂網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/hMnBCs"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站- TAAZE 讀冊生活"
+                    >
+                        TAAZE 讀冊生活
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/QiRqXo"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站 - PChome 24h書店"
+                    >
+                        PCHome 24h書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/nGhPnU"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場－－優雅運用框架快速開發 PHP 網站"
+                    >
+                        商務印書館網上書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/RptkyY"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站-洪可郡 - 三民網路書店"
+                    >
+                        三民網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/5dXGQ8"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站, 城邦阅读花园 - 马来西亚最大网路书店"
+                    >
+                        城邦阅读花园
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/6Zy8yK"
+                       target="_blank"
+                       alt="華文網網路書店：Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站．電腦與網路/程式語言◎知．識．服．務．新．思．路◎"
+                    >
+                        華文網網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/o9msPz"
+                       target="_blank"
+                       alt="新絲路網路書店-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站．電腦與網路/程式語言"
+                    >
+                        新絲路網路書店
+                    </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:30%;">
+            <img src="https://i.imgur.com/CurSW2g.jpg"
+                 alt="Laravel框架开发详解：从零基础到运用框架快速开发PHP网站"
+            />
+        </td>
+        <td>
+            <h3 style="font-size:16px;">
+                購書連結
+            </h3>
+            <ul>
+                <li>
+                    <a href="http://bit.ly/2EneIxw"
+                       target="_blank"
+                       alt="《Laravel框架开发详解：从零基础到运用框架快速开发PHP网站》(洪可郡（KeJyun）)【摘要 书评 试读】- 京东图书"
+                    >
+                        北京大学出版社
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2zSxOI2"
+                       target="_blank"
+                       alt="天瓏網路書店-Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站"
+                    >
+                        天瓏網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://amzn.to/2RKeN1y"
+                       target="_blank"
+                       alt="《Laravel框架开发详解:从零基础到运用框架快速开发PHP网站》 洪可郡 (KeJyun)【摘要 书评 试读】图书"
+                    >
+                        Amazon
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2ru0qmu"
+                       target="_blank"
+                       alt="《正版全新 Laravel框架开发详解：从零基础到运用框架快速开发PHP网站 洪可郡 北京大学出版社》【摘要 书评 试读】- 京东图书"
+                    >
+                        蓝墨水图书专营店
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2Qnrjao"
+                       target="_blank"
+                       alt="正版 Laravel框架开发详解：从零基础到运用框架快速开发PHP网站 计算机与互联网 网页制作 Web技术 程序设计 洪可郡-tmall.com天猫"
+                    >
+                        天猫
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2PstkNn"
+                       target="_blank"
+                       alt="Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站（簡體書）-洪可郡 - 三民網路書店"
+                    >
+                        三民網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2E7jbnk"
+                       target="_blank"
+                       alt="博客來-Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站"
+                    >
+                        博客來
+                    </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/view/" title="視圖 (View)"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/view/view-inject-class/" title="將 Class 綁定到視圖" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1602331906"></script>
+    <script src="/js/perfect-scrollbar.min.js?1602331906"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1602331906"></script>
+    <script src="/js/jquery.sticky.js?1602331906"></script>
+    <script src="/js/featherlight.min.js?1602331906"></script>
+    <script src="/js/highlight.pack.js?1602331906"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1602331906"></script>
+    <script src="/js/learn.js?1602331906"></script>
+    <script src="/js/hugo-learn.js?1602331906"></script>
+
+    <link href="/mermaid/mermaid.css?1602331906" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1602331906"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+  </body>
+</html>
+

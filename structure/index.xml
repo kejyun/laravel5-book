@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>程式架構規範 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/structure/</link>
+    <description>Recent content in 程式架構規範 on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/structure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Service &amp; Repository 架構設計準則（2017 年版本）</title>
+      <link>https://laravel5-book.kejyun.com/structure/service-repository-structure-principle/</link>
+      <pubDate>Sun, 20 Sep 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/structure/service-repository-structure-principle/</guid>
+      <description>Service &amp;amp; Repository 架構設計準則（2017 年版本） 傳統的 MVC（Model, View, Controller） 框架，當 Controller 收到請求之後，我們會在 Controller 內直接透過 Model 去撈取資料庫的資料，並在 Controller 做資料驗證、整合、快取、商業邏輯判斷&amp;hellip;等等的工作。
+當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。
+所以我們會想要做到 減少重複的程式碼、提高維護開發的效率，所以將程式碼依照分類及分層抽出獨立控管，讓不同類型的程式專心處理自己相關的商業邏輯，讓開發維護更容易。
+隨著程式架構的演進會發展出更多不同的架構，所以這個設計架構準則也是會隨著時間做演進的。
+資料層級需求分析 Service (服務)
+我們原本在 Controller 處理請求時，會針對使用者的請求，做不同商業邏輯的處理，而同樣的商業邏輯可能會被不同的 Controller 存取，為了讓同個商業邏輯程式能夠重複使用，所以我會分出一層 Service (服務) ，將這些商業邏輯放在裡面，供不同的 Controller 存取。
+在 Service 方法中，會針對目前商業邏輯的資料進行蒐集與彙整，處理過後再回傳給 Controller
+Repository (資源庫)
+在不同 Service 可能會需要對資料庫撈取同樣的資料，為了避免撈取資料的邏輯重複出現在不同的地方，我們會分出一層 Repository (資源庫)，將同樣撈取 Model (模型) 資料的邏輯都寫在一起，供不同的 Service 存取。
+在 Repository 中，會在 function 名稱中指出這個方法是要撈什麼樣的資料，這樣方法可以重用，也可以讓程式有可讀性，不需要再去看 Model sql 條件的邏輯，判斷是在做什麼樣的處理
+ e.g. PostRepository-&amp;gt;getWeekTopPosts(); // 取得本週熱門文章
+ Model (模型)
+在 Model 中我們僅會寫對資料表對 Eloquent 相關的設定，像是 primaryKey (主鍵名稱) 或 table (資料表名稱)，讓 Model 能夠越乾淨越好，將一些撈取資料的邏輯都往 Repository 集中整理。</description>
+    </item>
+    
+    <item>
+      <title>Combination &amp; Cache 架構設計準則（2019 年版本）</title>
+      <link>https://laravel5-book.kejyun.com/structure/combination-cache-manager-structure-principle/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/structure/combination-cache-manager-structure-principle/</guid>
+      <description>Combination &amp;amp; Cache 架構設計準則（2019 年版本） 傳統的 MVC（Model, View, Controller） 框架，當 Controller 收到請求之後，我們會在 Controller 內直接透過 Model 去撈取資料庫的資料，並在 Controller 做資料驗證、資料整合、快取、商業邏輯判斷&amp;hellip;等等的工作。
+當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。
+所以我們會想要做到 減少重複的程式碼、提高維護開發的效率，所以將程式碼依照分類及分層抽出獨立控管，讓不同類型的程式專心處理自己相關的商業邏輯，讓開發維護更容易。
+隨著程式架構的演進會發展出更多不同的架構，所以這個設計架構準則也是會隨著時間做演進的。
+資料處理邏輯分層 架構圖 架構說明 A. 資料控制結構 * Controller (控制器：控制資料流程) * ServiceManager (服務整合管理：組合管理不同 Service 的商業邏輯) * Service (服務：處理商業邏輯) * Repository (資源庫：資料表資料撈取邏輯) * Model (資料庫模型：資料表設定) * Presenter (資料呈現：資料表資料格式呈現轉換) * Combination（資料整合：整理 Repository 資料成資訊） * CombinationManager（複合資料整合管理：整理多個 Service 的資料成資訊） * Checker (檢查器：根據 Controller 所需商業邏輯，驗證不同資料表欄位資料) * Validator (驗證器：資料表欄位資料驗證)    結構名稱 說明     Controller (控制器) 控制資料流程，控制要使用哪些 Service 或 ServiceManager 的商業邏輯，去組合出使用者請求需要的資料，並做資料的資料交易控制 (transaction) ，並使用 Checker 去檢查任何使用者傳進來的資料，確保資料的正確性   ServiceManager (服務整合管理) 協助 Controller 組合不同 Service 的資料成商業邏輯   Service (服務) 處理商業邏輯，組合不同的 Repository 資料成商業邏輯，提供 Controller 或 ServiceManager 存取   Repository (資源庫) 資料表資料撈取邏輯，撈取屬於自己 Model 不同條件下的資料，提供 Service 存取   Model (資料庫模型) 資料庫模型，資料表存取相關設定   Presenter (資料呈現) 資料呈現，協助 Model 做資料呈現轉換   Checker (檢查器) 協助 Controller 做資料驗證，在資料進入到程式邏輯前，都需要經過 Checker 將資料格式做驗證   Validator (驗證器) 協助 Checker 做資料驗證，Validator 只能驗證單一 Model 資料   CombinationManager (複合資料整合管理) 協助整理不同 Service 的複合式資料，若有資料的邏輯判斷需要不同的資料來源，則由 CombinationManager 負責整合處理   Combination （資料整合） 協助整理 Repository 資料成資訊    B.</description>
+    </item>
+    
+  </channel>
+</rss>

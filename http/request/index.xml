@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Request 請求 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/http/request/</link>
+    <description>Recent content in Request 請求 on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/http/request/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HTTP 請求</title>
+      <link>https://laravel5-book.kejyun.com/http/request/request/</link>
+      <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/http/request/request/</guid>
+      <description>HTTP 請求 這裏會介紹如何在 Laravel 5 驗證 HTTP 請求的資料
+建立新的請求驗證 如果我們有文章（Article）的模型，我們在每次請求過程中想要驗證傳入的資料，我們可以使用系列指令建立要驗證的請求：
+$ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建立在 app\Http\Requests 目錄下，建立的檔案內容如下
+&amp;lt;?php namespace App\Http\Requests; // app\Http\Requests\CreateArticleRequest.php use App\Http\Requests\Request; class CreateArticleRequest extends Request { /** * Determine if the user is authorized to make this request. * 驗證使用者是否要登入狀態 * * @return bool */ public function authorize() { return true; } /** * Get the validation rules that apply to the request. * 驗證請求的資料規則 * * @return array */ public function rules() { return [ // 使用 | 設定驗證規則  &amp;#39;title&amp;#39; =&amp;gt; &amp;#39;required|min:3&amp;#39;, &amp;#39;body&amp;#39; =&amp;gt; &amp;#39;required|min:30&amp;#39;, // 使用陣列設定驗證規則  &amp;#39;published_at&amp;#39; =&amp;gt; [ &amp;#39;required&amp;#39;, &amp;#39;date&amp;#39;, ], ]; } } 在驗證請求的 CreateArticleRequest 中的 rules() 函式，除了僅回傳驗證規則外，你也可以判斷不同的狀況去加入不同的規則再回傳，像是：</description>
+    </item>
+    
+    <item>
+      <title>Cookie</title>
+      <link>https://laravel5-book.kejyun.com/http/request/request-cookie/</link>
+      <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/http/request/request-cookie/</guid>
+      <description>Cookie 這裏會介紹如何在 Laravel 5 驗證 HTTP 請求的資料
+建立新的請求驗證 如果我們有文章（Article）的模型，我們在每次請求過程中想要驗證傳入的資料，我們可以使用系列指令建立要驗證的請求：
+$ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建立在 app\Http\Requests 目錄下，建立的檔案內容如下
+&amp;lt;?php namespace App\Http\Requests; // app\Http\Requests\CreateArticleRequest.php use App\Http\Requests\Request; class CreateArticleRequest extends Request { /** * Determine if the user is authorized to make this request. * 驗證使用者是否要登入狀態 * * @return bool */ public function authorize() { return true; } /** * Get the validation rules that apply to the request. * 驗證請求的資料規則 * * @return array */ public function rules() { return [ // 使用 | 設定驗證規則  &amp;#39;title&amp;#39; =&amp;gt; &amp;#39;required|min:3&amp;#39;, &amp;#39;body&amp;#39; =&amp;gt; &amp;#39;required|min:30&amp;#39;, // 使用陣列設定驗證規則  &amp;#39;published_at&amp;#39; =&amp;gt; [ &amp;#39;required&amp;#39;, &amp;#39;date&amp;#39;, ], ]; } } 在驗證請求的 CreateArticleRequest 中的 rules() 函式，除了僅回傳驗證規則外，你也可以判斷不同的狀況去加入不同的規則再回傳，像是：</description>
+    </item>
+    
+  </channel>
+</rss>

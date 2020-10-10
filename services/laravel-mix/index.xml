@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Laravel Mix on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/services/laravel-mix/</link>
+    <description>Recent content in Laravel Mix on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/services/laravel-mix/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Laravel Mix 介紹</title>
+      <link>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-intro/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-intro/</guid>
+      <description>Laravel Mix 介紹 安裝 確認系統有安裝 node 及 npm
+node -v npm -v 套件安裝除錯 在安裝過程中出現 node_modules/pngquant-bin/vendor/pngquant binary doesn&#39;t seem to work correctly 的訊息，如下：
+$ npm install &amp;gt; pngquant-bin@4.0.0 postinstall /home/web-laravel55/node_modules/pngquant-bin &amp;gt; node lib/install.js ⚠ The `/home/web-laravel55/node_modules/pngquant-bin/vendor/pngquant` binary doesn&#39;t seem to work correctly ⚠ pngquant pre-build test failed ℹ compiling from source ✔ pngquant pre-build test passed successfully ✖ Error: pngquant failed to build, make sure that libpng-dev is installed at Promise.all.then.arr (/home/web-laravel55/node_modules/pngquant-bin/node_modules/bin-build/node_modules/execa/index.</description>
+    </item>
+    
+    <item>
+      <title>LiveReload</title>
+      <link>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-live-reload/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-live-reload/</guid>
+      <description>LiveReload 使用 Live Reload 可以在我們異動 css 的時候，自動幫我們重新在瀏覽器重新刷新頁面，這樣我們在做畫面設計的時候，就可以更快的設計除錯
+ 安裝 webpack-livereload-plugin  npm install webpack-livereload-plugin@1 --save-dev 設定 webpack.mix.js  var LiveReloadPlugin = require(&amp;#39;webpack-livereload-plugin&amp;#39;); // LiveReload 設定 mix.webpackConfig({ plugins: [ new LiveReloadPlugin() ] }); // 產生 sass 檔案 mix.sass(&amp;#39;public/assets/scss/app.scss&amp;#39;, &amp;#39;public/assets/css/&amp;#39;); 安裝 Chrome LiveReload 套件  在 LiveReload - Chrome 線上應用程式商店 安裝此套件
+設定 LiveReload 至 blade 樣板  @if(config(&#39;app.env&#39;) == &#39;local&#39;) &amp;lt;script src=&amp;quot;http://localhost:35729/livereload.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; @endif 監控 LiveReload 運作  npm run watch 參考資料  LiveReload | Laravel Mix Documentation LiveReload - Chrome 線上應用程式商店 webpack-livereload-plugin/README.</description>
+    </item>
+    
+    <item>
+      <title>BrowserSync</title>
+      <link>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-browser-sync/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-browser-sync/</guid>
+      <description>BrowserSync 使用 BrowserSync 可以在我們對於 blade 檔案做異動時，自動重新載入頁面
+ 安裝 BrowserSync  npm install browser-sync --save-dev npm install browser-sync-webpack-plugin@2.0.1 --save-dev 設定 BrowserSync 至 webpack.mix.js  mix.browserSync({ proxy: &#39;my-domain.test&#39; }); 監控 BrowserSync 運作  npm run watch 參考資料  BrowserSync | Laravel Mix Documentation  </description>
+    </item>
+    
+  </channel>
+</rss>

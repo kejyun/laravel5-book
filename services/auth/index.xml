@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>認證（Auth） on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/services/auth/</link>
+    <description>Recent content in 認證（Auth） on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/services/auth/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>認證登入</title>
+      <link>https://laravel5-book.kejyun.com/services/auth/auth-login/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/auth/auth-login/</guid>
+      <description>認證登入（Auth） 設定 Laravel 內建認證的設定檔案放在 config/auth.php 中，預設會使用 App\User 的類別當作驗證的 Eloquent 模型
+[ &amp;#39;model&amp;#39; =&amp;gt; App\User::class, ] 如果我們用Model 模型設計模式去設計我們的程式架構，我們 User 實體模型的程式可能會放在 App\KeJyunApp\User\Entities\User.php 中，這時候我們的認證模型設定可以設定成像這樣（依照命名空間去設定）：
+[ &amp;#39;model&amp;#39; =&amp;gt; App\KeJyunApp\User\Entities\User::class, ] 這樣 Laravel 內建的認證就可以用我們指定的實體模型去進行認證了！！
+手動登入認證 Laravel 內建的認證使用 Auth 去進行身份認證，如果我們要用使用者的「email」及「密碼」做登入，我們的登入程式可能會像：
+$email = &amp;#39;kejyun@gmail.com&amp;#39;; $password = &amp;#39;1234&amp;#39;; if (Auth::attempt([&amp;#39;email&amp;#39; =&amp;gt; $email, &amp;#39;password&amp;#39; =&amp;gt; $password])) { // 已登入成功！！！ } 使用 Auth:attempt() 的方式去驗證使用者時，Laravel 會先到 User 資料表透過 Email 抓取使用者的資料，產生出來的 SQL 會像：
+SELECT * FROM &amp;#34;users&amp;#34; WHERE &amp;#34;email&amp;#34; = &amp;#39;kejyun@gmail.com&amp;#39; LIMIT 1; 抓取完使用者之料後再將 password 欄位用雜湊的 Hash::check() 方式去比對驗證密碼是否正確，再記錄使用者的 SESSION 資料</description>
+    </item>
+    
+    <item>
+      <title>認證支援 Laravel 4 Session</title>
+      <link>https://laravel5-book.kejyun.com/services/auth/auth-support-laravel-4/</link>
+      <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/services/auth/auth-support-laravel-4/</guid>
+      <description>Laravel 5 認證支援 Laravel 4 Session Step1. Laravel 4 加密方式支援 AES Laravel 4 因為加密方式支援 rijndael-128，不支援 AES，所以無法使用 php 7.1 執行 Laravel 4 專案，在 Laravel 4 中的 app/config/app.php 檔案可以看到金鑰及加密方式的設定：
+&amp;lt;?php // Laravel 4 // app/config/app.php return [ &amp;#39;key&amp;#39; =&amp;gt; &amp;#39;randomStringLength32xxxxxxxxxxxx&amp;#39; &amp;#39;cipher&amp;#39; =&amp;gt; MCRYPT_RIJNDAEL_128, ]; Laravel 4 安裝 tomgrohl/laravel4-php71-encrypter 套件支援 AES 加密
+composer require tomgrohl/laravel4-php71-encrypter 修改 Nginx 設定使用 PHP 7.1
+server { root &amp;quot;/home/kejyun/web/laravel-4-project/public&amp;quot;; location ~ [^/]\.php(/|$) { fastcgi_pass unix:/run/php/php7.1-fpm.sock; } } 修改 Laravel 4 加密方式支援 AES-256</description>
+    </item>
+    
+  </channel>
+</rss>

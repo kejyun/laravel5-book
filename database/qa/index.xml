@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>資料庫常見問題 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/database/qa/</link>
+    <description>Recent content in 資料庫常見問題 on Laravel 5 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/database/qa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>資料庫常見問題：無法取得查詢 Log</title>
+      <link>https://laravel5-book.kejyun.com/database/qa/cannot-get-querylog/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/qa/cannot-get-querylog/</guid>
+      <description>資料庫常見問題：無法取得查詢 Log 在 Laravel 4 為了要確定下的 SQL 語法有符合我們預期，我們常常在做完資料庫查詢後，使用 DB::getQueryLog(); 去取得做資料庫查詢的 Qeury Log，但因為 Laravel 會把這些 Log 都記錄在記憶體中，如果做了大量的新增的查詢，記憶體會使用過多可能會造成系統 Crash。
+所以 Laravel 5 預設把記錄 Query Log 的機制關閉，若需要做 Query Debug，需要自行打開 Qeury Log 功能
+&amp;lt;?php // 啟用 Query Log 功能 DB::connection()-&amp;gt;enableQueryLog(); 這樣我們就可以使用 DB::getQueryLog(); 去取得做資料庫查詢的 Qeury Log 摟！！ 要得到執行過的查詢紀錄陣列，你可以使用 getQueryLog 方法：
+&amp;lt;?php // 取得資料庫查詢的 Qeury Log $queries = DB::getQueryLog(); var_dump($queries); 參考資料  資料庫使用基礎 查詢日誌記錄 - Laravel.tw How to get the query executed in Laravel 5 ? DB::getQueryLog returning empty array  </description>
+    </item>
+    
+    <item>
+      <title>使用大量資料的方式新增時無法新增</title>
+      <link>https://laravel5-book.kejyun.com/database/qa/cannot-mass-insert/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/qa/cannot-mass-insert/</guid>
+      <description>使用大量資料的方式新增（Mass Assignment）時無法新增 在 Laravel 若沒有在模型（Model）中同時設定「可以新增的欄位變數 $fillable」及「需要保護的欄位變數 $guarded」時，為了安全性著想，在做大量的新增或異動資料時（Mass Assignment），會無法正確的去新增或異動資料。
+設定「可以新增的欄位變數 $fillable」 設定你覺得允許做大量新增的欄位名稱
+class User extends Model { protected $fillable = [&amp;#39;first_name&amp;#39;, &amp;#39;last_name&amp;#39;, &amp;#39;email&amp;#39;]; } 設定「需要保護的欄位變數 $guarded」 我們可以指定某些欄位，不能被使用大量新增或異動，去變更欄位的資料值
+class User extends Model { protected $guarded = [&amp;#39;id&amp;#39;, &amp;#39;password&amp;#39;]; } 若我們想要讓模型（Model）可以被大量新增，且我們沒有需要保護的欄位時，我們還是需要設定 $guarded 變數為空陣列 []，否則 Laravel 預會保護所有的欄位資料，讓你無法進行大量的新增或異動資料
+class User extends Model { protected $fillable = [&amp;#39;id&amp;#39;, &amp;#39;password&amp;#39;, &amp;#39;first_name&amp;#39;, &amp;#39;last_name&amp;#39;, &amp;#39;email&amp;#39;]; protected $guarded = []; } 參考資料  Eloquent ORM 新增、更新、刪除 - Laravel.tw Laravel Eloquent Save to DB Using Create - Unhelpful Error Eloquent Create Method - Always inserts blank entries.</description>
+    </item>
+    
+    <item>
+      <title>使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增</title>
+      <link>https://laravel5-book.kejyun.com/database/qa/cannot-mass-insert-with-extend-model/</link>
+      <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/database/qa/cannot-mass-insert-with-extend-model/</guid>
+      <description>使用中繼模型繼承（extends）Eloquent 模型造成無法使用大量資料新增（Mess Assignment） 大部份的情況可能專案較小，所以我們會直接使用模型（Model）去新增資料，但若專案較大時，且不同的模型之間有共用的方法的話，我會會希望這些模型繼承同一個 Eloquent 模型的中繼類別物件，就像這樣：
+Eloquent 模型的中繼類別物件
+class CustomBaseModel extends Model { public $someVariable = null; public function doSomething() { } } 使用者模型繼承「Eloquent 模型的中繼類別物件」
+class User extends CustomBaseModel { protected $fillable = [&amp;#39;first_name&amp;#39;, &amp;#39;last_name&amp;#39;, &amp;#39;email&amp;#39;]; } 使用這樣的中繼類別時，如果我們只有設定變數或實作中繼模型類別方法時，我們可以運作的很正常，但是如果我們需要實作中繼類別的建構子__construct()時，我們必須要時做原本 Eloquent Model 類別的建構子，否鑿會無法正常的運作原有的 Eloquent 模型
+在 vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php Eloquent 模型的檔案中，我們可以看到建構子__construct()有需要傳入資料表欄位的屬性值 $attributes。
+// vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, QueueableEntity, UrlRoutable { public function __construct(array $attributes = array()) { $this-&amp;gt;bootIfNotBooted(); $this-&amp;gt;syncOriginal(); $this-&amp;gt;fill($attributes); } } 這個部分是用來做大量資料新增或異動時（Mass Assignment）需要用到的資料，所以如果我們在中繼類別沒有實作這個建構子__construct()，會讓我們的完整 Eloquent Model 出現問題</description>
+    </item>
+    
+  </channel>
+</rss>
