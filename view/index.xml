@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>視圖 (View) on Laravel 5 學習筆記</title>
-    <link>https://laravel5-book.kejyun.com/view/</link>
+    <link>https://kejyun.github.io/laravel5-book/view/</link>
     <description>Recent content in 視圖 (View) on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://laravel5-book.kejyun.com/view/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kejyun.github.io/laravel5-book/view/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>視圖介紹</title>
-      <link>https://laravel5-book.kejyun.com/view/view-intro/</link>
+      <link>https://kejyun.github.io/laravel5-book/view/view-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://laravel5-book.kejyun.com/view/view-intro/</guid>
+      <guid>https://kejyun.github.io/laravel5-book/view/view-intro/</guid>
       <description>視圖介紹 這裏會介紹如何在 Laravel 5 處理視圖（View）
 Laravel 的視圖是放在 resource/views 目錄內
 建立共用的視圖 我們網頁常常會出現 header 跟 footer 在不同的視圖中為相同的狀況，唯一有變的只有中間的內容隨著不同的請求而有變動，如果有這樣的設計需求，我們可以替所有視圖建立共用的視圖，假設我們把這個共用的視圖放在 resource/view/app.blade.php 下，其內容可能是：
@@ -26,10 +26,10 @@ Laravel 的視圖是放在 resource/views 目錄內
     
     <item>
       <title>將 Class 綁定到視圖</title>
-      <link>https://laravel5-book.kejyun.com/view/view-inject-class/</link>
+      <link>https://kejyun.github.io/laravel5-book/view/view-inject-class/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://laravel5-book.kejyun.com/view/view-inject-class/</guid>
+      <guid>https://kejyun.github.io/laravel5-book/view/view-inject-class/</guid>
       <description>將 Class 綁定到視圖 &amp;lt;?php namespace App; class Shop { // 顯示商店名稱  public function name() { return &amp;#39;KJ Shop&amp;#39;; } } View Composer View::composer(&amp;#39;shop&amp;#39;, function($view){ $view-&amp;gt;with(&amp;#39;shop&amp;#39;, app(\App\Shop::class)); }); Blade Inject @inject(&amp;#39;shop&amp;#39;, \App\Shop::class) &amp;lt;h1&amp;gt;{{ $shop-&amp;gt;name() }}&amp;lt;/h1&amp;gt; </description>
     </item>
     

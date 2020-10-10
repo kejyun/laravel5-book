@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>郵件（Mail） on Laravel 5 學習筆記</title>
-    <link>https://laravel5-book.kejyun.com/services/mail/</link>
+    <link>https://kejyun.github.io/laravel5-book/services/mail/</link>
     <description>Recent content in 郵件（Mail） on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://laravel5-book.kejyun.com/services/mail/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kejyun.github.io/laravel5-book/services/mail/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用 Gmail 寄信</title>
-      <link>https://laravel5-book.kejyun.com/services/mail/mail-gmail/</link>
+      <link>https://kejyun.github.io/laravel5-book/services/mail/mail-gmail/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://laravel5-book.kejyun.com/services/mail/mail-gmail/</guid>
+      <guid>https://kejyun.github.io/laravel5-book/services/mail/mail-gmail/</guid>
       <description>使用 Gmail 寄信 在測試機測試的時候，為了節省郵件服務的開銷，我們可以使用 Gmail 當作我們測試的郵件服務，所以我們來介紹如何使用 Gmail 寄信
 設定 config/mail.php  driver 設為 smtp
   host 設為 smtp.gmail.com
@@ -30,10 +30,10 @@
     
     <item>
       <title>使用 Mailgun 寄信</title>
-      <link>https://laravel5-book.kejyun.com/services/mail/mail-mailgun/</link>
+      <link>https://kejyun.github.io/laravel5-book/services/mail/mail-mailgun/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://laravel5-book.kejyun.com/services/mail/mail-mailgun/</guid>
+      <guid>https://kejyun.github.io/laravel5-book/services/mail/mail-mailgun/</guid>
       <description>使用 Mailgun 寄信 Mailgun 對於初期的產品是一個不錯的郵件服務，每個月可以免費寄送 10000 封信，對於初期的應用應該是綽綽有餘，而且 Laravel 5 預設有支援 Mailgun 的服務，所以我們來介紹如何使用 Mailgun 寄信
 設定 config/mail.php  driver 設為 mailgun
   host 設為 smtp.mailgun.org

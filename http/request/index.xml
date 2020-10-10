@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Request 請求 on Laravel 5 學習筆記</title>
-    <link>https://laravel5-book.kejyun.com/http/request/</link>
+    <link>https://kejyun.github.io/laravel5-book/http/request/</link>
     <description>Recent content in Request 請求 on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://laravel5-book.kejyun.com/http/request/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kejyun.github.io/laravel5-book/http/request/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>HTTP 請求</title>
-      <link>https://laravel5-book.kejyun.com/http/request/request/</link>
+      <link>https://kejyun.github.io/laravel5-book/http/request/request/</link>
       <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://laravel5-book.kejyun.com/http/request/request/</guid>
+      <guid>https://kejyun.github.io/laravel5-book/http/request/request/</guid>
       <description>HTTP 請求 這裏會介紹如何在 Laravel 5 驗證 HTTP 請求的資料
 建立新的請求驗證 如果我們有文章（Article）的模型，我們在每次請求過程中想要驗證傳入的資料，我們可以使用系列指令建立要驗證的請求：
 $ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建立在 app\Http\Requests 目錄下，建立的檔案內容如下
@@ -25,10 +25,10 @@ $ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建�
     
     <item>
       <title>Cookie</title>
-      <link>https://laravel5-book.kejyun.com/http/request/request-cookie/</link>
+      <link>https://kejyun.github.io/laravel5-book/http/request/request-cookie/</link>
       <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://laravel5-book.kejyun.com/http/request/request-cookie/</guid>
+      <guid>https://kejyun.github.io/laravel5-book/http/request/request-cookie/</guid>
       <description>Cookie 這裏會介紹如何在 Laravel 5 驗證 HTTP 請求的資料
 建立新的請求驗證 如果我們有文章（Article）的模型，我們在每次請求過程中想要驗證傳入的資料，我們可以使用系列指令建立要驗證的請求：
 $ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建立在 app\Http\Requests 目錄下，建立的檔案內容如下

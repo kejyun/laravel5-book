@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Http on Laravel 5 學習筆記</title>
-    <link>https://laravel5-book.kejyun.com/http/</link>
+    <link>https://kejyun.github.io/laravel5-book/http/</link>
     <description>Recent content in Http on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://laravel5-book.kejyun.com/http/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kejyun.github.io/laravel5-book/http/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

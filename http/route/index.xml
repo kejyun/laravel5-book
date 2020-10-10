@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Route 路由 on Laravel 5 學習筆記</title>
-    <link>https://laravel5-book.kejyun.com/http/route/</link>
+    <link>https://kejyun.github.io/laravel5-book/http/route/</link>
     <description>Recent content in Route 路由 on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://laravel5-book.kejyun.com/http/route/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kejyun.github.io/laravel5-book/http/route/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>子網域路由（Sub-Domain Route）</title>
-      <link>https://laravel5-book.kejyun.com/http/route/sub-domain-route/</link>
+      <link>https://kejyun.github.io/laravel5-book/http/route/sub-domain-route/</link>
       <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://laravel5-book.kejyun.com/http/route/sub-domain-route/</guid>
+      <guid>https://kejyun.github.io/laravel5-book/http/route/sub-domain-route/</guid>
       <description>子網域路由（Sub-Domain Route） 我們可能會因為有多個子網域，而我們希望各個不同的子網域有自己的路由設定，像是我們希望各個子網域的首頁能夠藍道不同的頁面，這個時候我們可以透過子網域路由去幫我們達成這樣的工作
 加入您的子網域到 hosts 設定 如果是正式環境則不用做此設定，如果是測試環境也想要達到子網域路由的效果，則必須做此設定
 開啟 /etc/hosts 檔案，並加入您需要的子網域

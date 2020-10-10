@@ -3,456 +3,456 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/redis/aws-cluster/aws-cluster/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/redis/aws-cluster/aws-cluster/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/http/request/request/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/http/request/request/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/postgresql/install-odbc-driver/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/postgresql/install-odbc-driver/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/structure/service-repository-structure-principle/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/structure/service-repository-structure-principle/</loc>
     <lastmod>2020-09-20T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-intro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/laravel-mix/laravel-mix-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/packages/errors-log-packages-log-viewer/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/packages/errors-log-packages-log-viewer/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/unit-test/unit-test-post-csrf/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-post-csrf/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/http/request/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/http/request/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/packages/errors-log-packages-slack-log/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/packages/errors-log-packages-slack-log/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-understand-io/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-understand-io/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/mail/mail-gmail/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/mail/mail-gmail/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/errors-show-exception-in-cli/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-show-exception-in-cli/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/helpers/custom-helpers/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/helpers/custom-helpers/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/view/view-intro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/view/view-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/auth/auth-login/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/auth/auth-login/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/auth/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/auth/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/queue/queue-intro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/queue/queue-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/environment/dot-env-file/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/environment/dot-env-file/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/api/api-intro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/api/api-intro/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/model/eloquent-config/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/model/eloquent-config/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/migration/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/migration/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/design-pattern/service-container/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/design-pattern/service-container/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/environment/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/environment/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/qa/cannot-get-querylog/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/qa/cannot-get-querylog/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/http/request/request-cookie/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/http/request/request-cookie/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/unit-test/unit-test-ajax-request-json-response/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-ajax-request-json-response/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/queue/queue-database/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/queue/queue-database/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-live-reload/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/laravel-mix/laravel-mix-live-reload/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/http/route/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/http/route/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-sentry-io/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-sentry-io/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/mail/mail-mailgun/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/mail/mail-mailgun/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/view/view-inject-class/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/view/view-inject-class/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/errors-log-level/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-log-level/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/auth/auth-support-laravel-4/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/auth/auth-support-laravel-4/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/helpers/request-helpers/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/helpers/request-helpers/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/mail/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/mail/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/structure/combination-cache-manager-structure-principle/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/structure/combination-cache-manager-structure-principle/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/model/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/model/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/model/eloquent-relationships/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/model/eloquent-relationships/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/environment/homestead/install-with-homestead/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/environment/homestead/install-with-homestead/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/design-pattern/psr/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/design-pattern/psr/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/qa/cannot-mass-insert/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/qa/cannot-mass-insert/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/http/route/sub-domain-route/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/http/route/sub-domain-route/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/unit-test/unit-test-assert/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-assert/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-browser-sync/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/laravel-mix/laravel-mix-browser-sync/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-bugsnag/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-bugsnag/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/http/middleware/middleware-intro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/http/middleware/middleware-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/http/middleware/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/http/middleware/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/errors-log-macro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-log-macro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/queue/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/queue/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/queue/queue-async/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/queue/queue-async/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/environment/install-composer/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/environment/install-composer/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/model/eloquent-magic-function/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/model/eloquent-magic-function/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/http/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/http/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/design-pattern/model/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/design-pattern/model/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/qa/cannot-mass-insert-with-extend-model/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/qa/cannot-mass-insert-with-extend-model/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/design-pattern/learning-resource/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/design-pattern/learning-resource/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/qa/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/qa/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/postgresql/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/postgresql/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/redis/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/redis/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/http/middleware/etag-middleware/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/http/middleware/etag-middleware/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-rollbar/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-rollbar/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/queue/queue-supervisor/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/queue/queue-supervisor/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/unit-test/unit-test-login-and-upload-file/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-login-and-upload-file/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/packages/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/packages/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/helpers/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/helpers/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/model/eloquent-apply/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/model/eloquent-apply/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/view/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/view/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/environment/debug/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/environment/debug/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-cloudwatch/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-cloudwatch/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/unit-test/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/unit-test/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/service/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/service/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/unit-test/unit-test-change-root-url/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-change-root-url/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/model/eloquent-lock/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/model/eloquent-lock/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/errors-logs/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/api/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/api/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/model/eloquent-tips/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/model/eloquent-tips/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/design-pattern/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/design-pattern/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/encryption/encryption-intro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/encryption/encryption-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/database/model/eloquent-sub-query/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/database/model/eloquent-sub-query/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/structure/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/structure/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/hashing/hashing-intro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/hashing/hashing-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/response/response-intro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/response/response-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/scheduling/scheduling-intro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/scheduling/scheduling-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/laravel-mix/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/laravel-mix/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/services/compass/compass-intro/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/services/compass/compass-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/</loc>
     <lastmod>2020-06-30T21:24:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/categories/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/categories/</loc>
   </url>
   
   <url>
-    <loc>https://laravel5-book.kejyun.com/tags/</loc>
+    <loc>https://kejyun.github.io/laravel5-book/tags/</loc>
   </url>
   
 </urlset>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>程式架構規範 on Laravel 5 學習筆記</title>
-    <link>https://laravel5-book.kejyun.com/structure/</link>
+    <link>https://kejyun.github.io/laravel5-book/structure/</link>
     <description>Recent content in 程式架構規範 on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://laravel5-book.kejyun.com/structure/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kejyun.github.io/laravel5-book/structure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Service &amp; Repository 架構設計準則（2017 年版本）</title>
-      <link>https://laravel5-book.kejyun.com/structure/service-repository-structure-principle/</link>
+      <link>https://kejyun.github.io/laravel5-book/structure/service-repository-structure-principle/</link>
       <pubDate>Sun, 20 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://laravel5-book.kejyun.com/structure/service-repository-structure-principle/</guid>
+      <guid>https://kejyun.github.io/laravel5-book/structure/service-repository-structure-principle/</guid>
       <description>Service &amp;amp; Repository 架構設計準則（2017 年版本） 傳統的 MVC（Model, View, Controller） 框架，當 Controller 收到請求之後，我們會在 Controller 內直接透過 Model 去撈取資料庫的資料，並在 Controller 做資料驗證、整合、快取、商業邏輯判斷&amp;hellip;等等的工作。
 當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。
 所以我們會想要做到 減少重複的程式碼、提高維護開發的效率，所以將程式碼依照分類及分層抽出獨立控管，讓不同類型的程式專心處理自己相關的商業邏輯，讓開發維護更容易。
@@ -34,10 +34,10 @@ Repository (資源庫)
     
     <item>
       <title>Combination &amp; Cache 架構設計準則（2019 年版本）</title>
-      <link>https://laravel5-book.kejyun.com/structure/combination-cache-manager-structure-principle/</link>
+      <link>https://kejyun.github.io/laravel5-book/structure/combination-cache-manager-structure-principle/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://laravel5-book.kejyun.com/structure/combination-cache-manager-structure-principle/</guid>
+      <guid>https://kejyun.github.io/laravel5-book/structure/combination-cache-manager-structure-principle/</guid>
       <description>Combination &amp;amp; Cache 架構設計準則（2019 年版本） 傳統的 MVC（Model, View, Controller） 框架，當 Controller 收到請求之後，我們會在 Controller 內直接透過 Model 去撈取資料庫的資料，並在 Controller 做資料驗證、資料整合、快取、商業邏輯判斷&amp;hellip;等等的工作。
 當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。
 所以我們會想要做到 減少重複的程式碼、提高維護開發的效率，所以將程式碼依照分類及分層抽出獨立控管，讓不同類型的程式專心處理自己相關的商業邏輯，讓開發維護更容易。

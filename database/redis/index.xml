@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Redis on Laravel 5 學習筆記</title>
-    <link>https://laravel5-book.kejyun.com/database/redis/</link>
+    <link>https://kejyun.github.io/laravel5-book/database/redis/</link>
     <description>Recent content in Redis on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Mon, 21 Sep 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://laravel5-book.kejyun.com/database/redis/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kejyun.github.io/laravel5-book/database/redis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AWS Redis 設定</title>
-      <link>https://laravel5-book.kejyun.com/database/redis/aws-cluster/aws-cluster/</link>
+      <link>https://kejyun.github.io/laravel5-book/database/redis/aws-cluster/aws-cluster/</link>
       <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://laravel5-book.kejyun.com/database/redis/aws-cluster/aws-cluster/</guid>
+      <guid>https://kejyun.github.io/laravel5-book/database/redis/aws-cluster/aws-cluster/</guid>
       <description>AWS Redis 設定  Laravel 版本：5.2
  AWS Redis Cluster Mode Enable 啟用群集模式 建立 Redis AWS Cluster Mode Enable 群集 建立 AWS Cluster Mode Enable 群集，將「Cluster Mode enabled」打勾，在下方的「Number of Shareds」設定資料分片數量，以及在「Replicas per Shared」設定每個分片數量要有幾個備援。
 取得群集端點（Endpoint） 建立完群集之後，在列表中取得群集端點（Configuration Endpoint）
