@@ -12,21 +12,21 @@
     <title>Service &amp; Repository 架構設計準則（2017 年版本） :: Laravel 5 學習筆記</title>
 
     
-    <link href="/laravel5-book/css/nucleus.css?1603806919" rel="stylesheet">
-    <link href="/laravel5-book/css/fontawesome-all.min.css?1603806919" rel="stylesheet">
-    <link href="/laravel5-book/css/hybrid.css?1603806919" rel="stylesheet">
-    <link href="/laravel5-book/css/featherlight.min.css?1603806919" rel="stylesheet">
-    <link href="/laravel5-book/css/perfect-scrollbar.min.css?1603806919" rel="stylesheet">
-    <link href="/laravel5-book/css/auto-complete.css?1603806919" rel="stylesheet">
-    <link href="/laravel5-book/css/atom-one-dark-reasonable.css?1603806919" rel="stylesheet">
-    <link href="/laravel5-book/css/theme.css?1603806919" rel="stylesheet">
-    <link href="/laravel5-book/css/hugo-theme.css?1603806919" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1603807626" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1603807626" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1603807626" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1603807626" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1603807626" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1603807626" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1603807626" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1603807626" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1603807626" rel="stylesheet">
     
-    <link href="/laravel5-book/css/theme-mine.css?1603806919" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1603807626" rel="stylesheet">
     
     
 
-    <script src="/laravel5-book/js/jquery-3.3.1.min.js?1603806919"></script>
+    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1603807626"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -472,14 +472,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1603806920"></script>
-<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1603806920"></script>
+<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1603807626"></script>
+<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1603807626"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/kejyun.github.io\/laravel5-book\/";
     
 </script>
-<script type="text/javascript" src="/laravel5-book/js/search.js?1603806920"></script>
+<script type="text/javascript" src="/laravel5-book/js/search.js?1603807626"></script>
 
     
   </div>
@@ -2834,6 +2834,21 @@
         
 
 
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
 <h1 id="service--repository-架構設計準則2017-年版本">Service &amp; Repository 架構設計準則（2017 年版本）</h1>
 <p>傳統的 MVC（Model, View, Controller） 框架，當 Controller 收到請求之後，我們會在 Controller 內直接透過 Model 去撈取資料庫的資料，並在 Controller 做資料驗證、整合、快取、商業邏輯判斷&hellip;等等的工作。</p>
 <p>當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。</p>
@@ -3473,6 +3488,21 @@
     <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">POST_TAG_NOT_FOUND</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000003</span>;
 }
 </code></pre></div>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
 
 <footer class="footline">
 	
@@ -5175,19 +5205,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/laravel5-book/js/clipboard.min.js?1603806920"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1603806920"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1603806920"></script>
-    <script src="/laravel5-book/js/jquery.sticky.js?1603806920"></script>
-    <script src="/laravel5-book/js/featherlight.min.js?1603806920"></script>
-    <script src="/laravel5-book/js/highlight.pack.js?1603806920"></script>
+    <script src="/laravel5-book/js/clipboard.min.js?1603807626"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1603807626"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1603807626"></script>
+    <script src="/laravel5-book/js/jquery.sticky.js?1603807626"></script>
+    <script src="/laravel5-book/js/featherlight.min.js?1603807626"></script>
+    <script src="/laravel5-book/js/highlight.pack.js?1603807626"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1603806920"></script>
-    <script src="/laravel5-book/js/learn.js?1603806920"></script>
-    <script src="/laravel5-book/js/hugo-learn.js?1603806920"></script>
+    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1603807626"></script>
+    <script src="/laravel5-book/js/learn.js?1603807626"></script>
+    <script src="/laravel5-book/js/hugo-learn.js?1603807626"></script>
 
-    <link href="/laravel5-book/mermaid/mermaid.css?1603806920" rel="stylesheet" />
-    <script src="/laravel5-book/mermaid/mermaid.js?1603806920"></script>
+    <link href="/laravel5-book/mermaid/mermaid.css?1603807626" rel="stylesheet" />
+    <script src="/laravel5-book/mermaid/mermaid.js?1603807626"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
