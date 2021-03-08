@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>中介層（Middleware） on Laravel 學習筆記</title>
-    <link>https://kejyun.github.io/laravel5-book/http/middleware/</link>
-    <description>Recent content in 中介層（Middleware） on Laravel 學習筆記</description>
+    <title>中介層（Middleware） on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/http/middleware/</link>
+    <description>Recent content in 中介層（Middleware） on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://kejyun.github.io/laravel5-book/http/middleware/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laravel5-book.kejyun.com/http/middleware/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>中介層介紹</title>
-      <link>https://kejyun.github.io/laravel5-book/http/middleware/middleware-intro/</link>
+      <link>https://laravel5-book.kejyun.com/http/middleware/middleware-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/http/middleware/middleware-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/http/middleware/middleware-intro/</guid>
       <description>中介層介紹 這裏會介紹如何在 Laravel 5 使用中介層處理資料，Middleware 在 Laravel 4 叫做 Filter，他可以在處理資料之前，先過濾條件判斷，符合條件的再繼續處理之後的 Http 請求。
 就像實作一個部落格，使用者發表文章的時候，一定要登入，否則就會被導到登入頁（或首頁），判斷登入條件的部分在 Laravel 5 可以用中介層去實現。
 檢視中介層類別 我們可以看看內建的驗證使用者是否有登入的 Authenticate 中介層
@@ -25,10 +25,10 @@
     
     <item>
       <title>ETag Middleware</title>
-      <link>https://kejyun.github.io/laravel5-book/http/middleware/etag-middleware/</link>
+      <link>https://laravel5-book.kejyun.com/http/middleware/etag-middleware/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/http/middleware/etag-middleware/</guid>
+      <guid>https://laravel5-book.kejyun.com/http/middleware/etag-middleware/</guid>
       <description>ETag Middleware 在我們的網站若資料未變更，我們會希望告訴請求資源的使用者，本資源未修改(304 Not Modified)，所以不用重複讀取資料，這樣可以節省我們傳輸資料頻寬。
 我可以用 Middleware 來達到 ETag 的效果
 建立 ETag Middleware  App\Http\Middleware\ETagMiddleware.php

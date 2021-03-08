@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>首頁 on Laravel 學習筆記</title>
-    <link>https://kejyun.github.io/laravel5-book/</link>
-    <description>Recent content in 首頁 on Laravel 學習筆記</description>
+    <title>首頁 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/</link>
+    <description>Recent content in 首頁 on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://kejyun.github.io/laravel5-book/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laravel5-book.kejyun.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AMP 文章</title>
-      <link>https://kejyun.github.io/laravel5-book/package/html/package-html-amp-readme/</link>
+      <link>https://laravel5-book.kejyun.com/package/html/package-html-amp-readme/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/html/package-html-amp-readme/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/html/package-html-amp-readme/</guid>
       <description>AMP 文章  Lullabot/amp-library: Convert HTML to AMP HTML and report HTML compliance with the AMP HTML specification  </description>
     </item>
     
     <item>
       <title>Carbon 時間套件</title>
-      <link>https://kejyun.github.io/laravel5-book/package/tool/package-tool-carbon/</link>
+      <link>https://laravel5-book.kejyun.com/package/tool/package-tool-carbon/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/tool/package-tool-carbon/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/tool/package-tool-carbon/</guid>
       <description>Carbon 時間套件 Carbon 是一個很方便的轉換時間的工具，可以很方便地將時間進行轉換，取得我們想要的特定日期或格式
 安裝 Laravel 5 預設就會安裝 Carbon 套件，若沒有安裝的話可以透過下列的方式進行安裝：
 # 使用 Composer 下載 Carbon $ composer require nesbot/carbon &amp;lt;?php // 載入 composer autoload 檔案 require &amp;#39;vendor/autoload.php&amp;#39;; // 使用 Carbon 類別 use Carbon\Carbon; printf(&amp;#34;Now: %s&amp;#34;, Carbon::now()); 快速切換前後日期 &amp;lt;?php use Carbon\Carbon; $now = Carbon::now(); echo $now; // 2015-03-26 00:36:47 $today = Carbon::today(); echo $today; // 2015-03-26 00:00:00 $tomorrow = Carbon::tomorrow(&amp;#39;Europe/London&amp;#39;); echo $tomorrow; // 2015-03-27 00:00:00 $yesterday = Carbon::yesterday(); echo $yesterday; // 2015-03-25 00:00:00 建立特定日期的時間 &amp;lt;?</description>
@@ -33,10 +33,10 @@
     
     <item>
       <title>GuzzleHttp</title>
-      <link>https://kejyun.github.io/laravel5-book/package/api/package-api-guzzlehttp/</link>
+      <link>https://laravel5-book.kejyun.com/package/api/package-api-guzzlehttp/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/api/package-api-guzzlehttp/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/api/package-api-guzzlehttp/</guid>
       <description>GuzzleHttp 設定 API 主網址 在參數設定 base_uri 即可設定主網址，之後所有的 Request 都會依照這個主網址去做請求
 use GuzzleHttp\Client; $client = new Client([ // Base URI is used with relative requests &amp;#39;base_uri&amp;#39; =&amp;gt; &amp;#39;http://httpbin.org&amp;#39;, ]); 設定 Timeout 時間 API 為了避免請求時間過久影響到系統存取的效能，會設定 API 存取時間，可以在參數設定至 timeout 欄位限定 API 存取時間限制
 use GuzzleHttp\Client; $client = new Client([ // You can set any number of default request options. &amp;#39;timeout&amp;#39; =&amp;gt; 2.14, ]); 取得回傳資料 可以使用強制轉換 $GuzzleHttpResponse-&amp;gt;getBody() 型別為 string 去取得回傳的資料
@@ -45,10 +45,10 @@ $repsonse_content = (string) $GuzzleHttpResponse-&amp;gt;getBody(); 也可以使
     
     <item>
       <title>Mailchimp</title>
-      <link>https://kejyun.github.io/laravel5-book/package/mail/package-mail-mailchimp/</link>
+      <link>https://laravel5-book.kejyun.com/package/mail/package-mail-mailchimp/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/mail/package-mail-mailchimp/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/mail/package-mail-mailchimp/</guid>
       <description>Laravel Mailchimp 取得 API Key 登入 MailChimp 後，在右上方帳號選單中，選擇 Account
 在帳號選單頁面中，選擇 Extras 選單中的 API keys
 在 API keys 頁面中，點選 Create A Key，建立 API Key
@@ -63,10 +63,10 @@ https://&amp;lt;dc&amp;gt;.api.mailchimp.com/3.0 可以看到網址是 https://u
     
     <item>
       <title>套件開發</title>
-      <link>https://kejyun.github.io/laravel5-book/package/development/package-development/</link>
+      <link>https://laravel5-book.kejyun.com/package/development/package-development/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/development/package-development/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/development/package-development/</guid>
       <description>Laravel Packages Development 套件開發 建立本地端的套件資料夾 在本地端開發套件，可以在 Laravel 根目錄自行建立 packages 目錄，然後將套件放在下方路徑中
  packages &amp;gt; &amp;lt;user_name&amp;gt; &amp;gt; &amp;lt;package_name&amp;gt; &amp;gt; &amp;lt;code_folder&amp;gt;
  app packages # 套件資料夾（原本沒有此資料，需要自行建立） kejyun # &amp;lt;user_name&amp;gt; 作者名稱 larapack # &amp;lt;package_name&amp;gt; 套件名稱 src # &amp;lt;code_folder&amp;gt; 所有套件程式皆放在此目錄 所有套件相關的程式皆放在此路徑下
@@ -76,10 +76,10 @@ https://&amp;lt;dc&amp;gt;.api.mailchimp.com/3.0 可以看到網址是 https://u
     
     <item>
       <title>AWS Redis 設定</title>
-      <link>https://kejyun.github.io/laravel5-book/database/redis/aws-cluster/aws-cluster/</link>
+      <link>https://laravel5-book.kejyun.com/database/redis/aws-cluster/aws-cluster/</link>
       <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/redis/aws-cluster/aws-cluster/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/redis/aws-cluster/aws-cluster/</guid>
       <description>AWS Redis 設定  Laravel 版本：5.2
  AWS Redis Cluster Mode Enable 啟用群集模式 建立 Redis AWS Cluster Mode Enable 群集 建立 AWS Cluster Mode Enable 群集，將「Cluster Mode enabled」打勾，在下方的「Number of Shareds」設定資料分片數量，以及在「Replicas per Shared」設定每個分片數量要有幾個備援。
 取得群集端點（Endpoint） 建立完群集之後，在列表中取得群集端點（Configuration Endpoint）
@@ -89,10 +89,10 @@ https://&amp;lt;dc&amp;gt;.api.mailchimp.com/3.0 可以看到網址是 https://u
     
     <item>
       <title>HTTP 請求</title>
-      <link>https://kejyun.github.io/laravel5-book/http/request/request/</link>
+      <link>https://laravel5-book.kejyun.com/http/request/request/</link>
       <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/http/request/request/</guid>
+      <guid>https://laravel5-book.kejyun.com/http/request/request/</guid>
       <description>HTTP 請求 這裏會介紹如何在 Laravel 5 驗證 HTTP 請求的資料
 建立新的請求驗證 如果我們有文章（Article）的模型，我們在每次請求過程中想要驗證傳入的資料，我們可以使用系列指令建立要驗證的請求：
 $ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建立在 app\Http\Requests 目錄下，建立的檔案內容如下
@@ -101,10 +101,10 @@ $ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建�
     
     <item>
       <title>安裝 PostgreSQL ODBC driver</title>
-      <link>https://kejyun.github.io/laravel5-book/database/postgresql/install-odbc-driver/</link>
+      <link>https://laravel5-book.kejyun.com/database/postgresql/install-odbc-driver/</link>
       <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/postgresql/install-odbc-driver/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/postgresql/install-odbc-driver/</guid>
       <description>環境：OS X
   日期：2015-03-29
   PHP：5.6
@@ -117,10 +117,10 @@ $ brew search pgsql osm2pgsql	php54-pdo-pgsql php55-pdo-pgsql php56-pdo-pgsql �
     
     <item>
       <title>Service &amp; Repository 架構設計準則（2017 年版本）</title>
-      <link>https://kejyun.github.io/laravel5-book/structure/service-repository-structure-principle/</link>
+      <link>https://laravel5-book.kejyun.com/structure/service-repository-structure-principle/</link>
       <pubDate>Sun, 20 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/structure/service-repository-structure-principle/</guid>
+      <guid>https://laravel5-book.kejyun.com/structure/service-repository-structure-principle/</guid>
       <description>Service &amp;amp; Repository 架構設計準則（2017 年版本） 傳統的 MVC（Model, View, Controller） 框架，當 Controller 收到請求之後，我們會在 Controller 內直接透過 Model 去撈取資料庫的資料，並在 Controller 做資料驗證、整合、快取、商業邏輯判斷&amp;hellip;等等的工作。
 當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。
 所以我們會想要做到 減少重複的程式碼、提高維護開發的效率，所以將程式碼依照分類及分層抽出獨立控管，讓不同類型的程式專心處理自己相關的商業邏輯，讓開發維護更容易。
@@ -138,10 +138,10 @@ Repository (資源庫)
     
     <item>
       <title>Laravel Mix 介紹</title>
-      <link>https://kejyun.github.io/laravel5-book/services/laravel-mix/laravel-mix-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/laravel-mix/laravel-mix-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-intro/</guid>
       <description>Laravel Mix 介紹 安裝 確認系統有安裝 node 及 npm
 node -v npm -v 套件安裝除錯 在安裝過程中出現 node_modules/pngquant-bin/vendor/pngquant binary doesn&#39;t seem to work correctly 的訊息，如下：
 $ npm install &amp;gt; pngquant-bin@4.0.0 postinstall /home/web-laravel55/node_modules/pngquant-bin &amp;gt; node lib/install.js ⚠ The `/home/web-laravel55/node_modules/pngquant-bin/vendor/pngquant` binary doesn&#39;t seem to work correctly ⚠ pngquant pre-build test failed ℹ compiling from source ✔ pngquant pre-build test passed successfully ✖ Error: pngquant failed to build, make sure that libpng-dev is installed at Promise.all.then.arr (/home/web-laravel55/node_modules/pngquant-bin/node_modules/bin-build/node_modules/execa/index.</description>
@@ -149,19 +149,19 @@ $ npm install &amp;gt; pngquant-bin@4.0.0 postinstall /home/web-laravel55/node_m
     
     <item>
       <title>Log Viewer</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/packages/errors-log-packages-log-viewer/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/packages/errors-log-packages-log-viewer/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/packages/errors-log-packages-log-viewer/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/packages/errors-log-packages-log-viewer/</guid>
       <description>Log Viewer 參考資料  ARCANEDEV/LogViewer: Provides a log viewer for Laravel 5 Laravel Log Viewer using LogViewer Package in Laravel 5.6 - Learn Infinity - YouTube [Package] LogViewer (For Laravel 5)  </description>
     </item>
     
     <item>
       <title>POST CSRF 錯誤</title>
-      <link>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-post-csrf/</link>
+      <link>https://laravel5-book.kejyun.com/services/unit-test/unit-test-post-csrf/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-post-csrf/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/unit-test/unit-test-post-csrf/</guid>
       <description>POST CSRF 錯誤 當我們在使用 Unit test 做 POST 測試時，測試的程式可能像：
 &amp;lt;?php class UserTest extends TestCase { /** * 測試註冊 */ public function testSignup() { $parameters = [ &amp;#39;email&amp;#39;=&amp;gt;&amp;#39;kejyun@gmail.com&amp;#39;, &amp;#39;name&amp;#39;=&amp;gt;&amp;#39;KeJyun&amp;#39; ]; // 傳送參數  $response = $this-&amp;gt;call(&amp;#39;POST&amp;#39;, &amp;#39;/signup&amp;#39;, $parameters); $this-&amp;gt;assertEquals(200, $response-&amp;gt;getStatusCode()); } } 在執行單元測試後，你會收到一個 TokenMismatchException 的例外錯誤，這個部分是 Middleware VerifyCsrfToken 的驗證錯誤
 這是因為 Laravel 5 在所有的 POST、PUT、DELETE 的路由方法中，都會預設加入 CSRF Token 的檢查，他會檢查 POST 過來的資料中 _token 的資料值與 Session 中的 token 是否相符，或是驗證標頭中的 X-CSRF-TOKEN 是否相符。
@@ -170,10 +170,10 @@ $ npm install &amp;gt; pngquant-bin@4.0.0 postinstall /home/web-laravel55/node_m
     
     <item>
       <title>Slack Log</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/packages/errors-log-packages-slack-log/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/packages/errors-log-packages-slack-log/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/packages/errors-log-packages-slack-log/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/packages/errors-log-packages-slack-log/</guid>
       <description>Slack Log Slack Logging  版本：Laravel 5.6 內建 Slack Logging
  1. 加入 Slack App
 加入新的 App 到 Slack
@@ -188,10 +188,10 @@ $ npm install &amp;gt; pngquant-bin@4.0.0 postinstall /home/web-laravel55/node_m
     
     <item>
       <title>Understand.io</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-understand-io/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-understand-io/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-understand-io/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-understand-io/</guid>
       <description>Understand.io  紀錄 Laravel Log
  在 understand/understand-laravel5 套件 github，依照步驟安裝 Understand.io
 1.安裝套件
@@ -204,10 +204,10 @@ UNDERSTAND_ENABLED=true UNDERSTAND_TOKEN=&amp;lt;API TOKEN 放這裡&amp;gt; 4.�
     
     <item>
       <title>使用 Gmail 寄信</title>
-      <link>https://kejyun.github.io/laravel5-book/services/mail/mail-gmail/</link>
+      <link>https://laravel5-book.kejyun.com/services/mail/mail-gmail/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/mail/mail-gmail/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/mail/mail-gmail/</guid>
       <description>使用 Gmail 寄信 在測試機測試的時候，為了節省郵件服務的開銷，我們可以使用 Gmail 當作我們測試的郵件服務，所以我們來介紹如何使用 Gmail 寄信
 設定 config/mail.php  driver 設為 smtp
   host 設為 smtp.gmail.com
@@ -221,10 +221,10 @@ UNDERSTAND_ENABLED=true UNDERSTAND_TOKEN=&amp;lt;API TOKEN 放這裡&amp;gt; 4.�
     
     <item>
       <title>在單元測試顯示例外</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-show-exception-in-cli/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/errors-show-exception-in-cli/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-show-exception-in-cli/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/errors-show-exception-in-cli/</guid>
       <description>在單元測試顯示例外（Show Exception in CLI） 在 Laravel 5 做單元測試時，使用 try catch 丟出例外時，Laravel 5 會自動地將例外的錯誤訊息處理成網頁的樣式呈現，這樣的好處是在網頁中做操作發生例外狀況時，可以直接看到例外的錯誤訊息，但是在寫單元測試 (Unit test) 時，他只會將這些錯誤先記錄在 log 檔案裡面（storage/log/laravel-yyyy-mm-dd.log），我們要看到這些錯誤的狀況必須要再另開終端機去執行 php artisan tail 去觀看這些 例外 Log 的狀況，這樣在做測試的時候是相當麻煩的。
 在 Laravel 5 中所有的例外（Exception）都會被丟到 app/Exceptions/Handler.php 中的 render() 去處理
 &amp;lt;?php // app/Exceptions/Handler.php  class Handler extends ExceptionHandler { /** * Render an exception into an HTTP response. * 將例外錯誤轉為 HTTP 回應 * * @param \Illuminate\Http\Request $request * @param \Exception $e * @return \Illuminate\Http\Response */ public function render($request, Exception $e) { return parent::render($request, $e); } } 我們如果需要在 CLI 就顯示例外錯誤訊息的話，必須修改 render() 函式，而我想要保有原本在網頁做除錯的彈性，所以我在環境變數 .</description>
@@ -232,10 +232,10 @@ UNDERSTAND_ENABLED=true UNDERSTAND_TOKEN=&amp;lt;API TOKEN 放這裡&amp;gt; 4.�
     
     <item>
       <title>自定義輔助方法</title>
-      <link>https://kejyun.github.io/laravel5-book/services/helpers/custom-helpers/</link>
+      <link>https://laravel5-book.kejyun.com/services/helpers/custom-helpers/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/helpers/custom-helpers/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/helpers/custom-helpers/</guid>
       <description>自定義輔助方法 Laravel 中有提供許多的輔助方法（Helpers），但有時候我們會想要自訂自己的輔助方法，我們可以這樣做
 加入自定義引用的 Helpers.php 檔案到 /app/Support/Helpers/Helpers.php 路徑下 &amp;lt;?php // /app/Support/Helpers/Helpers.php  // Helper 檔案路徑 $helpers = [ &amp;#39;CustomHelper.php&amp;#39; ]; // 載入 Helper 檔案 foreach ($helpers as $helperFileName) { include __DIR__ . &amp;#39;/&amp;#39; .$helperFileName; } 以後若有其他的 Helper 需要加入，僅需要加到 Helpers.php 檔案中的 $helpers 變數當中即可
 在 composer.json 中自動載入加入該 Helper.php /*composer.json*/ { &amp;#34;autoload&amp;#34;: { &amp;#34;classmap&amp;#34;: [ &amp;#34;database&amp;#34; ], &amp;#34;psr-4&amp;#34;: { &amp;#34;App\\&amp;#34;: &amp;#34;app/&amp;#34; }, &amp;#34;files&amp;#34;: [ &amp;#34;app/Support/Helpers/helpers.php&amp;#34; ] } } 重新編譯 autoload.php $ composer dump-autoload Generating autoload files 這樣我們就可以自動的載入我們自定義的 Helper 函式了！！</description>
@@ -243,10 +243,10 @@ UNDERSTAND_ENABLED=true UNDERSTAND_TOKEN=&amp;lt;API TOKEN 放這裡&amp;gt; 4.�
     
     <item>
       <title>視圖介紹</title>
-      <link>https://kejyun.github.io/laravel5-book/view/view-intro/</link>
+      <link>https://laravel5-book.kejyun.com/view/view-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/view/view-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/view/view-intro/</guid>
       <description>視圖介紹 這裏會介紹如何在 Laravel 5 處理視圖（View）
 Laravel 的視圖是放在 resource/views 目錄內
 建立共用的視圖 我們網頁常常會出現 header 跟 footer 在不同的視圖中為相同的狀況，唯一有變的只有中間的內容隨著不同的請求而有變動，如果有這樣的設計需求，我們可以替所有視圖建立共用的視圖，假設我們把這個共用的視圖放在 resource/view/app.blade.php 下，其內容可能是：
@@ -256,10 +256,10 @@ Laravel 的視圖是放在 resource/views 目錄內
     
     <item>
       <title>認證登入</title>
-      <link>https://kejyun.github.io/laravel5-book/services/auth/auth-login/</link>
+      <link>https://laravel5-book.kejyun.com/services/auth/auth-login/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/auth/auth-login/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/auth/auth-login/</guid>
       <description>認證登入（Auth） 設定 Laravel 內建認證的設定檔案放在 config/auth.php 中，預設會使用 App\User 的類別當作驗證的 Eloquent 模型
 [ &amp;#39;model&amp;#39; =&amp;gt; App\User::class, ] 如果我們用Model 模型設計模式去設計我們的程式架構，我們 User 實體模型的程式可能會放在 App\KeJyunApp\User\Entities\User.php 中，這時候我們的認證模型設定可以設定成像這樣（依照命名空間去設定）：
 [ &amp;#39;model&amp;#39; =&amp;gt; App\KeJyunApp\User\Entities\User::class, ] 這樣 Laravel 內建的認證就可以用我們指定的實體模型去進行認證了！！
@@ -270,10 +270,10 @@ SELECT * FROM &amp;#34;users&amp;#34; WHERE &amp;#34;email&amp;#34; = &amp;#39;k
     
     <item>
       <title>隊列介紹</title>
-      <link>https://kejyun.github.io/laravel5-book/services/queue/queue-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/queue/queue-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/queue/queue-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/queue/queue-intro/</guid>
       <description>隊列介紹 Laravel 隊列的設定檔在 config/queue.php，在這裡你可以設定你想要用什麼樣的隊列（Queue）服務去執行你的隊列，而 Laravel 預設有支援 database、Beanstalkd、IronMQ、Amazon SQS、Redis 這幾種隊列的服務。
 我們通常會將一些需要花比較久時間處理的工作丟給隊列去背景執行，讓使用者能夠快速的的到網站的回應，像是我們在寄送帳號認證信件時，因為透過郵件伺服器去寄送可能會花費比較久的時間，所以我們會將這類的工作丟到隊列去執行，所以使用者的認證信件就會延遲的發送到他們的信箱，但是使用者在瀏覽網站時卻可以有更好的體驗！
 指令 在使用 Queue 去幫我們做工作的時候，我們在系統背景需要執行傾聽 Queue 是否有工作的指令，像是 php artisan queue:listen，這樣 Queue 中有新工作需要做，才能夠正常的去執行。
@@ -283,10 +283,10 @@ $php artisan queue:listen [--queue[=&amp;quot;...&amp;quot;]] [--delay[=&amp;quo
     
     <item>
       <title>.env 檔案</title>
-      <link>https://kejyun.github.io/laravel5-book/environment/dot-env-file/</link>
+      <link>https://laravel5-book.kejyun.com/environment/dot-env-file/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/environment/dot-env-file/</guid>
+      <guid>https://laravel5-book.kejyun.com/environment/dot-env-file/</guid>
       <description>.env 檔案 Laravel 4 .env 檔案 在 Laravel 4 的時候，我們通常會在 /bootstrap/start.php 中，去設定我們的 hostname 是屬於哪一種開發環境，再針對不同的開發環境有不同的設定檔（.env.*.php）
 &amp;lt;?php $env = $app-&amp;gt;detectEnvironment(array( &amp;#39;local&amp;#39; =&amp;gt; array( &amp;#39;KeJyun-Macbook&amp;#39; ), &amp;#39;dev&amp;#39; =&amp;gt; [], &amp;#39;testing&amp;#39; =&amp;gt; [], &amp;#39;staging&amp;#39; =&amp;gt; [], )); .env.*.php 設定檔通常放在根目錄下，這些檔案不會在版本控制當中
 app/ bootstrap/ public/ vendor/ .env.php .env.local.php .env.dev.php .env.testing.php .env.staging.php 在 Laravel 4 .env 設定檔案長的會像是這樣：
@@ -296,20 +296,20 @@ app/ bootstrap/ public/ vendor/ .env.php .env.local.php .env.dev.php .env.testin
     
     <item>
       <title>API throttle middleware</title>
-      <link>https://kejyun.github.io/laravel5-book/api/api-intro/</link>
+      <link>https://laravel5-book.kejyun.com/api/api-intro/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/api/api-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/api/api-intro/</guid>
       <description>API throttle middleware 在 app/Http/Kernel.php 檔案中會看到 api 的 $middlewareGroups 有一個 &#39;throttle:60,1&#39;，這邊的意思是 每 1 分鐘同個 ip 可以請求 60 次，可以針對你的 API 請求需求，去限制 API 請求次數，已保護你的 API 不會被隨意無限制的存取
 &amp;lt;?php namespace App\Http; use Illuminate\Foundation\Http\Kernel as HttpKernel; class Kernel extends HttpKernel { /** * The application&amp;#39;s route middleware groups. * * @var array */ protected $middlewareGroups = [ &amp;#39;web&amp;#39; =&amp;gt; [ \App\Http\Middleware\EncryptCookies::class, \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class, \Illuminate\Session\Middleware\StartSession::class, // \Illuminate\Session\Middleware\AuthenticateSession::class,  \Illuminate\View\Middleware\ShareErrorsFromSession::class, \App\Http\Middleware\VerifyCsrfToken::class, \Illuminate\Routing\Middleware\SubstituteBindings::class, ], &amp;#39;api&amp;#39; =&amp;gt; [ &amp;#39;throttle:60,1&amp;#39;, &amp;#39;bindings&amp;#39;, ], ]; } 詳情可以參考 Illuminate\Routing\Middleware\ThrottleRequests 檔案</description>
     </item>
     
     <item>
       <title>Eloquent 設定</title>
-      <link>https://kejyun.github.io/laravel5-book/database/model/eloquent-config/</link>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-config/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/model/eloquent-config/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-config/</guid>
       <description>Eloquent 設定 設定可以大量新增的欄位 Eloquent 為了避免特定欄位（像是 id, created_at &amp;hellip;）被使用者故意傳入大量（Mass）資料去進行修改，所以 Eloquent 會自動保護欄位不被大量異動（Mass Assignment），像是：
 // 新增 App\User::Create([ &amp;#39;first_name&amp;#39;=&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;last_name&amp;#39; =&amp;gt; &amp;#39;Hong&amp;#39;, &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;kejyun@gmail.com&amp;#39;, ]); // 更新 $user = App\User::find(&amp;#39;1&amp;#39;); $user-&amp;gt;update([ &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;hello@gmail.com&amp;#39;, ]); 如果我們需要異動這些欄位，需要在 Model 裡面設定 $fillable 的欄位，這樣就可以使用大量資料的方式，去新增或異動資料表欄位資料。
 class User extends Model { protected $fillable = [&amp;#39;first_name&amp;#39;, &amp;#39;last_name&amp;#39;, &amp;#39;email&amp;#39;]; } 設定需要被保護的欄位 我們也可以使用 $guarded 指定某些欄位需要被保護，能被大量新增或異動
@@ -319,10 +319,10 @@ class User extends Model { protected $guarded = [&amp;#39;*&amp;#39;]; } 設定�
     
     <item>
       <title>Migration (遷移)</title>
-      <link>https://kejyun.github.io/laravel5-book/database/migration/</link>
+      <link>https://laravel5-book.kejyun.com/database/migration/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/migration/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/migration/</guid>
       <description>Migration 這裏會介紹如何在 Laravel 5 使用 Migration 管理資料庫
 Migration 指令 建立 Migration $ php artisan make:migration create_users_table --create=&amp;#34;users&amp;#34; Migration 建立之後的檔案會放在 database/migrations/2015_04_11_134630_create_users_table.php
  Migration 檔案最前面的日期會依照你建立 Migration 的時間自動產生，所以每個人看到的檔名皆會不同 在後面加了 --create 的參數可以告訴 Migration，我們要做建立 user 資料表的動作，檔案內容會像這樣：
@@ -331,10 +331,10 @@ Migration 指令 建立 Migration $ php artisan make:migration create_users_tabl
     
     <item>
       <title>服務容器（Service Container）</title>
-      <link>https://kejyun.github.io/laravel5-book/design-pattern/service-container/</link>
+      <link>https://laravel5-book.kejyun.com/design-pattern/service-container/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/design-pattern/service-container/</guid>
+      <guid>https://laravel5-book.kejyun.com/design-pattern/service-container/</guid>
       <description>服務容器（Service Container） Laravel 的服務容器就像 IoC 容器一樣，可以讓你很容易的反轉控制物件
 假如我們沒有注入類別去進行反轉控制，則我們每次使用 Mail 類別去寄送郵件時都要去 new 它，如果這個 Mail 類別在裡面是會被很頻繁的使用時，這樣會讓我們很惱人。
 // 通知類別 class Notification { // 通知會員有新訊息 public function noticeNewMessage() { $mail = new Mail(); $mail-&amp;gt;send(); } // 通知會員有新文章 public function noticeNewArticle() { $mail = new Mail(); $mail-&amp;gt;send(); } } 為了能夠讓通知類別 Notification 能夠隨時取用 Mail 類別，我們會希望將此類別直接注入，讓通知類別可以直接去進行反轉控制。
@@ -344,10 +344,10 @@ Migration 指令 建立 Migration $ php artisan make:migration create_users_tabl
     
     <item>
       <title>資料庫常見問題：無法取得查詢 Log</title>
-      <link>https://kejyun.github.io/laravel5-book/database/qa/cannot-get-querylog/</link>
+      <link>https://laravel5-book.kejyun.com/database/qa/cannot-get-querylog/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/qa/cannot-get-querylog/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/qa/cannot-get-querylog/</guid>
       <description>資料庫常見問題：無法取得查詢 Log 在 Laravel 4 為了要確定下的 SQL 語法有符合我們預期，我們常常在做完資料庫查詢後，使用 DB::getQueryLog(); 去取得做資料庫查詢的 Qeury Log，但因為 Laravel 會把這些 Log 都記錄在記憶體中，如果做了大量的新增的查詢，記憶體會使用過多可能會造成系統 Crash。
 所以 Laravel 5 預設把記錄 Query Log 的機制關閉，若需要做 Query Debug，需要自行打開 Qeury Log 功能
 &amp;lt;?php // 啟用 Query Log 功能 DB::connection()-&amp;gt;enableQueryLog(); 這樣我們就可以使用 DB::getQueryLog(); 去取得做資料庫查詢的 Qeury Log 摟！！ 要得到執行過的查詢紀錄陣列，你可以使用 getQueryLog 方法：
@@ -356,10 +356,10 @@ Migration 指令 建立 Migration $ php artisan make:migration create_users_tabl
     
     <item>
       <title>Artisan tail</title>
-      <link>https://kejyun.github.io/laravel5-book/package/debug/package-debug-artisan-tail/</link>
+      <link>https://laravel5-book.kejyun.com/package/debug/package-debug-artisan-tail/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/debug/package-debug-artisan-tail/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/debug/package-debug-artisan-tail/</guid>
       <description>Artisan tail 在 Laravel 4 我們常常用 php artisan tail 去即時顯示系統的 Log，以便我們進行除錯，但在 Laravel 5 預設是將這個套件拿到的，所以如果我們要繼續使用的話，必須要手動的將套件加回去。
 安裝 Laravel tail 套件 首先在命令列執行 composer require spatie/laravel-tail 安裝 tail 套件
 $ composer require spatie/laravel-tail 接著在 config/app.php 檔案中的 providers 加入 tail ServiceProvider
@@ -370,10 +370,10 @@ $ php artisan vendor:publish --provider=&amp;#34;Spatie\Tail\TailServiceProvider
     
     <item>
       <title>Client Credentials</title>
-      <link>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-client-credentials/</link>
+      <link>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-client-credentials/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-client-credentials/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-client-credentials/</guid>
       <description>OAuth2 Client Credentials 設定 config 在 config/oauth2.php 檔案中加入下列設定，並設定你的 token 存活時間(access_token_ttl)，單位時間為秒
 return [ &amp;#39;grant_types&amp;#39; =&amp;gt; [ &amp;#39;client_credentials&amp;#39; =&amp;gt; [ &amp;#39;class&amp;#39; =&amp;gt; &amp;#39;\League\OAuth2\Server\Grant\ClientCredentialsGrant&amp;#39;, &amp;#39;access_token_ttl&amp;#39; =&amp;gt; 3600 ] ] ]; 取得 Access token 在我們取得 Access token 的資料欄位中填入下列欄位
    欄位名稱 資料     grant_types client_credentials   client_id KeJyun   client_secret KeJyunSecret     client_id 與 client_secret 為在 OAuth 套件說明頁 建立的
@@ -382,19 +382,19 @@ return [ &amp;#39;grant_types&amp;#39; =&amp;gt; [ &amp;#39;client_credentials&a
     
     <item>
       <title>screenshot 截圖</title>
-      <link>https://kejyun.github.io/laravel5-book/package/image/package-image-screenshot-other/</link>
+      <link>https://laravel5-book.kejyun.com/package/image/package-image-screenshot-other/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/image/package-image-screenshot-other/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/image/package-image-screenshot-other/</guid>
       <description>screenshot 截圖  PHP PhantomJS  Website Screenshots with Laravel - YouTube GitHub - thedevdojo/website-screenshot-with-laravel: Learn how to create a screenshot of a website with Laravel   GitHub - spatie/browsershot: Convert html to an image, pdf or string  spatie/browsershot - Packagist   GitHub - stefanzweifel/screeenly: 📸 Screenshot as a Service  screeenly Use the API · stefanzweifel/screeenly Wiki · GitHub 中文會 GG    </description>
     </item>
     
     <item>
       <title>圖片處理</title>
-      <link>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-process/</link>
+      <link>https://laravel5-book.kejyun.com/package/image/intervention/package-image-intervention-process/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-process/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/image/intervention/package-image-intervention-process/</guid>
       <description>Intervention Image 圖片處理 原始圖片 resize() 圖片縮放 // 建立圖片實例 $img = Image::make(&amp;#39;public/foo.jpg&amp;#39;); // 重新調整圖片寬高至 300x200 $img-&amp;gt;resize(300, 100); resize to 300x100
 // 寬度調整至 300px，高度不變 $img-&amp;gt;resize(300, null); resize to 300xnull
 // 高度調整至 200px，寬度不變 $img-&amp;gt;resize(null, 100); resize to nullx100
@@ -405,10 +405,10 @@ return [ &amp;#39;grant_types&amp;#39; =&amp;gt; [ &amp;#39;client_credentials&a
     
     <item>
       <title>Cookie</title>
-      <link>https://kejyun.github.io/laravel5-book/http/request/request-cookie/</link>
+      <link>https://laravel5-book.kejyun.com/http/request/request-cookie/</link>
       <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/http/request/request-cookie/</guid>
+      <guid>https://laravel5-book.kejyun.com/http/request/request-cookie/</guid>
       <description>Cookie 這裏會介紹如何在 Laravel 5 驗證 HTTP 請求的資料
 建立新的請求驗證 如果我們有文章（Article）的模型，我們在每次請求過程中想要驗證傳入的資料，我們可以使用系列指令建立要驗證的請求：
 $ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建立在 app\Http\Requests 目錄下，建立的檔案內容如下
@@ -417,20 +417,20 @@ $ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建�
     
     <item>
       <title>Ajax Request &amp; JSON Response</title>
-      <link>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-ajax-request-json-response/</link>
+      <link>https://laravel5-book.kejyun.com/services/unit-test/unit-test-ajax-request-json-response/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-ajax-request-json-response/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/unit-test/unit-test-ajax-request-json-response/</guid>
       <description>Ajax Request &amp;amp; JSON Response 在 Unit test 需要模擬 Ajax 請求時，可以在 $server 參數設定下列設定
 $server = [ &#39;HTTP_X-Requested-With&#39; =&amp;gt; &#39;XMLHttpRequest&#39;, // Ajax Request &#39;HTTP_ACCEPT&#39;=&amp;gt; &#39;application/json&#39;, // 請求 JSON Response ]; &amp;lt;?php class ServerTest { public function testAjaxRequestAndJsonResponse() { $uri = &amp;#39;/test/ajax&amp;#39;; $server = [ &amp;#39;HTTP_X-Requested-With&amp;#39; =&amp;gt; &amp;#39;XMLHttpRequest&amp;#39;, // Ajax Request  &amp;#39;HTTP_ACCEPT&amp;#39;=&amp;gt; &amp;#39;application/json&amp;#39;, // 請求 JSON Response  ]; $res = $this-&amp;gt;call(&amp;#39;POST&amp;#39;, $uri, $parameters, $cookies, $files, $server); } } 當設定完 HTTP_X-Requested-With 為 XMLHttpRequest 時，Laravel 會把這個請求視為 Ajax 請求，所以在呼叫 request()-&amp;gt;ajax() 方法時會回傳 true</description>
     </item>
     
     <item>
       <title>Database Queue</title>
-      <link>https://kejyun.github.io/laravel5-book/services/queue/queue-database/</link>
+      <link>https://laravel5-book.kejyun.com/services/queue/queue-database/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/queue/queue-database/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/queue/queue-database/</guid>
       <description>資料庫隊列（Database Queue） 我們可以使用 database 的隊列設定，在自己的資料庫建立隊列資料表
 產生隊列資料表 我們可以使用 php artisan queue:table 指令去產生隊列的 Migration
 $ php artisan queue:table 所以執行命令後，你可以找到像是 database/migrations/2015_05_26_225627_create_queue_jobs_table.php 這樣的隊列 Migration 檔案
@@ -441,10 +441,10 @@ $ php artisan queue:table 所以執行命令後，你可以找到像是 database
     
     <item>
       <title>LiveReload</title>
-      <link>https://kejyun.github.io/laravel5-book/services/laravel-mix/laravel-mix-live-reload/</link>
+      <link>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-live-reload/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/laravel-mix/laravel-mix-live-reload/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-live-reload/</guid>
       <description>LiveReload 使用 Live Reload 可以在我們異動 css 的時候，自動幫我們重新在瀏覽器重新刷新頁面，這樣我們在做畫面設計的時候，就可以更快的設計除錯
  安裝 webpack-livereload-plugin  npm install webpack-livereload-plugin@1 --save-dev 設定 webpack.mix.js  var LiveReloadPlugin = require(&amp;#39;webpack-livereload-plugin&amp;#39;); // LiveReload 設定 mix.webpackConfig({ plugins: [ new LiveReloadPlugin() ] }); // 產生 sass 檔案 mix.sass(&amp;#39;public/assets/scss/app.scss&amp;#39;, &amp;#39;public/assets/css/&amp;#39;); 安裝 Chrome LiveReload 套件  在 LiveReload - Chrome 線上應用程式商店 安裝此套件
 設定 LiveReload 至 blade 樣板  @if(config(&#39;app.env&#39;) == &#39;local&#39;) &amp;lt;script src=&amp;quot;http://localhost:35729/livereload.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; @endif 監控 LiveReload 運作  npm run watch 參考資料  LiveReload | Laravel Mix Documentation LiveReload - Chrome 線上應用程式商店 webpack-livereload-plugin/README.</description>
@@ -452,10 +452,10 @@ $ php artisan queue:table 所以執行命令後，你可以找到像是 database
     
     <item>
       <title>Sentry.io</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-sentry-io/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-sentry-io/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-sentry-io/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-sentry-io/</guid>
       <description>Sentry.io  紀錄 Laravel Exception
  1.安裝套件
 composer require sentry/sentry-laravel 2.加入套件設定
@@ -469,10 +469,10 @@ SENTRY_LARAVEL_DSN=https://&amp;lt;SENTRY_DSN_URL&amp;gt; 參考資料  Sentry |
     
     <item>
       <title>使用 Mailgun 寄信</title>
-      <link>https://kejyun.github.io/laravel5-book/services/mail/mail-mailgun/</link>
+      <link>https://laravel5-book.kejyun.com/services/mail/mail-mailgun/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/mail/mail-mailgun/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/mail/mail-mailgun/</guid>
       <description>使用 Mailgun 寄信 Mailgun 對於初期的產品是一個不錯的郵件服務，每個月可以免費寄送 10000 封信，對於初期的應用應該是綽綽有餘，而且 Laravel 5 預設有支援 Mailgun 的服務，所以我們來介紹如何使用 Mailgun 寄信
 設定 config/mail.php  driver 設為 mailgun
   host 設為 smtp.mailgun.org
@@ -486,19 +486,19 @@ SENTRY_LARAVEL_DSN=https://&amp;lt;SENTRY_DSN_URL&amp;gt; 參考資料  Sentry |
     
     <item>
       <title>將 Class 綁定到視圖</title>
-      <link>https://kejyun.github.io/laravel5-book/view/view-inject-class/</link>
+      <link>https://laravel5-book.kejyun.com/view/view-inject-class/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/view/view-inject-class/</guid>
+      <guid>https://laravel5-book.kejyun.com/view/view-inject-class/</guid>
       <description>將 Class 綁定到視圖 &amp;lt;?php namespace App; class Shop { // 顯示商店名稱  public function name() { return &amp;#39;KJ Shop&amp;#39;; } } View Composer View::composer(&amp;#39;shop&amp;#39;, function($view){ $view-&amp;gt;with(&amp;#39;shop&amp;#39;, app(\App\Shop::class)); }); Blade Inject @inject(&amp;#39;shop&amp;#39;, \App\Shop::class) &amp;lt;h1&amp;gt;{{ $shop-&amp;gt;name() }}&amp;lt;/h1&amp;gt; </description>
     </item>
     
     <item>
       <title>日誌記錄層級</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-log-level/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/errors-log-level/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-log-level/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/errors-log-level/</guid>
       <description>日誌記錄層級 在系統發生例外錯誤時，我們會希望紀錄當時的例外訊息，以便之後我我們好進行除錯，而 Log 紀錄的訊息會依照日期被放到像 storage/logs/laravel-2015-06-06.log 的地方
 Log 記錄在 Laravel 有七個級別：debug、info、notice、warning、error、critical 和 alert，紀錄的方式會像這樣：
 Log::debug(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::info(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::notice(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::warning(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::error(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::critical(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::alert(&amp;#39;=== Log 訊息 ===&amp;#39;); 他們在 Log 檔紀錄的樣子會像:
@@ -507,10 +507,10 @@ Log::debug(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::info(&amp;#39;=== Log 訊
     
     <item>
       <title>認證支援 Laravel 4 Session</title>
-      <link>https://kejyun.github.io/laravel5-book/services/auth/auth-support-laravel-4/</link>
+      <link>https://laravel5-book.kejyun.com/services/auth/auth-support-laravel-4/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/auth/auth-support-laravel-4/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/auth/auth-support-laravel-4/</guid>
       <description>Laravel 5 認證支援 Laravel 4 Session Step1. Laravel 4 加密方式支援 AES Laravel 4 因為加密方式支援 rijndael-128，不支援 AES，所以無法使用 php 7.1 執行 Laravel 4 專案，在 Laravel 4 中的 app/config/app.php 檔案可以看到金鑰及加密方式的設定：
 &amp;lt;?php // Laravel 4 // app/config/app.php return [ &amp;#39;key&amp;#39; =&amp;gt; &amp;#39;randomStringLength32xxxxxxxxxxxx&amp;#39; &amp;#39;cipher&amp;#39; =&amp;gt; MCRYPT_RIJNDAEL_128, ]; Laravel 4 安裝 tomgrohl/laravel4-php71-encrypter 套件支援 AES 加密
 composer require tomgrohl/laravel4-php71-encrypter 修改 Nginx 設定使用 PHP 7.1
@@ -519,19 +519,19 @@ server { root &amp;quot;/home/kejyun/web/laravel-4-project/public&amp;quot;; loc
     
     <item>
       <title>請求資訊</title>
-      <link>https://kejyun.github.io/laravel5-book/services/helpers/request-helpers/</link>
+      <link>https://laravel5-book.kejyun.com/services/helpers/request-helpers/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/helpers/request-helpers/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/helpers/request-helpers/</guid>
       <description>請求資訊輔助方法 取得目前網域 // www.kejyun.com $domain_host = request()-&amp;gt;getHttpHost(); </description>
     </item>
     
     <item>
       <title>Combination &amp; Cache 架構設計準則（2019 年版本）</title>
-      <link>https://kejyun.github.io/laravel5-book/structure/combination-cache-manager-structure-principle/</link>
+      <link>https://laravel5-book.kejyun.com/structure/combination-cache-manager-structure-principle/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/structure/combination-cache-manager-structure-principle/</guid>
+      <guid>https://laravel5-book.kejyun.com/structure/combination-cache-manager-structure-principle/</guid>
       <description>Combination &amp;amp; Cache 架構設計準則（2019 年版本） 傳統的 MVC（Model, View, Controller） 框架，當 Controller 收到請求之後，我們會在 Controller 內直接透過 Model 去撈取資料庫的資料，並在 Controller 做資料驗證、資料整合、快取、商業邏輯判斷&amp;hellip;等等的工作。
 當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。
 所以我們會想要做到 減少重複的程式碼、提高維護開發的效率，所以將程式碼依照分類及分層抽出獨立控管，讓不同類型的程式專心處理自己相關的商業邏輯，讓開發維護更容易。
@@ -541,10 +541,10 @@ server { root &amp;quot;/home/kejyun/web/laravel-4-project/public&amp;quot;; loc
     
     <item>
       <title>Eloquent 關聯</title>
-      <link>https://kejyun.github.io/laravel5-book/database/model/eloquent-relationships/</link>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-relationships/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/model/eloquent-relationships/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-relationships/</guid>
       <description>Eloquent 關聯 假如我們有兩個模型，「文章（Article）」及「使用者（Users）」，假設一個情境，1 個使用者可以寫多篇的文章，但 1 篇文章只能被 1 個使用者發表
 如果我們想要透過關聯關係，從使用者模型去取得使用者的文章，就像：
 // 取得使用者編號 1 的物件 $user = \App\Users::find(1); // 取得使用者的所有發表的文章 $user-&amp;gt;articles(); 我們會想要使用者模型內設定這樣的關聯關係，就像：
@@ -554,10 +554,10 @@ class Users extends Model { // 設定使用者擁有許多文章 public function
     
     <item>
       <title>Homestead</title>
-      <link>https://kejyun.github.io/laravel5-book/environment/homestead/install-with-homestead/</link>
+      <link>https://laravel5-book.kejyun.com/environment/homestead/install-with-homestead/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/environment/homestead/install-with-homestead/</guid>
+      <guid>https://laravel5-book.kejyun.com/environment/homestead/install-with-homestead/</guid>
       <description>Homestead 常常我我們需要開發Web Application時候，都需要花很長的時間把環境建置起來，而Homestead以讓我們透過簡單的設定檔，輕鬆的建置好整個執行環境，讓我們能夠更專注於在開發上
  OSX El Capitan 10.11.3
   Laravel 5.2
@@ -573,10 +573,10 @@ vagrant box add laravel/homestead 使用 Git 複製 Laravel homestead 並建立 
     
     <item>
       <title>PSR</title>
-      <link>https://kejyun.github.io/laravel5-book/design-pattern/psr/</link>
+      <link>https://laravel5-book.kejyun.com/design-pattern/psr/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/design-pattern/psr/</guid>
+      <guid>https://laravel5-book.kejyun.com/design-pattern/psr/</guid>
       <description>PSR (php standard recommendations) 為了讓大家開發的套件，能夠更輕鬆地整合到自己的專案當中，在 PHP 社群中大家一起定義了一些標準的程式碼撰寫規則
 但是 Laravel 5.0.x 版本之前，Laravel 都沒有真正的遵照 PSR 的規範去撰寫程式碼，直到 Laravel 5.1 LTS 版本時，Laravel 終於將所有的程式碼遵照 PSR-2 及 PSR-4 的程式碼撰寫規則了，詳細的規則說明大家可以自己參考相關的說明文件。
 而為了讓自己專案的開發也能夠遵照 PSR 規則，除了自己一個檔案一個檔案自己修改外，也可以用 PHP Coding Standards Fixer 套件去幫我們自動地將程式修改成遵照 PSR 規則的程式！
@@ -587,10 +587,10 @@ $ export PATH=&amp;#34;$PATH:$HOME/.composer/vendor/bin&amp;#34;  我們可以�
     
     <item>
       <title>使用大量資料的方式新增時無法新增</title>
-      <link>https://kejyun.github.io/laravel5-book/database/qa/cannot-mass-insert/</link>
+      <link>https://laravel5-book.kejyun.com/database/qa/cannot-mass-insert/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/qa/cannot-mass-insert/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/qa/cannot-mass-insert/</guid>
       <description>使用大量資料的方式新增（Mass Assignment）時無法新增 在 Laravel 若沒有在模型（Model）中同時設定「可以新增的欄位變數 $fillable」及「需要保護的欄位變數 $guarded」時，為了安全性著想，在做大量的新增或異動資料時（Mass Assignment），會無法正確的去新增或異動資料。
 設定「可以新增的欄位變數 $fillable」 設定你覺得允許做大量新增的欄位名稱
 class User extends Model { protected $fillable = [&amp;#39;first_name&amp;#39;, &amp;#39;last_name&amp;#39;, &amp;#39;email&amp;#39;]; } 設定「需要保護的欄位變數 $guarded」 我們可以指定某些欄位，不能被使用大量新增或異動，去變更欄位的資料值
@@ -600,10 +600,10 @@ class User extends Model { protected $fillable = [&amp;#39;id&amp;#39;, &amp;#39
     
     <item>
       <title>Password Grant</title>
-      <link>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant/</link>
+      <link>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-password-grant/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-password-grant/</guid>
       <description>OAuth2 Password Grant 設定 config 在 config/oauth2.php 檔案中加入下列設定，並設定你的 token 存活時間(access_token_ttl)，單位時間為秒，在 callback 設定您要用來驗證使用者帳號密碼的類別函式，OAuth2 會透過這個 callback 去驗證使用者的帳號密碼
 return [ &amp;#39;grant_types&amp;#39; =&amp;gt; [ &amp;#39;password&amp;#39; =&amp;gt; [ &amp;#39;class&amp;#39; =&amp;gt; &amp;#39;\League\OAuth2\Server\Grant\PasswordGrant&amp;#39;, &amp;#39;callback&amp;#39; =&amp;gt; &amp;#39;\App\PasswordVerifier@verify&amp;#39;, &amp;#39;access_token_ttl&amp;#39; =&amp;gt; 3600 ], ] ]; 建立驗證身份 callback OAuth 會將 Client 傳來的 username 及 password 欄位的資料透過 callback 傳入並驗證，當中驗證的規則跟邏輯你可以自行定義，若驗證失敗回傳 false 即可，驗證成功的話可以將使用者的編號回傳，OAuth 會將 Access token 對應的使用者編號（資源擁有者編號）記錄下來
 use Illuminate\Support\Facades\Auth; class PasswordGrantVerifier { public function verify($username, $password) { $credentials = [ &amp;#39;email&amp;#39; =&amp;gt; $username, &amp;#39;password&amp;#39; =&amp;gt; $password, ]; // 驗證成功 if (Auth::once($credentials)) { return Auth::user()-&amp;gt;id; } // 驗證失敗 return false; } }  取得 Access token 在我們取得 Access token 的資料欄位中填入下列欄位</description>
@@ -611,10 +611,10 @@ use Illuminate\Support\Facades\Auth; class PasswordGrantVerifier { public functi
     
     <item>
       <title>其他圖片處理</title>
-      <link>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-other/</link>
+      <link>https://laravel5-book.kejyun.com/package/image/intervention/package-image-intervention-other/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-other/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/image/intervention/package-image-intervention-other/</guid>
       <description>Intervention Image 其他圖片處理 cache() 快取 // 試著讀取快取的圖片 $img = Image::cache(function($image) { // 讀取本機圖片，將圖片 resize 至 300x200，並作灰階處理 return $image-&amp;gt;make(&amp;#39;public/foo.jpg&amp;#39;) -&amp;gt;resize(300, 200) -&amp;gt;greyscale(); }); 若用檔案快取，快取的圖片資料會存放在 storage/framework/cache/data 目錄下。
  Intervention/imagecache: Caching extension for the Intervention Image Class  canvas() 建立圖片畫布 // 建立畫布 $img = Image::canvas(300, 100); Image::canvas(300, 100);
 // 建立畫布，並使用 #ff0000 顏色當作背景 $img = Image::canvas(32, 32, &amp;#39;#ff0000&amp;#39;); Image::canvas(32, 32, &amp;lsquo;#ff0000&amp;rsquo;);
@@ -623,10 +623,10 @@ ellipse() 畫橢圓 // 建立顏色為 #ddd，寬度 300px，高度 100px 的畫
     
     <item>
       <title>子網域路由（Sub-Domain Route）</title>
-      <link>https://kejyun.github.io/laravel5-book/http/route/sub-domain-route/</link>
+      <link>https://laravel5-book.kejyun.com/http/route/sub-domain-route/</link>
       <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/http/route/sub-domain-route/</guid>
+      <guid>https://laravel5-book.kejyun.com/http/route/sub-domain-route/</guid>
       <description>子網域路由（Sub-Domain Route） 我們可能會因為有多個子網域，而我們希望各個不同的子網域有自己的路由設定，像是我們希望各個子網域的首頁能夠藍道不同的頁面，這個時候我們可以透過子網域路由去幫我們達成這樣的工作
 加入您的子網域到 hosts 設定 如果是正式環境則不用做此設定，如果是測試環境也想要達到子網域路由的效果，則必須做此設定
 開啟 /etc/hosts 檔案，並加入您需要的子網域
@@ -638,30 +638,30 @@ Route::group([&amp;#39;domain&amp;#39; =&amp;gt; &amp;#39;resume.kejyun.dev&amp;
     
     <item>
       <title>Assert</title>
-      <link>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-assert/</link>
+      <link>https://laravel5-book.kejyun.com/services/unit-test/unit-test-assert/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-assert/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/unit-test/unit-test-assert/</guid>
       <description>Assert 狀態碼測試 assertOk ： 測試回傳狀態碼為 200 assertForbidden ： 測試回傳狀態碼為 403 assertNotFound ： 測試回傳狀態碼為 404 assertSuccessful ： 測試回傳狀態碼為 200 ~ 299 &amp;lt;?php $response = $this-&amp;gt;json(&amp;#39;GET&amp;#39;, &amp;#39;/api/status-code&amp;#39;); // 測試狀態碼 $response-&amp;gt;assertOk(); // 狀態碼 200 $response-&amp;gt;assertNotFound(); // 狀態碼 404 $response-&amp;gt;assertForbidden(); // 狀態碼 403 $response-&amp;gt;assertSuccessful(); // 狀態碼 200 ~ 299 assertStatus ： 測試指定狀態碼 &amp;lt;?php $response = $this-&amp;gt;json(&amp;#39;GET&amp;#39;, &amp;#39;/api/status-code&amp;#39;); // 測試狀態碼 $response-&amp;gt;assertStatus(201); // 狀態碼 201 assertRedirect ： 測試是否為重新導向狀態碼  重新導向狀態碼：201, 301, 302, 303, 307, 308
  &amp;lt;?</description>
     </item>
     
     <item>
       <title>BrowserSync</title>
-      <link>https://kejyun.github.io/laravel5-book/services/laravel-mix/laravel-mix-browser-sync/</link>
+      <link>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-browser-sync/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/laravel-mix/laravel-mix-browser-sync/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/laravel-mix/laravel-mix-browser-sync/</guid>
       <description>BrowserSync 使用 BrowserSync 可以在我們對於 blade 檔案做異動時，自動重新載入頁面
  安裝 BrowserSync  npm install browser-sync --save-dev npm install browser-sync-webpack-plugin@2.0.1 --save-dev 設定 BrowserSync 至 webpack.mix.js  mix.browserSync({ proxy: &#39;my-domain.test&#39; }); 監控 BrowserSync 運作  npm run watch 參考資料  BrowserSync | Laravel Mix Documentation  </description>
     </item>
     
     <item>
       <title>Bugsnag</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-bugsnag/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-bugsnag/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-bugsnag/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-bugsnag/</guid>
       <description>Bugsnag  版本：Laravel 5.0 ~ 5.6
   紀錄指定的錯誤訊息及系統錯誤
  1. 安裝
@@ -675,10 +675,10 @@ Laravel 5.6
     
     <item>
       <title>中介層介紹</title>
-      <link>https://kejyun.github.io/laravel5-book/http/middleware/middleware-intro/</link>
+      <link>https://laravel5-book.kejyun.com/http/middleware/middleware-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/http/middleware/middleware-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/http/middleware/middleware-intro/</guid>
       <description>中介層介紹 這裏會介紹如何在 Laravel 5 使用中介層處理資料，Middleware 在 Laravel 4 叫做 Filter，他可以在處理資料之前，先過濾條件判斷，符合條件的再繼續處理之後的 Http 請求。
 就像實作一個部落格，使用者發表文章的時候，一定要登入，否則就會被導到登入頁（或首頁），判斷登入條件的部分在 Laravel 5 可以用中介層去實現。
 檢視中介層類別 我們可以看看內建的驗證使用者是否有登入的 Authenticate 中介層
@@ -687,10 +687,10 @@ Laravel 5.6
     
     <item>
       <title>日誌巨集</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-log-macro/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/errors-log-macro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-log-macro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/errors-log-macro/</guid>
       <description>日誌巨集 前言 我們會用 Laravel 內建的 Response 去回應服務的訊息，我們可能會用的回應會像這樣：
 // 建立 JSON 回應 return Response::json([&amp;#39;name&amp;#39; =&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;Country&amp;#39; =&amp;gt; &amp;#39;Taiwan&amp;#39;]); return response()-&amp;gt;json([&amp;#39;name&amp;#39; =&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;Country&amp;#39; =&amp;gt; &amp;#39;Taiwan&amp;#39;]); // 建立 JSONP 回應 return Response::json([&amp;#39;name&amp;#39; =&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;Country&amp;#39; =&amp;gt; &amp;#39;Taiwan&amp;#39;]) -&amp;gt;setCallback($request-&amp;gt;input(&amp;#39;callback&amp;#39;)); return response()-&amp;gt;json([&amp;#39;name&amp;#39; =&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;Country&amp;#39; =&amp;gt; &amp;#39;Taiwan&amp;#39;]) -&amp;gt;setCallback($request-&amp;gt;input(&amp;#39;callback&amp;#39;)); // 建立檔案下載的回應 return response()-&amp;gt;download($pathToFile); return response()-&amp;gt;download($pathToFile, $name, $headers); return response()-&amp;gt;download($pathToFile)-&amp;gt;deleteFileAfterSend(true); 在這樣的使用下，我們可以很容易的回應訊息給使用者，但是在伺服器發生程式例外錯誤 (Exception) 時，我們可能也需要回應像是這樣的資料：
 return Response::json([&amp;#39;status&amp;#39; =&amp;gt; &amp;#39;failure&amp;#39;, &amp;#39;error_code&amp;#39; =&amp;gt; &amp;#39;5566&amp;#39;]); return response()-&amp;gt;json([&amp;#39;status&amp;#39; =&amp;gt; &amp;#39;failure&amp;#39;, &amp;#39;error_code&amp;#39; =&amp;gt; &amp;#39;5566&amp;#39;]); 在我們用 Laravel 做 API 給手機用的時候，更需要有這些錯誤狀態的資料，所以我們沒辦法直接像網頁一樣跳出整個的錯誤 debug 畫面</description>
@@ -698,10 +698,10 @@ return Response::json([&amp;#39;status&amp;#39; =&amp;gt; &amp;#39;failure&amp;#
     
     <item>
       <title>非同步資料庫隊列（Async Database Queue）</title>
-      <link>https://kejyun.github.io/laravel5-book/services/queue/queue-async/</link>
+      <link>https://laravel5-book.kejyun.com/services/queue/queue-async/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/queue/queue-async/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/queue/queue-async/</guid>
       <description>非同步資料庫隊列（Async Database Queue） 在我們使用 Laravel 提供的資料庫隊列（Database Queue）時，我們需要在命令列執行 php artisan queue:listen 指令，持續的去監聽是否有需要執行的 Queue。
 barryvdh/laravel-async-queue 隊列套件，可以讓我們不用持續的監聽隊列資料，並在使用隊列時，立即的使用 shell 在背景執行隊列的工作。
 目前（2015-06-01） 套件 0.4.x 版本有支援 Laravel 5
@@ -714,20 +714,20 @@ $ php artisan queue:table 所以執行命令後，你可以找到像是 database
     
     <item>
       <title>Composer 安裝</title>
-      <link>https://kejyun.github.io/laravel5-book/environment/install-composer/</link>
+      <link>https://laravel5-book.kejyun.com/environment/install-composer/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/environment/install-composer/</guid>
+      <guid>https://laravel5-book.kejyun.com/environment/install-composer/</guid>
       <description>Composer 安裝 Carbon 1 is deprecated, see how to migrate to Carbon 2. 在安裝 Laravel 時會跑出 Carbon 的版本過舊問題
 $ composer install Loading composer repositories with package information Installing dependencies (including require-dev) from lock file Warning: The lock file is not up to date with the latest changes in composer.json. You may be getting outdated dependencies. Run update to update them. Nothing to install or update Package phpunit/phpunit-mock-objects is abandoned, you should avoid using it.</description>
     </item>
     
     <item>
       <title>Eloquent 魔術函式</title>
-      <link>https://kejyun.github.io/laravel5-book/database/model/eloquent-magic-function/</link>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-magic-function/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/model/eloquent-magic-function/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-magic-function/</guid>
       <description>Eloquent 魔術函式 預先處理被異動的欄位資料 在使用 Eloquent 新增或異動資料時，我們可能想要對輸入的資料做預先的處理，我們可以使用 Laravel 提供的魔術函式 setNameAttribute() 去預先處理欄位資料。
 如果我們要預先處理文章模型（Article）的發布時間欄位（published_at），我們的魔術函式就會是像：
 class Article extends Model { public function setPublishedAtAttribute($date) { // 將傳入的 Y-m-d 時間設為 datetime 格式的現在時間 $this-&amp;gt;attributes[&amp;#39;published_at&amp;#39;] = Carbon::createFromFormat(&amp;#39;Y-m-d&amp;#39;, $date); // 將傳入的 Y-m-d 時間設為 datetime 格式的凌晨零時 00:00:00 $this-&amp;gt;attributes[&amp;#39;published_at&amp;#39;] = Carbon::parse($date); } }  魔術函式 setNameAttribute() 中，若遇到欄位名稱有底線的狀況，則將名稱設為駝峰式大小寫（Camel-Case），像是 published_at 則變成 PublishedAt
@@ -738,10 +738,10 @@ class Article extends Model { public function setPublishedAtAttribute($date) { /
     
     <item>
       <title>Model</title>
-      <link>https://kejyun.github.io/laravel5-book/design-pattern/model/</link>
+      <link>https://laravel5-book.kejyun.com/design-pattern/model/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/design-pattern/model/</guid>
+      <guid>https://laravel5-book.kejyun.com/design-pattern/model/</guid>
       <description>Model 模型設計模式 我們在使用任何的 Framework 中，都會聽到 MVC 模型，V（View）是負責畫面顯示，C（Controller）是負責控制程式呼叫模型的邏輯，而最重要的 M（Model）是負責整個資料庫的操作，以及撈取資料的邏輯
 我們常常把模型用來作為處理資料的商業邏輯，不管是任何的「資料樣式的轉換」、「資料撈取的邏輯」、「資料格式的驗證」、「資料處理的順序及商業邏輯」&amp;hellip;等等都是放在模型（Model）去處理
 資料樣式的轉換
@@ -755,10 +755,10 @@ $validator = Validator::make(Request::all(), [ &amp;#39;title&amp;#39; =&amp;gt;
     
     <item>
       <title>使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增</title>
-      <link>https://kejyun.github.io/laravel5-book/database/qa/cannot-mass-insert-with-extend-model/</link>
+      <link>https://laravel5-book.kejyun.com/database/qa/cannot-mass-insert-with-extend-model/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/qa/cannot-mass-insert-with-extend-model/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/qa/cannot-mass-insert-with-extend-model/</guid>
       <description>使用中繼模型繼承（extends）Eloquent 模型造成無法使用大量資料新增（Mess Assignment） 大部份的情況可能專案較小，所以我們會直接使用模型（Model）去新增資料，但若專案較大時，且不同的模型之間有共用的方法的話，我會會希望這些模型繼承同一個 Eloquent 模型的中繼類別物件，就像這樣：
 Eloquent 模型的中繼類別物件
 class CustomBaseModel extends Model { public $someVariable = null; public function doSomething() { } } 使用者模型繼承「Eloquent 模型的中繼類別物件」
@@ -769,19 +769,19 @@ class User extends CustomBaseModel { protected $fillable = [&amp;#39;first_name&
     
     <item>
       <title>學習資源</title>
-      <link>https://kejyun.github.io/laravel5-book/design-pattern/learning-resource/</link>
+      <link>https://laravel5-book.kejyun.com/design-pattern/learning-resource/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/design-pattern/learning-resource/</guid>
+      <guid>https://laravel5-book.kejyun.com/design-pattern/learning-resource/</guid>
       <description>學習資源 文章  框架不應該有「MODELS」資料夾  投影片  胖胖Model減重的五個方法 by howtomakeaturn  影片  PHP 也有 Day #16 - 胖胖 Model 減重的五個方法 by 尤川豪  Repository  recca0120/laravel-repository: Repository Design Pattern for Laravel 5 with Eloquent or Collection  </description>
     </item>
     
     <item>
       <title>Refresh Token</title>
-      <link>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-refresh-token/</link>
+      <link>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-refresh-token/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-refresh-token/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-refresh-token/</guid>
       <description>OAuth2 Refresh Token 設定 config 在 config/oauth2.php 檔案中加入下列設定，並設定你的 token 存活時間(access_token_ttl) 及 refresh token 存活時間(refresh_token_ttl) 單位時間為秒
  注意，若使用 Refresh Token 時，必須至少有 Password Grant 或 Auth Code Grant 的這兩種 OAuth2 驗證方法其中一種，然後在取得 Access token 時，會一併回傳 refresh token
  return [ &amp;#39;grant_types&amp;#39; =&amp;gt; [ &amp;#39;refresh_token&amp;#39; =&amp;gt; [ &amp;#39;class&amp;#39; =&amp;gt; &amp;#39;\League\OAuth2\Server\Grant\RefreshTokenGrant&amp;#39;, &amp;#39;access_token_ttl&amp;#39; =&amp;gt; 3600, &amp;#39;refresh_token_ttl&amp;#39; =&amp;gt; 36000 ] ] ]; 使用 Password Grant 取得 Access token 及 Refresh Token 在我們取得 Access token 的資料欄位中填入下列欄位
@@ -790,10 +790,10 @@ class User extends CustomBaseModel { protected $fillable = [&amp;#39;first_name&
     
     <item>
       <title>ETag Middleware</title>
-      <link>https://kejyun.github.io/laravel5-book/http/middleware/etag-middleware/</link>
+      <link>https://laravel5-book.kejyun.com/http/middleware/etag-middleware/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/http/middleware/etag-middleware/</guid>
+      <guid>https://laravel5-book.kejyun.com/http/middleware/etag-middleware/</guid>
       <description>ETag Middleware 在我們的網站若資料未變更，我們會希望告訴請求資源的使用者，本資源未修改(304 Not Modified)，所以不用重複讀取資料，這樣可以節省我們傳輸資料頻寬。
 我可以用 Middleware 來達到 ETag 的效果
 建立 ETag Middleware  App\Http\Middleware\ETagMiddleware.php
@@ -802,10 +802,10 @@ class User extends CustomBaseModel { protected $fillable = [&amp;#39;first_name&
     
     <item>
       <title>Rollbar</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-rollbar/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-rollbar/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-rollbar/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-rollbar/</guid>
       <description>Rollbar 1. 安裝
 composer require rollbar/rollbar-laravel 2. 設定 config/app.php
  Laravel 5.5 以上不用做這個設定
@@ -820,38 +820,38 @@ try { throw new Exception(&amp;#39;Hello there is something wrong&amp;#39;); } c
     
     <item>
       <title>Supervisor 啟動 queue</title>
-      <link>https://kejyun.github.io/laravel5-book/services/queue/queue-supervisor/</link>
+      <link>https://laravel5-book.kejyun.com/services/queue/queue-supervisor/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/queue/queue-supervisor/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/queue/queue-supervisor/</guid>
       <description>Supervisor 啟動 queue 安裝 Supervisor sudo apt-get install supervisor 設定檔案路徑 /etc/supervisor/conf.d 設定 vim /etc/supervisor/conf.d/laravel-worker.conf 設定檔案 [program:laravel-worker] process_name=%(program_name)s_%(process_num)02d command=php /home/forge/app.com/artisan artisan queue:work --queue=instant,high,medium,default,low --delay=1 --memory=512 --sleep=15 --tries=1 --env=dev --daemon autostart=true autorestart=true user=www-data numprocs=8 redirect_stderr=true stdout_logfile=/home/forge/app.com/worker.log 啟動 Supervisor sudo supervisorctl reread sudo supervisorctl update sudo supervisorctl start laravel-worker:* 停止 Supervisor sudo supervisorctl stop laravel-worker:* 重新啟動 Supervisor 若當 Laravel 設定檔有做異動時，需要重啟 Supervisor 以讀取新的設定
 # 重新啟動指定的 worker supervisorctl restart laravel-worker: # 重新啟動所有的 worker supervisorctl restart all 參考資料  Queues - Laravel - The PHP Framework For Web Artisans supervisord - how to restart only certain processes using supervisorctl?</description>
     </item>
     
     <item>
       <title>單元測試登入及上傳檔案</title>
-      <link>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-login-and-upload-file/</link>
+      <link>https://laravel5-book.kejyun.com/services/unit-test/unit-test-login-and-upload-file/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-login-and-upload-file/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/unit-test/unit-test-login-and-upload-file/</guid>
       <description>單元測試登入及上傳檔案 登入使用者 $User = User::find(12345); $this-&amp;gt;be($User); 上傳檔案 // 設定上傳檔案 $post_file = new UploadedFile($path, $name, filesize($path), &amp;#39;image/png&amp;#39;, null, true); // 呼叫上傳網址 $response = $this-&amp;gt;call(&amp;#39;POST&amp;#39;, &amp;#39;/photo/store&amp;#39;, [], [], $post_file); // 取得回傳內容 $content = json_decode($response-&amp;gt;getContent()); dump($content); 參考資料  php - How to test file upload in Laravel 5.2 - Stack Overflow How to mock authentication user on unit test in Laravel?  </description>
     </item>
     
     <item>
       <title>使用 Eloquent</title>
-      <link>https://kejyun.github.io/laravel5-book/database/model/eloquent-apply/</link>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-apply/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/model/eloquent-apply/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-apply/</guid>
       <description>使用 Eloquent 新增資料 大量指定新增資料 // 新增 \App\User::Create([ &amp;#39;first_name&amp;#39;=&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;last_name&amp;#39; =&amp;gt; &amp;#39;Hong&amp;#39;, &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;kejyun@gmail.com&amp;#39;, ]); 填入要新增的資料 // 使用者的資料 $user_data = [ &amp;#39;first_name&amp;#39;=&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;last_name&amp;#39; =&amp;gt; &amp;#39;Hong&amp;#39;, &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;kejyun@gmail.com&amp;#39;, ]; $user = new \App\User; // 填入要新增的資料 $user-&amp;gt;fill($user_info); // 儲存資料 $user-&amp;gt;save(); </description>
     </item>
     
     <item>
       <title>除錯</title>
-      <link>https://kejyun.github.io/laravel5-book/environment/debug/</link>
+      <link>https://laravel5-book.kejyun.com/environment/debug/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/environment/debug/</guid>
+      <guid>https://laravel5-book.kejyun.com/environment/debug/</guid>
       <description>環境除錯 Laravel 5 : Parse error: syntax error, unexpected &amp;lsquo;?&amp;rsquo;, expecting variable (T_VARIABLE) 當安裝 Laravel 5.5 時，出現 Parse error: syntax error, unexpected &#39;?&#39;, expecting variable (T_VARIABLE) 的訊息
  You need to install PHP version 7.1 because nullable types were introduced in 7.1:
  ?string $value 要解決這個問題只需要使用 php &amp;gt; 7.1.3 版本即可
@@ -860,10 +860,10 @@ try { throw new Exception(&amp;#39;Hello there is something wrong&amp;#39;); } c
     
     <item>
       <title>Password Grant with Scope</title>
-      <link>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/</link>
+      <link>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/</guid>
       <description>OAuth2 Password Grant With Scope 延續 Password Grant 的 OAuth2 設定，我們可以在參數中加入我們要取得的 資源存取範圍（Scope），讓這個 Access Token 僅能有特定資源的存取權限
 新增資源存取範圍（Scope）資料 OAuth2 定義的 Scope 皆存在 oauth_scopes 資料表中，我們在資料表中新增 user_profile 及 user_likes 這兩個 Scope
 INSERT INTO &amp;#34;oauth_scopes&amp;#34; (&amp;#34;id&amp;#34;, &amp;#34;description&amp;#34;, &amp;#34;created_at&amp;#34;, &amp;#34;updated_at&amp;#34;) VALUES (&amp;#39;user_profile&amp;#39;, &amp;#39;profile&amp;#39;, now(), now()); INSERT INTO &amp;#34;oauth_scopes&amp;#34; (&amp;#34;id&amp;#34;, &amp;#34;description&amp;#34;, &amp;#34;created_at&amp;#34;, &amp;#34;updated_at&amp;#34;) VALUES (&amp;#39;user_likes&amp;#39;, &amp;#39;likes&amp;#39;, now(), now());  取得 Access token 在我們取得 Access token 的資料欄位中填入下列欄位
@@ -872,19 +872,19 @@ INSERT INTO &amp;#34;oauth_scopes&amp;#34; (&amp;#34;id&amp;#34;, &amp;#34;descr
     
     <item>
       <title>CloudWatch Log</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-cloudwatch/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-cloudwatch/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-cloudwatch/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-cloudwatch/</guid>
       <description>CloudWatch Log 參考資料  Using AWS CloudWatch for Laravel Logs on Forge – James Fairhurst – Medium jamesfairhurst/laravel-cloudwatch-logs-lambda-slack: Use AWS CloudWatch Logs &amp;amp; Lambda to post Laravel Log messages to Slack maxbanton/cwh: Amazon Web Services CloudWatch Logs Handler for Monolog library  </description>
     </item>
     
     <item>
       <title>變更請求網址</title>
-      <link>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-change-root-url/</link>
+      <link>https://laravel5-book.kejyun.com/services/unit-test/unit-test-change-root-url/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/unit-test/unit-test-change-root-url/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/unit-test/unit-test-change-root-url/</guid>
       <description>Unit test 變更請求網址(Root Url) 在單元測試(Unit test)的時候，測試網址預設會抓取 .env 檔案的 APP_URL，但若同個專案有不同的網址時，則需要再寫測試時變更為特定的網址
 可以在 setUp() 函式使用 \URL::forceRootUrl() 強制轉換網址，這樣就可以使用指定的網址進行測試了
 &amp;lt;?php class TestCase { function setUp(): void { parent::setUp(); $app_url= &amp;#34;http://kejyun.com&amp;#34;; \URL::forceRootUrl($app_url); } } </description>
@@ -892,10 +892,10 @@ INSERT INTO &amp;#34;oauth_scopes&amp;#34; (&amp;#34;id&amp;#34;, &amp;#34;descr
     
     <item>
       <title>鎖定資料 Lock</title>
-      <link>https://kejyun.github.io/laravel5-book/database/model/eloquent-lock/</link>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-lock/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/model/eloquent-lock/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-lock/</guid>
       <description>鎖定資料 Lock 鎖定資料有 shared lock (sharedLock) 與 lock for update (lockForUpdate)，兩者都可以避面同一行資料被其他的 transaction update
 在 Laravel 鎖定資料庫資料 範例 sharedLock DB::table(&amp;#39;users&amp;#39;) -&amp;gt;where(&amp;#39;votes&amp;#39;, &amp;#39;&amp;gt;&amp;#39;, 100) -&amp;gt;sharedLock() -&amp;gt;get(); select * from `users` where `votes` &amp;gt; &amp;#39;100&amp;#39; lock in share mode DB::table(&amp;#39;tasks&amp;#39;) -&amp;gt;select(&amp;#39;details&amp;#39;, &amp;#39;created_at&amp;#39;) -&amp;gt;whereDate(&amp;#39;created_at&amp;#39;, &amp;#39;=&amp;#39;, &amp;#39;2011-11-11&amp;#39;) -&amp;gt;sharedLock() -&amp;gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = &amp;#39;2011-11-11&amp;#39; lock in share mode 可以使用 -&amp;gt;sharedLock() 或 -&amp;gt;lock(false) 去做 sharedLock
 lockForUpdate DB::table(&amp;#39;users&amp;#39;)-&amp;gt;where(&amp;#39;votes&amp;#39;, &amp;#39;&amp;gt;&amp;#39;, 100)-&amp;gt;lockForUpdate()-&amp;gt;get(); select * from `users` where `votes` &amp;gt; &amp;#39;100&amp;#39; for update DB::table(&amp;#39;tasks&amp;#39;) -&amp;gt;select(&amp;#39;details&amp;#39;, &amp;#39;created_at&amp;#39;) -&amp;gt;whereDate(&amp;#39;created_at&amp;#39;, &amp;#39;&amp;gt;&amp;#39;, &amp;#39;2016-11-24&amp;#39;) -&amp;gt;lockForUpdate() -&amp;gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = &amp;#39;2016-11-24&amp;#39; for update 可以使用 -&amp;gt;lockForUpdate() 或 -&amp;gt;lock(true) 去做 lockForUpdate</description>
@@ -903,10 +903,10 @@ lockForUpdate DB::table(&amp;#39;users&amp;#39;)-&amp;gt;where(&amp;#39;votes&am
     
     <item>
       <title>驗證 Access Token</title>
-      <link>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-access-token-authentication/</link>
+      <link>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-access-token-authentication/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-access-token-authentication/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-access-token-authentication/</guid>
       <description>驗證 Access Token 路由設定 OAuth middleware 在我們想要保護的資源中，我們可以加入 oauth 的 middleware 中介層，這樣
 // 保護的資源設定 oauth middleware Route::get(&amp;#39;/user-private-resource&amp;#39;, [&amp;#39;middleware&amp;#39;=&amp;gt;&amp;#39;oauth&amp;#39;, function() { // 取得資源擁有者編號，若經過 Password Grant 驗證的 Token 則為使用者的編號 $user_id = Authorizer::getResourceOwnerId(); $data = [ &amp;#39;user_id&amp;#39;=&amp;gt; $user_id ]; // 回傳受保護的資源 return Response::json($data); }]);  透過 Access Token 取的受保護的資源 在我們取得受保護資源的請求 Header 中填入，這樣 OAuth2 就會取得我們傳入的 Access Token，並驗證我們有沒有存取權限，若有存取權限，則會直接回傳該受保護的資源
    欄位名稱 資料     Authorization Bearer rXXoWMg5UXzQpxAynCnYYOQiZQ0xDcAjT0ywGvke    路由設定包含 Scope 的 OAuth middleware 若我們限制此路由需要有特定 Scope 的存取權限的 Access Token 才可以存取，我們可以在 middleware 後面加上允許的 Scope 名稱，若同時需要擁有多個 Scope 權限，則用 加號（+） 把 Scope 連接起來即可</description>
@@ -914,10 +914,10 @@ lockForUpdate DB::table(&amp;#39;users&amp;#39;)-&amp;gt;where(&amp;#39;votes&am
     
     <item>
       <title>Eloquent 小技巧</title>
-      <link>https://kejyun.github.io/laravel5-book/database/model/eloquent-tips/</link>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-tips/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/model/eloquent-tips/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-tips/</guid>
       <description>Eloquent 小技巧 取得主鍵名稱 - getKeyName() User Eloquent 物件
 &amp;lt;?php use Illuminate\Database\Eloquent\Model; class User extends Model { protected $table = &amp;#39;user&amp;#39;; protected $primaryKey = &amp;#39;user_id&amp;#39;; } 取得主鍵名稱
 &amp;lt;?php $User = new User; $primary_key_name = $User-&amp;gt;getKeyName(); // user_id </description>
@@ -925,10 +925,10 @@ lockForUpdate DB::table(&amp;#39;users&amp;#39;)-&amp;gt;where(&amp;#39;votes&am
     
     <item>
       <title>加密（encryption）</title>
-      <link>https://kejyun.github.io/laravel5-book/services/encryption/encryption-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/encryption/encryption-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/encryption/encryption-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/encryption/encryption-intro/</guid>
       <description>加密（encryption） 使用情境 我們若需要在資料庫儲存一些敏感資料（像是信用卡的資料），但我們又為了避免資料庫遭到入侵，而導致所有使用者相關的敏感資料全都被竊取，我們可以使用 Laravel 提供的「加密與解密」演算法，將我們的敏感資料加密儲存到資料庫，待我們讀取資料的時候，再將其資料解密出來處理。
 設定 在 Laravel 做「加密與解密」演算法時，會使用 config/app.php 中的 key 值去當作加解密的 salt，自己的應用需要設定自己的 key 值，若沒有設定的話被加密過的值還是有可能被暴力破解出來，所以要記得去設定，而這個 key 值若變更了，雜湊的驗證也不會相同喔～
 使用 // 加密 $original_data = &amp;#39;需要加密的資料&amp;#39;; $encrypt_data = Crypt::encrypt($original_data); // 解密 $decrypted = Crypt::decrypt($encrypt_data); 備註 重複加密相同的資料得到的密文不會一樣，所以不要使用像 md5 的方式去比對密文資料是否相同
@@ -937,10 +937,10 @@ lockForUpdate DB::table(&amp;#39;users&amp;#39;)-&amp;gt;where(&amp;#39;votes&am
     
     <item>
       <title>子查詢</title>
-      <link>https://kejyun.github.io/laravel5-book/database/model/eloquent-sub-query/</link>
+      <link>https://laravel5-book.kejyun.com/database/model/eloquent-sub-query/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/model/eloquent-sub-query/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/model/eloquent-sub-query/</guid>
       <description>子查詢 當我想要計算子查詢的數量時，會想要執行像下方的 SQL 查詢語法
 SELECT count(*) FROM ( SELECT UID FROM `posts` WHERE `status` = 1 GROUP BY `user_id` ) sub 在 Eloquent 可以用下面方式達到子查詢的目的
 &amp;lt;?php // Eloquent Builder instance $SubQuery = Posts::where(&amp;#39;status&amp;#39;, 1) -&amp;gt;groupBy(&amp;#39;user_id&amp;#39;); $count = DB::table( DB::raw(&amp;#34;({$SubQuery-&amp;gt;toSql()}) as sub&amp;#34;) ) -&amp;gt;mergeBindings($SubQuery-&amp;gt;getQuery()) -&amp;gt;count(); 記得當你的子查詢結束後，若有更多的條件需要執行，則必須將查詢條件放在 mergeBindings() 方法後方，否則原本 SubQuery 的查詢資料順序會綁定錯誤
@@ -949,10 +949,10 @@ $count = DB::table( DB::raw(&amp;#34;({$SubQuery-&amp;gt;toSql()}) as sub&amp;#3
     
     <item>
       <title>雜湊（Hashing）</title>
-      <link>https://kejyun.github.io/laravel5-book/services/hashing/hashing-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/hashing/hashing-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/hashing/hashing-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/hashing/hashing-intro/</guid>
       <description>雜湊（Hashing） 使用情境 使用者輸入的密碼，通常我們將其加密再存到資料庫中，但這類的資料我們通常不需要反解回來處理，所以我們不需要使用加密的演算法去加密資料
 因為加密演算法需要完整的解回原先的資料，所以若資料越長密文也會越長，但雜湊不需要解回原先的資料，只需要驗證原先的資料，經過再雜湊的檢查是相同的就好（輸入的密碼雜湊驗證與原先存在資料庫的雜湊資料相同），所以雜湊的資料可以有固定的長度，像是 md5 的雜湊資料長度固定為 32，而 Laravel 提供的 Hash 雜湊演算法，資料長度固定為 60。
 設定 在 Laravel 做「雜湊」演算法時，會使用 config/app.php 中的 key 值去當作雜湊的 salt，自己的應用需要設定自己的 key 值，若沒有設定的話被加密過的值還是有可能被暴力破解出來，所以要記得去設定，而這個 key 值若變更了，雜湊的驗證也不會相同喔～
@@ -962,10 +962,10 @@ $count = DB::table( DB::raw(&amp;#34;({$SubQuery-&amp;gt;toSql()}) as sub&amp;#3
     
     <item>
       <title>回應（Response）</title>
-      <link>https://kejyun.github.io/laravel5-book/services/response/response-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/response/response-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/response/response-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/response/response-intro/</guid>
       <description>回應（Response） 強制回應 JSON 建立 Middleware
 namespace App\Http\Middleware; use Closure; class ForceJsonMiddleware { /** * Handle an incoming request. * * @param \Illuminate\Http\Request $request * @param \Closure $next * @return mixed */ public function handle($request, Closure $next) { $request-&amp;gt;headers-&amp;gt;set(&amp;#39;accept&amp;#39;, &amp;#39;application/json&amp;#39;); return $next($request); } } 在 Kernel.php 加入此 Middleware
 &amp;#39;force-json-response&amp;#39; =&amp;gt; \App\Http\Middleware\ForceJsonMiddleware::class, 設定使用 Middleware
@@ -974,10 +974,10 @@ Route::group([&amp;#39;middleware&amp;#39; =&amp;gt; [&amp;#39;force-json-respon
     
     <item>
       <title>任務排程（Scheduling）</title>
-      <link>https://kejyun.github.io/laravel5-book/services/scheduling/scheduling-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/scheduling/scheduling-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/scheduling/scheduling-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/scheduling/scheduling-intro/</guid>
       <description>任務排程（Scheduling） 我們通常會把一些每小時、每 6 小時、每日、每週、每月等等之類固定時間要做的工作丟到 Linux 系統的 crontab 中去執行，通常像是每日要統計昨天網站的活動資訊做數據分析之類的工作，這類的工作通常會花費比較久的時間
 在 Linux 設定排程工作 我們通常會在命令列用 $ crontab -e 的方式去編輯排程工作
 $ crontab -e 在用到 crontab 的時候，我們需要瞭解怎麼設定排程工作的執行時間，整個的 crontab 的設定可能會像這樣：
@@ -988,10 +988,10 @@ $ crontab -e 在用到 crontab 的時候，我們需要瞭解怎麼設定排程�
     
     <item>
       <title>Compass</title>
-      <link>https://kejyun.github.io/laravel5-book/services/compass/compass-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/compass/compass-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/compass/compass-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/compass/compass-intro/</guid>
       <description>Compass 安裝 RVM 1. 安裝 GPG keys
 $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB 2. 安裝 RVM
 \curl -sSL https://get.rvm.io | bash 使用 RVM 安裝 Ruby 列出所有可以安裝的版本

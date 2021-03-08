@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>設計模式 on Laravel 學習筆記</title>
-    <link>https://kejyun.github.io/laravel5-book/design-pattern/</link>
-    <description>Recent content in 設計模式 on Laravel 學習筆記</description>
+    <title>設計模式 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/design-pattern/</link>
+    <description>Recent content in 設計模式 on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://kejyun.github.io/laravel5-book/design-pattern/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laravel5-book.kejyun.com/design-pattern/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>服務容器（Service Container）</title>
-      <link>https://kejyun.github.io/laravel5-book/design-pattern/service-container/</link>
+      <link>https://laravel5-book.kejyun.com/design-pattern/service-container/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/design-pattern/service-container/</guid>
+      <guid>https://laravel5-book.kejyun.com/design-pattern/service-container/</guid>
       <description>服務容器（Service Container） Laravel 的服務容器就像 IoC 容器一樣，可以讓你很容易的反轉控制物件
 假如我們沒有注入類別去進行反轉控制，則我們每次使用 Mail 類別去寄送郵件時都要去 new 它，如果這個 Mail 類別在裡面是會被很頻繁的使用時，這樣會讓我們很惱人。
 // 通知類別 class Notification { // 通知會員有新訊息 public function noticeNewMessage() { $mail = new Mail(); $mail-&amp;gt;send(); } // 通知會員有新文章 public function noticeNewArticle() { $mail = new Mail(); $mail-&amp;gt;send(); } } 為了能夠讓通知類別 Notification 能夠隨時取用 Mail 類別，我們會希望將此類別直接注入，讓通知類別可以直接去進行反轉控制。
@@ -26,10 +26,10 @@
     
     <item>
       <title>PSR</title>
-      <link>https://kejyun.github.io/laravel5-book/design-pattern/psr/</link>
+      <link>https://laravel5-book.kejyun.com/design-pattern/psr/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/design-pattern/psr/</guid>
+      <guid>https://laravel5-book.kejyun.com/design-pattern/psr/</guid>
       <description>PSR (php standard recommendations) 為了讓大家開發的套件，能夠更輕鬆地整合到自己的專案當中，在 PHP 社群中大家一起定義了一些標準的程式碼撰寫規則
 但是 Laravel 5.0.x 版本之前，Laravel 都沒有真正的遵照 PSR 的規範去撰寫程式碼，直到 Laravel 5.1 LTS 版本時，Laravel 終於將所有的程式碼遵照 PSR-2 及 PSR-4 的程式碼撰寫規則了，詳細的規則說明大家可以自己參考相關的說明文件。
 而為了讓自己專案的開發也能夠遵照 PSR 規則，除了自己一個檔案一個檔案自己修改外，也可以用 PHP Coding Standards Fixer 套件去幫我們自動地將程式修改成遵照 PSR 規則的程式！
@@ -40,10 +40,10 @@ $ export PATH=&amp;#34;$PATH:$HOME/.composer/vendor/bin&amp;#34;  我們可以�
     
     <item>
       <title>Model</title>
-      <link>https://kejyun.github.io/laravel5-book/design-pattern/model/</link>
+      <link>https://laravel5-book.kejyun.com/design-pattern/model/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/design-pattern/model/</guid>
+      <guid>https://laravel5-book.kejyun.com/design-pattern/model/</guid>
       <description>Model 模型設計模式 我們在使用任何的 Framework 中，都會聽到 MVC 模型，V（View）是負責畫面顯示，C（Controller）是負責控制程式呼叫模型的邏輯，而最重要的 M（Model）是負責整個資料庫的操作，以及撈取資料的邏輯
 我們常常把模型用來作為處理資料的商業邏輯，不管是任何的「資料樣式的轉換」、「資料撈取的邏輯」、「資料格式的驗證」、「資料處理的順序及商業邏輯」&amp;hellip;等等都是放在模型（Model）去處理
 資料樣式的轉換
@@ -57,10 +57,10 @@ $validator = Validator::make(Request::all(), [ &amp;#39;title&amp;#39; =&amp;gt;
     
     <item>
       <title>學習資源</title>
-      <link>https://kejyun.github.io/laravel5-book/design-pattern/learning-resource/</link>
+      <link>https://laravel5-book.kejyun.com/design-pattern/learning-resource/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/design-pattern/learning-resource/</guid>
+      <guid>https://laravel5-book.kejyun.com/design-pattern/learning-resource/</guid>
       <description>學習資源 文章  框架不應該有「MODELS」資料夾  投影片  胖胖Model減重的五個方法 by howtomakeaturn  影片  PHP 也有 Day #16 - 胖胖 Model 減重的五個方法 by 尤川豪  Repository  recca0120/laravel-repository: Repository Design Pattern for Laravel 5 with Eloquent or Collection  </description>
     </item>
     

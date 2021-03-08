@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>服務 on Laravel 學習筆記</title>
-    <link>https://kejyun.github.io/laravel5-book/services/</link>
-    <description>Recent content in 服務 on Laravel 學習筆記</description>
+    <title>服務 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/services/</link>
+    <description>Recent content in 服務 on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://kejyun.github.io/laravel5-book/services/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laravel5-book.kejyun.com/services/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>加密（encryption）</title>
-      <link>https://kejyun.github.io/laravel5-book/services/encryption/encryption-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/encryption/encryption-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/encryption/encryption-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/encryption/encryption-intro/</guid>
       <description>加密（encryption） 使用情境 我們若需要在資料庫儲存一些敏感資料（像是信用卡的資料），但我們又為了避免資料庫遭到入侵，而導致所有使用者相關的敏感資料全都被竊取，我們可以使用 Laravel 提供的「加密與解密」演算法，將我們的敏感資料加密儲存到資料庫，待我們讀取資料的時候，再將其資料解密出來處理。
 設定 在 Laravel 做「加密與解密」演算法時，會使用 config/app.php 中的 key 值去當作加解密的 salt，自己的應用需要設定自己的 key 值，若沒有設定的話被加密過的值還是有可能被暴力破解出來，所以要記得去設定，而這個 key 值若變更了，雜湊的驗證也不會相同喔～
 使用 // 加密 $original_data = &amp;#39;需要加密的資料&amp;#39;; $encrypt_data = Crypt::encrypt($original_data); // 解密 $decrypted = Crypt::decrypt($encrypt_data); 備註 重複加密相同的資料得到的密文不會一樣，所以不要使用像 md5 的方式去比對密文資料是否相同
@@ -25,10 +25,10 @@
     
     <item>
       <title>雜湊（Hashing）</title>
-      <link>https://kejyun.github.io/laravel5-book/services/hashing/hashing-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/hashing/hashing-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/hashing/hashing-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/hashing/hashing-intro/</guid>
       <description>雜湊（Hashing） 使用情境 使用者輸入的密碼，通常我們將其加密再存到資料庫中，但這類的資料我們通常不需要反解回來處理，所以我們不需要使用加密的演算法去加密資料
 因為加密演算法需要完整的解回原先的資料，所以若資料越長密文也會越長，但雜湊不需要解回原先的資料，只需要驗證原先的資料，經過再雜湊的檢查是相同的就好（輸入的密碼雜湊驗證與原先存在資料庫的雜湊資料相同），所以雜湊的資料可以有固定的長度，像是 md5 的雜湊資料長度固定為 32，而 Laravel 提供的 Hash 雜湊演算法，資料長度固定為 60。
 設定 在 Laravel 做「雜湊」演算法時，會使用 config/app.php 中的 key 值去當作雜湊的 salt，自己的應用需要設定自己的 key 值，若沒有設定的話被加密過的值還是有可能被暴力破解出來，所以要記得去設定，而這個 key 值若變更了，雜湊的驗證也不會相同喔～
@@ -38,10 +38,10 @@
     
     <item>
       <title>回應（Response）</title>
-      <link>https://kejyun.github.io/laravel5-book/services/response/response-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/response/response-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/response/response-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/response/response-intro/</guid>
       <description>回應（Response） 強制回應 JSON 建立 Middleware
 namespace App\Http\Middleware; use Closure; class ForceJsonMiddleware { /** * Handle an incoming request. * * @param \Illuminate\Http\Request $request * @param \Closure $next * @return mixed */ public function handle($request, Closure $next) { $request-&amp;gt;headers-&amp;gt;set(&amp;#39;accept&amp;#39;, &amp;#39;application/json&amp;#39;); return $next($request); } } 在 Kernel.php 加入此 Middleware
 &amp;#39;force-json-response&amp;#39; =&amp;gt; \App\Http\Middleware\ForceJsonMiddleware::class, 設定使用 Middleware
@@ -50,10 +50,10 @@ Route::group([&amp;#39;middleware&amp;#39; =&amp;gt; [&amp;#39;force-json-respon
     
     <item>
       <title>任務排程（Scheduling）</title>
-      <link>https://kejyun.github.io/laravel5-book/services/scheduling/scheduling-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/scheduling/scheduling-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/scheduling/scheduling-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/scheduling/scheduling-intro/</guid>
       <description>任務排程（Scheduling） 我們通常會把一些每小時、每 6 小時、每日、每週、每月等等之類固定時間要做的工作丟到 Linux 系統的 crontab 中去執行，通常像是每日要統計昨天網站的活動資訊做數據分析之類的工作，這類的工作通常會花費比較久的時間
 在 Linux 設定排程工作 我們通常會在命令列用 $ crontab -e 的方式去編輯排程工作
 $ crontab -e 在用到 crontab 的時候，我們需要瞭解怎麼設定排程工作的執行時間，整個的 crontab 的設定可能會像這樣：
@@ -64,10 +64,10 @@ $ crontab -e 在用到 crontab 的時候，我們需要瞭解怎麼設定排程�
     
     <item>
       <title>Compass</title>
-      <link>https://kejyun.github.io/laravel5-book/services/compass/compass-intro/</link>
+      <link>https://laravel5-book.kejyun.com/services/compass/compass-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/compass/compass-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/compass/compass-intro/</guid>
       <description>Compass 安裝 RVM 1. 安裝 GPG keys
 $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB 2. 安裝 RVM
 \curl -sSL https://get.rvm.io | bash 使用 RVM 安裝 Ruby 列出所有可以安裝的版本

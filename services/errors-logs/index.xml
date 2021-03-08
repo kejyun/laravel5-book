@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>錯誤與日誌 Log on Laravel 學習筆記</title>
-    <link>https://kejyun.github.io/laravel5-book/services/errors-logs/</link>
-    <description>Recent content in 錯誤與日誌 Log on Laravel 學習筆記</description>
+    <title>錯誤與日誌 Log on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/services/errors-logs/</link>
+    <description>Recent content in 錯誤與日誌 Log on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://kejyun.github.io/laravel5-book/services/errors-logs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laravel5-book.kejyun.com/services/errors-logs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>在單元測試顯示例外</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-show-exception-in-cli/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/errors-show-exception-in-cli/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-show-exception-in-cli/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/errors-show-exception-in-cli/</guid>
       <description>在單元測試顯示例外（Show Exception in CLI） 在 Laravel 5 做單元測試時，使用 try catch 丟出例外時，Laravel 5 會自動地將例外的錯誤訊息處理成網頁的樣式呈現，這樣的好處是在網頁中做操作發生例外狀況時，可以直接看到例外的錯誤訊息，但是在寫單元測試 (Unit test) 時，他只會將這些錯誤先記錄在 log 檔案裡面（storage/log/laravel-yyyy-mm-dd.log），我們要看到這些錯誤的狀況必須要再另開終端機去執行 php artisan tail 去觀看這些 例外 Log 的狀況，這樣在做測試的時候是相當麻煩的。
 在 Laravel 5 中所有的例外（Exception）都會被丟到 app/Exceptions/Handler.php 中的 render() 去處理
 &amp;lt;?php // app/Exceptions/Handler.php  class Handler extends ExceptionHandler { /** * Render an exception into an HTTP response. * 將例外錯誤轉為 HTTP 回應 * * @param \Illuminate\Http\Request $request * @param \Exception $e * @return \Illuminate\Http\Response */ public function render($request, Exception $e) { return parent::render($request, $e); } } 我們如果需要在 CLI 就顯示例外錯誤訊息的話，必須修改 render() 函式，而我想要保有原本在網頁做除錯的彈性，所以我在環境變數 .</description>
@@ -24,10 +24,10 @@
     
     <item>
       <title>日誌記錄層級</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-log-level/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/errors-log-level/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-log-level/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/errors-log-level/</guid>
       <description>日誌記錄層級 在系統發生例外錯誤時，我們會希望紀錄當時的例外訊息，以便之後我我們好進行除錯，而 Log 紀錄的訊息會依照日期被放到像 storage/logs/laravel-2015-06-06.log 的地方
 Log 記錄在 Laravel 有七個級別：debug、info、notice、warning、error、critical 和 alert，紀錄的方式會像這樣：
 Log::debug(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::info(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::notice(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::warning(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::error(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::critical(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::alert(&amp;#39;=== Log 訊息 ===&amp;#39;); 他們在 Log 檔紀錄的樣子會像:
@@ -36,10 +36,10 @@ Log::debug(&amp;#39;=== Log 訊息 ===&amp;#39;); Log::info(&amp;#39;=== Log 訊
     
     <item>
       <title>日誌巨集</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-log-macro/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/errors-log-macro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/errors-log-macro/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/errors-log-macro/</guid>
       <description>日誌巨集 前言 我們會用 Laravel 內建的 Response 去回應服務的訊息，我們可能會用的回應會像這樣：
 // 建立 JSON 回應 return Response::json([&amp;#39;name&amp;#39; =&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;Country&amp;#39; =&amp;gt; &amp;#39;Taiwan&amp;#39;]); return response()-&amp;gt;json([&amp;#39;name&amp;#39; =&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;Country&amp;#39; =&amp;gt; &amp;#39;Taiwan&amp;#39;]); // 建立 JSONP 回應 return Response::json([&amp;#39;name&amp;#39; =&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;Country&amp;#39; =&amp;gt; &amp;#39;Taiwan&amp;#39;]) -&amp;gt;setCallback($request-&amp;gt;input(&amp;#39;callback&amp;#39;)); return response()-&amp;gt;json([&amp;#39;name&amp;#39; =&amp;gt; &amp;#39;KeJyun&amp;#39;, &amp;#39;Country&amp;#39; =&amp;gt; &amp;#39;Taiwan&amp;#39;]) -&amp;gt;setCallback($request-&amp;gt;input(&amp;#39;callback&amp;#39;)); // 建立檔案下載的回應 return response()-&amp;gt;download($pathToFile); return response()-&amp;gt;download($pathToFile, $name, $headers); return response()-&amp;gt;download($pathToFile)-&amp;gt;deleteFileAfterSend(true); 在這樣的使用下，我們可以很容易的回應訊息給使用者，但是在伺服器發生程式例外錯誤 (Exception) 時，我們可能也需要回應像是這樣的資料：
 return Response::json([&amp;#39;status&amp;#39; =&amp;gt; &amp;#39;failure&amp;#39;, &amp;#39;error_code&amp;#39; =&amp;gt; &amp;#39;5566&amp;#39;]); return response()-&amp;gt;json([&amp;#39;status&amp;#39; =&amp;gt; &amp;#39;failure&amp;#39;, &amp;#39;error_code&amp;#39; =&amp;gt; &amp;#39;5566&amp;#39;]); 在我們用 Laravel 做 API 給手機用的時候，更需要有這些錯誤狀態的資料，所以我們沒辦法直接像網頁一樣跳出整個的錯誤 debug 畫面</description>

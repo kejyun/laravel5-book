@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Database on Laravel 學習筆記</title>
-    <link>https://kejyun.github.io/laravel5-book/database/</link>
-    <description>Recent content in Database on Laravel 學習筆記</description>
+    <title>Database on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/database/</link>
+    <description>Recent content in Database on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://kejyun.github.io/laravel5-book/database/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laravel5-book.kejyun.com/database/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Migration (遷移)</title>
-      <link>https://kejyun.github.io/laravel5-book/database/migration/</link>
+      <link>https://laravel5-book.kejyun.com/database/migration/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/migration/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/migration/</guid>
       <description>Migration 這裏會介紹如何在 Laravel 5 使用 Migration 管理資料庫
 Migration 指令 建立 Migration $ php artisan make:migration create_users_table --create=&amp;#34;users&amp;#34; Migration 建立之後的檔案會放在 database/migrations/2015_04_11_134630_create_users_table.php
  Migration 檔案最前面的日期會依照你建立 Migration 的時間自動產生，所以每個人看到的檔名皆會不同 在後面加了 --create 的參數可以告訴 Migration，我們要做建立 user 資料表的動作，檔案內容會像這樣：

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PostgreSQL on Laravel 學習筆記</title>
-    <link>https://kejyun.github.io/laravel5-book/database/postgresql/</link>
-    <description>Recent content in PostgreSQL on Laravel 學習筆記</description>
+    <title>PostgreSQL on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/database/postgresql/</link>
+    <description>Recent content in PostgreSQL on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Mon, 21 Sep 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://kejyun.github.io/laravel5-book/database/postgresql/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laravel5-book.kejyun.com/database/postgresql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>安裝 PostgreSQL ODBC driver</title>
-      <link>https://kejyun.github.io/laravel5-book/database/postgresql/install-odbc-driver/</link>
+      <link>https://laravel5-book.kejyun.com/database/postgresql/install-odbc-driver/</link>
       <pubDate>Mon, 21 Sep 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/database/postgresql/install-odbc-driver/</guid>
+      <guid>https://laravel5-book.kejyun.com/database/postgresql/install-odbc-driver/</guid>
       <description>環境：OS X
   日期：2015-03-29
   PHP：5.6

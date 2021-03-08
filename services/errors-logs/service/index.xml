@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>日誌服務 on Laravel 學習筆記</title>
-    <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/</link>
-    <description>Recent content in 日誌服務 on Laravel 學習筆記</description>
+    <title>日誌服務 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/services/errors-logs/service/</link>
+    <description>Recent content in 日誌服務 on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Sun, 30 Aug 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://kejyun.github.io/laravel5-book/services/errors-logs/service/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laravel5-book.kejyun.com/services/errors-logs/service/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Understand.io</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-understand-io/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-understand-io/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-understand-io/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-understand-io/</guid>
       <description>Understand.io  紀錄 Laravel Log
  在 understand/understand-laravel5 套件 github，依照步驟安裝 Understand.io
 1.安裝套件
@@ -29,10 +29,10 @@ UNDERSTAND_ENABLED=true UNDERSTAND_TOKEN=&amp;lt;API TOKEN 放這裡&amp;gt; 4.�
     
     <item>
       <title>Sentry.io</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-sentry-io/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-sentry-io/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-sentry-io/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-sentry-io/</guid>
       <description>Sentry.io  紀錄 Laravel Exception
  1.安裝套件
 composer require sentry/sentry-laravel 2.加入套件設定
@@ -46,10 +46,10 @@ SENTRY_LARAVEL_DSN=https://&amp;lt;SENTRY_DSN_URL&amp;gt; 參考資料  Sentry |
     
     <item>
       <title>Bugsnag</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-bugsnag/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-bugsnag/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-bugsnag/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-bugsnag/</guid>
       <description>Bugsnag  版本：Laravel 5.0 ~ 5.6
   紀錄指定的錯誤訊息及系統錯誤
  1. 安裝
@@ -63,10 +63,10 @@ Laravel 5.6
     
     <item>
       <title>Rollbar</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-rollbar/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-rollbar/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-rollbar/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-rollbar/</guid>
       <description>Rollbar 1. 安裝
 composer require rollbar/rollbar-laravel 2. 設定 config/app.php
  Laravel 5.5 以上不用做這個設定
@@ -81,10 +81,10 @@ try { throw new Exception(&amp;#39;Hello there is something wrong&amp;#39;); } c
     
     <item>
       <title>CloudWatch Log</title>
-      <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-cloudwatch/</link>
+      <link>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-cloudwatch/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-cloudwatch/</guid>
+      <guid>https://laravel5-book.kejyun.com/services/errors-logs/service/errors-log-service-cloudwatch/</guid>
       <description>CloudWatch Log 參考資料  Using AWS CloudWatch for Laravel Logs on Forge – James Fairhurst – Medium jamesfairhurst/laravel-cloudwatch-logs-lambda-slack: Use AWS CloudWatch Logs &amp;amp; Lambda to post Laravel Log messages to Slack maxbanton/cwh: Amazon Web Services CloudWatch Logs Handler for Monolog library  </description>
     </item>
     

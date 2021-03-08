@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>套件 on Laravel 學習筆記</title>
-    <link>https://kejyun.github.io/laravel5-book/package/</link>
-    <description>Recent content in 套件 on Laravel 學習筆記</description>
+    <title>套件 on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/package/</link>
+    <description>Recent content in 套件 on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Sun, 07 Mar 2021 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://kejyun.github.io/laravel5-book/package/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laravel5-book.kejyun.com/package/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>套件開發</title>
-      <link>https://kejyun.github.io/laravel5-book/package/development/package-development/</link>
+      <link>https://laravel5-book.kejyun.com/package/development/package-development/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/package/development/package-development/</guid>
+      <guid>https://laravel5-book.kejyun.com/package/development/package-development/</guid>
       <description>Laravel Packages Development 套件開發 建立本地端的套件資料夾 在本地端開發套件，可以在 Laravel 根目錄自行建立 packages 目錄，然後將套件放在下方路徑中
  packages &amp;gt; &amp;lt;user_name&amp;gt; &amp;gt; &amp;lt;package_name&amp;gt; &amp;gt; &amp;lt;code_folder&amp;gt;
  app packages # 套件資料夾（原本沒有此資料，需要自行建立） kejyun # &amp;lt;user_name&amp;gt; 作者名稱 larapack # &amp;lt;package_name&amp;gt; 套件名稱 src # &amp;lt;code_folder&amp;gt; 所有套件程式皆放在此目錄 所有套件相關的程式皆放在此路徑下

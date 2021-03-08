@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>API on Laravel 學習筆記</title>
-    <link>https://kejyun.github.io/laravel5-book/api/</link>
-    <description>Recent content in API on Laravel 學習筆記</description>
+    <title>API on Laravel 5 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/api/</link>
+    <description>Recent content in API on Laravel 5 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
     
-	<atom:link href="https://kejyun.github.io/laravel5-book/api/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://laravel5-book.kejyun.com/api/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>API throttle middleware</title>
-      <link>https://kejyun.github.io/laravel5-book/api/api-intro/</link>
+      <link>https://laravel5-book.kejyun.com/api/api-intro/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
-      <guid>https://kejyun.github.io/laravel5-book/api/api-intro/</guid>
+      <guid>https://laravel5-book.kejyun.com/api/api-intro/</guid>
       <description>API throttle middleware 在 app/Http/Kernel.php 檔案中會看到 api 的 $middlewareGroups 有一個 &#39;throttle:60,1&#39;，這邊的意思是 每 1 分鐘同個 ip 可以請求 60 次，可以針對你的 API 請求需求，去限制 API 請求次數，已保護你的 API 不會被隨意無限制的存取
 &amp;lt;?php namespace App\Http; use Illuminate\Foundation\Http\Kernel as HttpKernel; class Kernel extends HttpKernel { /** * The application&amp;#39;s route middleware groups. * * @var array */ protected $middlewareGroups = [ &amp;#39;web&amp;#39; =&amp;gt; [ \App\Http\Middleware\EncryptCookies::class, \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class, \Illuminate\Session\Middleware\StartSession::class, // \Illuminate\Session\Middleware\AuthenticateSession::class,  \Illuminate\View\Middleware\ShareErrorsFromSession::class, \App\Http\Middleware\VerifyCsrfToken::class, \Illuminate\Routing\Middleware\SubstituteBindings::class, ], &amp;#39;api&amp;#39; =&amp;gt; [ &amp;#39;throttle:60,1&amp;#39;, &amp;#39;bindings&amp;#39;, ], ]; } 詳情可以參考 Illuminate\Routing\Middleware\ThrottleRequests 檔案</description>
     </item>
