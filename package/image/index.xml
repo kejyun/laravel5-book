@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>圖片 on Laravel 學習筆記</title>
+    <link>https://kejyun.github.io/laravel5-book/package/image/</link>
+    <description>Recent content in 圖片 on Laravel 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 07 Mar 2021 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://kejyun.github.io/laravel5-book/package/image/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>screenshot 截圖</title>
+      <link>https://kejyun.github.io/laravel5-book/package/image/package-image-screenshot-other/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/image/package-image-screenshot-other/</guid>
+      <description>screenshot 截圖  PHP PhantomJS  Website Screenshots with Laravel - YouTube GitHub - thedevdojo/website-screenshot-with-laravel: Learn how to create a screenshot of a website with Laravel   GitHub - spatie/browsershot: Convert html to an image, pdf or string  spatie/browsershot - Packagist   GitHub - stefanzweifel/screeenly: 📸 Screenshot as a Service  screeenly Use the API · stefanzweifel/screeenly Wiki · GitHub 中文會 GG    </description>
+    </item>
+    
+  </channel>
+</rss>

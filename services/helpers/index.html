@@ -4,30 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.73.0" />
-    <meta name="description" content="KeJyun Laravel 5 學習筆記">
+    <meta name="description" content="KeJyun Laravel 學習筆記">
 <meta name="author" content="KeJyun">
 
     <link rel="icon" href="/laravel5-book/images/favicon.png" type="image/png">
 
-    <title>輔助方法 (Helpers) :: Laravel 5 學習筆記</title>
+    <title>輔助方法 (Helpers) :: Laravel 學習筆記</title>
 
     
-    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1603807626" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1603807626" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1603807626" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1603807626" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1603807626" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1603807626" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1603807626" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1603807626" rel="stylesheet">
-    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1603807626" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1615216495" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1615216495" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1615216495" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1615216495" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1615216495" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1615216495" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1615216495" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1615216495" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1615216495" rel="stylesheet">
     
-    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1603807626" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1615216495" rel="stylesheet">
     
     
 
-    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1603807626"></script>
-
+    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1615216495"></script>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
       :root #header + #content > #left > #rlblock_left{
           display:none !important;
@@ -60,7 +61,7 @@
     src="https://avatars1.githubusercontent.com/u/1586089?s=460&amp;u=184ce5bff7ceee1a681cabd2bf7b9d13e8edca67&amp;v=4"
   >
   <span style="vertical-align:middle;">
-  Laravel 5 學習筆記
+  Laravel 學習筆記
   </span>
 </a>
 
@@ -72,14 +73,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1603807626"></script>
-<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1603807626"></script>
+<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1615216495"></script>
+<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1615216495"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/kejyun.github.io\/laravel5-book\/";
     
 </script>
-<script type="text/javascript" src="/laravel5-book/js/search.js?1603807626"></script>
+<script type="text/javascript" src="/laravel5-book/js/search.js?1615216495"></script>
 
     
   </div>
@@ -2119,9 +2120,9 @@
  
   
     
-      <li data-nav-id="/laravel5-book/api/api-intro/" title="API 介紹" class="dd-item ">
+      <li data-nav-id="/laravel5-book/api/api-intro/" title="API throttle middleware" class="dd-item ">
         <a href="/laravel5-book/api/api-intro/">
-        API 介紹
+        API throttle middleware
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -2337,6 +2338,936 @@
  
 
           
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/" title="套件" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/">
+          <b>X. </b>套件
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/development/package-development/" title="套件開發" class="dd-item ">
+        <a href="/laravel5-book/package/development/package-development/">
+        套件開發
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/image/" title="圖片" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/image/">
+          圖片
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/image/intervention/" title="intervention" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/image/intervention/">
+          intervention
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/image/intervention/package-image-intervention-process/" title="圖片處理" class="dd-item ">
+        <a href="/laravel5-book/package/image/intervention/package-image-intervention-process/">
+        圖片處理
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/image/intervention/package-image-intervention-other/" title="其他圖片處理" class="dd-item ">
+        <a href="/laravel5-book/package/image/intervention/package-image-intervention-other/">
+        其他圖片處理
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/image/package-image-screenshot-other/" title="screenshot 截圖" class="dd-item ">
+        <a href="/laravel5-book/package/image/package-image-screenshot-other/">
+        screenshot 截圖
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/chart/" title="圖表" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/chart/">
+          圖表
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/line-bot/" title="Line Bot" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/line-bot/">
+          Line Bot
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/debug/" title="Debug 套件" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/debug/">
+          Debug 套件
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/debug/package-debug-artisan-tail/" title="Artisan tail" class="dd-item ">
+        <a href="/laravel5-book/package/debug/package-debug-artisan-tail/">
+        Artisan tail
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/tool/" title="工具" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/tool/">
+          工具
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/tool/package-tool-carbon/" title="Carbon 時間套件" class="dd-item ">
+        <a href="/laravel5-book/package/tool/package-tool-carbon/">
+        Carbon 時間套件
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/design-pattern/" title="設計模式" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/design-pattern/">
+          設計模式
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/html/" title="HTML" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/html/">
+          HTML
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/html/package-html-amp-readme/" title="AMP 文章" class="dd-item ">
+        <a href="/laravel5-book/package/html/package-html-amp-readme/">
+        AMP 文章
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/text/" title="文字" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/text/">
+          文字
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/api/" title="API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/api/">
+          API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/api/package-api-guzzlehttp/" title="GuzzleHttp" class="dd-item ">
+        <a href="/laravel5-book/package/api/package-api-guzzlehttp/">
+        GuzzleHttp
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/view/" title="視圖" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/view/">
+          視圖
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/mail/" title="郵件" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/mail/">
+          郵件
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/mail/package-mail-mailchimp/" title="Mailchimp" class="dd-item ">
+        <a href="/laravel5-book/package/mail/package-mail-mailchimp/">
+        Mailchimp
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/social/" title="社群" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/social/">
+          社群
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/dashboard/" title="Dashboard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/dashboard/">
+          Dashboard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/platform/" title="平台" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/platform/">
+          平台
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/auth/" title="認證" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/auth/">
+          認證
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/auth/oauth/" title="OAuth2" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/auth/oauth/">
+          OAuth2
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/auth/oauth/package-auth-oauth2-client-credentials/" title="Client Credentials" class="dd-item ">
+        <a href="/laravel5-book/package/auth/oauth/package-auth-oauth2-client-credentials/">
+        Client Credentials
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant/" title="Password Grant" class="dd-item ">
+        <a href="/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant/">
+        Password Grant
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/auth/oauth/package-auth-oauth2-refresh-token/" title="Refresh Token" class="dd-item ">
+        <a href="/laravel5-book/package/auth/oauth/package-auth-oauth2-refresh-token/">
+        Refresh Token
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/" title="Password Grant with Scope" class="dd-item ">
+        <a href="/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/">
+        Password Grant with Scope
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/auth/oauth/package-auth-oauth2-access-token-authentication/" title="驗證 Access Token" class="dd-item ">
+        <a href="/laravel5-book/package/auth/oauth/package-auth-oauth2-access-token-authentication/">
+        驗證 Access Token
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/auth/jwt/" title="JWT" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/auth/jwt/">
+          JWT
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
          
     </ul>
 
@@ -2435,7 +3366,35 @@
 
 
 
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+
 	<p>這裏介紹 Laravel 提供的輔助方法 (Helpers)功能</p>
+
+
+
+
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 
 
@@ -4123,6 +5082,540 @@ if (!doNotTrack) {
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
             
         
         
@@ -4145,19 +5638,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/laravel5-book/js/clipboard.min.js?1603807626"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1603807626"></script>
-    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1603807626"></script>
-    <script src="/laravel5-book/js/jquery.sticky.js?1603807626"></script>
-    <script src="/laravel5-book/js/featherlight.min.js?1603807626"></script>
-    <script src="/laravel5-book/js/highlight.pack.js?1603807626"></script>
+    <script src="/laravel5-book/js/clipboard.min.js?1615216495"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1615216495"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1615216495"></script>
+    <script src="/laravel5-book/js/jquery.sticky.js?1615216495"></script>
+    <script src="/laravel5-book/js/featherlight.min.js?1615216495"></script>
+    <script src="/laravel5-book/js/highlight.pack.js?1615216495"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1603807626"></script>
-    <script src="/laravel5-book/js/learn.js?1603807626"></script>
-    <script src="/laravel5-book/js/hugo-learn.js?1603807626"></script>
+    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1615216495"></script>
+    <script src="/laravel5-book/js/learn.js?1615216495"></script>
+    <script src="/laravel5-book/js/hugo-learn.js?1615216495"></script>
 
-    <link href="/laravel5-book/mermaid/mermaid.css?1603807626" rel="stylesheet" />
-    <script src="/laravel5-book/mermaid/mermaid.js?1603807626"></script>
+    <link href="/laravel5-book/mermaid/mermaid.css?1615216495" rel="stylesheet" />
+    <script src="/laravel5-book/mermaid/mermaid.js?1615216495"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

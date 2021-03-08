@@ -1,15 +1,78 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>首頁 on Laravel 5 學習筆記</title>
+    <title>首頁 on Laravel 學習筆記</title>
     <link>https://kejyun.github.io/laravel5-book/</link>
-    <description>Recent content in 首頁 on Laravel 5 學習筆記</description>
+    <description>Recent content in 首頁 on Laravel 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
     
 	<atom:link href="https://kejyun.github.io/laravel5-book/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AMP 文章</title>
+      <link>https://kejyun.github.io/laravel5-book/package/html/package-html-amp-readme/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/html/package-html-amp-readme/</guid>
+      <description>AMP 文章  Lullabot/amp-library: Convert HTML to AMP HTML and report HTML compliance with the AMP HTML specification  </description>
+    </item>
+    
+    <item>
+      <title>Carbon 時間套件</title>
+      <link>https://kejyun.github.io/laravel5-book/package/tool/package-tool-carbon/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/tool/package-tool-carbon/</guid>
+      <description>Carbon 時間套件 Carbon 是一個很方便的轉換時間的工具，可以很方便地將時間進行轉換，取得我們想要的特定日期或格式
+安裝 Laravel 5 預設就會安裝 Carbon 套件，若沒有安裝的話可以透過下列的方式進行安裝：
+# 使用 Composer 下載 Carbon $ composer require nesbot/carbon &amp;lt;?php // 載入 composer autoload 檔案 require &amp;#39;vendor/autoload.php&amp;#39;; // 使用 Carbon 類別 use Carbon\Carbon; printf(&amp;#34;Now: %s&amp;#34;, Carbon::now()); 快速切換前後日期 &amp;lt;?php use Carbon\Carbon; $now = Carbon::now(); echo $now; // 2015-03-26 00:36:47 $today = Carbon::today(); echo $today; // 2015-03-26 00:00:00 $tomorrow = Carbon::tomorrow(&amp;#39;Europe/London&amp;#39;); echo $tomorrow; // 2015-03-27 00:00:00 $yesterday = Carbon::yesterday(); echo $yesterday; // 2015-03-25 00:00:00 建立特定日期的時間 &amp;lt;?</description>
+    </item>
+    
+    <item>
+      <title>GuzzleHttp</title>
+      <link>https://kejyun.github.io/laravel5-book/package/api/package-api-guzzlehttp/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/api/package-api-guzzlehttp/</guid>
+      <description>GuzzleHttp 設定 API 主網址 在參數設定 base_uri 即可設定主網址，之後所有的 Request 都會依照這個主網址去做請求
+use GuzzleHttp\Client; $client = new Client([ // Base URI is used with relative requests &amp;#39;base_uri&amp;#39; =&amp;gt; &amp;#39;http://httpbin.org&amp;#39;, ]); 設定 Timeout 時間 API 為了避免請求時間過久影響到系統存取的效能，會設定 API 存取時間，可以在參數設定至 timeout 欄位限定 API 存取時間限制
+use GuzzleHttp\Client; $client = new Client([ // You can set any number of default request options. &amp;#39;timeout&amp;#39; =&amp;gt; 2.14, ]); 取得回傳資料 可以使用強制轉換 $GuzzleHttpResponse-&amp;gt;getBody() 型別為 string 去取得回傳的資料
+$repsonse_content = (string) $GuzzleHttpResponse-&amp;gt;getBody(); 也可以使用 $GuzzleHttpResponse-&amp;gt;getBody()-&amp;gt;getContents() 去取得回傳的資料</description>
+    </item>
+    
+    <item>
+      <title>Mailchimp</title>
+      <link>https://kejyun.github.io/laravel5-book/package/mail/package-mail-mailchimp/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/mail/package-mail-mailchimp/</guid>
+      <description>Laravel Mailchimp 取得 API Key 登入 MailChimp 後，在右上方帳號選單中，選擇 Account
+在帳號選單頁面中，選擇 Extras 選單中的 API keys
+在 API keys 頁面中，點選 Create A Key，建立 API Key
+點選完後就可以看到你的 API Key 了
+取得 API 網址前綴 在 API 的網址可以看到前方有 &amp;lt;dc&amp;gt; 的字樣，&amp;lt;dc&amp;gt; 是要看自己所屬的服務是哪一個區域，可以登入 MailChimp 後從網址那邊取得如下
+https://&amp;lt;dc&amp;gt;.api.mailchimp.com/3.0 可以看到網址是 https://us19.admin.mailchimp.com/lists/，所以 API Key 的 &amp;lt;dc&amp;gt; 就是 us19
+取得清單編號 List ID Mailchimp 可以管理許多不同的郵件清單，為了管理清單資料，需要有清單編號（List ID），到清單頁點選您要管理的清單
+在清單頁從 Settings 選單中點選 List name and defaults 選項
+在 List name and defaults 頁面中可以看到清單編號（List ID）在右上方
+安裝套件 Laravel : ~5.</description>
+    </item>
+    
+    <item>
+      <title>套件開發</title>
+      <link>https://kejyun.github.io/laravel5-book/package/development/package-development/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/development/package-development/</guid>
+      <description>Laravel Packages Development 套件開發 建立本地端的套件資料夾 在本地端開發套件，可以在 Laravel 根目錄自行建立 packages 目錄，然後將套件放在下方路徑中
+ packages &amp;gt; &amp;lt;user_name&amp;gt; &amp;gt; &amp;lt;package_name&amp;gt; &amp;gt; &amp;lt;code_folder&amp;gt;
+ app packages # 套件資料夾（原本沒有此資料，需要自行建立） kejyun # &amp;lt;user_name&amp;gt; 作者名稱 larapack # &amp;lt;package_name&amp;gt; 套件名稱 src # &amp;lt;code_folder&amp;gt; 所有套件程式皆放在此目錄 所有套件相關的程式皆放在此路徑下
+建立套件 composer.json 在建立的套件目錄下初始化此套件的 composer.json
+~/laravel_project/packages/kejyun/larapack $ composer init Package name (&amp;lt;vendor&amp;gt;/&amp;lt;name&amp;gt;) [vagrant/larapack]: kejyun/larapack Description []: KJ Larapack Author [, n to skip]: KeJyun &amp;lt;kejyun@gmail.com&amp;gt; Minimum Stability []: dev Package Type (e.g. library, project, metapackage, composer-plugin) []: License []: MIT Define your dependencies.</description>
+    </item>
     
     <item>
       <title>AWS Redis 設定</title>
@@ -62,7 +125,7 @@ $ brew search pgsql osm2pgsql	php54-pdo-pgsql php55-pdo-pgsql php56-pdo-pgsql �
 當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。
 所以我們會想要做到 減少重複的程式碼、提高維護開發的效率，所以將程式碼依照分類及分層抽出獨立控管，讓不同類型的程式專心處理自己相關的商業邏輯，讓開發維護更容易。
 隨著程式架構的演進會發展出更多不同的架構，所以這個設計架構準則也是會隨著時間做演進的。
-資料層級需求分析 Service (服務)
+ 資料層級需求分析 Service (服務)
 我們原本在 Controller 處理請求時，會針對使用者的請求，做不同商業邏輯的處理，而同樣的商業邏輯可能會被不同的 Controller 存取，為了讓同個商業邏輯程式能夠重複使用，所以我會分出一層 Service (服務) ，將這些商業邏輯放在裡面，供不同的 Controller 存取。
 在 Service 方法中，會針對目前商業邏輯的資料進行蒐集與彙整，處理過後再回傳給 Controller
 Repository (資源庫)
@@ -232,12 +295,12 @@ app/ bootstrap/ public/ vendor/ .env.php .env.local.php .env.dev.php .env.testin
     </item>
     
     <item>
-      <title>API 介紹</title>
+      <title>API throttle middleware</title>
       <link>https://kejyun.github.io/laravel5-book/api/api-intro/</link>
       <pubDate>Tue, 30 Jun 2020 21:24:42 +0800</pubDate>
       
       <guid>https://kejyun.github.io/laravel5-book/api/api-intro/</guid>
-      <description>API 介紹 throttle middleware 在 app/Http/Kernel.php 檔案中會看到 api 的 $middlewareGroups 有一個 &#39;throttle:60,1&#39;，這邊的意思是 每 1 分鐘同個 ip 可以請求 60 次，可以針對你的 API 請求需求，去限制 API 請求次數，已保護你的 API 不會被隨意無限制的存取
+      <description>API throttle middleware 在 app/Http/Kernel.php 檔案中會看到 api 的 $middlewareGroups 有一個 &#39;throttle:60,1&#39;，這邊的意思是 每 1 分鐘同個 ip 可以請求 60 次，可以針對你的 API 請求需求，去限制 API 請求次數，已保護你的 API 不會被隨意無限制的存取
 &amp;lt;?php namespace App\Http; use Illuminate\Foundation\Http\Kernel as HttpKernel; class Kernel extends HttpKernel { /** * The application&amp;#39;s route middleware groups. * * @var array */ protected $middlewareGroups = [ &amp;#39;web&amp;#39; =&amp;gt; [ \App\Http\Middleware\EncryptCookies::class, \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class, \Illuminate\Session\Middleware\StartSession::class, // \Illuminate\Session\Middleware\AuthenticateSession::class,  \Illuminate\View\Middleware\ShareErrorsFromSession::class, \App\Http\Middleware\VerifyCsrfToken::class, \Illuminate\Routing\Middleware\SubstituteBindings::class, ], &amp;#39;api&amp;#39; =&amp;gt; [ &amp;#39;throttle:60,1&amp;#39;, &amp;#39;bindings&amp;#39;, ], ]; } 詳情可以參考 Illuminate\Routing\Middleware\ThrottleRequests 檔案</description>
     </item>
     
@@ -289,6 +352,55 @@ Migration 指令 建立 Migration $ php artisan make:migration create_users_tabl
 所以 Laravel 5 預設把記錄 Query Log 的機制關閉，若需要做 Query Debug，需要自行打開 Qeury Log 功能
 &amp;lt;?php // 啟用 Query Log 功能 DB::connection()-&amp;gt;enableQueryLog(); 這樣我們就可以使用 DB::getQueryLog(); 去取得做資料庫查詢的 Qeury Log 摟！！ 要得到執行過的查詢紀錄陣列，你可以使用 getQueryLog 方法：
 &amp;lt;?php // 取得資料庫查詢的 Qeury Log $queries = DB::getQueryLog(); var_dump($queries); 參考資料  資料庫使用基礎 查詢日誌記錄 - Laravel.tw How to get the query executed in Laravel 5 ? DB::getQueryLog returning empty array  </description>
+    </item>
+    
+    <item>
+      <title>Artisan tail</title>
+      <link>https://kejyun.github.io/laravel5-book/package/debug/package-debug-artisan-tail/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/debug/package-debug-artisan-tail/</guid>
+      <description>Artisan tail 在 Laravel 4 我們常常用 php artisan tail 去即時顯示系統的 Log，以便我們進行除錯，但在 Laravel 5 預設是將這個套件拿到的，所以如果我們要繼續使用的話，必須要手動的將套件加回去。
+安裝 Laravel tail 套件 首先在命令列執行 composer require spatie/laravel-tail 安裝 tail 套件
+$ composer require spatie/laravel-tail 接著在 config/app.php 檔案中的 providers 加入 tail ServiceProvider
+// config/app.php &amp;#39;providers&amp;#39; =&amp;gt; [ ... &amp;#39;Spatie\Tail\TailServiceProvider&amp;#39;, ... ]; 安裝完畢之後就可以繼續使用 php artisan tail 去觀看你的 Log 了！
+$ php artisan tail tail 遠端主機 Log 檔 tail 命令可以讓我們即時觀看遠端的 Log 檔案，我們只要將遠端主機的相關設定加入即可，可以使用下列指令建立 config/tail.php 檔案
+$ php artisan vendor:publish --provider=&amp;#34;Spatie\Tail\TailServiceProvider&amp;#34; 之後只要在 tail 指令後面加入要觀看的主機名稱，即可立即觀看該主機的 Log 檔摟</description>
+    </item>
+    
+    <item>
+      <title>Client Credentials</title>
+      <link>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-client-credentials/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-client-credentials/</guid>
+      <description>OAuth2 Client Credentials 設定 config 在 config/oauth2.php 檔案中加入下列設定，並設定你的 token 存活時間(access_token_ttl)，單位時間為秒
+return [ &amp;#39;grant_types&amp;#39; =&amp;gt; [ &amp;#39;client_credentials&amp;#39; =&amp;gt; [ &amp;#39;class&amp;#39; =&amp;gt; &amp;#39;\League\OAuth2\Server\Grant\ClientCredentialsGrant&amp;#39;, &amp;#39;access_token_ttl&amp;#39; =&amp;gt; 3600 ] ] ]; 取得 Access token 在我們取得 Access token 的資料欄位中填入下列欄位
+   欄位名稱 資料     grant_types client_credentials   client_id KeJyun   client_secret KeJyunSecret     client_id 與 client_secret 為在 OAuth 套件說明頁 建立的
+ 送出到我們設定的 /oauth/access_token 路由後，我們就可以直接取得 access_token，並回傳此 token 失效的時間 expires_in 為我們設定的 access_token_ttl</description>
+    </item>
+    
+    <item>
+      <title>screenshot 截圖</title>
+      <link>https://kejyun.github.io/laravel5-book/package/image/package-image-screenshot-other/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/image/package-image-screenshot-other/</guid>
+      <description>screenshot 截圖  PHP PhantomJS  Website Screenshots with Laravel - YouTube GitHub - thedevdojo/website-screenshot-with-laravel: Learn how to create a screenshot of a website with Laravel   GitHub - spatie/browsershot: Convert html to an image, pdf or string  spatie/browsershot - Packagist   GitHub - stefanzweifel/screeenly: 📸 Screenshot as a Service  screeenly Use the API · stefanzweifel/screeenly Wiki · GitHub 中文會 GG    </description>
+    </item>
+    
+    <item>
+      <title>圖片處理</title>
+      <link>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-process/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-process/</guid>
+      <description>Intervention Image 圖片處理 原始圖片 resize() 圖片縮放 // 建立圖片實例 $img = Image::make(&amp;#39;public/foo.jpg&amp;#39;); // 重新調整圖片寬高至 300x200 $img-&amp;gt;resize(300, 100); resize to 300x100
+// 寬度調整至 300px，高度不變 $img-&amp;gt;resize(300, null); resize to 300xnull
+// 高度調整至 200px，寬度不變 $img-&amp;gt;resize(null, 100); resize to nullx100
+// 固定寬 300px，高度等比例縮放 $img-&amp;gt;resize(300, null, function ($constraint) { $constraint-&amp;gt;aspectRatio(); }); resize to 300xnull aspectRatio
+// 固定高 100px，寬度等比例縮放 width) $img-&amp;gt;resize(null, 100, function ($constraint) { // 等比例縮放 $constraint-&amp;gt;aspectRatio(); }); resize to nullx100 aspectRatio
+// 固定寬 300px, 高 100px，寬度等比例縮放 $img-&amp;gt;resize(300, 100, function ($constraint) { // 等比例縮放：若兩個寬高比例與原圖不符的話，會以最短邊去做等比例縮放 $constraint-&amp;gt;aspectRatio(); }); resize to 300x100 aspectRatio</description>
     </item>
     
     <item>
@@ -424,7 +536,7 @@ server { root &amp;quot;/home/kejyun/web/laravel-4-project/public&amp;quot;; loc
 當系統越來越大，會發現很多類似的商業邏輯的程式都散在各地，沒有辦法重複再利用，當程式需要異動或修改的時候，就要去搜尋所有程式碼，把許多相同商業邏輯的程式碼去做異動，但需要修改的地方若太多，往往會東漏西漏，導致系統出現錯誤，並造成往後開發的時間成本增加。
 所以我們會想要做到 減少重複的程式碼、提高維護開發的效率，所以將程式碼依照分類及分層抽出獨立控管，讓不同類型的程式專心處理自己相關的商業邏輯，讓開發維護更容易。
 隨著程式架構的演進會發展出更多不同的架構，所以這個設計架構準則也是會隨著時間做演進的。
-資料處理邏輯分層 架構圖 架構說明 A. 資料控制結構 * Controller (控制器：控制資料流程) * ServiceManager (服務整合管理：組合管理不同 Service 的商業邏輯) * Service (服務：處理商業邏輯) * Repository (資源庫：資料表資料撈取邏輯) * Model (資料庫模型：資料表設定) * Presenter (資料呈現：資料表資料格式呈現轉換) * Combination（資料整合：整理 Repository 資料成資訊） * CombinationManager（複合資料整合管理：整理多個 Service 的資料成資訊） * Checker (檢查器：根據 Controller 所需商業邏輯，驗證不同資料表欄位資料) * Validator (驗證器：資料表欄位資料驗證)    結構名稱 說明     Controller (控制器) 控制資料流程，控制要使用哪些 Service 或 ServiceManager 的商業邏輯，去組合出使用者請求需要的資料，並做資料的資料交易控制 (transaction) ，並使用 Checker 去檢查任何使用者傳進來的資料，確保資料的正確性   ServiceManager (服務整合管理) 協助 Controller 組合不同 Service 的資料成商業邏輯   Service (服務) 處理商業邏輯，組合不同的 Repository 資料成商業邏輯，提供 Controller 或 ServiceManager 存取   Repository (資源庫) 資料表資料撈取邏輯，撈取屬於自己 Model 不同條件下的資料，提供 Service 存取   Model (資料庫模型) 資料庫模型，資料表存取相關設定   Presenter (資料呈現) 資料呈現，協助 Model 做資料呈現轉換   Checker (檢查器) 協助 Controller 做資料驗證，在資料進入到程式邏輯前，都需要經過 Checker 將資料格式做驗證   Validator (驗證器) 協助 Checker 做資料驗證，Validator 只能驗證單一 Model 資料   CombinationManager (複合資料整合管理) 協助整理不同 Service 的複合式資料，若有資料的邏輯判斷需要不同的資料來源，則由 CombinationManager 負責整合處理   Combination （資料整合） 協助整理 Repository 資料成資訊    B.</description>
+ 資料處理邏輯分層 架構圖 架構說明 A. 資料控制結構 * Controller (控制器：控制資料流程) * ServiceManager (服務整合管理：組合管理不同 Service 的商業邏輯) * Service (服務：處理商業邏輯) * Repository (資源庫：資料表資料撈取邏輯) * Model (資料庫模型：資料表設定) * Presenter (資料呈現：資料表資料格式呈現轉換) * Combination（資料整合：整理 Repository 資料成資訊） * CombinationManager（複合資料整合管理：整理多個 Service 的資料成資訊） * Checker (檢查器：根據 Controller 所需商業邏輯，驗證不同資料表欄位資料) * Validator (驗證器：資料表欄位資料驗證)    結構名稱 說明     Controller (控制器) 控制資料流程，控制要使用哪些 Service 或 ServiceManager 的商業邏輯，去組合出使用者請求需要的資料，並做資料的資料交易控制 (transaction) ，並使用 Checker 去檢查任何使用者傳進來的資料，確保資料的正確性   ServiceManager (服務整合管理) 協助 Controller 組合不同 Service 的資料成商業邏輯   Service (服務) 處理商業邏輯，組合不同的 Repository 資料成商業邏輯，提供 Controller 或 ServiceManager 存取   Repository (資源庫) 資料表資料撈取邏輯，撈取屬於自己 Model 不同條件下的資料，提供 Service 存取   Model (資料庫模型) 資料庫模型，資料表存取相關設定   Presenter (資料呈現) 資料呈現，協助 Model 做資料呈現轉換   Checker (檢查器) 協助 Controller 做資料驗證，在資料進入到程式邏輯前，都需要經過 Checker 將資料格式做驗證   Validator (驗證器) 協助 Checker 做資料驗證，Validator 只能驗證單一 Model 資料   CombinationManager (複合資料整合管理) 協助整理不同 Service 的複合式資料，若有資料的邏輯判斷需要不同的資料來源，則由 CombinationManager 負責整合處理   Combination （資料整合） 協助整理 Repository 資料成資訊    B.</description>
     </item>
     
     <item>
@@ -484,6 +596,29 @@ $ export PATH=&amp;#34;$PATH:$HOME/.composer/vendor/bin&amp;#34;  我們可以�
 class User extends Model { protected $fillable = [&amp;#39;first_name&amp;#39;, &amp;#39;last_name&amp;#39;, &amp;#39;email&amp;#39;]; } 設定「需要保護的欄位變數 $guarded」 我們可以指定某些欄位，不能被使用大量新增或異動，去變更欄位的資料值
 class User extends Model { protected $guarded = [&amp;#39;id&amp;#39;, &amp;#39;password&amp;#39;]; } 若我們想要讓模型（Model）可以被大量新增，且我們沒有需要保護的欄位時，我們還是需要設定 $guarded 變數為空陣列 []，否則 Laravel 預會保護所有的欄位資料，讓你無法進行大量的新增或異動資料
 class User extends Model { protected $fillable = [&amp;#39;id&amp;#39;, &amp;#39;password&amp;#39;, &amp;#39;first_name&amp;#39;, &amp;#39;last_name&amp;#39;, &amp;#39;email&amp;#39;]; protected $guarded = []; } 參考資料  Eloquent ORM 新增、更新、刪除 - Laravel.tw Laravel Eloquent Save to DB Using Create - Unhelpful Error Eloquent Create Method - Always inserts blank entries.</description>
+    </item>
+    
+    <item>
+      <title>Password Grant</title>
+      <link>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant/</guid>
+      <description>OAuth2 Password Grant 設定 config 在 config/oauth2.php 檔案中加入下列設定，並設定你的 token 存活時間(access_token_ttl)，單位時間為秒，在 callback 設定您要用來驗證使用者帳號密碼的類別函式，OAuth2 會透過這個 callback 去驗證使用者的帳號密碼
+return [ &amp;#39;grant_types&amp;#39; =&amp;gt; [ &amp;#39;password&amp;#39; =&amp;gt; [ &amp;#39;class&amp;#39; =&amp;gt; &amp;#39;\League\OAuth2\Server\Grant\PasswordGrant&amp;#39;, &amp;#39;callback&amp;#39; =&amp;gt; &amp;#39;\App\PasswordVerifier@verify&amp;#39;, &amp;#39;access_token_ttl&amp;#39; =&amp;gt; 3600 ], ] ]; 建立驗證身份 callback OAuth 會將 Client 傳來的 username 及 password 欄位的資料透過 callback 傳入並驗證，當中驗證的規則跟邏輯你可以自行定義，若驗證失敗回傳 false 即可，驗證成功的話可以將使用者的編號回傳，OAuth 會將 Access token 對應的使用者編號（資源擁有者編號）記錄下來
+use Illuminate\Support\Facades\Auth; class PasswordGrantVerifier { public function verify($username, $password) { $credentials = [ &amp;#39;email&amp;#39; =&amp;gt; $username, &amp;#39;password&amp;#39; =&amp;gt; $password, ]; // 驗證成功 if (Auth::once($credentials)) { return Auth::user()-&amp;gt;id; } // 驗證失敗 return false; } }  取得 Access token 在我們取得 Access token 的資料欄位中填入下列欄位</description>
+    </item>
+    
+    <item>
+      <title>其他圖片處理</title>
+      <link>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-other/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-other/</guid>
+      <description>Intervention Image 其他圖片處理 cache() 快取 // 試著讀取快取的圖片 $img = Image::cache(function($image) { // 讀取本機圖片，將圖片 resize 至 300x200，並作灰階處理 return $image-&amp;gt;make(&amp;#39;public/foo.jpg&amp;#39;) -&amp;gt;resize(300, 200) -&amp;gt;greyscale(); }); 若用檔案快取，快取的圖片資料會存放在 storage/framework/cache/data 目錄下。
+ Intervention/imagecache: Caching extension for the Intervention Image Class  canvas() 建立圖片畫布 // 建立畫布 $img = Image::canvas(300, 100); Image::canvas(300, 100);
+// 建立畫布，並使用 #ff0000 顏色當作背景 $img = Image::canvas(32, 32, &amp;#39;#ff0000&amp;#39;); Image::canvas(32, 32, &amp;lsquo;#ff0000&amp;rsquo;);
+ellipse() 畫橢圓 // 建立顏色為 #ddd，寬度 300px，高度 100px 的畫布 $img = Image::canvas(300, 100, &amp;#39;#ddd&amp;#39;); // 在畫布中畫出寬度 25px，高度 60px，位置在 (50,50) ，顏色為 #0000ff 的橢圓 $img-&amp;gt;ellipse(25, 60, 50, 50, function ($draw) { $draw-&amp;gt;background(&amp;#39;#0000ff&amp;#39;); }); ellipse(25, 60, 50, 50) color #0000ff&#34;</description>
     </item>
     
     <item>
@@ -642,6 +777,18 @@ class User extends CustomBaseModel { protected $fillable = [&amp;#39;first_name&
     </item>
     
     <item>
+      <title>Refresh Token</title>
+      <link>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-refresh-token/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-refresh-token/</guid>
+      <description>OAuth2 Refresh Token 設定 config 在 config/oauth2.php 檔案中加入下列設定，並設定你的 token 存活時間(access_token_ttl) 及 refresh token 存活時間(refresh_token_ttl) 單位時間為秒
+ 注意，若使用 Refresh Token 時，必須至少有 Password Grant 或 Auth Code Grant 的這兩種 OAuth2 驗證方法其中一種，然後在取得 Access token 時，會一併回傳 refresh token
+ return [ &amp;#39;grant_types&amp;#39; =&amp;gt; [ &amp;#39;refresh_token&amp;#39; =&amp;gt; [ &amp;#39;class&amp;#39; =&amp;gt; &amp;#39;\League\OAuth2\Server\Grant\RefreshTokenGrant&amp;#39;, &amp;#39;access_token_ttl&amp;#39; =&amp;gt; 3600, &amp;#39;refresh_token_ttl&amp;#39; =&amp;gt; 36000 ] ] ]; 使用 Password Grant 取得 Access token 及 Refresh Token 在我們取得 Access token 的資料欄位中填入下列欄位
+   欄位名稱 資料     grant_types password   username kejyun@gmail.</description>
+    </item>
+    
+    <item>
       <title>ETag Middleware</title>
       <link>https://kejyun.github.io/laravel5-book/http/middleware/etag-middleware/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
@@ -712,6 +859,18 @@ try { throw new Exception(&amp;#39;Hello there is something wrong&amp;#39;); } c
     </item>
     
     <item>
+      <title>Password Grant with Scope</title>
+      <link>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/</guid>
+      <description>OAuth2 Password Grant With Scope 延續 Password Grant 的 OAuth2 設定，我們可以在參數中加入我們要取得的 資源存取範圍（Scope），讓這個 Access Token 僅能有特定資源的存取權限
+新增資源存取範圍（Scope）資料 OAuth2 定義的 Scope 皆存在 oauth_scopes 資料表中，我們在資料表中新增 user_profile 及 user_likes 這兩個 Scope
+INSERT INTO &amp;#34;oauth_scopes&amp;#34; (&amp;#34;id&amp;#34;, &amp;#34;description&amp;#34;, &amp;#34;created_at&amp;#34;, &amp;#34;updated_at&amp;#34;) VALUES (&amp;#39;user_profile&amp;#39;, &amp;#39;profile&amp;#39;, now(), now()); INSERT INTO &amp;#34;oauth_scopes&amp;#34; (&amp;#34;id&amp;#34;, &amp;#34;description&amp;#34;, &amp;#34;created_at&amp;#34;, &amp;#34;updated_at&amp;#34;) VALUES (&amp;#39;user_likes&amp;#39;, &amp;#39;likes&amp;#39;, now(), now());  取得 Access token 在我們取得 Access token 的資料欄位中填入下列欄位
+   欄位名稱 資料     grant_types password   username kejyun@gmail.</description>
+    </item>
+    
+    <item>
       <title>CloudWatch Log</title>
       <link>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-cloudwatch/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
@@ -740,6 +899,17 @@ try { throw new Exception(&amp;#39;Hello there is something wrong&amp;#39;); } c
       <description>鎖定資料 Lock 鎖定資料有 shared lock (sharedLock) 與 lock for update (lockForUpdate)，兩者都可以避面同一行資料被其他的 transaction update
 在 Laravel 鎖定資料庫資料 範例 sharedLock DB::table(&amp;#39;users&amp;#39;) -&amp;gt;where(&amp;#39;votes&amp;#39;, &amp;#39;&amp;gt;&amp;#39;, 100) -&amp;gt;sharedLock() -&amp;gt;get(); select * from `users` where `votes` &amp;gt; &amp;#39;100&amp;#39; lock in share mode DB::table(&amp;#39;tasks&amp;#39;) -&amp;gt;select(&amp;#39;details&amp;#39;, &amp;#39;created_at&amp;#39;) -&amp;gt;whereDate(&amp;#39;created_at&amp;#39;, &amp;#39;=&amp;#39;, &amp;#39;2011-11-11&amp;#39;) -&amp;gt;sharedLock() -&amp;gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = &amp;#39;2011-11-11&amp;#39; lock in share mode 可以使用 -&amp;gt;sharedLock() 或 -&amp;gt;lock(false) 去做 sharedLock
 lockForUpdate DB::table(&amp;#39;users&amp;#39;)-&amp;gt;where(&amp;#39;votes&amp;#39;, &amp;#39;&amp;gt;&amp;#39;, 100)-&amp;gt;lockForUpdate()-&amp;gt;get(); select * from `users` where `votes` &amp;gt; &amp;#39;100&amp;#39; for update DB::table(&amp;#39;tasks&amp;#39;) -&amp;gt;select(&amp;#39;details&amp;#39;, &amp;#39;created_at&amp;#39;) -&amp;gt;whereDate(&amp;#39;created_at&amp;#39;, &amp;#39;&amp;gt;&amp;#39;, &amp;#39;2016-11-24&amp;#39;) -&amp;gt;lockForUpdate() -&amp;gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = &amp;#39;2016-11-24&amp;#39; for update 可以使用 -&amp;gt;lockForUpdate() 或 -&amp;gt;lock(true) 去做 lockForUpdate</description>
+    </item>
+    
+    <item>
+      <title>驗證 Access Token</title>
+      <link>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-access-token-authentication/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-access-token-authentication/</guid>
+      <description>驗證 Access Token 路由設定 OAuth middleware 在我們想要保護的資源中，我們可以加入 oauth 的 middleware 中介層，這樣
+// 保護的資源設定 oauth middleware Route::get(&amp;#39;/user-private-resource&amp;#39;, [&amp;#39;middleware&amp;#39;=&amp;gt;&amp;#39;oauth&amp;#39;, function() { // 取得資源擁有者編號，若經過 Password Grant 驗證的 Token 則為使用者的編號 $user_id = Authorizer::getResourceOwnerId(); $data = [ &amp;#39;user_id&amp;#39;=&amp;gt; $user_id ]; // 回傳受保護的資源 return Response::json($data); }]);  透過 Access Token 取的受保護的資源 在我們取得受保護資源的請求 Header 中填入，這樣 OAuth2 就會取得我們傳入的 Access Token，並驗證我們有沒有存取權限，若有存取權限，則會直接回傳該受保護的資源
+   欄位名稱 資料     Authorization Bearer rXXoWMg5UXzQpxAynCnYYOQiZQ0xDcAjT0ywGvke    路由設定包含 Scope 的 OAuth middleware 若我們限制此路由需要有特定 Scope 的存取權限的 Access Token 才可以存取，我們可以在 middleware 後面加上允許的 Scope 名稱，若同時需要擁有多個 Scope 權限，則用 加號（+） 把 Scope 連接起來即可</description>
     </item>
     
     <item>

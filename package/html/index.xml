@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTML on Laravel 學習筆記</title>
+    <link>https://kejyun.github.io/laravel5-book/package/html/</link>
+    <description>Recent content in HTML on Laravel 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 07 Mar 2021 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://kejyun.github.io/laravel5-book/package/html/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AMP 文章</title>
+      <link>https://kejyun.github.io/laravel5-book/package/html/package-html-amp-readme/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/html/package-html-amp-readme/</guid>
+      <description>AMP 文章  Lullabot/amp-library: Convert HTML to AMP HTML and report HTML compliance with the AMP HTML specification  </description>
+    </item>
+    
+  </channel>
+</rss>

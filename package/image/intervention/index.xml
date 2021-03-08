@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>intervention on Laravel 學習筆記</title>
+    <link>https://kejyun.github.io/laravel5-book/package/image/intervention/</link>
+    <description>Recent content in intervention on Laravel 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 07 Mar 2021 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://kejyun.github.io/laravel5-book/package/image/intervention/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>圖片處理</title>
+      <link>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-process/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-process/</guid>
+      <description>Intervention Image 圖片處理 原始圖片 resize() 圖片縮放 // 建立圖片實例 $img = Image::make(&amp;#39;public/foo.jpg&amp;#39;); // 重新調整圖片寬高至 300x200 $img-&amp;gt;resize(300, 100); resize to 300x100
+// 寬度調整至 300px，高度不變 $img-&amp;gt;resize(300, null); resize to 300xnull
+// 高度調整至 200px，寬度不變 $img-&amp;gt;resize(null, 100); resize to nullx100
+// 固定寬 300px，高度等比例縮放 $img-&amp;gt;resize(300, null, function ($constraint) { $constraint-&amp;gt;aspectRatio(); }); resize to 300xnull aspectRatio
+// 固定高 100px，寬度等比例縮放 width) $img-&amp;gt;resize(null, 100, function ($constraint) { // 等比例縮放 $constraint-&amp;gt;aspectRatio(); }); resize to nullx100 aspectRatio
+// 固定寬 300px, 高 100px，寬度等比例縮放 $img-&amp;gt;resize(300, 100, function ($constraint) { // 等比例縮放：若兩個寬高比例與原圖不符的話，會以最短邊去做等比例縮放 $constraint-&amp;gt;aspectRatio(); }); resize to 300x100 aspectRatio</description>
+    </item>
+    
+    <item>
+      <title>其他圖片處理</title>
+      <link>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-other/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-other/</guid>
+      <description>Intervention Image 其他圖片處理 cache() 快取 // 試著讀取快取的圖片 $img = Image::cache(function($image) { // 讀取本機圖片，將圖片 resize 至 300x200，並作灰階處理 return $image-&amp;gt;make(&amp;#39;public/foo.jpg&amp;#39;) -&amp;gt;resize(300, 200) -&amp;gt;greyscale(); }); 若用檔案快取，快取的圖片資料會存放在 storage/framework/cache/data 目錄下。
+ Intervention/imagecache: Caching extension for the Intervention Image Class  canvas() 建立圖片畫布 // 建立畫布 $img = Image::canvas(300, 100); Image::canvas(300, 100);
+// 建立畫布，並使用 #ff0000 顏色當作背景 $img = Image::canvas(32, 32, &amp;#39;#ff0000&amp;#39;); Image::canvas(32, 32, &amp;lsquo;#ff0000&amp;rsquo;);
+ellipse() 畫橢圓 // 建立顏色為 #ddd，寬度 300px，高度 100px 的畫布 $img = Image::canvas(300, 100, &amp;#39;#ddd&amp;#39;); // 在畫布中畫出寬度 25px，高度 60px，位置在 (50,50) ，顏色為 #0000ff 的橢圓 $img-&amp;gt;ellipse(25, 60, 50, 50, function ($draw) { $draw-&amp;gt;background(&amp;#39;#0000ff&amp;#39;); }); ellipse(25, 60, 50, 50) color #0000ff&#34;</description>
+    </item>
+    
+  </channel>
+</rss>

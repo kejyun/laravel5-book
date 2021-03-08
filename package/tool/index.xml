@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工具 on Laravel 學習筆記</title>
+    <link>https://kejyun.github.io/laravel5-book/package/tool/</link>
+    <description>Recent content in 工具 on Laravel 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 07 Mar 2021 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://kejyun.github.io/laravel5-book/package/tool/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Carbon 時間套件</title>
+      <link>https://kejyun.github.io/laravel5-book/package/tool/package-tool-carbon/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/tool/package-tool-carbon/</guid>
+      <description>Carbon 時間套件 Carbon 是一個很方便的轉換時間的工具，可以很方便地將時間進行轉換，取得我們想要的特定日期或格式
+安裝 Laravel 5 預設就會安裝 Carbon 套件，若沒有安裝的話可以透過下列的方式進行安裝：
+# 使用 Composer 下載 Carbon $ composer require nesbot/carbon &amp;lt;?php // 載入 composer autoload 檔案 require &amp;#39;vendor/autoload.php&amp;#39;; // 使用 Carbon 類別 use Carbon\Carbon; printf(&amp;#34;Now: %s&amp;#34;, Carbon::now()); 快速切換前後日期 &amp;lt;?php use Carbon\Carbon; $now = Carbon::now(); echo $now; // 2015-03-26 00:36:47 $today = Carbon::today(); echo $today; // 2015-03-26 00:00:00 $tomorrow = Carbon::tomorrow(&amp;#39;Europe/London&amp;#39;); echo $tomorrow; // 2015-03-27 00:00:00 $yesterday = Carbon::yesterday(); echo $yesterday; // 2015-03-25 00:00:00 建立特定日期的時間 &amp;lt;?</description>
+    </item>
+    
+  </channel>
+</rss>

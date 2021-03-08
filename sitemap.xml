@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/html/package-html-amp-readme/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/tool/package-tool-carbon/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/api/package-api-guzzlehttp/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/image/intervention/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/mail/package-mail-mailchimp/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/auth/oauth/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/development/package-development/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kejyun.github.io/laravel5-book/database/redis/aws-cluster/aws-cluster/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
@@ -123,6 +158,36 @@
   </url>
   
   <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/debug/package-debug-artisan-tail/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-client-credentials/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/auth/jwt/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/image/package-image-screenshot-other/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/image/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-process/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kejyun.github.io/laravel5-book/http/request/request-cookie/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
@@ -218,6 +283,21 @@
   </url>
   
   <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/image/intervention/package-image-intervention-other/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/chart/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kejyun.github.io/laravel5-book/http/route/sub-domain-route/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
@@ -298,6 +378,16 @@
   </url>
   
   <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/line-bot/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-refresh-token/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kejyun.github.io/laravel5-book/database/postgresql/</loc>
     <lastmod>2020-09-21T21:24:42+08:00</lastmod>
   </url>
@@ -353,6 +443,16 @@
   </url>
   
   <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/debug/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/service/errors-log-service-cloudwatch/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
@@ -383,6 +483,16 @@
   </url>
   
   <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/tool/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/auth/oauth/package-auth-oauth2-access-token-authentication/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kejyun.github.io/laravel5-book/services/errors-logs/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
@@ -403,6 +513,11 @@
   </url>
   
   <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/design-pattern/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kejyun.github.io/laravel5-book/services/encryption/encryption-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
   </url>
@@ -418,8 +533,23 @@
   </url>
   
   <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/html/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kejyun.github.io/laravel5-book/services/hashing/hashing-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/text/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
   
   <url>
@@ -428,8 +558,18 @@
   </url>
   
   <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/api/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kejyun.github.io/laravel5-book/services/scheduling/scheduling-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/view/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
   
   <url>
@@ -438,8 +578,33 @@
   </url>
   
   <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/mail/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kejyun.github.io/laravel5-book/services/compass/compass-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/social/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/dashboard/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/platform/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kejyun.github.io/laravel5-book/package/auth/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
   
   <url>

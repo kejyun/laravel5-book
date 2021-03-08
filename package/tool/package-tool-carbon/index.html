@@ -1,0 +1,6459 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.73.0" />
+    <meta name="description" content="KeJyun Laravel 學習筆記">
+<meta name="author" content="KeJyun">
+
+    <link rel="icon" href="/laravel5-book/images/favicon.png" type="image/png">
+
+    <title>Carbon 時間套件 :: Laravel 學習筆記</title>
+
+    
+    <link href="https://kejyun.github.io/laravel5-book/css/nucleus.css?1615216492" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/fontawesome-all.min.css?1615216492" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hybrid.css?1615216492" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/featherlight.min.css?1615216492" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/perfect-scrollbar.min.css?1615216492" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/auto-complete.css?1615216492" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/atom-one-dark-reasonable.css?1615216492" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/theme.css?1615216492" rel="stylesheet">
+    <link href="https://kejyun.github.io/laravel5-book/css/hugo-theme.css?1615216492" rel="stylesheet">
+    
+    <link href="https://kejyun.github.io/laravel5-book/css/theme-mine.css?1615216492" rel="stylesheet">
+    
+    
+
+    <script src="https://kejyun.github.io/laravel5-book/js/jquery-3.3.1.min.js?1615216492"></script>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    <style type="text/css">
+    #chapter p {
+      text-align:left;
+    }
+</style>
+
+
+
+
+  
+    
+
+<script type="application/ld+json">
+{
+    "@context":"http://schema.org",
+    "@type":"Article",
+    "headline":"Carbon 時間套件",
+    "url":"https:\/\/kejyun.github.io\/laravel5-book\/package\/tool\/package-tool-carbon\/",
+    "keywords":[
+    
+      
+        
+        "laravel"
+      
+        , 
+        "laravel 學習筆記"
+      
+        , 
+        "KJ"
+      
+        , 
+        "kejyun"
+      
+    
+    ],
+    "image":{
+        "@type":"ImageObject",
+        "url" :
+        
+          "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+        
+        "width":"1200",
+        "height":"627"
+    },
+    "mainEntityOfPage":"True",
+    "publisher":{
+        "@type":"Organization",
+        "name":"KeJyun",
+        "url":"https:\/\/kejyun.github.io\/laravel5-book\/",
+        "logo":{
+            "@type":"ImageObject",
+            "url":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+            "width":"357",
+            "height":"60"
+        }
+    },
+    "dateCreated":"2021-03-07T21:24:42\u002b08:00",
+    "datePublished":"2021-03-07T21:24:42\u002b08:00",
+    
+    
+    "author":"KJ",
+    "creator":"KJ",
+    
+    "dateModified":"2021-03-07T21:24:42\u002b08:00",
+    "articleSection":"TechArticle"
+}
+</script>
+
+  
+
+  
+    
+<script type="application/ld+json">
+	{
+		"@context":"http://schema.org",
+		"@type": "BlogPosting",
+		"image":
+		
+			"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+		
+		"url": "https:\/\/kejyun.github.io\/laravel5-book\/package\/tool\/package-tool-carbon\/",
+		"headline": "Carbon 時間套件",
+		"alternativeHeadline": "Carbon 時間套件",
+		"dateCreated": "2021-03-07T21:24:42\u002b08:00",
+		"datePublished": "2021-03-07T21:24:42\u002b08:00",
+		"dateModified": "2021-03-07T21:24:42\u002b08:00",
+		"inLanguage": "zh-TW",
+		"isFamilyFriendly": "true",
+		"copyrightYear": "2021",
+		"copyrightHolder": "KeJyun",
+		"contentLocation": {
+			"@type": "Place",
+			"name": ""
+		},
+		
+		"accountablePerson": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/kejyun.github.io\/laravel5-book\/"
+		},
+		"author": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/kejyun.github.io\/laravel5-book\/"
+		},
+		"creator": {
+			"@type": "Person",
+			"name": "KJ",
+			"url": "https:\/\/kejyun.github.io\/laravel5-book\/"
+		},
+		
+		"publisher": {
+			"@type": "Organization",
+			"name": "KeJyun",
+			"url": "https:\/\/kejyun.github.io\/laravel5-book\/",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+				"width":"357",
+				"height":"60"
+			}
+		},
+		"mainEntityOfPage": "True",
+		"keywords": [ 
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
+		],
+		"genre":["KeJyun"],
+		"articleSection": "KeJyun",
+		"articleBody": "Carbon 時間套件 Carbon 是一個很方便的轉換時間的工具，可以很方便地將時間進行轉換，取得我們想要的特定日期或格式\n安裝 Laravel 5 預設就會安裝 Carbon 套件，若沒有安裝的話可以透過下列的方式進行安裝：\n# 使用 Composer 下載 Carbon $ composer require nesbot\/carbon \u0026lt;?php \/\/ 載入 composer autoload 檔案 require \u0026#39;vendor\/autoload.php\u0026#39;; \/\/ 使用 Carbon 類別 use Carbon\\Carbon; printf(\u0026#34;Now: %s\u0026#34;, Carbon::now()); 快速切換前後日期 \u0026lt;?php use Carbon\\Carbon; $now = Carbon::now(); echo $now; \/\/ 2015-03-26 00:36:47 $today = Carbon::today(); echo $today; \/\/ 2015-03-26 00:00:00 $tomorrow = Carbon::tomorrow(\u0026#39;Europe\/London\u0026#39;); echo $tomorrow; \/\/ 2015-03-27 00:00:00 $yesterday = Carbon::yesterday(); echo $yesterday; \/\/ 2015-03-25 00:00:00 建立特定日期的時間 \u0026lt;?php use Carbon\\Carbon; $timezone = \u0026#39;Asia\/Taipei\u0026#39;; \/\/ 從「年月日」建立 Carbon::createFromDate($year, $month, $day, $timezone); \/\/ 從「時分秒」建立 Carbon::createFromTime($hour, $minute, $second, $timezone); \/\/ 從完整的「年月日時分秒」建立 Carbon::create($year, $month, $day, $hour, $minute, $second, $timezone); \/\/ 從指定的格式建立 Carbon::createFromFormat($format, $time, $tz); echo Carbon::createFromFormat(\u0026#39;Y-m-d H\u0026#39;, \u0026#39;1975-05-21 22\u0026#39;)-\u0026gt;toDateTimeString(); \/\/ 1975-05-21 22:00:00  \/\/ 從時間戳記建立 echo Carbon::createFromTimeStamp(-1)-\u0026gt;toDateTimeString(); \/\/ 1969-12-31 18:59:59 echo Carbon::createFromTimeStamp(-1, \u0026#39;Europe\/London\u0026#39;)-\u0026gt;toDateTimeString(); \/\/ 1970-01-01 00:59:59 echo Carbon::createFromTimeStampUTC(-1)-\u0026gt;toDateTimeString(); \/\/ 1969-12-31 23:59:59 轉換日期 \u0026lt;?php use Carbon\\Carbon; \/\/ 透過文字移動日期 $knownDate = Carbon::create(2001, 5, 21, 12); \/\/ create testing date Carbon::setTestNow($knownDate); \/\/ set the mock echo new Carbon(\u0026#39;tomorrow\u0026#39;); \/\/ 2001-05-22 00:00:00 ... notice the time ! echo new Carbon(\u0026#39;yesterday\u0026#39;); \/\/ 2001-05-20 00:00:00 echo new Carbon(\u0026#39;next wednesday\u0026#39;); \/\/ 2001-05-23 00:00:00 echo new Carbon(\u0026#39;last friday\u0026#39;); \/\/ 2001-05-18 00:00:00 echo new Carbon(\u0026#39;this thursday\u0026#39;); \/\/ 2001-05-24 00:00:00 取得日期資料 \u0026lt;?php use Carbon\\Carbon; $dt = Carbon::parse(\u0026#39;2012-9-5 23:26:11.123789\u0026#39;); \/\/ 取的指定時間資料的資訊（整數） var_dump($dt-\u0026gt;year); \/\/ int(2012) var_dump($dt-\u0026gt;month); \/\/ int(9) var_dump($dt-\u0026gt;day); \/\/ int(5) var_dump($dt-\u0026gt;hour); \/\/ int(23) var_dump($dt-\u0026gt;minute); \/\/ int(26) var_dump($dt-\u0026gt;second); \/\/ int(11) var_dump($dt-\u0026gt;micro); \/\/ int(123789) var_dump($dt-\u0026gt;dayOfWeek); \/\/ int(3) var_dump($dt-\u0026gt;dayOfYear); \/\/ int(248) var_dump($dt-\u0026gt;weekOfMonth); \/\/ int(1) var_dump($dt-\u0026gt;weekOfYear); \/\/ int(36) var_dump($dt-\u0026gt;daysInMonth); \/\/ int(30) var_dump($dt-\u0026gt;timestamp); \/\/ int(1346901971) var_dump(Carbon::createFromDate(1975, 5, 21)-\u0026gt;age); \/\/ int(39) calculated vs now in the same tz var_dump($dt-\u0026gt;quarter); \/\/ int(3)  \/\/ 回傳與 UTC 差異的秒數 var_dump(Carbon::createFromTimestampUTC(0)-\u0026gt;offset); \/\/ int(0) var_dump(Carbon::createFromTimestamp(0)-\u0026gt;offset); \/\/ int(-18000)  \/\/ 回傳與 UTC 差異的時數 var_dump(Carbon::createFromTimestamp(0)-\u0026gt;offsetHours); \/\/ int(-5)  \/\/ 找出當天日否有日光節約時間 var_dump(Carbon::createFromDate(2012, 1, 1)-\u0026gt;dst); \/\/ bool(false) var_dump(Carbon::createFromDate(2012, 9, 1)-\u0026gt;dst); \/\/ bool(true)  \/\/ 判斷指定的的時區是否與預設的時區相同 var_dump(Carbon::now()-\u0026gt;local); \/\/ bool(true) var_dump(Carbon::now(\u0026#39;America\/Vancouver\u0026#39;)-\u0026gt;local); \/\/ bool(false)  \/\/ 判斷是否為 UTC 的時區時間 var_dump(Carbon::now()-\u0026gt;utc); \/\/ bool(false) var_dump(Carbon::now(\u0026#39;Europe\/London\u0026#39;)-\u0026gt;utc); \/\/ bool(true) var_dump(Carbon::createFromTimestampUTC(0)-\u0026gt;utc); \/\/ bool(true)  \/\/ 取得時區實例 echo get_class(Carbon::now()-\u0026gt;timezone); \/\/ DateTimeZone echo get_class(Carbon::now()-\u0026gt;tz); \/\/ DateTimeZone  \/\/ 取得時區實例的名稱 echo Carbon::now()-\u0026gt;timezoneName; \/\/ America\/Toronto echo Carbon::now()-\u0026gt;tzName; \/\/ America\/Toronto 設定時間資料 \u0026lt;?php use Carbon\\Carbon; $dt = Carbon::now(); $dt-\u0026gt;year = 1975; $dt-\u0026gt;month = 13; \/\/ 年份會強制 \u002b1，且月份變為 1 月 $dt-\u0026gt;month = 5; $dt-\u0026gt;day = 21; $dt-\u0026gt;hour = 22; $dt-\u0026gt;minute = 32; $dt-\u0026gt;second = 5; $dt-\u0026gt;timestamp = 169957925; \/\/ 這個設定不會變更時區  \/\/ 透過字串或是 DateTimeZone 實例去設定時區 $dt-\u0026gt;timezone = new DateTimeZone(\u0026#39;Europe\/London\u0026#39;); $dt-\u0026gt;timezone = \u0026#39;Europe\/London\u0026#39;; $dt-\u0026gt;tz = \u0026#39;Europe\/London\u0026#39;; \/\/ 鏈結設定方式 $dt-\u0026gt;year(1975)-\u0026gt;month(5)-\u0026gt;day(21)-\u0026gt;hour(22)-\u0026gt;minute(32)-\u0026gt;second(5)-\u0026gt;toDateTimeString(); $dt-\u0026gt;setDate(1975, 5, 21)-\u0026gt;setTime(22, 32, 5)-\u0026gt;toDateTimeString(); $dt-\u0026gt;setDateTime(1975, 5, 21, 22, 32, 5)-\u0026gt;toDateTimeString(); $dt-\u0026gt;timestamp(169957925)-\u0026gt;timezone(\u0026#39;Europe\/London\u0026#39;); $dt-\u0026gt;tz(\u0026#39;America\/Toronto\u0026#39;)-\u0026gt;setTimezone(\u0026#39;America\/Vancouver\u0026#39;); 格式化時間資料 \u0026lt;?php use Carbon\\Carbon; $dt = Carbon::create(1975, 12, 25, 14, 15, 16); var_dump($dt-\u0026gt;toDateTimeString() == $dt); \/\/ bool(true) =\u0026gt; uses __toString() echo $dt-\u0026gt;toDateString(); \/\/ 1975-12-25 echo $dt-\u0026gt;toFormattedDateString(); \/\/ Dec 25, 1975 echo $dt-\u0026gt;toTimeString(); \/\/ 14:15:16 echo $dt-\u0026gt;toDateTimeString(); \/\/ 1975-12-25 14:15:16 echo $dt-\u0026gt;toDayDateTimeString(); \/\/ Thu, Dec 25, 1975 2:15 PM  \/\/ 仍可以使用 format() 函式 echo $dt-\u0026gt;format(\u0026#39;l jS \\\\of F Y h:i:s A\u0026#39;); \/\/ Thursday 25th of December 1975 02:15:16 PM  \/\/ 常用的時間格式 echo $dt-\u0026gt;toAtomString(); \/\/ in 1 Jahr echo $dt-\u0026gt;toCookieString(); \/\/ Thursday, 25-Dec-1975 14:15:16 EST echo $dt-\u0026gt;toIso8601String(); \/\/ 1975-12-25T14:15:16-0500 echo $dt-\u0026gt;toRfc822String(); \/\/ Thu, 25 Dec 75 14:15:16 -0500 echo $dt-\u0026gt;toRfc850String(); \/\/ Thursday, 25-Dec-75 14:15:16 EST echo $dt-\u0026gt;toRfc1036String(); \/\/ Thu, 25 Dec 75 14:15:16 -0500 echo $dt-\u0026gt;toRfc1123String(); \/\/ Thu, 25 Dec 1975 14:15:16 -0500 echo $dt-\u0026gt;toRfc2822String(); \/\/ Thu, 25 Dec 1975 14:15:16 -0500 echo $dt-\u0026gt;toRfc3339String(); \/\/ 1975-12-25T14:15:16-05:00 echo $dt-\u0026gt;toRssString(); \/\/ Thu, 25 Dec 1975 14:15:16 -0500 echo $dt-\u0026gt;toW3cString(); \/\/ 1975-12-25T14:15:16-05:00 比較時間差異 \u0026lt;?php use Carbon\\Carbon; echo Carbon::now()-\u0026gt;tzName; \/\/ America\/Toronto $first = Carbon::create(2012, 9, 5, 23, 26, 11); $second = Carbon::create(2012, 9, 5, 20, 26, 11, \u0026#39;America\/Vancouver\u0026#39;); echo $first-\u0026gt;toDateTimeString(); \/\/ 2012-09-05 23:26:11 echo $first-\u0026gt;tzName; \/\/ America\/Toronto echo $second-\u0026gt;toDateTimeString(); \/\/ 2012-09-05 20:26:11 echo $second-\u0026gt;tzName; \/\/ America\/Vancouver  \/\/ 大於、等於、小於 var_dump($first-\u0026gt;eq($second)); \/\/ bool(true) var_dump($first-\u0026gt;ne($second)); \/\/ bool(false) var_dump($first-\u0026gt;gt($second)); \/\/ bool(false) var_dump($first-\u0026gt;gte($second)); \/\/ bool(true) var_dump($first-\u0026gt;lt($second)); \/\/ bool(false) var_dump($first-\u0026gt;lte($second)); \/\/ bool(true)  $first-\u0026gt;setDateTime(2012, 1, 1, 0, 0, 0); $second-\u0026gt;setDateTime(2012, 1, 1, 0, 0, 0); \/\/ Remember tz is \u0026#39;America\/Vancouver\u0026#39;  var_dump($first-\u0026gt;eq($second)); \/\/ bool(false) var_dump($first-\u0026gt;ne($second)); \/\/ bool(true) var_dump($first-\u0026gt;gt($second)); \/\/ bool(false) var_dump($first-\u0026gt;gte($second)); \/\/ bool(false) var_dump($first-\u0026gt;lt($second)); \/\/ bool(true) var_dump($first-\u0026gt;lte($second)); \/\/ bool(true)  \/\/ 時間區間比較 $first = Carbon::create(2012, 9, 5, 1); $second = Carbon::create(2012, 9, 5, 5); var_dump(Carbon::create(2012, 9, 5, 3)-\u0026gt;between($first, $second)); \/\/ bool(true) var_dump(Carbon::create(2012, 9, 5, 5)-\u0026gt;between($first, $second)); \/\/ bool(true) var_dump(Carbon::create(2012, 9, 5, 5)-\u0026gt;between($first, $second, false)); \/\/ bool(false)  \/\/ 時間大小比較 $dt1 = Carbon::create(2012, 1, 1, 0, 0, 0); $dt2 = Carbon::create(2014, 1, 30, 0, 0, 0); echo $dt1-\u0026gt;min($dt2); \/\/ 2012-01-01 00:00:00  $dt1 = Carbon::create(2012, 1, 1, 0, 0, 0); $dt2 = Carbon::create(2014, 1, 30, 0, 0, 0); echo $dt1-\u0026gt;max($dt2); \/\/ 2014-01-30 00:00:00  \/\/ now is the default param $dt1 = Carbon::create(2000, 1, 1, 0, 0, 0); echo $dt1-\u0026gt;max(); \/\/ 時間差異運算 echo Carbon::now(\u0026#39;America\/Vancouver\u0026#39;)-\u0026gt;diffInSeconds(Carbon::now(\u0026#39;Europe\/London\u0026#39;)); \/\/ 0  $dtOttawa = Carbon::createFromDate(2000, 1, 1, \u0026#39;America\/Toronto\u0026#39;); $dtVancouver = Carbon::createFromDate(2000, 1, 1, \u0026#39;America\/Vancouver\u0026#39;); echo $dtOttawa-\u0026gt;diffInHours($dtVancouver); \/\/ 3  echo $dtOttawa-\u0026gt;diffInHours($dtVancouver, false); \/\/ 3 echo $dtVancouver-\u0026gt;diffInHours($dtOttawa, false); \/\/ -3  $dt = Carbon::create(2012, 1, 31, 0); echo $dt-\u0026gt;diffInDays($dt-\u0026gt;copy()-\u0026gt;addMonth()); \/\/ 31 echo $dt-\u0026gt;diffInDays($dt-\u0026gt;copy()-\u0026gt;subMonth(), false); \/\/ -31  $dt = Carbon::create(2012, 4, 30, 0); echo $dt-\u0026gt;diffInDays($dt-\u0026gt;copy()-\u0026gt;addMonth()); \/\/ 30 echo $dt-\u0026gt;diffInDays($dt-\u0026gt;copy()-\u0026gt;addWeek()); \/\/ 7  $dt = Carbon::create(2012, 1, 1, 0); echo $dt-\u0026gt;diffInMinutes($dt-\u0026gt;copy()-\u0026gt;addSeconds(59)); \/\/ 0 echo $dt-\u0026gt;diffInMinutes($dt-\u0026gt;copy()-\u0026gt;addSeconds(60)); \/\/ 1 echo $dt-\u0026gt;diffInMinutes($dt-\u0026gt;copy()-\u0026gt;addSeconds(119)); \/\/ 1 echo $dt-\u0026gt;diffInMinutes($dt-\u0026gt;copy()-\u0026gt;addSeconds(120)); \/\/ 2  echo $dt-\u0026gt;addSeconds(120)-\u0026gt;secondsSinceMidnight(); \/\/ 120 時間狀態 \u0026lt;?php use Carbon\\Carbon; $dt = Carbon::now(); $dt-\u0026gt;isWeekday(); $dt-\u0026gt;isWeekend(); $dt-\u0026gt;isYesterday(); $dt-\u0026gt;isToday(); $dt-\u0026gt;isTomorrow(); $dt-\u0026gt;isFuture(); $dt-\u0026gt;isPast(); $dt-\u0026gt;isLeapYear(); $dt-\u0026gt;isSameDay(Carbon::now()); $born = Carbon::createFromDate(1987, 4, 23); $noCake = Carbon::createFromDate(2014, 9, 26); $yesCake = Carbon::createFromDate(2014, 4, 23); var_dump($born-\u0026gt;isBirthday($noCake)); \/\/ bool(false) var_dump($born-\u0026gt;isBirthday($yesCake)); \/\/ bool(true) 時間運算 \u0026lt;?php use Carbon\\Carbon; $dt = Carbon::create(2012, 1, 31, 0); echo $dt-\u0026gt;toDateTimeString(); \/\/ 2012-01-31 00:00:00  echo $dt-\u0026gt;addYears(5); \/\/ 2017-01-31 00:00:00 echo $dt-\u0026gt;addYear(); \/\/ 2018-01-31 00:00:00 echo $dt-\u0026gt;subYear(); \/\/ 2017-01-31 00:00:00 echo $dt-\u0026gt;subYears(5); \/\/ 2012-01-31 00:00:00  echo $dt-\u0026gt;addMonths(60); \/\/ 2017-01-31 00:00:00 echo $dt-\u0026gt;addMonth(); \/\/ 2017-03-03 00:00:00 equivalent of $dt-\u0026gt;month($dt-\u0026gt;month \u002b 1); so it wraps echo $dt-\u0026gt;subMonth(); \/\/ 2017-02-03 00:00:00 echo $dt-\u0026gt;subMonths(60); \/\/ 2012-02-03 00:00:00  echo $dt-\u0026gt;addDays(29); \/\/ 2012-03-03 00:00:00 echo $dt-\u0026gt;addDay(); \/\/ 2012-03-04 00:00:00 echo $dt-\u0026gt;subDay(); \/\/ 2012-03-03 00:00:00 echo $dt-\u0026gt;subDays(29); \/\/ 2012-02-03 00:00:00  echo $dt-\u0026gt;addWeekdays(4); \/\/ 2012-02-09 00:00:00 echo $dt-\u0026gt;addWeekday(); \/\/ 2012-02-10 00:00:00 echo $dt-\u0026gt;subWeekday(); \/\/ 2012-02-09 00:00:00 echo $dt-\u0026gt;subWeekdays(4); \/\/ 2012-02-03 00:00:00  echo $dt-\u0026gt;addWeeks(3); \/\/ 2012-02-24 00:00:00 echo $dt-\u0026gt;addWeek(); \/\/ 2012-03-02 00:00:00 echo $dt-\u0026gt;subWeek(); \/\/ 2012-02-24 00:00:00 echo $dt-\u0026gt;subWeeks(3); \/\/ 2012-02-03 00:00:00  echo $dt-\u0026gt;addHours(24); \/\/ 2012-02-04 00:00:00 echo $dt-\u0026gt;addHour(); \/\/ 2012-02-04 01:00:00 echo $dt-\u0026gt;subHour(); \/\/ 2012-02-04 00:00:00 echo $dt-\u0026gt;subHours(24); \/\/ 2012-02-03 00:00:00  echo $dt-\u0026gt;addMinutes(61); \/\/ 2012-02-03 01:01:00 echo $dt-\u0026gt;addMinute(); \/\/ 2012-02-03 01:02:00 echo $dt-\u0026gt;subMinute(); \/\/ 2012-02-03 01:01:00 echo $dt-\u0026gt;subMinutes(61); \/\/ 2012-02-03 00:00:00  echo $dt-\u0026gt;addSeconds(61); \/\/ 2012-02-03 00:01:01 echo $dt-\u0026gt;addSecond(); \/\/ 2012-02-03 00:01:02 echo $dt-\u0026gt;subSecond(); \/\/ 2012-02-03 00:01:01 echo $dt-\u0026gt;subSeconds(61); \/\/ 2012-02-03 00:00:00 人類閱讀時間格式 \u0026lt;?php use Carbon\\Carbon; \/\/ 通常會用在留言的時間顯示 \/\/ 該時間會比較與現在的時間的差異 echo Carbon::now()-\u0026gt;subDays(5)-\u0026gt;diffForHumans(); \/\/ 5 days ago  echo Carbon::now()-\u0026gt;diffForHumans(Carbon::now()-\u0026gt;subYear()); \/\/ 1 year after  $dt = Carbon::createFromDate(2011, 8, 1); echo $dt-\u0026gt;diffForHumans($dt-\u0026gt;copy()-\u0026gt;addMonth()); \/\/ 1 month before echo $dt-\u0026gt;diffForHumans($dt-\u0026gt;copy()-\u0026gt;subMonth()); \/\/ 1 month after  echo Carbon::now()-\u0026gt;addSeconds(5)-\u0026gt;diffForHumans(); \/\/ 5 seconds from now  echo Carbon::now()-\u0026gt;subDays(24)-\u0026gt;diffForHumans(); \/\/ 3 weeks ago echo Carbon::now()-\u0026gt;subDays(24)-\u0026gt;diffForHumans(null, true); \/\/ 3 weeks 時間常數 \u0026lt;?php use Carbon\\Carbon; var_dump(Carbon::SUNDAY); \/\/ int(0) var_dump(Carbon::MONDAY); \/\/ int(1) var_dump(Carbon::TUESDAY); \/\/ int(2) var_dump(Carbon::WEDNESDAY); \/\/ int(3) var_dump(Carbon::THURSDAY); \/\/ int(4) var_dump(Carbon::FRIDAY); \/\/ int(5) var_dump(Carbon::SATURDAY); \/\/ int(6)  var_dump(Carbon::YEARS_PER_CENTURY); \/\/ int(100) var_dump(Carbon::YEARS_PER_DECADE); \/\/ int(10) var_dump(Carbon::MONTHS_PER_YEAR); \/\/ int(12) var_dump(Carbon::WEEKS_PER_YEAR); \/\/ int(52) var_dump(Carbon::DAYS_PER_WEEK); \/\/ int(7) var_dump(Carbon::HOURS_PER_DAY); \/\/ int(24) var_dump(Carbon::MINUTES_PER_HOUR); \/\/ int(60) var_dump(Carbon::SECONDS_PER_MINUTE); \/\/ int(60) 參考資料  Carbon - A simple PHP API extension for DateTime. Carbon - docs  "
+	}
+</script>
+
+  
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	  
+		
+		
+		
+		
+		
+	
+
+	
+	
+	
+	  
+		
+		
+		
+		
+		
+	
+
+	
+	
+	
+	  
+		
+		
+		
+		
+		
+	
+
+	
+	
+	
+
+
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement":
+		[{
+			"@type": "ListItem",
+				"position": 1,
+				"item": {
+					"@id": "https:\/\/kejyun.github.io\/laravel5-book\/",
+					"name": "Home"
+				}
+		},
+		
+			
+		
+			
+				{
+					"@type": "ListItem",
+					"position":  2 ,
+					"item": {
+						"@id": "https:\/\/kejyun.github.io\/laravel5-book\/package",
+						"name": "Package"
+					}
+				}
+				, 
+			
+		
+			
+				{
+					"@type": "ListItem",
+					"position":  3 ,
+					"item": {
+						"@id": "https:\/\/kejyun.github.io\/laravel5-book\/package\/tool",
+						"name": "Tool"
+					}
+				}
+				, 
+			
+		
+			
+				{
+					"@type": "ListItem",
+					"position":  4 ,
+					"item": {
+						"@id": "https:\/\/kejyun.github.io\/laravel5-book\/package\/tool\/package-tool-carbon",
+						"name": "Package tool carbon"
+					}
+				}
+				
+			
+		
+	]
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+
+<script type="application/ld+json">
+{
+"@context": "http://www.schema.org",
+"@type": "Person",
+"@id": "https:\/\/kejyun.github.io\/laravel5-book\/package\/tool\/package-tool-carbon\/",
+"name": "KJ",
+"alternateName": "KJ",
+"nationality": "Taiwan",
+
+"affiliation": [
+	{
+		"@type": "Organization",
+		"name": "KeJyun",
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
+		]
+  	}
+],
+
+"gender": "male",
+"Description": "IT Manager",
+"disambiguatingDescription": "Hi I\u0027m Web Developer in Taiwan",
+
+"worksFor": [
+	{
+		"@type": "Organization",
+		"name": "KeJyun",
+		"sameAs": [ "\n\n\n\n\n\"https://www.facebook.com/kejyunTaiwan\",\n\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"https://kejyun.github.io/laravel5-book/\"\n"
+		]
+	}
+],
+"url": "https:\/\/kejyun.github.io\/laravel5-book\/",
+"image": "https:\/\/kejyun.github.io\/company\/team\/KeJyun.png",
+
+"sameAs": [ "\n\n\n\n\n\n\"https://ca.linkedin.com/in/kejyun/en\",\n\n\n\"https://github.com/kejyun\",\n\n\n\n\n\n\n\n\n\n\n\n\"\"\n"
+	]
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+<script type="application/ld+json">
+[
+	{
+		"@context": "http://schema.org",
+		"@type": "Webpage",
+		"specialty": "KeJyun Laravel 學習筆記",
+		"mainContentOfPage": {
+			"@context": "http://schema.org/",
+			"@type": "WebPageElement",
+			"cssSelector": ".body-content"
+		},
+		"primaryImageOfPage": "https:\/\/kejyun.github.io\/laravel5-book\/images\/bg.jpg"
+	},
+	{
+		"@context": "http://schema.org",
+		"@type": "WebSite",
+		"@id": "https:\/\/kejyun.github.io\/laravel5-book\/",
+		"additionalType": ["CreativeWork", "Person"],
+		"url": "https:\/\/kejyun.github.io\/laravel5-book\/",
+		"name": "Laravel 學習筆記",
+		"alternateName": "Laravel 學習筆記",
+		"headline": "KeJyun Laravel 學習筆記",
+		"image": "https:\/\/kejyun.github.io\/laravel5-book\/images\/bg.jpg",
+		"inLanguage": "zh-TW",
+		"author": "KeJyun",
+		"description": "KeJyun Laravel 學習筆記",
+		"disambiguatingDescription": "KeJyun Laravel 學習筆記",
+		"isFamilyFriendly": "http://schema.org/True",
+		"contentRating": "NR",
+		"sourceOrganization": "Laravel 學習筆記",
+		"publisher": {
+		  "@type": "Organization",
+		  "name": "Laravel 學習筆記",
+		  "logo": {
+		    "@type": "ImageObject",
+		    "url": "https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+		    "height": 60,
+		    "width": 107
+		  }
+		},
+		"mainEntity": {
+			"@context": "http://schema.org",
+			"@type": "localBusiness",
+			"name": "Laravel 學習筆記",
+			"image":"https:\/\/kejyun.github.io\/laravel5-book\/images\/logo.jpeg",
+			
+			"priceRange":"$$",
+			
+
+			
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "",
+				"addressLocality": "",
+				"addressRegion": "",
+				"addressCountry": "",
+				"postalCode": ""
+			},
+			"aggregateRating": {
+				"@type": "AggregateRating",
+				"ratingValue": "4.5",
+				"reviewCount": "50"
+			}
+		},
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https:\/\/kejyun.github.io\/laravel5-book\/?search={search_term}",
+			"query-input": "required name=search_term"
+		},
+		"keywords":[
+			"laravel", "laravel 學習筆記", "KJ", "kejyun"
+		],
+		"hasPart": [
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPHeader",
+				"@id": "#header",
+				"headline": "KeJyun Laravel 學習筆記",
+				"cssSelector": "#header",
+				"potentialAction": [],
+				"@graph":
+				[]
+			},
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPSidebar",
+				"cssSelector": "#sidebar",
+				"citation": [
+				
+				]
+			},
+			{
+				"@context": "http://schema.org/",
+				"@type": "WPFooter",
+				"cssSelector": ".footer",
+				"@id": "#footer",
+				"copyrightHolder":"Laravel 學習筆記",
+				"publisher": "Laravel 學習筆記",
+				"copyrightYear":"2021"
+			}
+		]
+	}
+]
+</script>
+
+  
+
+  
+  </head>
+  <body class="" data-url="/laravel5-book/package/tool/package-tool-carbon/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" 
+  href="https://kejyun.github.io/laravel5-book/"
+>
+  <img style="border-radius: 50%!important;height:auto;vertical-align: middle;" 
+    alt="" 
+    width="50" height="50" 
+    class=""
+    src="https://avatars1.githubusercontent.com/u/1586089?s=460&amp;u=184ce5bff7ceee1a681cabd2bf7b9d13e8edca67&amp;v=4"
+  >
+  <span style="vertical-align:middle;">
+  Laravel 學習筆記
+  </span>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/laravel5-book/js/lunr.min.js?1615216492"></script>
+<script type="text/javascript" src="/laravel5-book/js/auto-complete.js?1615216492"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/kejyun.github.io\/laravel5-book\/";
+    
+</script>
+<script type="text/javascript" src="/laravel5-book/js/search.js?1615216492"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/environment/" title="環境" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/environment/">
+          <b>X. </b>環境
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/environment/dot-env-file/" title=".env 檔案" class="dd-item ">
+        <a href="/laravel5-book/environment/dot-env-file/">
+        .env 檔案
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/environment/homestead/install-with-homestead/" title="Homestead" class="dd-item ">
+        <a href="/laravel5-book/environment/homestead/install-with-homestead/">
+        Homestead
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/environment/install-composer/" title="Composer 安裝" class="dd-item ">
+        <a href="/laravel5-book/environment/install-composer/">
+        Composer 安裝
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/environment/debug/" title="除錯" class="dd-item ">
+        <a href="/laravel5-book/environment/debug/">
+        除錯
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/database/" title="Database" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/database/">
+          <b>X. </b>Database
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/migration/" title="Migration (遷移)" class="dd-item ">
+        <a href="/laravel5-book/database/migration/">
+        Migration (遷移)
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/database/model/" title="Eloquent Model (模型)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/database/model/">
+          Eloquent Model (模型)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/model/eloquent-config/" title="Eloquent 設定" class="dd-item ">
+        <a href="/laravel5-book/database/model/eloquent-config/">
+        Eloquent 設定
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/model/eloquent-relationships/" title="Eloquent 關聯" class="dd-item ">
+        <a href="/laravel5-book/database/model/eloquent-relationships/">
+        Eloquent 關聯
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/model/eloquent-magic-function/" title="Eloquent 魔術函式" class="dd-item ">
+        <a href="/laravel5-book/database/model/eloquent-magic-function/">
+        Eloquent 魔術函式
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/model/eloquent-apply/" title="使用 Eloquent" class="dd-item ">
+        <a href="/laravel5-book/database/model/eloquent-apply/">
+        使用 Eloquent
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/model/eloquent-lock/" title="鎖定資料 Lock" class="dd-item ">
+        <a href="/laravel5-book/database/model/eloquent-lock/">
+        鎖定資料 Lock
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/model/eloquent-tips/" title="Eloquent 小技巧" class="dd-item ">
+        <a href="/laravel5-book/database/model/eloquent-tips/">
+        Eloquent 小技巧
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/model/eloquent-sub-query/" title="子查詢" class="dd-item ">
+        <a href="/laravel5-book/database/model/eloquent-sub-query/">
+        子查詢
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/database/qa/" title="資料庫常見問題" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/database/qa/">
+          資料庫常見問題
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/qa/cannot-get-querylog/" title="資料庫常見問題：無法取得查詢 Log" class="dd-item ">
+        <a href="/laravel5-book/database/qa/cannot-get-querylog/">
+        資料庫常見問題：無法取得查詢 Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/qa/cannot-mass-insert/" title="使用大量資料的方式新增時無法新增" class="dd-item ">
+        <a href="/laravel5-book/database/qa/cannot-mass-insert/">
+        使用大量資料的方式新增時無法新增
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/qa/cannot-mass-insert-with-extend-model/" title="使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增" class="dd-item ">
+        <a href="/laravel5-book/database/qa/cannot-mass-insert-with-extend-model/">
+        使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/database/postgresql/" title="PostgreSQL" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/database/postgresql/">
+          PostgreSQL
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/postgresql/install-odbc-driver/" title="安裝 PostgreSQL ODBC driver" class="dd-item ">
+        <a href="/laravel5-book/database/postgresql/install-odbc-driver/">
+        安裝 PostgreSQL ODBC driver
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/database/redis/" title="Redis" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/database/redis/">
+          Redis
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/database/redis/aws-cluster/aws-cluster/" title="AWS Redis 設定" class="dd-item ">
+        <a href="/laravel5-book/database/redis/aws-cluster/aws-cluster/">
+        AWS Redis 設定
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/http/" title="Http" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/http/">
+          <b>X. </b>Http
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/http/request/" title="Request 請求" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/http/request/">
+          Request 請求
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/http/request/request/" title="HTTP 請求" class="dd-item ">
+        <a href="/laravel5-book/http/request/request/">
+        HTTP 請求
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/http/request/request-cookie/" title="Cookie" class="dd-item ">
+        <a href="/laravel5-book/http/request/request-cookie/">
+        Cookie
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/http/route/" title="Route 路由" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/http/route/">
+          Route 路由
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/http/route/sub-domain-route/" title="子網域路由（Sub-Domain Route）" class="dd-item ">
+        <a href="/laravel5-book/http/route/sub-domain-route/">
+        子網域路由（Sub-Domain Route）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/http/middleware/" title="中介層（Middleware）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/http/middleware/">
+          中介層（Middleware）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/http/middleware/middleware-intro/" title="中介層介紹" class="dd-item ">
+        <a href="/laravel5-book/http/middleware/middleware-intro/">
+        中介層介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/http/middleware/etag-middleware/" title="ETag Middleware" class="dd-item ">
+        <a href="/laravel5-book/http/middleware/etag-middleware/">
+        ETag Middleware
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/view/" title="視圖 (View)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/view/">
+          <b>X. </b>視圖 (View)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/view/view-intro/" title="視圖介紹" class="dd-item ">
+        <a href="/laravel5-book/view/view-intro/">
+        視圖介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/view/view-inject-class/" title="將 Class 綁定到視圖" class="dd-item ">
+        <a href="/laravel5-book/view/view-inject-class/">
+        將 Class 綁定到視圖
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/services/" title="服務" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/services/">
+          <b>X. </b>服務
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/services/auth/" title="認證（Auth）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/services/auth/">
+          認證（Auth）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/auth/auth-login/" title="認證登入" class="dd-item ">
+        <a href="/laravel5-book/services/auth/auth-login/">
+        認證登入
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/auth/auth-support-laravel-4/" title="認證支援 Laravel 4 Session" class="dd-item ">
+        <a href="/laravel5-book/services/auth/auth-support-laravel-4/">
+        認證支援 Laravel 4 Session
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/services/mail/" title="郵件（Mail）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/services/mail/">
+          郵件（Mail）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/mail/mail-gmail/" title="使用 Gmail 寄信" class="dd-item ">
+        <a href="/laravel5-book/services/mail/mail-gmail/">
+        使用 Gmail 寄信
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/mail/mail-mailgun/" title="使用 Mailgun 寄信" class="dd-item ">
+        <a href="/laravel5-book/services/mail/mail-mailgun/">
+        使用 Mailgun 寄信
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/services/queue/" title="隊列（Queue）" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/services/queue/">
+          隊列（Queue）
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/queue/queue-intro/" title="隊列介紹" class="dd-item ">
+        <a href="/laravel5-book/services/queue/queue-intro/">
+        隊列介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/queue/queue-database/" title="Database Queue" class="dd-item ">
+        <a href="/laravel5-book/services/queue/queue-database/">
+        Database Queue
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/queue/queue-async/" title="非同步資料庫隊列（Async Database Queue）" class="dd-item ">
+        <a href="/laravel5-book/services/queue/queue-async/">
+        非同步資料庫隊列（Async Database Queue）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/queue/queue-supervisor/" title="Supervisor 啟動 queue" class="dd-item ">
+        <a href="/laravel5-book/services/queue/queue-supervisor/">
+        Supervisor 啟動 queue
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/services/helpers/" title="輔助方法 (Helpers)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/services/helpers/">
+          輔助方法 (Helpers)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/helpers/custom-helpers/" title="自定義輔助方法" class="dd-item ">
+        <a href="/laravel5-book/services/helpers/custom-helpers/">
+        自定義輔助方法
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/helpers/request-helpers/" title="請求資訊" class="dd-item ">
+        <a href="/laravel5-book/services/helpers/request-helpers/">
+        請求資訊
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/services/unit-test/" title="單元測試" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/services/unit-test/">
+          單元測試
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/unit-test/unit-test-post-csrf/" title="POST CSRF 錯誤" class="dd-item ">
+        <a href="/laravel5-book/services/unit-test/unit-test-post-csrf/">
+        POST CSRF 錯誤
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/unit-test/unit-test-ajax-request-json-response/" title="Ajax Request &amp; JSON Response" class="dd-item ">
+        <a href="/laravel5-book/services/unit-test/unit-test-ajax-request-json-response/">
+        Ajax Request &amp; JSON Response
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/unit-test/unit-test-assert/" title="Assert" class="dd-item ">
+        <a href="/laravel5-book/services/unit-test/unit-test-assert/">
+        Assert
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/unit-test/unit-test-login-and-upload-file/" title="單元測試登入及上傳檔案" class="dd-item ">
+        <a href="/laravel5-book/services/unit-test/unit-test-login-and-upload-file/">
+        單元測試登入及上傳檔案
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/unit-test/unit-test-change-root-url/" title="變更請求網址" class="dd-item ">
+        <a href="/laravel5-book/services/unit-test/unit-test-change-root-url/">
+        變更請求網址
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/services/errors-logs/" title="錯誤與日誌 Log" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/services/errors-logs/">
+          錯誤與日誌 Log
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/errors-logs/errors-show-exception-in-cli/" title="在單元測試顯示例外" class="dd-item ">
+        <a href="/laravel5-book/services/errors-logs/errors-show-exception-in-cli/">
+        在單元測試顯示例外
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/errors-logs/errors-log-level/" title="日誌記錄層級" class="dd-item ">
+        <a href="/laravel5-book/services/errors-logs/errors-log-level/">
+        日誌記錄層級
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/errors-logs/errors-log-macro/" title="日誌巨集" class="dd-item ">
+        <a href="/laravel5-book/services/errors-logs/errors-log-macro/">
+        日誌巨集
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/services/errors-logs/packages/" title="日誌套件" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/services/errors-logs/packages/">
+          日誌套件
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/errors-logs/packages/errors-log-packages-log-viewer/" title="Log Viewer" class="dd-item ">
+        <a href="/laravel5-book/services/errors-logs/packages/errors-log-packages-log-viewer/">
+        Log Viewer
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/errors-logs/packages/errors-log-packages-slack-log/" title="Slack Log" class="dd-item ">
+        <a href="/laravel5-book/services/errors-logs/packages/errors-log-packages-slack-log/">
+        Slack Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/services/errors-logs/service/" title="日誌服務" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/services/errors-logs/service/">
+          日誌服務
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/errors-logs/service/errors-log-service-understand-io/" title="Understand.io" class="dd-item ">
+        <a href="/laravel5-book/services/errors-logs/service/errors-log-service-understand-io/">
+        Understand.io
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/errors-logs/service/errors-log-service-sentry-io/" title="Sentry.io" class="dd-item ">
+        <a href="/laravel5-book/services/errors-logs/service/errors-log-service-sentry-io/">
+        Sentry.io
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/errors-logs/service/errors-log-service-bugsnag/" title="Bugsnag" class="dd-item ">
+        <a href="/laravel5-book/services/errors-logs/service/errors-log-service-bugsnag/">
+        Bugsnag
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/errors-logs/service/errors-log-service-rollbar/" title="Rollbar" class="dd-item ">
+        <a href="/laravel5-book/services/errors-logs/service/errors-log-service-rollbar/">
+        Rollbar
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/errors-logs/service/errors-log-service-cloudwatch/" title="CloudWatch Log" class="dd-item ">
+        <a href="/laravel5-book/services/errors-logs/service/errors-log-service-cloudwatch/">
+        CloudWatch Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/encryption/encryption-intro/" title="加密（encryption）" class="dd-item ">
+        <a href="/laravel5-book/services/encryption/encryption-intro/">
+        加密（encryption）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/hashing/hashing-intro/" title="雜湊（Hashing）" class="dd-item ">
+        <a href="/laravel5-book/services/hashing/hashing-intro/">
+        雜湊（Hashing）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/response/response-intro/" title="回應（Response）" class="dd-item ">
+        <a href="/laravel5-book/services/response/response-intro/">
+        回應（Response）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/scheduling/scheduling-intro/" title="任務排程（Scheduling）" class="dd-item ">
+        <a href="/laravel5-book/services/scheduling/scheduling-intro/">
+        任務排程（Scheduling）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/services/laravel-mix/" title="Laravel Mix" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/services/laravel-mix/">
+          Laravel Mix
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/laravel-mix/laravel-mix-intro/" title="Laravel Mix 介紹" class="dd-item ">
+        <a href="/laravel5-book/services/laravel-mix/laravel-mix-intro/">
+        Laravel Mix 介紹
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/laravel-mix/laravel-mix-live-reload/" title="LiveReload" class="dd-item ">
+        <a href="/laravel5-book/services/laravel-mix/laravel-mix-live-reload/">
+        LiveReload
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/laravel-mix/laravel-mix-browser-sync/" title="BrowserSync" class="dd-item ">
+        <a href="/laravel5-book/services/laravel-mix/laravel-mix-browser-sync/">
+        BrowserSync
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/services/compass/compass-intro/" title="Compass" class="dd-item ">
+        <a href="/laravel5-book/services/compass/compass-intro/">
+        Compass
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/api/" title="API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/api/">
+          <b>X. </b>API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/api/api-intro/" title="API throttle middleware" class="dd-item ">
+        <a href="/laravel5-book/api/api-intro/">
+        API throttle middleware
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/design-pattern/" title="設計模式" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/design-pattern/">
+          <b>X. </b>設計模式
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/design-pattern/service-container/" title="服務容器（Service Container）" class="dd-item ">
+        <a href="/laravel5-book/design-pattern/service-container/">
+        服務容器（Service Container）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/design-pattern/psr/" title="PSR" class="dd-item ">
+        <a href="/laravel5-book/design-pattern/psr/">
+        PSR
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/design-pattern/model/" title="Model" class="dd-item ">
+        <a href="/laravel5-book/design-pattern/model/">
+        Model
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/design-pattern/learning-resource/" title="學習資源" class="dd-item ">
+        <a href="/laravel5-book/design-pattern/learning-resource/">
+        學習資源
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/structure/" title="程式架構規範" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/structure/">
+          <b>X. </b>程式架構規範
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/structure/service-repository-structure-principle/" title="Service &amp; Repository 架構設計準則（2017 年版本）" class="dd-item ">
+        <a href="/laravel5-book/structure/service-repository-structure-principle/">
+        Service &amp; Repository 架構設計準則（2017 年版本）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/structure/combination-cache-manager-structure-principle/" title="Combination &amp; Cache 架構設計準則（2019 年版本）" class="dd-item ">
+        <a href="/laravel5-book/structure/combination-cache-manager-structure-principle/">
+        Combination &amp; Cache 架構設計準則（2019 年版本）
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/" title="套件" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/laravel5-book/package/">
+          <b>X. </b>套件
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/development/package-development/" title="套件開發" class="dd-item ">
+        <a href="/laravel5-book/package/development/package-development/">
+        套件開發
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/image/" title="圖片" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/image/">
+          圖片
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/image/intervention/" title="intervention" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/image/intervention/">
+          intervention
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/image/intervention/package-image-intervention-process/" title="圖片處理" class="dd-item ">
+        <a href="/laravel5-book/package/image/intervention/package-image-intervention-process/">
+        圖片處理
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/image/intervention/package-image-intervention-other/" title="其他圖片處理" class="dd-item ">
+        <a href="/laravel5-book/package/image/intervention/package-image-intervention-other/">
+        其他圖片處理
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/image/package-image-screenshot-other/" title="screenshot 截圖" class="dd-item ">
+        <a href="/laravel5-book/package/image/package-image-screenshot-other/">
+        screenshot 截圖
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/chart/" title="圖表" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/chart/">
+          圖表
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/line-bot/" title="Line Bot" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/line-bot/">
+          Line Bot
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/debug/" title="Debug 套件" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/debug/">
+          Debug 套件
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/debug/package-debug-artisan-tail/" title="Artisan tail" class="dd-item ">
+        <a href="/laravel5-book/package/debug/package-debug-artisan-tail/">
+        Artisan tail
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/tool/" title="工具" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/laravel5-book/package/tool/">
+          工具
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/tool/package-tool-carbon/" title="Carbon 時間套件" class="dd-item active">
+        <a href="/laravel5-book/package/tool/package-tool-carbon/">
+        Carbon 時間套件
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/design-pattern/" title="設計模式" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/design-pattern/">
+          設計模式
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/html/" title="HTML" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/html/">
+          HTML
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/html/package-html-amp-readme/" title="AMP 文章" class="dd-item ">
+        <a href="/laravel5-book/package/html/package-html-amp-readme/">
+        AMP 文章
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/text/" title="文字" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/text/">
+          文字
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/api/" title="API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/api/">
+          API
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/api/package-api-guzzlehttp/" title="GuzzleHttp" class="dd-item ">
+        <a href="/laravel5-book/package/api/package-api-guzzlehttp/">
+        GuzzleHttp
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/view/" title="視圖" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/view/">
+          視圖
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/mail/" title="郵件" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/mail/">
+          郵件
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/mail/package-mail-mailchimp/" title="Mailchimp" class="dd-item ">
+        <a href="/laravel5-book/package/mail/package-mail-mailchimp/">
+        Mailchimp
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/social/" title="社群" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/social/">
+          社群
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/dashboard/" title="Dashboard" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/dashboard/">
+          Dashboard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/platform/" title="平台" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/platform/">
+          平台
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/auth/" title="認證" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/auth/">
+          認證
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/auth/oauth/" title="OAuth2" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/auth/oauth/">
+          OAuth2
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/auth/oauth/package-auth-oauth2-client-credentials/" title="Client Credentials" class="dd-item ">
+        <a href="/laravel5-book/package/auth/oauth/package-auth-oauth2-client-credentials/">
+        Client Credentials
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant/" title="Password Grant" class="dd-item ">
+        <a href="/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant/">
+        Password Grant
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/auth/oauth/package-auth-oauth2-refresh-token/" title="Refresh Token" class="dd-item ">
+        <a href="/laravel5-book/package/auth/oauth/package-auth-oauth2-refresh-token/">
+        Refresh Token
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/" title="Password Grant with Scope" class="dd-item ">
+        <a href="/laravel5-book/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/">
+        Password Grant with Scope
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/laravel5-book/package/auth/oauth/package-auth-oauth2-access-token-authentication/" title="驗證 Access Token" class="dd-item ">
+        <a href="/laravel5-book/package/auth/oauth/package-auth-oauth2-access-token-authentication/">
+        驗證 Access Token
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/laravel5-book/package/auth/jwt/" title="JWT" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/laravel5-book/package/auth/jwt/">
+          JWT
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/kejyun"><i class='fab fa-github'></i> Github repo</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://kejyun.github.io/laravel5-book/tags"><i class='fas fa-tags'></i> Tags</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/laravel5-book/'>首頁</a> > <a href='/laravel5-book/package/'>套件</a> > <a href='/laravel5-book/package/tool/'>工具</a> > Carbon 時間套件
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+          <div id="chapter">
+        
+        <div id="body-inner">
+          
+
+        
+
+
+
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<h1 id="carbon-時間套件">Carbon 時間套件</h1>
+<p>Carbon 是一個很方便的轉換時間的工具，可以很方便地將時間進行轉換，取得我們想要的特定日期或格式</p>
+<h2 id="安裝">安裝</h2>
+<p>Laravel 5 預設就會安裝 Carbon 套件，若沒有安裝的話可以透過下列的方式進行安裝：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 使用 Composer 下載 Carbon</span>
+$ composer require nesbot/carbon
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#75715e">// 載入 composer autoload 檔案
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">require</span> <span style="color:#e6db74">&#39;vendor/autoload.php&#39;</span>;
+
+<span style="color:#75715e">// 使用 Carbon 類別
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Now: %s&#34;</span>, <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>());
+</code></pre></div><h2 id="快速切換前後日期">快速切換前後日期</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+$now <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>();
+<span style="color:#66d9ef">echo</span> $now;                               <span style="color:#75715e">// 2015-03-26 00:36:47
+</span><span style="color:#75715e"></span>$today <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">today</span>();
+<span style="color:#66d9ef">echo</span> $today;                             <span style="color:#75715e">// 2015-03-26 00:00:00
+</span><span style="color:#75715e"></span>$tomorrow <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">tomorrow</span>(<span style="color:#e6db74">&#39;Europe/London&#39;</span>);
+<span style="color:#66d9ef">echo</span> $tomorrow;                          <span style="color:#75715e">// 2015-03-27 00:00:00
+</span><span style="color:#75715e"></span>$yesterday <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">yesterday</span>();
+<span style="color:#66d9ef">echo</span> $yesterday;                         <span style="color:#75715e">// 2015-03-25 00:00:00
+</span></code></pre></div><h2 id="建立特定日期的時間">建立特定日期的時間</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+$timezone <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Asia/Taipei&#39;</span>;
+
+<span style="color:#75715e">// 從「年月日」建立
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromDate</span>($year, $month, $day, $timezone);
+
+<span style="color:#75715e">// 從「時分秒」建立
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromTime</span>($hour, $minute, $second, $timezone);
+
+<span style="color:#75715e">// 從完整的「年月日時分秒」建立
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>($year, $month, $day, $hour, $minute, $second, $timezone);
+
+<span style="color:#75715e">// 從指定的格式建立
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromFormat</span>($format, $time, $tz);
+<span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromFormat</span>(<span style="color:#e6db74">&#39;Y-m-d H&#39;</span>, <span style="color:#e6db74">&#39;1975-05-21 22&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>(); <span style="color:#75715e">// 1975-05-21 22:00:00
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 從時間戳記建立
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromTimeStamp</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>();                        <span style="color:#75715e">// 1969-12-31 18:59:59
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromTimeStamp</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Europe/London&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>();       <span style="color:#75715e">// 1970-01-01 00:59:59
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromTimeStampUTC</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>();                     <span style="color:#75715e">// 1969-12-31 23:59:59
+</span></code></pre></div><h2 id="轉換日期">轉換日期</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+<span style="color:#75715e">// 透過文字移動日期
+</span><span style="color:#75715e"></span>$knownDate <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2001</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">12</span>);          <span style="color:#75715e">// create testing date
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">setTestNow</span>($knownDate);                        <span style="color:#75715e">// set the mock
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Carbon</span>(<span style="color:#e6db74">&#39;tomorrow&#39;</span>);                           <span style="color:#75715e">// 2001-05-22 00:00:00  ... notice the time !
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Carbon</span>(<span style="color:#e6db74">&#39;yesterday&#39;</span>);                          <span style="color:#75715e">// 2001-05-20 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Carbon</span>(<span style="color:#e6db74">&#39;next wednesday&#39;</span>);                     <span style="color:#75715e">// 2001-05-23 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Carbon</span>(<span style="color:#e6db74">&#39;last friday&#39;</span>);                        <span style="color:#75715e">// 2001-05-18 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Carbon</span>(<span style="color:#e6db74">&#39;this thursday&#39;</span>);                      <span style="color:#75715e">// 2001-05-24 00:00:00
+</span></code></pre></div><h2 id="取得日期資料">取得日期資料</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+$dt <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">parse</span>(<span style="color:#e6db74">&#39;2012-9-5 23:26:11.123789&#39;</span>);
+
+<span style="color:#75715e">// 取的指定時間資料的資訊（整數）
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">year</span>);                                         <span style="color:#75715e">// int(2012)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">month</span>);                                        <span style="color:#75715e">// int(9)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">day</span>);                                          <span style="color:#75715e">// int(5)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">hour</span>);                                         <span style="color:#75715e">// int(23)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">minute</span>);                                       <span style="color:#75715e">// int(26)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">second</span>);                                       <span style="color:#75715e">// int(11)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">micro</span>);                                        <span style="color:#75715e">// int(123789)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">dayOfWeek</span>);                                    <span style="color:#75715e">// int(3)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">dayOfYear</span>);                                    <span style="color:#75715e">// int(248)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">weekOfMonth</span>);                                  <span style="color:#75715e">// int(1)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">weekOfYear</span>);                                   <span style="color:#75715e">// int(36)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">daysInMonth</span>);                                  <span style="color:#75715e">// int(30)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timestamp</span>);                                    <span style="color:#75715e">// int(1346901971)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromDate</span>(<span style="color:#ae81ff">1975</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">21</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">age</span>);          <span style="color:#75715e">// int(39) calculated vs now in the same tz
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">quarter</span>);                                      <span style="color:#75715e">// int(3)
+</span><span style="color:#75715e"></span>
+
+<span style="color:#75715e">// 回傳與 UTC 差異的秒數
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromTimestampUTC</span>(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">offset</span>);         <span style="color:#75715e">// int(0)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromTimestamp</span>(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">offset</span>);            <span style="color:#75715e">// int(-18000)
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 回傳與 UTC 差異的時數
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromTimestamp</span>(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">offsetHours</span>);       <span style="color:#75715e">// int(-5)
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 找出當天日否有日光節約時間
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromDate</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">dst</span>);           <span style="color:#75715e">// bool(false)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromDate</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">dst</span>);           <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 判斷指定的的時區是否與預設的時區相同
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">local</span>);                              <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>(<span style="color:#e6db74">&#39;America/Vancouver&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">local</span>);           <span style="color:#75715e">// bool(false)
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 判斷是否為 UTC 的時區時間
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">utc</span>);                                <span style="color:#75715e">// bool(false)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>(<span style="color:#e6db74">&#39;Europe/London&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">utc</span>);                 <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromTimestampUTC</span>(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">utc</span>);            <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 取得時區實例
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">get_class</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timezone</span>);                     <span style="color:#75715e">// DateTimeZone
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">get_class</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">tz</span>);                           <span style="color:#75715e">// DateTimeZone
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 取得時區實例的名稱
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timezoneName</span>;                            <span style="color:#75715e">// America/Toronto
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">tzName</span>;                                  <span style="color:#75715e">// America/Toronto
+</span></code></pre></div><h2 id="設定時間資料">設定時間資料</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+$dt <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>();
+
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">year</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1975</span>;
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">month</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">13</span>;             <span style="color:#75715e">// 年份會強制 +1，且月份變為 1 月
+</span><span style="color:#75715e"></span>$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">month</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">day</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>;
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">hour</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">22</span>;
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">minute</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>;
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">second</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timestamp</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">169957925</span>;  <span style="color:#75715e">// 這個設定不會變更時區
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 透過字串或是 DateTimeZone 實例去設定時區
+</span><span style="color:#75715e"></span>$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timezone</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DateTimeZone</span>(<span style="color:#e6db74">&#39;Europe/London&#39;</span>);
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timezone</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Europe/London&#39;</span>;
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">tz</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Europe/London&#39;</span>;
+
+
+
+<span style="color:#75715e">// 鏈結設定方式
+</span><span style="color:#75715e"></span>$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">year</span>(<span style="color:#ae81ff">1975</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">month</span>(<span style="color:#ae81ff">5</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">day</span>(<span style="color:#ae81ff">21</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">hour</span>(<span style="color:#ae81ff">22</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">minute</span>(<span style="color:#ae81ff">32</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">second</span>(<span style="color:#ae81ff">5</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>();
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setDate</span>(<span style="color:#ae81ff">1975</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">21</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setTime</span>(<span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">5</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>();
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setDateTime</span>(<span style="color:#ae81ff">1975</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">5</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>();
+
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timestamp</span>(<span style="color:#ae81ff">169957925</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">timezone</span>(<span style="color:#e6db74">&#39;Europe/London&#39;</span>);
+
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">tz</span>(<span style="color:#e6db74">&#39;America/Toronto&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setTimezone</span>(<span style="color:#e6db74">&#39;America/Vancouver&#39;</span>);
+</code></pre></div><h2 id="格式化時間資料">格式化時間資料</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+$dt <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">1975</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">16</span>);
+
+<span style="color:#a6e22e">var_dump</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>() <span style="color:#f92672">==</span> $dt);          <span style="color:#75715e">// bool(true) =&gt; uses __toString()
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateString</span>();                          <span style="color:#75715e">// 1975-12-25
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toFormattedDateString</span>();                 <span style="color:#75715e">// Dec 25, 1975
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toTimeString</span>();                          <span style="color:#75715e">// 14:15:16
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>();                      <span style="color:#75715e">// 1975-12-25 14:15:16
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDayDateTimeString</span>();                   <span style="color:#75715e">// Thu, Dec 25, 1975 2:15 PM
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 仍可以使用 format() 函式
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#39;l jS \\of F Y h:i:s A&#39;</span>);         <span style="color:#75715e">// Thursday 25th of December 1975 02:15:16 PM
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 常用的時間格式
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toAtomString</span>();      <span style="color:#75715e">// in 1 Jahr
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toCookieString</span>();    <span style="color:#75715e">// Thursday, 25-Dec-1975 14:15:16 EST
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toIso8601String</span>();   <span style="color:#75715e">// 1975-12-25T14:15:16-0500
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toRfc822String</span>();    <span style="color:#75715e">// Thu, 25 Dec 75 14:15:16 -0500
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toRfc850String</span>();    <span style="color:#75715e">// Thursday, 25-Dec-75 14:15:16 EST
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toRfc1036String</span>();   <span style="color:#75715e">// Thu, 25 Dec 75 14:15:16 -0500
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toRfc1123String</span>();   <span style="color:#75715e">// Thu, 25 Dec 1975 14:15:16 -0500
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toRfc2822String</span>();   <span style="color:#75715e">// Thu, 25 Dec 1975 14:15:16 -0500
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toRfc3339String</span>();   <span style="color:#75715e">// 1975-12-25T14:15:16-05:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toRssString</span>();       <span style="color:#75715e">// Thu, 25 Dec 1975 14:15:16 -0500
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toW3cString</span>();       <span style="color:#75715e">// 1975-12-25T14:15:16-05:00
+</span></code></pre></div><h2 id="比較時間差異">比較時間差異</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+<span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">tzName</span>;                        <span style="color:#75715e">// America/Toronto
+</span><span style="color:#75715e"></span>$first <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">11</span>);
+$second <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">11</span>, <span style="color:#e6db74">&#39;America/Vancouver&#39;</span>);
+
+<span style="color:#66d9ef">echo</span> $first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>();                   <span style="color:#75715e">// 2012-09-05 23:26:11
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">tzName</span>;                               <span style="color:#75715e">// America/Toronto
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $second<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>();                  <span style="color:#75715e">// 2012-09-05 20:26:11
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $second<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">tzName</span>;                              <span style="color:#75715e">// America/Vancouver
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 大於、等於、小於
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">eq</span>($second));                     <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">ne</span>($second));                     <span style="color:#75715e">// bool(false)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">gt</span>($second));                     <span style="color:#75715e">// bool(false)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">gte</span>($second));                    <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">lt</span>($second));                     <span style="color:#75715e">// bool(false)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">lte</span>($second));                    <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span>
+$first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setDateTime</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+$second<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setDateTime</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);         <span style="color:#75715e">// Remember tz is &#39;America/Vancouver&#39;
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">eq</span>($second));                     <span style="color:#75715e">// bool(false)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">ne</span>($second));                     <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">gt</span>($second));                     <span style="color:#75715e">// bool(false)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">gte</span>($second));                    <span style="color:#75715e">// bool(false)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">lt</span>($second));                     <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($first<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">lte</span>($second));                    <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span>
+
+
+<span style="color:#75715e">// 時間區間比較
+</span><span style="color:#75715e"></span>$first <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>);
+$second <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>);
+<span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">between</span>($first, $second));          <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">between</span>($first, $second));          <span style="color:#75715e">// bool(true)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">between</span>($first, $second, <span style="color:#66d9ef">false</span>));   <span style="color:#75715e">// bool(false)
+</span><span style="color:#75715e"></span>
+
+<span style="color:#75715e">// 時間大小比較
+</span><span style="color:#75715e"></span>$dt1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+$dt2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2014</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+<span style="color:#66d9ef">echo</span> $dt1<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">min</span>($dt2);                              <span style="color:#75715e">// 2012-01-01 00:00:00
+</span><span style="color:#75715e"></span>
+$dt1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+$dt2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2014</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+<span style="color:#66d9ef">echo</span> $dt1<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">max</span>($dt2);                              <span style="color:#75715e">// 2014-01-30 00:00:00
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// now is the default param
+</span><span style="color:#75715e"></span>$dt1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+<span style="color:#66d9ef">echo</span> $dt1<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">max</span>();
+
+
+<span style="color:#75715e">// 時間差異運算
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>(<span style="color:#e6db74">&#39;America/Vancouver&#39;</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInSeconds</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>(<span style="color:#e6db74">&#39;Europe/London&#39;</span>)); <span style="color:#75715e">// 0
+</span><span style="color:#75715e"></span>
+$dtOttawa <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromDate</span>(<span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;America/Toronto&#39;</span>);
+$dtVancouver <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromDate</span>(<span style="color:#ae81ff">2000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;America/Vancouver&#39;</span>);
+<span style="color:#66d9ef">echo</span> $dtOttawa<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInHours</span>($dtVancouver);                             <span style="color:#75715e">// 3
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> $dtOttawa<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInHours</span>($dtVancouver, <span style="color:#66d9ef">false</span>);                      <span style="color:#75715e">// 3
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dtVancouver<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInHours</span>($dtOttawa, <span style="color:#66d9ef">false</span>);                      <span style="color:#75715e">// -3
+</span><span style="color:#75715e"></span>
+$dt <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">0</span>);
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInDays</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">copy</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addMonth</span>());                         <span style="color:#75715e">// 31
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInDays</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">copy</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subMonth</span>(), <span style="color:#66d9ef">false</span>);                  <span style="color:#75715e">// -31
+</span><span style="color:#75715e"></span>
+$dt <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">0</span>);
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInDays</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">copy</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addMonth</span>());                         <span style="color:#75715e">// 30
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInDays</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">copy</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addWeek</span>());                          <span style="color:#75715e">// 7
+</span><span style="color:#75715e"></span>
+$dt <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInMinutes</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">copy</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSeconds</span>(<span style="color:#ae81ff">59</span>));                  <span style="color:#75715e">// 0
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInMinutes</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">copy</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSeconds</span>(<span style="color:#ae81ff">60</span>));                  <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInMinutes</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">copy</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSeconds</span>(<span style="color:#ae81ff">119</span>));                 <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffInMinutes</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">copy</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSeconds</span>(<span style="color:#ae81ff">120</span>));                 <span style="color:#75715e">// 2
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSeconds</span>(<span style="color:#ae81ff">120</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">secondsSinceMidnight</span>();                     <span style="color:#75715e">// 120
+</span></code></pre></div><h2 id="時間狀態">時間狀態</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+$dt <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>();
+
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isWeekday</span>();
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isWeekend</span>();
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isYesterday</span>();
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isToday</span>();
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isTomorrow</span>();
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isFuture</span>();
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isPast</span>();
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isLeapYear</span>();
+$dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isSameDay</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>());
+$born <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromDate</span>(<span style="color:#ae81ff">1987</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">23</span>);
+$noCake <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromDate</span>(<span style="color:#ae81ff">2014</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">26</span>);
+$yesCake <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromDate</span>(<span style="color:#ae81ff">2014</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">23</span>);
+<span style="color:#a6e22e">var_dump</span>($born<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isBirthday</span>($noCake));              <span style="color:#75715e">// bool(false)  
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>($born<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">isBirthday</span>($yesCake));             <span style="color:#75715e">// bool(true)  
+</span></code></pre></div><h2 id="時間運算">時間運算</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+$dt <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>(<span style="color:#ae81ff">2012</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">0</span>);
+
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toDateTimeString</span>();            <span style="color:#75715e">// 2012-01-31 00:00:00
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addYears</span>(<span style="color:#ae81ff">5</span>);                   <span style="color:#75715e">// 2017-01-31 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addYear</span>();                     <span style="color:#75715e">// 2018-01-31 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subYear</span>();                     <span style="color:#75715e">// 2017-01-31 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subYears</span>(<span style="color:#ae81ff">5</span>);                   <span style="color:#75715e">// 2012-01-31 00:00:00
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addMonths</span>(<span style="color:#ae81ff">60</span>);                 <span style="color:#75715e">// 2017-01-31 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addMonth</span>();                    <span style="color:#75715e">// 2017-03-03 00:00:00 equivalent of $dt-&gt;month($dt-&gt;month + 1); so it wraps
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subMonth</span>();                    <span style="color:#75715e">// 2017-02-03 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subMonths</span>(<span style="color:#ae81ff">60</span>);                 <span style="color:#75715e">// 2012-02-03 00:00:00
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addDays</span>(<span style="color:#ae81ff">29</span>);                   <span style="color:#75715e">// 2012-03-03 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addDay</span>();                      <span style="color:#75715e">// 2012-03-04 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subDay</span>();                      <span style="color:#75715e">// 2012-03-03 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subDays</span>(<span style="color:#ae81ff">29</span>);                   <span style="color:#75715e">// 2012-02-03 00:00:00
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addWeekdays</span>(<span style="color:#ae81ff">4</span>);                <span style="color:#75715e">// 2012-02-09 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addWeekday</span>();                  <span style="color:#75715e">// 2012-02-10 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subWeekday</span>();                  <span style="color:#75715e">// 2012-02-09 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subWeekdays</span>(<span style="color:#ae81ff">4</span>);                <span style="color:#75715e">// 2012-02-03 00:00:00
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addWeeks</span>(<span style="color:#ae81ff">3</span>);                   <span style="color:#75715e">// 2012-02-24 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addWeek</span>();                     <span style="color:#75715e">// 2012-03-02 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subWeek</span>();                     <span style="color:#75715e">// 2012-02-24 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subWeeks</span>(<span style="color:#ae81ff">3</span>);                   <span style="color:#75715e">// 2012-02-03 00:00:00
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addHours</span>(<span style="color:#ae81ff">24</span>);                  <span style="color:#75715e">// 2012-02-04 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addHour</span>();                     <span style="color:#75715e">// 2012-02-04 01:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subHour</span>();                     <span style="color:#75715e">// 2012-02-04 00:00:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subHours</span>(<span style="color:#ae81ff">24</span>);                  <span style="color:#75715e">// 2012-02-03 00:00:00
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addMinutes</span>(<span style="color:#ae81ff">61</span>);                <span style="color:#75715e">// 2012-02-03 01:01:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addMinute</span>();                   <span style="color:#75715e">// 2012-02-03 01:02:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subMinute</span>();                   <span style="color:#75715e">// 2012-02-03 01:01:00
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subMinutes</span>(<span style="color:#ae81ff">61</span>);                <span style="color:#75715e">// 2012-02-03 00:00:00
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSeconds</span>(<span style="color:#ae81ff">61</span>);                <span style="color:#75715e">// 2012-02-03 00:01:01
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSecond</span>();                   <span style="color:#75715e">// 2012-02-03 00:01:02
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subSecond</span>();                   <span style="color:#75715e">// 2012-02-03 00:01:01
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subSeconds</span>(<span style="color:#ae81ff">61</span>);                <span style="color:#75715e">// 2012-02-03 00:00:00
+</span></code></pre></div><h2 id="人類閱讀時間格式">人類閱讀時間格式</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+<span style="color:#75715e">// 通常會用在留言的時間顯示
+</span><span style="color:#75715e">// 該時間會比較與現在的時間的差異
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subDays</span>(<span style="color:#ae81ff">5</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffForHumans</span>();               <span style="color:#75715e">// 5 days ago
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffForHumans</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subYear</span>());   <span style="color:#75715e">// 1 year after
+</span><span style="color:#75715e"></span>
+$dt <span style="color:#f92672">=</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">createFromDate</span>(<span style="color:#ae81ff">2011</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>);
+
+<span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffForHumans</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">copy</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addMonth</span>());              <span style="color:#75715e">// 1 month before
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> $dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffForHumans</span>($dt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">copy</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subMonth</span>());              <span style="color:#75715e">// 1 month after
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSeconds</span>(<span style="color:#ae81ff">5</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffForHumans</span>();            <span style="color:#75715e">// 5 seconds from now
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subDays</span>(<span style="color:#ae81ff">24</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffForHumans</span>();              <span style="color:#75715e">// 3 weeks ago
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">now</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subDays</span>(<span style="color:#ae81ff">24</span>)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">diffForHumans</span>(<span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">true</span>);    <span style="color:#75715e">// 3 weeks
+</span></code></pre></div><h2 id="時間常數">時間常數</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Carbon\Carbon</span>;
+
+<span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">SUNDAY</span>);                          <span style="color:#75715e">// int(0)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">MONDAY</span>);                          <span style="color:#75715e">// int(1)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">TUESDAY</span>);                         <span style="color:#75715e">// int(2)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">WEDNESDAY</span>);                       <span style="color:#75715e">// int(3)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">THURSDAY</span>);                        <span style="color:#75715e">// int(4)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">FRIDAY</span>);                          <span style="color:#75715e">// int(5)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">SATURDAY</span>);                        <span style="color:#75715e">// int(6)
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">YEARS_PER_CENTURY</span>);               <span style="color:#75715e">// int(100)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">YEARS_PER_DECADE</span>);                <span style="color:#75715e">// int(10)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">MONTHS_PER_YEAR</span>);                 <span style="color:#75715e">// int(12)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">WEEKS_PER_YEAR</span>);                  <span style="color:#75715e">// int(52)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">DAYS_PER_WEEK</span>);                   <span style="color:#75715e">// int(7)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">HOURS_PER_DAY</span>);                   <span style="color:#75715e">// int(24)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">MINUTES_PER_HOUR</span>);                <span style="color:#75715e">// int(60)
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">var_dump</span>(<span style="color:#a6e22e">Carbon</span><span style="color:#f92672">::</span><span style="color:#a6e22e">SECONDS_PER_MINUTE</span>);              <span style="color:#75715e">// int(60)
+</span></code></pre></div><h2 id="參考資料">參考資料</h2>
+<ul>
+<li><a href="http://carbon.nesbot.com/">Carbon - A simple PHP API extension for DateTime.</a></li>
+<li><a href="http://carbon.nesbot.com/docs/">Carbon - docs</a></li>
+</ul>
+
+
+
+
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+            </div> 
+        
+        </div> 
+        
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-31063691-12', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+
+<div class="notices note">
+  <p>KeJyun 最新新書推薦
+    <br /> - Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站
+    <br /> - Laravel框架开发详解：从零基础到运用框架快速开发PHP网站
+  </p>
+</div>
+
+
+<table>
+    <tr>
+        <td colspan="2">
+            <p>Laravel 是 PHP 的框架（Framework），提供了很多開發網站或 API 所需的工具及環境，經過簡單的設定就可以完成資料的處理及顯示，使開發者可以很優雅且快速的開發出各個不同的產品。本書適合有
+                PHP 基礎的人，但不知道要怎麼選擇框架，或者不用框架的人也能夠明白它的好處。</p>
+            <p>雖然 WordPress 也能夠架站，但如果有客製化需求，要開發各式各樣的網站，或提供 App 使用的 API，如此一來你只能選擇用框架，而 Laravel 是目前最受歡迎的。</p>
+            <p>本書將解說為什麼要使用框架，以及理解框架的優缺點後，要怎麼選擇框架，並用框架快速建構一個網站。除非必要，否則書中會避免專業技術用語，盡量使用最生活化易懂的例子及語氣，讓大家更容易進入 Laravel 的世界。</p>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:30%;">
+            <img src="https://i.imgur.com/RYcmwgY.png"
+                 alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+            />
+        </td>
+        <td>
+            <h3 style="font-size:16px;">
+                購書連結
+            </h3>
+            <ul>
+                <li>
+                    <a href="https://goo.gl/Juv97M"
+                       target="_blank"
+                       alt="博客來-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+                    >
+                        博客來
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/fa5dWf"
+                       target="_blank"
+                       alt="天瓏網路書店-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站"
+                    >
+                        天瓏網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/Ym73kH"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站-金石堂網路書店"
+                    >
+                        金石堂網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/hMnBCs"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站- TAAZE 讀冊生活"
+                    >
+                        TAAZE 讀冊生活
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/QiRqXo"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站 - PChome 24h書店"
+                    >
+                        PCHome 24h書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/nGhPnU"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場－－優雅運用框架快速開發 PHP 網站"
+                    >
+                        商務印書館網上書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/RptkyY"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站-洪可郡 - 三民網路書店"
+                    >
+                        三民網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/5dXGQ8"
+                       target="_blank"
+                       alt="Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站, 城邦阅读花园 - 马来西亚最大网路书店"
+                    >
+                        城邦阅读花园
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/6Zy8yK"
+                       target="_blank"
+                       alt="華文網網路書店：Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站．電腦與網路/程式語言◎知．識．服．務．新．思．路◎"
+                    >
+                        華文網網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://goo.gl/o9msPz"
+                       target="_blank"
+                       alt="新絲路網路書店-Laravel 5 for beginner 新手道場：優雅運用框架快速開發 PHP 網站．電腦與網路/程式語言"
+                    >
+                        新絲路網路書店
+                    </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:30%;">
+            <img src="https://i.imgur.com/CurSW2g.jpg"
+                 alt="Laravel框架开发详解：从零基础到运用框架快速开发PHP网站"
+            />
+        </td>
+        <td>
+            <h3 style="font-size:16px;">
+                購書連結
+            </h3>
+            <ul>
+                <li>
+                    <a href="http://bit.ly/2EneIxw"
+                       target="_blank"
+                       alt="《Laravel框架开发详解：从零基础到运用框架快速开发PHP网站》(洪可郡（KeJyun）)【摘要 书评 试读】- 京东图书"
+                    >
+                        北京大学出版社
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2zSxOI2"
+                       target="_blank"
+                       alt="天瓏網路書店-Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站"
+                    >
+                        天瓏網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="https://amzn.to/2RKeN1y"
+                       target="_blank"
+                       alt="《Laravel框架开发详解:从零基础到运用框架快速开发PHP网站》 洪可郡 (KeJyun)【摘要 书评 试读】图书"
+                    >
+                        Amazon
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2ru0qmu"
+                       target="_blank"
+                       alt="《正版全新 Laravel框架开发详解：从零基础到运用框架快速开发PHP网站 洪可郡 北京大学出版社》【摘要 书评 试读】- 京东图书"
+                    >
+                        蓝墨水图书专营店
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2Qnrjao"
+                       target="_blank"
+                       alt="正版 Laravel框架开发详解：从零基础到运用框架快速开发PHP网站 计算机与互联网 网页制作 Web技术 程序设计 洪可郡-tmall.com天猫"
+                    >
+                        天猫
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2PstkNn"
+                       target="_blank"
+                       alt="Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站（簡體書）-洪可郡 - 三民網路書店"
+                    >
+                        三民網路書店
+                    </a>
+                </li>
+                <li>
+                    <a href="http://bit.ly/2E7jbnk"
+                       target="_blank"
+                       alt="博客來-Laravel框架開發詳解：從零基礎到運用框架快速開發PHP網站"
+                    >
+                        博客來
+                    </a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/laravel5-book/package/tool/" title="工具"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/laravel5-book/package/design-pattern/" title="設計模式" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/laravel5-book/js/clipboard.min.js?1615216492"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.min.js?1615216492"></script>
+    <script src="/laravel5-book/js/perfect-scrollbar.jquery.min.js?1615216492"></script>
+    <script src="/laravel5-book/js/jquery.sticky.js?1615216492"></script>
+    <script src="/laravel5-book/js/featherlight.min.js?1615216492"></script>
+    <script src="/laravel5-book/js/highlight.pack.js?1615216492"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/laravel5-book/js/modernizr.custom-3.6.0.js?1615216492"></script>
+    <script src="/laravel5-book/js/learn.js?1615216492"></script>
+    <script src="/laravel5-book/js/hugo-learn.js?1615216492"></script>
+
+    <link href="/laravel5-book/mermaid/mermaid.css?1615216492" rel="stylesheet" />
+    <script src="/laravel5-book/mermaid/mermaid.js?1615216492"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+  </body>
+</html>
+

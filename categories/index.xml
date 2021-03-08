@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Laravel 5 學習筆記</title>
+    <title>Categories on Laravel 學習筆記</title>
     <link>https://kejyun.github.io/laravel5-book/categories/</link>
-    <description>Recent content in Categories on Laravel 5 學習筆記</description>
+    <description>Recent content in Categories on Laravel 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     

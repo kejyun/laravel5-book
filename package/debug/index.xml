@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debug 套件 on Laravel 學習筆記</title>
+    <link>https://kejyun.github.io/laravel5-book/package/debug/</link>
+    <description>Recent content in Debug 套件 on Laravel 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 07 Mar 2021 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://kejyun.github.io/laravel5-book/package/debug/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Artisan tail</title>
+      <link>https://kejyun.github.io/laravel5-book/package/debug/package-debug-artisan-tail/</link>
+      <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://kejyun.github.io/laravel5-book/package/debug/package-debug-artisan-tail/</guid>
+      <description>Artisan tail 在 Laravel 4 我們常常用 php artisan tail 去即時顯示系統的 Log，以便我們進行除錯，但在 Laravel 5 預設是將這個套件拿到的，所以如果我們要繼續使用的話，必須要手動的將套件加回去。
+安裝 Laravel tail 套件 首先在命令列執行 composer require spatie/laravel-tail 安裝 tail 套件
+$ composer require spatie/laravel-tail 接著在 config/app.php 檔案中的 providers 加入 tail ServiceProvider
+// config/app.php &amp;#39;providers&amp;#39; =&amp;gt; [ ... &amp;#39;Spatie\Tail\TailServiceProvider&amp;#39;, ... ]; 安裝完畢之後就可以繼續使用 php artisan tail 去觀看你的 Log 了！
+$ php artisan tail tail 遠端主機 Log 檔 tail 命令可以讓我們即時觀看遠端的 Log 檔案，我們只要將遠端主機的相關設定加入即可，可以使用下列指令建立 config/tail.php 檔案
+$ php artisan vendor:publish --provider=&amp;#34;Spatie\Tail\TailServiceProvider&amp;#34; 之後只要在 tail 指令後面加入要觀看的主機名稱，即可立即觀看該主機的 Log 檔摟</description>
+    </item>
+    
+  </channel>
+</rss>
