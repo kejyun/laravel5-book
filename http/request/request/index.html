@@ -12,21 +12,21 @@
     <title>HTTP 請求 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219822" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219822" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219822"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "HTTP 請求 這裏會介紹如何在 Laravel 5 驗證 HTTP 請求的資料\n建立新的請求驗證 如果我們有文章（Article）的模型，我們在每次請求過程中想要驗證傳入的資料，我們可以使用系列指令建立要驗證的請求：\n$ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建立在 app\\Http\\Requests 目錄下，建立的檔案內容如下\n\u0026lt;?php namespace App\\Http\\Requests; \/\/ app\\Http\\Requests\\CreateArticleRequest.php use App\\Http\\Requests\\Request; class CreateArticleRequest extends Request { \/** * Determine if the user is authorized to make this request. * 驗證使用者是否要登入狀態 * * @return bool *\/ public function authorize() { return true; } \/** * Get the validation rules that apply to the request. * 驗證請求的資料規則 * * @return array *\/ public function rules() { return [ \/\/ 使用 | 設定驗證規則  \u0026#39;title\u0026#39; =\u0026gt; \u0026#39;required|min:3\u0026#39;, \u0026#39;body\u0026#39; =\u0026gt; \u0026#39;required|min:30\u0026#39;, \/\/ 使用陣列設定驗證規則  \u0026#39;published_at\u0026#39; =\u0026gt; [ \u0026#39;required\u0026#39;, \u0026#39;date\u0026#39;, ], ]; } } 在驗證請求的 CreateArticleRequest 中的 rules() 函式，除了僅回傳驗證規則外，你也可以判斷不同的狀況去加入不同的規則再回傳，像是：\n\u0026lt;?php namespace App\\Http\\Requests; \/\/ app\\Http\\Requests\\CreateArticleRequest.php use App\\Http\\Requests\\Request; class CreateArticleRequest extends Request { public function rules() { $rules = [ \/\/ 使用 | 設定驗證規則  \u0026#39;title\u0026#39; =\u0026gt; \u0026#39;required|min:3\u0026#39;, \u0026#39;body\u0026#39; =\u0026gt; \u0026#39;required|min:30\u0026#39;, \/\/ 使用陣列設定驗證規則  \u0026#39;published_at\u0026#39; =\u0026gt; [ \u0026#39;required\u0026#39;, \u0026#39;date\u0026#39;, ], ]; \/\/ 其他條件判斷  if ($condition) { $rules[\u0026#39;something_else\u0026#39;] = \u0026#39;required\u0026#39;; } return $rules; } } 指定 Controller 函式處理指定的請求驗證 在我們使用 Controller 去處理請求時，我們可以再傳入變數內設定要怎麼處理請求：\nclass ArticleController extends Controller { \/\/ 新增文章 public function store(App\\Http\\Requests\\CreateArticleRequest $request) { Article::create(Request:all()); \/\/ OR \/\/ Article::create($request-\u0026gt;all()); return redirect(\u0026#39;articles\u0026#39;); } } 這樣設定之後，所有的 HTTP 請求的 Input 資料都會經過 App\\Http\\Requests\\CreateArticleRequest 驗證，如果有經過驗證才會繼續執行後面的新增文章動作，否則的話則會丟出驗證錯誤的物件到原頁面。\n驗證錯誤訊息 這裏要注意到，視圖（View）的每一頁 Laravel 都會將驗證錯誤物件（Illuminate\\Support\\ViewErrorBag）包成 $errors 變數，所以你可以在每一頁去印出 $errors 值，$errors 變數儲存的是任何資料驗證錯誤的結果\n判斷是否有任何的錯誤並顯示錯誤訊息\n\/\/ 任一 blade 視圖（View）皆可以接收此錯誤變數 @if($errors-\u0026gt;any()) \/\/ 有錯誤訊息 \u0026lt;ul\u0026gt; $foreach ($errors-\u0026gt;all() as $error) \u0026lt;li\u0026gt;{{ $error }}\u0026lt;\/li\u0026gt; @endforeach \u0026lt;\/ul\u0026gt; @endif 使用 Controller 內建的 validate 驗證請求的資料 除了建立驗證 Request 物件，也可以直接使用 Controller 內建的 validate 去驗證請求\n如果不想要使用內建處理 HttpResponseException 的例外，你也可以自己 try catch 並自己處理例外狀況\nclass ArticleController extends Controller { \/\/ 新增文章 public function store(Requests $request) { try { $this-\u0026gt;validate($request, [ \u0026#39;title\u0026#39; =\u0026gt; \u0026#39;required|min:3\u0026#39;, \u0026#39;body\u0026#39; =\u0026gt; \u0026#39;required|min:30\u0026#39;, \u0026#39;published_at\u0026#39; =\u0026gt; \u0026#39;required|date\u0026#39;, ]); } catch (Exception $e) { \/\/ 自己處理例外狀況 } Article::create(Request:all()); \/\/ OR \/\/ Article::create($request-\u0026gt;all()); return redirect(\u0026#39;articles\u0026#39;); } } 使用者資料 取得 User Agent、Referrer\n\u0026lt;?php \/\/ User Agent request()-\u0026gt;server(\u0026#39;HTTP_USER_AGENT\u0026#39;); \/\/ Referrer request()-\u0026gt;server(\u0026#39;HTTP_REFERER\u0026#39;) 參考資料  Form Requests and Controller Validation - Laracasts  !INCLUDE \u0026ldquo;..\/..\/kejyun\/book\/laravel-5-for-beginner.md\u0026rdquo;\n"
+		"articleBody": "HTTP 請求 這裏會介紹如何在 Laravel 5 驗證 HTTP 請求的資料\n建立新的請求驗證 如果我們有文章（Article）的模型，我們在每次請求過程中想要驗證傳入的資料，我們可以使用系列指令建立要驗證的請求：\n$ php artisan make:request CreateArticleRequest 請求驗證的檔案會被建立在 app\\Http\\Requests 目錄下，建立的檔案內容如下\n\u0026lt;?php namespace App\\Http\\Requests; \/\/ app\\Http\\Requests\\CreateArticleRequest.php use App\\Http\\Requests\\Request; class CreateArticleRequest extends Request { \/** * Determine if the user is authorized to make this request. * 驗證使用者是否要登入狀態 * * @return bool *\/ public function authorize() { return true; } \/** * Get the validation rules that apply to the request. * 驗證請求的資料規則 * * @return array *\/ public function rules() { return [ \/\/ 使用 | 設定驗證規則  \u0026#39;title\u0026#39; =\u0026gt; \u0026#39;required|min:3\u0026#39;, \u0026#39;body\u0026#39; =\u0026gt; \u0026#39;required|min:30\u0026#39;, \/\/ 使用陣列設定驗證規則  \u0026#39;published_at\u0026#39; =\u0026gt; [ \u0026#39;required\u0026#39;, \u0026#39;date\u0026#39;, ], ]; } } 在驗證請求的 CreateArticleRequest 中的 rules() 函式，除了僅回傳驗證規則外，你也可以判斷不同的狀況去加入不同的規則再回傳，像是：\n\u0026lt;?php namespace App\\Http\\Requests; \/\/ app\\Http\\Requests\\CreateArticleRequest.php use App\\Http\\Requests\\Request; class CreateArticleRequest extends Request { public function rules() { $rules = [ \/\/ 使用 | 設定驗證規則  \u0026#39;title\u0026#39; =\u0026gt; \u0026#39;required|min:3\u0026#39;, \u0026#39;body\u0026#39; =\u0026gt; \u0026#39;required|min:30\u0026#39;, \/\/ 使用陣列設定驗證規則  \u0026#39;published_at\u0026#39; =\u0026gt; [ \u0026#39;required\u0026#39;, \u0026#39;date\u0026#39;, ], ]; \/\/ 其他條件判斷  if ($condition) { $rules[\u0026#39;something_else\u0026#39;] = \u0026#39;required\u0026#39;; } return $rules; } }  指定 Controller 函式處理指定的請求驗證 在我們使用 Controller 去處理請求時，我們可以再傳入變數內設定要怎麼處理請求：\nclass ArticleController extends Controller { \/\/ 新增文章 public function store(App\\Http\\Requests\\CreateArticleRequest $request) { Article::create(Request:all()); \/\/ OR \/\/ Article::create($request-\u0026gt;all()); return redirect(\u0026#39;articles\u0026#39;); } } 這樣設定之後，所有的 HTTP 請求的 Input 資料都會經過 App\\Http\\Requests\\CreateArticleRequest 驗證，如果有經過驗證才會繼續執行後面的新增文章動作，否則的話則會丟出驗證錯誤的物件到原頁面。\n驗證錯誤訊息 這裏要注意到，視圖（View）的每一頁 Laravel 都會將驗證錯誤物件（Illuminate\\Support\\ViewErrorBag）包成 $errors 變數，所以你可以在每一頁去印出 $errors 值，$errors 變數儲存的是任何資料驗證錯誤的結果\n判斷是否有任何的錯誤並顯示錯誤訊息\n\/\/ 任一 blade 視圖（View）皆可以接收此錯誤變數 @if($errors-\u0026gt;any()) \/\/ 有錯誤訊息 \u0026lt;ul\u0026gt; $foreach ($errors-\u0026gt;all() as $error) \u0026lt;li\u0026gt;{{ $error }}\u0026lt;\/li\u0026gt; @endforeach \u0026lt;\/ul\u0026gt; @endif  使用 Controller 內建的 validate 驗證請求的資料 除了建立驗證 Request 物件，也可以直接使用 Controller 內建的 validate 去驗證請求\n如果不想要使用內建處理 HttpResponseException 的例外，你也可以自己 try catch 並自己處理例外狀況\nclass ArticleController extends Controller { \/\/ 新增文章 public function store(Requests $request) { try { $this-\u0026gt;validate($request, [ \u0026#39;title\u0026#39; =\u0026gt; \u0026#39;required|min:3\u0026#39;, \u0026#39;body\u0026#39; =\u0026gt; \u0026#39;required|min:30\u0026#39;, \u0026#39;published_at\u0026#39; =\u0026gt; \u0026#39;required|date\u0026#39;, ]); } catch (Exception $e) { \/\/ 自己處理例外狀況 } Article::create(Request:all()); \/\/ OR \/\/ Article::create($request-\u0026gt;all()); return redirect(\u0026#39;articles\u0026#39;); } } 使用者資料 取得 User Agent、Referrer\n\u0026lt;?php \/\/ User Agent request()-\u0026gt;server(\u0026#39;HTTP_USER_AGENT\u0026#39;); \/\/ Referrer request()-\u0026gt;server(\u0026#39;HTTP_REFERER\u0026#39;) 參考資料  Form Requests and Controller Validation - Laracasts  !INCLUDE \u0026ldquo;..\/..\/kejyun\/book\/laravel-5-for-beginner.md\u0026rdquo;\n"
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219822"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219822"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219822"></script>
 
     
   </div>
@@ -3884,7 +3884,18 @@
     }
 
 }
-</code></pre></div><h2 id="指定-controller-函式處理指定的請求驗證">指定 Controller 函式處理指定的請求驗證</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="指定-controller-函式處理指定的請求驗證">指定 Controller 函式處理指定的請求驗證</h2>
 <p>在我們使用 Controller 去處理請求時，我們可以再傳入變數內設定要怎麼處理請求：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">class ArticleController extends Controller {
 
@@ -3912,7 +3923,18 @@
         @endforeach
     &lt;/<span style="color:#f92672">ul</span>&gt;
 @endif
-</code></pre></div><h2 id="使用-controller-內建的-validate-驗證請求的資料">使用 Controller 內建的 validate 驗證請求的資料</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="使用-controller-內建的-validate-驗證請求的資料">使用 Controller 內建的 validate 驗證請求的資料</h2>
 <p>除了建立驗證 Request 物件，也可以直接使用 Controller 內建的 validate 去驗證請求</p>
 <p>如果不想要使用內建處理 HttpResponseException 的例外，你也可以自己 try catch 並自己處理例外狀況</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">class ArticleController extends Controller {
@@ -3992,28 +4014,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4202,6 +4202,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6205,19 +6227,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219822"></script>
+    <script src="/js/jquery.sticky.js?1615219822"></script>
+    <script src="/js/featherlight.min.js?1615219822"></script>
+    <script src="/js/highlight.pack.js?1615219822"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219822"></script>
+    <script src="/js/learn.js?1615219822"></script>
+    <script src="/js/hugo-learn.js?1615219822"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219822" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219822"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -12,21 +12,21 @@
     <title>非同步資料庫隊列（Async Database Queue） :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219824" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219824" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217452"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219824"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "非同步資料庫隊列（Async Database Queue） 在我們使用 Laravel 提供的資料庫隊列（Database Queue）時，我們需要在命令列執行 php artisan queue:listen 指令，持續的去監聽是否有需要執行的 Queue。\nbarryvdh\/laravel-async-queue 隊列套件，可以讓我們不用持續的監聽隊列資料，並在使用隊列時，立即的使用 shell 在背景執行隊列的工作。\n目前（2015-06-01） 套件 0.4.x 版本有支援 Laravel 5\n安裝 $ composer require \u0026#39;barryvdh\/laravel-async-queue:0.4.*@dev\u0026#39; 加入 Service Provider 在 config\/app.php 檔案中加入 \u0027Barryvdh\\Queue\\AsyncServiceProvider\u0027\n\/\/ config\/app.php return [ \u0026#39;providers\u0026#39; =\u0026gt; [ \u0026#39;Barryvdh\\Queue\\AsyncServiceProvider\u0026#39;, ] ]; 產生隊列資料表 barryvdh\/laravel-async-queue 隊列套件使用原生的資料庫隊列資料表（Database Queue）去時做的，所以我們可以使用 php artisan queue:table 指令去產生隊列的 Migration\n$ php artisan queue:table 所以執行命令後，你可以找到像是 database\/migrations\/2015_05_26_225627_create_queue_jobs_table.php 這樣的隊列 Migration 檔案\n Migration 檔名日期 2015_05_26_225627 每個人皆不同，會依照你建立當時的時間去產生\n 產生的隊列 Migration 會長的像這樣：\n\u0026lt;?php use Illuminate\\Database\\Schema\\Blueprint; use Illuminate\\Database\\Migrations\\Migration; class CreateQueueJobsTable extends Migration { \/** * Run the migrations. * * @return void *\/ public function up() { Schema::create(\u0026#39;jobs\u0026#39;, function(Blueprint $table) { $table-\u0026gt;bigIncrements(\u0026#39;id\u0026#39;); $table-\u0026gt;string(\u0026#39;queue\u0026#39;); $table-\u0026gt;text(\u0026#39;payload\u0026#39;); $table-\u0026gt;tinyInteger(\u0026#39;attempts\u0026#39;)-\u0026gt;unsigned(); $table-\u0026gt;tinyInteger(\u0026#39;reserved\u0026#39;)-\u0026gt;unsigned(); $table-\u0026gt;unsignedInteger(\u0026#39;reserved_at\u0026#39;)-\u0026gt;nullable(); $table-\u0026gt;unsignedInteger(\u0026#39;available_at\u0026#39;); $table-\u0026gt;unsignedInteger(\u0026#39;created_at\u0026#39;); }); } \/** * Reverse the migrations. * * @return void *\/ public function down() { Schema::drop(\u0026#39;jobs\u0026#39;); } } 建立隊列資料表 執行 php artisan migrate 將隊列資料表新增至資料庫\n設定隊列驅動 在 config\/queue.php 檔案中設定非同步資料庫隊列（Async Database Queue）驅動設定，設定如下：\n\/\/ config\/queue.php return [ \u0026#39;default\u0026#39; =\u0026gt; \u0026#39;async\u0026#39;, \u0026#39;connections\u0026#39; =\u0026gt; [ \u0026#39;async\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;async\u0026#39;, \u0026#39;table\u0026#39; =\u0026gt; \u0026#39;jobs\u0026#39;, \u0026#39;queue\u0026#39; =\u0026gt; \u0026#39;default\u0026#39;, \u0026#39;expire\u0026#39; =\u0026gt; 60, \u0026#39;connection_name\u0026#39;=\u0026gt;\u0026#39;\u0026#39;, ], ], ]; 建立隊列工作 我們可以使用 \\Queue::push(\u0027App\\Commands\\SendEmail@fire\u0027, $queue_data); 的方法去新增要執行的隊列\n第一個參數是執行隊列需要呼叫的類別名稱位置（App\\Commands\\SendEmail）及方法（fire）\n類別名稱需要正確的指定類別的命名空間（namespace），可以指定這個隊列要執行的類別方法，只要將方法使用 @ 加在後方即可（@customMethod）\n若沒有指定用哪個方法，Laravel 預設會執行 fire 的類別方法（@fire）\n我們使用隊列來寄送 Email，設定隊列的方式大概像這樣：\n\/\/ 需要傳送給隊列處理的資料 $queue_data = [ \u0026#39;email\u0026#39; =\u0026gt; \u0026#39;kejyun@gmail.com\u0026#39;, \u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, ]; \/\/ 建立隊列 $queue_id = \\Queue::push(\u0026#39;App\\Commands\\SendEmail@fire\u0026#39;, $queue_data); 在 App\\Commands\\Sendmail.php 檔案大概會像這樣：\n\u0026lt;?php namespace App\\Commands; class SendEmail { \/** * 執行隊列 * * @return void *\/ public function fire($job, $data) { \/\/ 寄送 Email  \\Mail::send(\u0026#39;emails.welcome\u0026#39;, [], function($message) use ($data) { $message-\u0026gt;to($data[\u0026#39;email\u0026#39;], $data[\u0026#39;name\u0026#39;])-\u0026gt;subject(\u0026#39;歡迎使用 Laravel 5 資料庫隊列寄送 Email!!!\u0026#39;); }); } } 這樣我們就可以正常的使用隊列去幫我們寄信摟！！\n 目前（2015-06-01） barryvdh\/laravel-async-queue 在執行完隊列時，無法直接刪除隊列資料，待作者修復這個 bug\n 參考資料  隊列 - Laravel.tw Queues in Laravel with Redis barryvdh\/laravel-async-queue - packagist Laravel 5 Async Queue Driver - Github  "
+		"articleBody": "非同步資料庫隊列（Async Database Queue） 在我們使用 Laravel 提供的資料庫隊列（Database Queue）時，我們需要在命令列執行 php artisan queue:listen 指令，持續的去監聽是否有需要執行的 Queue。\nbarryvdh\/laravel-async-queue 隊列套件，可以讓我們不用持續的監聽隊列資料，並在使用隊列時，立即的使用 shell 在背景執行隊列的工作。\n目前（2015-06-01） 套件 0.4.x 版本有支援 Laravel 5\n安裝 $ composer require \u0026#39;barryvdh\/laravel-async-queue:0.4.*@dev\u0026#39;  加入 Service Provider 在 config\/app.php 檔案中加入 \u0027Barryvdh\\Queue\\AsyncServiceProvider\u0027\n\/\/ config\/app.php return [ \u0026#39;providers\u0026#39; =\u0026gt; [ \u0026#39;Barryvdh\\Queue\\AsyncServiceProvider\u0026#39;, ] ]; 產生隊列資料表 barryvdh\/laravel-async-queue 隊列套件使用原生的資料庫隊列資料表（Database Queue）去時做的，所以我們可以使用 php artisan queue:table 指令去產生隊列的 Migration\n$ php artisan queue:table 所以執行命令後，你可以找到像是 database\/migrations\/2015_05_26_225627_create_queue_jobs_table.php 這樣的隊列 Migration 檔案\n Migration 檔名日期 2015_05_26_225627 每個人皆不同，會依照你建立當時的時間去產生\n 產生的隊列 Migration 會長的像這樣：\n\u0026lt;?php use Illuminate\\Database\\Schema\\Blueprint; use Illuminate\\Database\\Migrations\\Migration; class CreateQueueJobsTable extends Migration { \/** * Run the migrations. * * @return void *\/ public function up() { Schema::create(\u0026#39;jobs\u0026#39;, function(Blueprint $table) { $table-\u0026gt;bigIncrements(\u0026#39;id\u0026#39;); $table-\u0026gt;string(\u0026#39;queue\u0026#39;); $table-\u0026gt;text(\u0026#39;payload\u0026#39;); $table-\u0026gt;tinyInteger(\u0026#39;attempts\u0026#39;)-\u0026gt;unsigned(); $table-\u0026gt;tinyInteger(\u0026#39;reserved\u0026#39;)-\u0026gt;unsigned(); $table-\u0026gt;unsignedInteger(\u0026#39;reserved_at\u0026#39;)-\u0026gt;nullable(); $table-\u0026gt;unsignedInteger(\u0026#39;available_at\u0026#39;); $table-\u0026gt;unsignedInteger(\u0026#39;created_at\u0026#39;); }); } \/** * Reverse the migrations. * * @return void *\/ public function down() { Schema::drop(\u0026#39;jobs\u0026#39;); } }  建立隊列資料表 執行 php artisan migrate 將隊列資料表新增至資料庫\n設定隊列驅動 在 config\/queue.php 檔案中設定非同步資料庫隊列（Async Database Queue）驅動設定，設定如下：\n\/\/ config\/queue.php return [ \u0026#39;default\u0026#39; =\u0026gt; \u0026#39;async\u0026#39;, \u0026#39;connections\u0026#39; =\u0026gt; [ \u0026#39;async\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;async\u0026#39;, \u0026#39;table\u0026#39; =\u0026gt; \u0026#39;jobs\u0026#39;, \u0026#39;queue\u0026#39; =\u0026gt; \u0026#39;default\u0026#39;, \u0026#39;expire\u0026#39; =\u0026gt; 60, \u0026#39;connection_name\u0026#39;=\u0026gt;\u0026#39;\u0026#39;, ], ], ];  建立隊列工作 我們可以使用 \\Queue::push(\u0027App\\Commands\\SendEmail@fire\u0027, $queue_data); 的方法去新增要執行的隊列\n第一個參數是執行隊列需要呼叫的類別名稱位置（App\\Commands\\SendEmail）及方法（fire）\n類別名稱需要正確的指定類別的命名空間（namespace），可以指定這個隊列要執行的類別方法，只要將方法使用 @ 加在後方即可（@customMethod）\n若沒有指定用哪個方法，Laravel 預設會執行 fire 的類別方法（@fire）\n我們使用隊列來寄送 Email，設定隊列的方式大概像這樣：\n\/\/ 需要傳送給隊列處理的資料 $queue_data = [ \u0026#39;email\u0026#39; =\u0026gt; \u0026#39;kejyun@gmail.com\u0026#39;, \u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, ]; \/\/ 建立隊列 $queue_id = \\Queue::push(\u0026#39;App\\Commands\\SendEmail@fire\u0026#39;, $queue_data); 在 App\\Commands\\Sendmail.php 檔案大概會像這樣：\n\u0026lt;?php namespace App\\Commands; class SendEmail { \/** * 執行隊列 * * @return void *\/ public function fire($job, $data) { \/\/ 寄送 Email  \\Mail::send(\u0026#39;emails.welcome\u0026#39;, [], function($message) use ($data) { $message-\u0026gt;to($data[\u0026#39;email\u0026#39;], $data[\u0026#39;name\u0026#39;])-\u0026gt;subject(\u0026#39;歡迎使用 Laravel 5 資料庫隊列寄送 Email!!!\u0026#39;); }); } } 這樣我們就可以正常的使用隊列去幫我們寄信摟！！\n 目前（2015-06-01） barryvdh\/laravel-async-queue 在執行完隊列時，無法直接刪除隊列資料，待作者修復這個 bug\n 參考資料  隊列 - Laravel.tw Queues in Laravel with Redis barryvdh\/laravel-async-queue - packagist Laravel 5 Async Queue Driver - Github  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217452"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217452"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219824"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219824"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217452"></script>
+<script type="text/javascript" src="/js/search.js?1615219824"></script>
 
     
   </div>
@@ -3814,7 +3814,18 @@
 <p>目前（2015-06-01） 套件 0.4.x 版本有支援 Laravel 5</p>
 <h2 id="安裝">安裝</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ composer require <span style="color:#e6db74">&#39;barryvdh/laravel-async-queue:0.4.*@dev&#39;</span>
-</code></pre></div><h2 id="加入-service-provider">加入 Service Provider</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="加入-service-provider">加入 Service Provider</h2>
 <p>在 <code>config/app.php</code> 檔案中加入 <code>'Barryvdh\Queue\AsyncServiceProvider'</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// config/app.php
 return [
@@ -3868,7 +3879,18 @@ return [
     }
 
 }
-</code></pre></div><h2 id="建立隊列資料表">建立隊列資料表</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="建立隊列資料表">建立隊列資料表</h2>
 <p>執行 <code>php artisan migrate</code> 將隊列資料表新增至資料庫</p>
 <h2 id="設定隊列驅動">設定隊列驅動</h2>
 <p>在 <code>config/queue.php</code> 檔案中設定非同步資料庫隊列（Async Database Queue）驅動設定，設定如下：</p>
@@ -3885,7 +3907,18 @@ return [
         ],
     ],
 ];
-</code></pre></div><h2 id="建立隊列工作">建立隊列工作</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="建立隊列工作">建立隊列工作</h2>
 <p>我們可以使用 <code>\Queue::push('App\Commands\SendEmail@fire', $queue_data);</code> 的方法去新增要執行的隊列</p>
 <p>第一個參數是執行隊列需要呼叫的類別名稱位置（<code>App\Commands\SendEmail</code>）及方法（<code>fire</code>）</p>
 <p>類別名稱需要正確的指定類別的命名空間（namespace），可以指定這個隊列要執行的類別方法，只要將方法使用 <code>@</code> 加在後方即可（<code>@customMethod</code>）</p>
@@ -3969,28 +4002,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4179,6 +4190,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6188,19 +6221,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217452"></script>
-    <script src="/js/jquery.sticky.js?1615217452"></script>
-    <script src="/js/featherlight.min.js?1615217452"></script>
-    <script src="/js/highlight.pack.js?1615217452"></script>
+    <script src="/js/clipboard.min.js?1615219824"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219824"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219824"></script>
+    <script src="/js/jquery.sticky.js?1615219824"></script>
+    <script src="/js/featherlight.min.js?1615219824"></script>
+    <script src="/js/highlight.pack.js?1615219824"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217452"></script>
-    <script src="/js/learn.js?1615217452"></script>
-    <script src="/js/hugo-learn.js?1615217452"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219824"></script>
+    <script src="/js/learn.js?1615219824"></script>
+    <script src="/js/hugo-learn.js?1615219824"></script>
 
-    <link href="/mermaid/mermaid.css?1615217452" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217452"></script>
+    <link href="/mermaid/mermaid.css?1615219824" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219824"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

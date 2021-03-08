@@ -12,21 +12,21 @@
     <title>隊列介紹 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219824" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219824" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217452"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219824"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "隊列介紹 Laravel 隊列的設定檔在 config\/queue.php，在這裡你可以設定你想要用什麼樣的隊列（Queue）服務去執行你的隊列，而 Laravel 預設有支援 database、Beanstalkd、IronMQ、Amazon SQS、Redis 這幾種隊列的服務。\n我們通常會將一些需要花比較久時間處理的工作丟給隊列去背景執行，讓使用者能夠快速的的到網站的回應，像是我們在寄送帳號認證信件時，因為透過郵件伺服器去寄送可能會花費比較久的時間，所以我們會將這類的工作丟到隊列去執行，所以使用者的認證信件就會延遲的發送到他們的信箱，但是使用者在瀏覽網站時卻可以有更好的體驗！\n指令 在使用 Queue 去幫我們做工作的時候，我們在系統背景需要執行傾聽 Queue 是否有工作的指令，像是 php artisan queue:listen，這樣 Queue 中有新工作需要做，才能夠正常的去執行。\n$ php artisan queue:listen 執行 Queue 指令有一些相關的參數，可以依照自己的環境去調校\n$php artisan queue:listen [--queue[=\u0026quot;...\u0026quot;]] [--delay[=\u0026quot;...\u0026quot;]] [--memory[=\u0026quot;...\u0026quot;]] [--timeout[=\u0026quot;...\u0026quot;]] [--sleep[=\u0026quot;...\u0026quot;]] [--tries[=\u0026quot;...”]]    參數 說明 指令     queue 設定優先執行的工作順序 php artisan queue:listen --queue=high,low   delay 在執行的工作發生錯誤時，要延遲多久重新執行（單位：秒），預設 0 秒 php artisan queue:listen --delay=10   memory 執行工作最多能夠使用的記憶體上限（單位：MB），預設 128 MB php artisan queue:listen --memory=1024   timeout 執行的工作做長執行的時間是多長（單位：秒），預設 60 秒 php artisan queue:listen --timeout=3600   sleep 在沒有找到可以做的工作時，需要間隔多少秒再去檢查有無新的工作（單位：秒），預設 3 秒 php artisan queue:listen --sleep=10   tries 工作執行失敗時，最多重新嘗試執行幾次（單位：次數），預設 0，不重新嘗試 php artisan queue:listen --tries=3    "
+		"articleBody": "隊列介紹 Laravel 隊列的設定檔在 config\/queue.php，在這裡你可以設定你想要用什麼樣的隊列（Queue）服務去執行你的隊列，而 Laravel 預設有支援 database、Beanstalkd、IronMQ、Amazon SQS、Redis 這幾種隊列的服務。\n我們通常會將一些需要花比較久時間處理的工作丟給隊列去背景執行，讓使用者能夠快速的的到網站的回應，像是我們在寄送帳號認證信件時，因為透過郵件伺服器去寄送可能會花費比較久的時間，所以我們會將這類的工作丟到隊列去執行，所以使用者的認證信件就會延遲的發送到他們的信箱，但是使用者在瀏覽網站時卻可以有更好的體驗！\n 指令 在使用 Queue 去幫我們做工作的時候，我們在系統背景需要執行傾聽 Queue 是否有工作的指令，像是 php artisan queue:listen，這樣 Queue 中有新工作需要做，才能夠正常的去執行。\n$ php artisan queue:listen 執行 Queue 指令有一些相關的參數，可以依照自己的環境去調校\n$php artisan queue:listen [--queue[=\u0026quot;...\u0026quot;]] [--delay[=\u0026quot;...\u0026quot;]] [--memory[=\u0026quot;...\u0026quot;]] [--timeout[=\u0026quot;...\u0026quot;]] [--sleep[=\u0026quot;...\u0026quot;]] [--tries[=\u0026quot;...”]]    參數 說明 指令     queue 設定優先執行的工作順序 php artisan queue:listen --queue=high,low   delay 在執行的工作發生錯誤時，要延遲多久重新執行（單位：秒），預設 0 秒 php artisan queue:listen --delay=10   memory 執行工作最多能夠使用的記憶體上限（單位：MB），預設 128 MB php artisan queue:listen --memory=1024   timeout 執行的工作做長執行的時間是多長（單位：秒），預設 60 秒 php artisan queue:listen --timeout=3600   sleep 在沒有找到可以做的工作時，需要間隔多少秒再去檢查有無新的工作（單位：秒），預設 3 秒 php artisan queue:listen --sleep=10   tries 工作執行失敗時，最多重新嘗試執行幾次（單位：次數），預設 0，不重新嘗試 php artisan queue:listen --tries=3    "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217452"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217452"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219824"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219824"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217452"></script>
+<script type="text/javascript" src="/js/search.js?1615219824"></script>
 
     
   </div>
@@ -3811,6 +3811,17 @@
 <h1 id="隊列介紹">隊列介紹</h1>
 <p>Laravel 隊列的設定檔在 <code>config/queue.php</code>，在這裡你可以設定你想要用什麼樣的隊列（Queue）服務去執行你的隊列，而 Laravel 預設有支援 database、<a href="http://kr.github.com/beanstalkd">Beanstalkd</a>、<a href="http://iron.io/">IronMQ</a>、<a href="http://aws.amazon.com/sqs">Amazon SQS</a>、<a href="http://redis.io/">Redis</a> 這幾種隊列的服務。</p>
 <p>我們通常會將一些需要花比較久時間處理的工作丟給隊列去背景執行，讓使用者能夠快速的的到網站的回應，像是我們在寄送帳號認證信件時，因為透過郵件伺服器去寄送可能會花費比較久的時間，所以我們會將這類的工作丟到隊列去執行，所以使用者的認證信件就會延遲的發送到他們的信箱，但是使用者在瀏覽網站時卻可以有更好的體驗！</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="指令">指令</h2>
 <p>在使用 Queue 去幫我們做工作的時候，我們在系統背景需要執行傾聽 Queue 是否有工作的指令，像是 <code>php artisan queue:listen</code>，這樣 Queue 中有新工作需要做，才能夠正常的去執行。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ php artisan queue:listen
@@ -3897,28 +3908,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4107,6 +4096,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6113,19 +6124,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217452"></script>
-    <script src="/js/jquery.sticky.js?1615217452"></script>
-    <script src="/js/featherlight.min.js?1615217452"></script>
-    <script src="/js/highlight.pack.js?1615217452"></script>
+    <script src="/js/clipboard.min.js?1615219824"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219824"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219824"></script>
+    <script src="/js/jquery.sticky.js?1615219824"></script>
+    <script src="/js/featherlight.min.js?1615219824"></script>
+    <script src="/js/highlight.pack.js?1615219824"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217452"></script>
-    <script src="/js/learn.js?1615217452"></script>
-    <script src="/js/hugo-learn.js?1615217452"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219824"></script>
+    <script src="/js/learn.js?1615219824"></script>
+    <script src="/js/hugo-learn.js?1615219824"></script>
 
-    <link href="/mermaid/mermaid.css?1615217452" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217452"></script>
+    <link href="/mermaid/mermaid.css?1615219824" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219824"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

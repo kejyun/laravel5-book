@@ -12,21 +12,21 @@
     <title>套件開發 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219822" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219822" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219822"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Laravel Packages Development 套件開發 建立本地端的套件資料夾 在本地端開發套件，可以在 Laravel 根目錄自行建立 packages 目錄，然後將套件放在下方路徑中\n packages \u0026gt; \u0026lt;user_name\u0026gt; \u0026gt; \u0026lt;package_name\u0026gt; \u0026gt; \u0026lt;code_folder\u0026gt;\n app packages # 套件資料夾（原本沒有此資料，需要自行建立） kejyun # \u0026lt;user_name\u0026gt; 作者名稱 larapack # \u0026lt;package_name\u0026gt; 套件名稱 src # \u0026lt;code_folder\u0026gt; 所有套件程式皆放在此目錄 所有套件相關的程式皆放在此路徑下\n建立套件 composer.json 在建立的套件目錄下初始化此套件的 composer.json\n~\/laravel_project\/packages\/kejyun\/larapack $ composer init Package name (\u0026lt;vendor\u0026gt;\/\u0026lt;name\u0026gt;) [vagrant\/larapack]: kejyun\/larapack Description []: KJ Larapack Author [, n to skip]: KeJyun \u0026lt;kejyun@gmail.com\u0026gt; Minimum Stability []: dev Package Type (e.g. library, project, metapackage, composer-plugin) []: License []: MIT Define your dependencies. Would you like to define your dependencies (require) interactively [yes]? no Would you like to define your dev dependencies (require-dev) interactively [yes]? no { \u0026#34;name\u0026#34;: \u0026#34;kejyun\/larapack\u0026#34;, \u0026#34;description\u0026#34;: \u0026#34;KJ Larapack\u0026#34;, \u0026#34;license\u0026#34;: \u0026#34;MIT\u0026#34;, \u0026#34;authors\u0026#34;: [ { \u0026#34;name\u0026#34;: \u0026#34;KeJyun\u0026#34;, \u0026#34;email\u0026#34;: \u0026#34;kejyun@gmail.com\u0026#34; } ], \u0026#34;minimum-stability\u0026#34;: \u0026#34;dev\u0026#34;, \u0026#34;require\u0026#34;: {} } Do you confirm generation [yes]? 建立完的套件 composer.json 會長的像這樣\n{ \u0026#34;name\u0026#34;: \u0026#34;kejyun\/larapack\u0026#34;, \u0026#34;description\u0026#34;: \u0026#34;KJ Larapack\u0026#34;, \u0026#34;license\u0026#34;: \u0026#34;MIT\u0026#34;, \u0026#34;authors\u0026#34;: [ { \u0026#34;name\u0026#34;: \u0026#34;KeJyun\u0026#34;, \u0026#34;email\u0026#34;: \u0026#34;kejyun@gmail.com\u0026#34; } ], \u0026#34;minimum-stability\u0026#34;: \u0026#34;dev\u0026#34;, \u0026#34;require\u0026#34;: {} } 設定根目錄與套件目錄的 psr-4 自動載入程式 1. 根目錄 composer.json\n在開發過程中，為了測試方便，需要能夠在本地端直接讀取到套件的資料，在根目錄的 composer.json 直接設定使用 psr-4 自動載入套件路徑的程式，並設定在此路徑下的命名空間\n 命名空間需與接下來要上傳到 Packagist 給大家使用的套件命名空間相同，若之後需要讓大家用 \u0026lt;user_name\u0026gt;\\\u0026lt;package_name\u0026gt; 使用您的套件，這邊的命名空間就需預先設定好，在開發套件過程中，也可以直接用這樣的方式去存取套件\n \/* composer.json *\/ { \u0026#34;autoload\u0026#34;: { \u0026#34;classmap\u0026#34;: [ \u0026#34;database\/seeds\u0026#34;, \u0026#34;database\/factories\u0026#34; ], \u0026#34;psr-4\u0026#34;: { \u0026#34;App\\\\\u0026#34;: \u0026#34;app\/\u0026#34;, \u0026#34;KeJyun\\\\Larapack\\\\\u0026#34; : \u0026#34;packages\/kejyun\/larapack\/src\u0026#34; } }, } 2. 套件目錄 composer.json\n在套件目錄設定套件命名空間的目錄為 src 目錄，在使用 composer require 安裝套件到 vendor 目錄時，autoload 會使用此命名空間去載入套件 src 目錄的程式\n\/* packages\/kejyun\/larapack\/composer.json *\/ { \u0026#34;autoload\u0026#34;: { \u0026#34;psr-4\u0026#34;: { \u0026#34;KeJyun\\\\Larapack\\\\\u0026#34;: \u0026#34;src\u0026#34; } }, } 3. 產生 autoload 檔案\n因為需要載入非 vendor 目錄的套件資料，是自行設定的自動載入目錄，所以需要在專案根目錄產生新的 autoload 檔案\n~\/laravel_project $ composer dump-autoload Generating optimized autoload files 建立套件類別 Larapack app packages # 套件資料夾（原本沒有此資料，需要自行建立） kejyun # \u0026lt;user_name\u0026gt; 作者名稱 larapack # \u0026lt;package_name\u0026gt; 套件名稱 src # \u0026lt;code_folder\u0026gt; 所有套件程式皆放在此目錄 Larapack.php # 套件主程式 我們套件程式的進入點為 packages\/kejyun\/larapack\/src\/Larapack.php，在裡面可以寫一個簡單的 dump 方法，等等可以測試是否可以正常呼叫\n\u0026lt;?php \/\/ packages\/kejyun\/larapack\/src\/Larapack.php namespace KeJyun\\Larapack; class Larapack { public function dump($message) { dump($message); } } 建立套件 ServiceProvider 與 Facade Packagist 是所有 PHP 相關的套件，不是只提供給 Laravel 做使用，所以若要讓套件可以支援 Laravel，則必須提供 ServiceProvider 與 Facade 讓我們能夠快速的在 Laravel 使用套件的方法\napp packages # 套件資料夾（原本沒有此資料，需要自行建立） kejyun # \u0026lt;user_name\u0026gt; 作者名稱 larapack # \u0026lt;package_name\u0026gt; 套件名稱 src # \u0026lt;code_folder\u0026gt; 所有套件程式皆放在此目錄 Larapack.php # 套件主程式 LarapackServiceProvider.php # 套件 ServiceProvider(for laravel) LarapackFacade.php # 套件 Facade(for laravel) 在 ServiceProvider 註冊一個名稱為 larapack 的類別，使用 Larapack 物件作為此類別\n\u0026lt;?php namespace KeJyun\\Larapack; use Illuminate\\Support\\ServiceProvider; class LarapackServiceProvider extends ServiceProvider { public function boot() { } \/\/ 註冊套件函式  public function register() { $this-\u0026gt;app-\u0026gt;singleton(\u0026#39;larapack\u0026#39;, function ($app) { return new Larapack(); }); } } 使用在 ServiceProvider 註冊的 larapack類別，作為 Laravel 的 Facade 物件\n\u0026lt;?php namespace KeJyun\\Larapack; use Illuminate\\Support\\Facades\\Facade; class LarapackFacade extends Facade { protected static function getFacadeAccessor() { return \u0026#39;larapack\u0026#39;; } } Laravel 套件設定 可以將剛剛建立的 ServiceProvider 及 Facade 設定到 config\/app.php 檔案中，這樣 Laravel 就可以正常的存取這個套件\n\/\/ config\/app.php return [ \u0026#39;providers\u0026#39; =\u0026gt; [ KeJyun\\Larapack\\LarapackServiceProvider::class, ], \u0026#39;aliases\u0026#39; =\u0026gt; [ \u0026#39;Larapack\u0026#39; =\u0026gt; \\KeJyun\\Larapack\\LarapackFacade::class, ], ]; 呼叫此套件 建立一個套件控制器，可以試著呼叫剛剛建立的套件，就可以在畫面中順利的看到你的套件被正常呼叫了。\n\u0026lt;?php namespace App\\Http\\Controllers; use Larapack; class PackageController extends Controller { public function larapack() { Larapack::dump(\u0026#39;My Laravel Package\u0026#39;); } } 參考資料  如何開發自己的Package? | 點燈坊 Laravel 開發擴充套件包基本流程 - ITW01 模組化 套件 開發自己的Package - Alvin Chen Club Laravel 5 套件開發設定 Laravel 5.5 Package Development – Markus Tripp – Medium  "
+		"articleBody": "Laravel Packages Development 套件開發 建立本地端的套件資料夾 在本地端開發套件，可以在 Laravel 根目錄自行建立 packages 目錄，然後將套件放在下方路徑中\n packages \u0026gt; \u0026lt;user_name\u0026gt; \u0026gt; \u0026lt;package_name\u0026gt; \u0026gt; \u0026lt;code_folder\u0026gt;\n app packages # 套件資料夾（原本沒有此資料，需要自行建立） kejyun # \u0026lt;user_name\u0026gt; 作者名稱 larapack # \u0026lt;package_name\u0026gt; 套件名稱 src # \u0026lt;code_folder\u0026gt; 所有套件程式皆放在此目錄 所有套件相關的程式皆放在此路徑下\n 建立套件 composer.json 在建立的套件目錄下初始化此套件的 composer.json\n~\/laravel_project\/packages\/kejyun\/larapack $ composer init Package name (\u0026lt;vendor\u0026gt;\/\u0026lt;name\u0026gt;) [vagrant\/larapack]: kejyun\/larapack Description []: KJ Larapack Author [, n to skip]: KeJyun \u0026lt;kejyun@gmail.com\u0026gt; Minimum Stability []: dev Package Type (e.g. library, project, metapackage, composer-plugin) []: License []: MIT Define your dependencies. Would you like to define your dependencies (require) interactively [yes]? no Would you like to define your dev dependencies (require-dev) interactively [yes]? no { \u0026#34;name\u0026#34;: \u0026#34;kejyun\/larapack\u0026#34;, \u0026#34;description\u0026#34;: \u0026#34;KJ Larapack\u0026#34;, \u0026#34;license\u0026#34;: \u0026#34;MIT\u0026#34;, \u0026#34;authors\u0026#34;: [ { \u0026#34;name\u0026#34;: \u0026#34;KeJyun\u0026#34;, \u0026#34;email\u0026#34;: \u0026#34;kejyun@gmail.com\u0026#34; } ], \u0026#34;minimum-stability\u0026#34;: \u0026#34;dev\u0026#34;, \u0026#34;require\u0026#34;: {} } Do you confirm generation [yes]? 建立完的套件 composer.json 會長的像這樣\n{ \u0026#34;name\u0026#34;: \u0026#34;kejyun\/larapack\u0026#34;, \u0026#34;description\u0026#34;: \u0026#34;KJ Larapack\u0026#34;, \u0026#34;license\u0026#34;: \u0026#34;MIT\u0026#34;, \u0026#34;authors\u0026#34;: [ { \u0026#34;name\u0026#34;: \u0026#34;KeJyun\u0026#34;, \u0026#34;email\u0026#34;: \u0026#34;kejyun@gmail.com\u0026#34; } ], \u0026#34;minimum-stability\u0026#34;: \u0026#34;dev\u0026#34;, \u0026#34;require\u0026#34;: {} }  設定根目錄與套件目錄的 psr-4 自動載入程式 1. 根目錄 composer.json\n在開發過程中，為了測試方便，需要能夠在本地端直接讀取到套件的資料，在根目錄的 composer.json 直接設定使用 psr-4 自動載入套件路徑的程式，並設定在此路徑下的命名空間\n 命名空間需與接下來要上傳到 Packagist 給大家使用的套件命名空間相同，若之後需要讓大家用 \u0026lt;user_name\u0026gt;\\\u0026lt;package_name\u0026gt; 使用您的套件，這邊的命名空間就需預先設定好，在開發套件過程中，也可以直接用這樣的方式去存取套件\n \/* composer.json *\/ { \u0026#34;autoload\u0026#34;: { \u0026#34;classmap\u0026#34;: [ \u0026#34;database\/seeds\u0026#34;, \u0026#34;database\/factories\u0026#34; ], \u0026#34;psr-4\u0026#34;: { \u0026#34;App\\\\\u0026#34;: \u0026#34;app\/\u0026#34;, \u0026#34;KeJyun\\\\Larapack\\\\\u0026#34; : \u0026#34;packages\/kejyun\/larapack\/src\u0026#34; } }, } 2. 套件目錄 composer.json\n在套件目錄設定套件命名空間的目錄為 src 目錄，在使用 composer require 安裝套件到 vendor 目錄時，autoload 會使用此命名空間去載入套件 src 目錄的程式\n\/* packages\/kejyun\/larapack\/composer.json *\/ { \u0026#34;autoload\u0026#34;: { \u0026#34;psr-4\u0026#34;: { \u0026#34;KeJyun\\\\Larapack\\\\\u0026#34;: \u0026#34;src\u0026#34; } }, } 3. 產生 autoload 檔案\n因為需要載入非 vendor 目錄的套件資料，是自行設定的自動載入目錄，所以需要在專案根目錄產生新的 autoload 檔案\n~\/laravel_project $ composer dump-autoload Generating optimized autoload files 建立套件類別 Larapack app packages # 套件資料夾（原本沒有此資料，需要自行建立） kejyun # \u0026lt;user_name\u0026gt; 作者名稱 larapack # \u0026lt;package_name\u0026gt; 套件名稱 src # \u0026lt;code_folder\u0026gt; 所有套件程式皆放在此目錄 Larapack.php # 套件主程式 我們套件程式的進入點為 packages\/kejyun\/larapack\/src\/Larapack.php，在裡面可以寫一個簡單的 dump 方法，等等可以測試是否可以正常呼叫\n\u0026lt;?php \/\/ packages\/kejyun\/larapack\/src\/Larapack.php namespace KeJyun\\Larapack; class Larapack { public function dump($message) { dump($message); } }  建立套件 ServiceProvider 與 Facade Packagist 是所有 PHP 相關的套件，不是只提供給 Laravel 做使用，所以若要讓套件可以支援 Laravel，則必須提供 ServiceProvider 與 Facade 讓我們能夠快速的在 Laravel 使用套件的方法\napp packages # 套件資料夾（原本沒有此資料，需要自行建立） kejyun # \u0026lt;user_name\u0026gt; 作者名稱 larapack # \u0026lt;package_name\u0026gt; 套件名稱 src # \u0026lt;code_folder\u0026gt; 所有套件程式皆放在此目錄 Larapack.php # 套件主程式 LarapackServiceProvider.php # 套件 ServiceProvider(for laravel) LarapackFacade.php # 套件 Facade(for laravel) 在 ServiceProvider 註冊一個名稱為 larapack 的類別，使用 Larapack 物件作為此類別\n\u0026lt;?php namespace KeJyun\\Larapack; use Illuminate\\Support\\ServiceProvider; class LarapackServiceProvider extends ServiceProvider { public function boot() { } \/\/ 註冊套件函式  public function register() { $this-\u0026gt;app-\u0026gt;singleton(\u0026#39;larapack\u0026#39;, function ($app) { return new Larapack(); }); } } 使用在 ServiceProvider 註冊的 larapack類別，作為 Laravel 的 Facade 物件\n\u0026lt;?php namespace KeJyun\\Larapack; use Illuminate\\Support\\Facades\\Facade; class LarapackFacade extends Facade { protected static function getFacadeAccessor() { return \u0026#39;larapack\u0026#39;; } } Laravel 套件設定 可以將剛剛建立的 ServiceProvider 及 Facade 設定到 config\/app.php 檔案中，這樣 Laravel 就可以正常的存取這個套件\n\/\/ config\/app.php return [ \u0026#39;providers\u0026#39; =\u0026gt; [ KeJyun\\Larapack\\LarapackServiceProvider::class, ], \u0026#39;aliases\u0026#39; =\u0026gt; [ \u0026#39;Larapack\u0026#39; =\u0026gt; \\KeJyun\\Larapack\\LarapackFacade::class, ], ];  呼叫此套件 建立一個套件控制器，可以試著呼叫剛剛建立的套件，就可以在畫面中順利的看到你的套件被正常呼叫了。\n\u0026lt;?php namespace App\\Http\\Controllers; use Larapack; class PackageController extends Controller { public function larapack() { Larapack::dump(\u0026#39;My Laravel Package\u0026#39;); } } 參考資料  如何開發自己的Package? | 點燈坊 Laravel 開發擴充套件包基本流程 - ITW01 模組化 套件 開發自己的Package - Alvin Chen Club Laravel 5 套件開發設定 Laravel 5.5 Package Development – Markus Tripp – Medium  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219822"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219822"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219822"></script>
 
     
   </div>
@@ -3814,6 +3814,17 @@ packages            <span style="color:#75715e"># 套件資料夾（原本沒有
         larapack    <span style="color:#75715e"># &lt;package_name&gt; 套件名稱</span>
             src     <span style="color:#75715e"># &lt;code_folder&gt; 所有套件程式皆放在此目錄</span>
 </code></pre></div><p>所有套件相關的程式皆放在此路徑下</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="建立套件-composerjson">建立套件 composer.json</h2>
 <p>在建立的套件目錄下初始化此套件的 <code>composer.json</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">~/laravel_project/packages/kejyun/larapack $ composer init
@@ -3859,7 +3870,18 @@ Do you confirm generation <span style="color:#f92672">[</span>yes<span style="co
     <span style="color:#f92672">&#34;minimum-stability&#34;</span>: <span style="color:#e6db74">&#34;dev&#34;</span>,
     <span style="color:#f92672">&#34;require&#34;</span>: {}
 }
-</code></pre></div><h2 id="設定根目錄與套件目錄的-psr-4-自動載入程式">設定根目錄與套件目錄的 <code>psr-4</code> 自動載入程式</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="設定根目錄與套件目錄的-psr-4-自動載入程式">設定根目錄與套件目錄的 <code>psr-4</code> 自動載入程式</h2>
 <p><strong>1. 根目錄 composer.json</strong></p>
 <p>在開發過程中，為了測試方便，需要能夠在本地端直接讀取到套件的資料，在根目錄的 <code>composer.json</code> 直接設定使用 <code>psr-4</code> 自動載入套件路徑的程式，並設定在此路徑下的命名空間</p>
 <blockquote>
@@ -3912,7 +3934,18 @@ packages            <span style="color:#75715e"># 套件資料夾（原本沒有
         <span style="color:#a6e22e">dump</span>($message);
     }
 }
-</code></pre></div><h2 id="建立套件-serviceprovider-與-facade">建立套件 ServiceProvider 與 Facade</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="建立套件-serviceprovider-與-facade">建立套件 ServiceProvider 與 Facade</h2>
 <p>Packagist 是所有 PHP 相關的套件，不是只提供給 Laravel 做使用，所以若要讓套件可以支援 Laravel，則必須提供 ServiceProvider 與 Facade 讓我們能夠快速的在 Laravel 使用套件的方法</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">app
 packages            <span style="color:#75715e"># 套件資料夾（原本沒有此資料，需要自行建立）</span>
@@ -3969,7 +4002,18 @@ return [
         &#39;Larapack&#39; =&gt; \KeJyun\Larapack\LarapackFacade::class,
     ],
 ];
-</code></pre></div><h2 id="呼叫此套件">呼叫此套件</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="呼叫此套件">呼叫此套件</h2>
 <p>建立一個套件控制器，可以試著呼叫剛剛建立的套件，就可以在畫面中順利的看到你的套件被正常呼叫了。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 
@@ -4032,28 +4076,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4242,6 +4264,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6244,19 +6288,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217451"></script>
-    <script src="/js/jquery.sticky.js?1615217451"></script>
-    <script src="/js/featherlight.min.js?1615217451"></script>
-    <script src="/js/highlight.pack.js?1615217451"></script>
+    <script src="/js/clipboard.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219822"></script>
+    <script src="/js/jquery.sticky.js?1615219822"></script>
+    <script src="/js/featherlight.min.js?1615219822"></script>
+    <script src="/js/highlight.pack.js?1615219822"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217451"></script>
-    <script src="/js/learn.js?1615217451"></script>
-    <script src="/js/hugo-learn.js?1615217451"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219822"></script>
+    <script src="/js/learn.js?1615219822"></script>
+    <script src="/js/hugo-learn.js?1615219822"></script>
 
-    <link href="/mermaid/mermaid.css?1615217451" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217451"></script>
+    <link href="/mermaid/mermaid.css?1615219822" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219822"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

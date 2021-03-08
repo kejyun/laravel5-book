@@ -12,21 +12,21 @@
     <title>在單元測試顯示例外 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219823" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219823" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217451"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219823"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "在單元測試顯示例外（Show Exception in CLI） 在 Laravel 5 做單元測試時，使用 try catch 丟出例外時，Laravel 5 會自動地將例外的錯誤訊息處理成網頁的樣式呈現，這樣的好處是在網頁中做操作發生例外狀況時，可以直接看到例外的錯誤訊息，但是在寫單元測試 (Unit test) 時，他只會將這些錯誤先記錄在 log 檔案裡面（storage\/log\/laravel-yyyy-mm-dd.log），我們要看到這些錯誤的狀況必須要再另開終端機去執行 php artisan tail 去觀看這些 例外 Log 的狀況，這樣在做測試的時候是相當麻煩的。\n在 Laravel 5 中所有的例外（Exception）都會被丟到 app\/Exceptions\/Handler.php 中的 render() 去處理\n\u0026lt;?php \/\/ app\/Exceptions\/Handler.php  class Handler extends ExceptionHandler { \/** * Render an exception into an HTTP response. * 將例外錯誤轉為 HTTP 回應 * * @param \\Illuminate\\Http\\Request $request * @param \\Exception $e * @return \\Illuminate\\Http\\Response *\/ public function render($request, Exception $e) { return parent::render($request, $e); } } 我們如果需要在 CLI 就顯示例外錯誤訊息的話，必須修改 render() 函式，而我想要保有原本在網頁做除錯的彈性，所以我在環境變數 .env 檔案中加入例外處理（Exception）顯示的開關，當有設定開啟時，才直接顯示例外訊息。\n\u0026lt;!-- .env --\u0026gt; EXCEPTION_DISPLAY_SWITCH=true .env 設定好後，就將 render() 函式修改為這樣\n\u0026lt;?php \/\/ app\/Exceptions\/Handler.php  class Handler extends ExceptionHandler { \/** * Render an exception into an HTTP response. * 將例外錯誤轉為 HTTP 回應 * * @param \\Illuminate\\Http\\Request $request * @param \\Exception $e * @return \\Illuminate\\Http\\Response *\/ public function render($request, Exception $e) { \/\/ 預設不直接顯示例外訊息  $exception_display_switch = env(\u0026#39;EXCEPTION_DISPLAY_SWITCH\u0026#39;, false); if ($exception_display_switch) { throw $e; } return parent::render($request, $e); } } 這樣設定完後，也保留原本系統處理例外狀況的彈性，也可以讓我在單元測試（Unit test）中可以正常的去顯示例外訊息了！！\n參考資料  錯誤與日誌 - laravel.tw how do I create custom error page in laravel 5 Laravel 5.0 - Custom Error Pages  "
+		"articleBody": "在單元測試顯示例外（Show Exception in CLI） 在 Laravel 5 做單元測試時，使用 try catch 丟出例外時，Laravel 5 會自動地將例外的錯誤訊息處理成網頁的樣式呈現，這樣的好處是在網頁中做操作發生例外狀況時，可以直接看到例外的錯誤訊息，但是在寫單元測試 (Unit test) 時，他只會將這些錯誤先記錄在 log 檔案裡面（storage\/log\/laravel-yyyy-mm-dd.log），我們要看到這些錯誤的狀況必須要再另開終端機去執行 php artisan tail 去觀看這些 例外 Log 的狀況，這樣在做測試的時候是相當麻煩的。\n在 Laravel 5 中所有的例外（Exception）都會被丟到 app\/Exceptions\/Handler.php 中的 render() 去處理\n\u0026lt;?php \/\/ app\/Exceptions\/Handler.php  class Handler extends ExceptionHandler { \/** * Render an exception into an HTTP response. * 將例外錯誤轉為 HTTP 回應 * * @param \\Illuminate\\Http\\Request $request * @param \\Exception $e * @return \\Illuminate\\Http\\Response *\/ public function render($request, Exception $e) { return parent::render($request, $e); } }  我們如果需要在 CLI 就顯示例外錯誤訊息的話，必須修改 render() 函式，而我想要保有原本在網頁做除錯的彈性，所以我在環境變數 .env 檔案中加入例外處理（Exception）顯示的開關，當有設定開啟時，才直接顯示例外訊息。\n\u0026lt;!-- .env --\u0026gt; EXCEPTION_DISPLAY_SWITCH=true .env 設定好後，就將 render() 函式修改為這樣\n\u0026lt;?php \/\/ app\/Exceptions\/Handler.php  class Handler extends ExceptionHandler { \/** * Render an exception into an HTTP response. * 將例外錯誤轉為 HTTP 回應 * * @param \\Illuminate\\Http\\Request $request * @param \\Exception $e * @return \\Illuminate\\Http\\Response *\/ public function render($request, Exception $e) { \/\/ 預設不直接顯示例外訊息  $exception_display_switch = env(\u0026#39;EXCEPTION_DISPLAY_SWITCH\u0026#39;, false); if ($exception_display_switch) { throw $e; } return parent::render($request, $e); } } 這樣設定完後，也保留原本系統處理例外狀況的彈性，也可以讓我在單元測試（Unit test）中可以正常的去顯示例外訊息了！！\n參考資料  錯誤與日誌 - laravel.tw how do I create custom error page in laravel 5 Laravel 5.0 - Custom Error Pages  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217451"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217451"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219823"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219823"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217451"></script>
+<script type="text/javascript" src="/js/search.js?1615219823"></script>
 
     
   </div>
@@ -3830,7 +3830,18 @@
     }
 
 }
-</code></pre></div><p>我們如果需要在 CLI 就顯示例外錯誤訊息的話，必須修改 <code>render()</code> 函式，而我想要保有原本在網頁做除錯的彈性，所以我在環境變數 <code>.env</code> 檔案中加入例外處理（Exception）顯示的開關，當有設定開啟時，才直接顯示例外訊息。</p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>我們如果需要在 CLI 就顯示例外錯誤訊息的話，必須修改 <code>render()</code> 函式，而我想要保有原本在網頁做除錯的彈性，所以我在環境變數 <code>.env</code> 檔案中加入例外處理（Exception）顯示的開關，當有設定開啟時，才直接顯示例外訊息。</p>
 <pre><code>&lt;!-- .env --&gt;
 EXCEPTION_DISPLAY_SWITCH=true
 </code></pre><p><code>.env</code> 設定好後，就將 <code>render()</code> 函式修改為這樣</p>
@@ -3907,28 +3918,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4117,6 +4106,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6123,19 +6134,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217451"></script>
-    <script src="/js/jquery.sticky.js?1615217451"></script>
-    <script src="/js/featherlight.min.js?1615217451"></script>
-    <script src="/js/highlight.pack.js?1615217451"></script>
+    <script src="/js/clipboard.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219823"></script>
+    <script src="/js/jquery.sticky.js?1615219823"></script>
+    <script src="/js/featherlight.min.js?1615219823"></script>
+    <script src="/js/highlight.pack.js?1615219823"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217451"></script>
-    <script src="/js/learn.js?1615217451"></script>
-    <script src="/js/hugo-learn.js?1615217451"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219823"></script>
+    <script src="/js/learn.js?1615219823"></script>
+    <script src="/js/hugo-learn.js?1615219823"></script>
 
-    <link href="/mermaid/mermaid.css?1615217451" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217451"></script>
+    <link href="/mermaid/mermaid.css?1615219823" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219823"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

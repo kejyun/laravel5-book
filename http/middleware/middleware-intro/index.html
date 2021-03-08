@@ -12,21 +12,21 @@
     <title>中介層介紹 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219822" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219822" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219822"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "中介層介紹 這裏會介紹如何在 Laravel 5 使用中介層處理資料，Middleware 在 Laravel 4 叫做 Filter，他可以在處理資料之前，先過濾條件判斷，符合條件的再繼續處理之後的 Http 請求。\n就像實作一個部落格，使用者發表文章的時候，一定要登入，否則就會被導到登入頁（或首頁），判斷登入條件的部分在 Laravel 5 可以用中介層去實現。\n檢視中介層類別 我們可以看看內建的驗證使用者是否有登入的 Authenticate 中介層\n\u0026lt;?php namespace App\\Http\\Middleware; \/\/ app\\Http\\Middleware\\Authenticate.php  use Closure; use Illuminate\\Contracts\\Auth\\Guard; class Authenticate { protected $auth; \/** * Create a new filter instance. * 建立過濾器實例，建構時注入 Guard 類別並存到 auth 變數 * * @param Guard $auth * @return void *\/ public function __construct(Guard $auth) { $this-\u0026gt;auth = $auth; } \/** * Handle an incoming request. * 處理 request * * @param \\Illuminate\\Http\\Request $request * @param \\Closure $next * @return mixed *\/ public function handle($request, Closure $next) { if ($this-\u0026gt;auth-\u0026gt;guest()) { if ($request-\u0026gt;ajax()) { return response(\u0026#39;Unauthorized.\u0026#39;, 401); } else { return redirect()-\u0026gt;guest(\u0026#39;auth\/login\u0026#39;); } } return $next($request); } } 有設定 Http Request 中介層時，所有的請求都會丟給中介層的 handle() 函式做處理，第一個變數傳入的是 Request 本身，第二個變數是若檢查驗證成功之後要執行的函數，並把 Request 丟給下一層處理 $next($request)。\n註冊中介層變數 中介層設定好之後，必須要到 app\\Http\\Kernel.php 去註冊你的中介層\n\u0026lt;?php namespace App\\Http; \/\/ app\\Http\\Kernel.php  use Illuminate\\Foundation\\Http\\Kernel as HttpKernel; class Kernel extends HttpKernel { \/** * The application\u0026#39;s global HTTP middleware stack. * 全域中介層堆疊 * * @var array *\/ protected $middleware = [ \u0026#39;Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode\u0026#39;, \/\/ 檢查應用程式是不是維護中  \u0026#39;Illuminate\\Cookie\\Middleware\\EncryptCookies\u0026#39;, \/\/ 加密 Cookies  \u0026#39;Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse\u0026#39;, \/\/ 加入 Queued Cookies 到 Response  \u0026#39;Illuminate\\Session\\Middleware\\StartSession\u0026#39;, \/\/ 開啟 Session  \u0026#39;Illuminate\\View\\Middleware\\ShareErrorsFromSession\u0026#39;, \/\/ 從 Session 中共享錯誤資訊  \u0026#39;App\\Http\\Middleware\\VerifyCsrfToken\u0026#39;, \/\/ 驗證 CSRF Token  ]; \/** * The application\u0026#39;s route middleware. * 路由中介層 * * @var array *\/ protected $routeMiddleware = [ \u0026#39;auth\u0026#39; =\u0026gt; \u0026#39;App\\Http\\Middleware\\Authenticate\u0026#39;, \u0026#39;auth.basic\u0026#39; =\u0026gt; \u0026#39;Illuminate\\Auth\\Middleware\\AuthenticateWithBasicAuth\u0026#39;, \u0026#39;guest\u0026#39; =\u0026gt; \u0026#39;App\\Http\\Middleware\\RedirectIfAuthenticated\u0026#39;, ]; } 在 app\\Http\\Kernel.php 類別中，$middleware 變數是設定全域中介層堆疊清單，每一個 Http Request 都會依序經過 $middleware 所有的中介層做判斷\n$middleware 中介層判斷完後都沒問題，才丟給路由中介層 $routeMiddleware 做處理（若路由有設定要使用哪個中介層的話，沒有設定則略過）。\n當我們有自己的中介層，我們可以依自己需求看要將中介層設定加到哪一個變數設定中，如果需要每一個 Request 都做檢查的話，則將中介層設定到 $middleware，否則設定在。 $routeMiddleware 並指定中介層名稱即可。\n在 Controller 使用中介層 我們可以強制設定，當使用者要存取文章的資源時都必須要登入，所以在 ArticleController 控制器的建構子，我們可以用 $this-\u0026gt;middleware(\u0027auth\u0027); 設定全部 ArticleController 中的函式皆使用 auth 中介層。\n auth 中介層名稱是參照 app\\Http\\Kernel.php 中的 $routeMiddleware 變數設定\n class ArticleController extends Controller { public function __construct() { $this-\u0026gt;middleware(\u0026#39;auth\u0026#39;); } \/\/ 新增文章 public function store(Requests $request) { } } 我們也可以使用 only 方式，指定中介層只有在指定的函式中才使用，或是使用 except 方式指定除了某些函式不使用中介層外，其他都要使用中介層當作過濾\n\/\/ 只有設定的函式使用中介層 $this-\u0026gt;middleware(\u0026#39;auth\u0026#39;, [\u0026#39;only\u0026#39;=\u0026gt;\u0026#39;create\u0026#39;]); \/\/ 只有設定的函式\u0026#34;不要\u0026#34;使用中介層 $this-\u0026gt;middleware(\u0026#39;auth\u0026#39;, [\u0026#39;except\u0026#39;=\u0026gt;\u0026#39;index\u0026#39;]); 在 Route 使用中介層 \/\/ app\\Http\\routes.php Route::get(\u0026#39;about\u0026#39;, [ \u0026#39;middleware\u0026#39; =\u0026gt; \u0026#39;auth\u0026#39;, \u0026#39;uses\u0026#39;=\u0026gt; \u0026#39;HomeController@about\u0026#39; ]); 建立自己的中介層 我們可以使用指令建立自己的 Middleware，假如我建立一個 KeJyunMiddleware 為名稱的中介層，可以在命令列輸入：\n$ php artisan make:middleware KeJyunMiddleware 建立的中介層會放在 app\\Http\\Middleware\\KeJyunMiddleware.php 中\n\u0026lt;?php namespace App\\Http\\Middleware; \/\/ app\\Http\\Middleware\\KeJyunMiddleware.php  use Closure; class KeJyunMiddleware { public function handle($request, Closure $next) { return $next($request); } } 建立好自訂的中介層之後，到 app\\Http\\Kernel.php 註冊中介層後即可使用\n\u0026lt;?php namespace App\\Http; \/\/ app\\Http\\Kernel.php  class Kernel extends HttpKernel { protected $routeMiddleware = [ \u0026#39;kejyun\u0026#39; =\u0026gt; \u0026#39;App\\Http\\Middleware\\KeJyunMiddleware\u0026#39;, ]; } 參考資料  Ogres Are Like Middleware - Laracasts  "
+		"articleBody": "中介層介紹 這裏會介紹如何在 Laravel 5 使用中介層處理資料，Middleware 在 Laravel 4 叫做 Filter，他可以在處理資料之前，先過濾條件判斷，符合條件的再繼續處理之後的 Http 請求。\n就像實作一個部落格，使用者發表文章的時候，一定要登入，否則就會被導到登入頁（或首頁），判斷登入條件的部分在 Laravel 5 可以用中介層去實現。\n檢視中介層類別 我們可以看看內建的驗證使用者是否有登入的 Authenticate 中介層\n\u0026lt;?php namespace App\\Http\\Middleware; \/\/ app\\Http\\Middleware\\Authenticate.php  use Closure; use Illuminate\\Contracts\\Auth\\Guard; class Authenticate { protected $auth; \/** * Create a new filter instance. * 建立過濾器實例，建構時注入 Guard 類別並存到 auth 變數 * * @param Guard $auth * @return void *\/ public function __construct(Guard $auth) { $this-\u0026gt;auth = $auth; } \/** * Handle an incoming request. * 處理 request * * @param \\Illuminate\\Http\\Request $request * @param \\Closure $next * @return mixed *\/ public function handle($request, Closure $next) { if ($this-\u0026gt;auth-\u0026gt;guest()) { if ($request-\u0026gt;ajax()) { return response(\u0026#39;Unauthorized.\u0026#39;, 401); } else { return redirect()-\u0026gt;guest(\u0026#39;auth\/login\u0026#39;); } } return $next($request); } } 有設定 Http Request 中介層時，所有的請求都會丟給中介層的 handle() 函式做處理，第一個變數傳入的是 Request 本身，第二個變數是若檢查驗證成功之後要執行的函數，並把 Request 丟給下一層處理 $next($request)。\n 註冊中介層變數 中介層設定好之後，必須要到 app\\Http\\Kernel.php 去註冊你的中介層\n\u0026lt;?php namespace App\\Http; \/\/ app\\Http\\Kernel.php  use Illuminate\\Foundation\\Http\\Kernel as HttpKernel; class Kernel extends HttpKernel { \/** * The application\u0026#39;s global HTTP middleware stack. * 全域中介層堆疊 * * @var array *\/ protected $middleware = [ \u0026#39;Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode\u0026#39;, \/\/ 檢查應用程式是不是維護中  \u0026#39;Illuminate\\Cookie\\Middleware\\EncryptCookies\u0026#39;, \/\/ 加密 Cookies  \u0026#39;Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse\u0026#39;, \/\/ 加入 Queued Cookies 到 Response  \u0026#39;Illuminate\\Session\\Middleware\\StartSession\u0026#39;, \/\/ 開啟 Session  \u0026#39;Illuminate\\View\\Middleware\\ShareErrorsFromSession\u0026#39;, \/\/ 從 Session 中共享錯誤資訊  \u0026#39;App\\Http\\Middleware\\VerifyCsrfToken\u0026#39;, \/\/ 驗證 CSRF Token  ]; \/** * The application\u0026#39;s route middleware. * 路由中介層 * * @var array *\/ protected $routeMiddleware = [ \u0026#39;auth\u0026#39; =\u0026gt; \u0026#39;App\\Http\\Middleware\\Authenticate\u0026#39;, \u0026#39;auth.basic\u0026#39; =\u0026gt; \u0026#39;Illuminate\\Auth\\Middleware\\AuthenticateWithBasicAuth\u0026#39;, \u0026#39;guest\u0026#39; =\u0026gt; \u0026#39;App\\Http\\Middleware\\RedirectIfAuthenticated\u0026#39;, ]; }  在 app\\Http\\Kernel.php 類別中，$middleware 變數是設定全域中介層堆疊清單，每一個 Http Request 都會依序經過 $middleware 所有的中介層做判斷\n$middleware 中介層判斷完後都沒問題，才丟給路由中介層 $routeMiddleware 做處理（若路由有設定要使用哪個中介層的話，沒有設定則略過）。\n當我們有自己的中介層，我們可以依自己需求看要將中介層設定加到哪一個變數設定中，如果需要每一個 Request 都做檢查的話，則將中介層設定到 $middleware，否則設定在。 $routeMiddleware 並指定中介層名稱即可。\n在 Controller 使用中介層 我們可以強制設定，當使用者要存取文章的資源時都必須要登入，所以在 ArticleController 控制器的建構子，我們可以用 $this-\u0026gt;middleware(\u0027auth\u0027); 設定全部 ArticleController 中的函式皆使用 auth 中介層。\n auth 中介層名稱是參照 app\\Http\\Kernel.php 中的 $routeMiddleware 變數設定\n class ArticleController extends Controller { public function __construct() { $this-\u0026gt;middleware(\u0026#39;auth\u0026#39;); } \/\/ 新增文章 public function store(Requests $request) { } } 我們也可以使用 only 方式，指定中介層只有在指定的函式中才使用，或是使用 except 方式指定除了某些函式不使用中介層外，其他都要使用中介層當作過濾\n\/\/ 只有設定的函式使用中介層 $this-\u0026gt;middleware(\u0026#39;auth\u0026#39;, [\u0026#39;only\u0026#39;=\u0026gt;\u0026#39;create\u0026#39;]); \/\/ 只有設定的函式\u0026#34;不要\u0026#34;使用中介層 $this-\u0026gt;middleware(\u0026#39;auth\u0026#39;, [\u0026#39;except\u0026#39;=\u0026gt;\u0026#39;index\u0026#39;]);  在 Route 使用中介層 \/\/ app\\Http\\routes.php Route::get(\u0026#39;about\u0026#39;, [ \u0026#39;middleware\u0026#39; =\u0026gt; \u0026#39;auth\u0026#39;, \u0026#39;uses\u0026#39;=\u0026gt; \u0026#39;HomeController@about\u0026#39; ]); 建立自己的中介層 我們可以使用指令建立自己的 Middleware，假如我建立一個 KeJyunMiddleware 為名稱的中介層，可以在命令列輸入：\n$ php artisan make:middleware KeJyunMiddleware 建立的中介層會放在 app\\Http\\Middleware\\KeJyunMiddleware.php 中\n\u0026lt;?php namespace App\\Http\\Middleware; \/\/ app\\Http\\Middleware\\KeJyunMiddleware.php  use Closure; class KeJyunMiddleware { public function handle($request, Closure $next) { return $next($request); } } 建立好自訂的中介層之後，到 app\\Http\\Kernel.php 註冊中介層後即可使用\n\u0026lt;?php namespace App\\Http; \/\/ app\\Http\\Kernel.php  class Kernel extends HttpKernel { protected $routeMiddleware = [ \u0026#39;kejyun\u0026#39; =\u0026gt; \u0026#39;App\\Http\\Middleware\\KeJyunMiddleware\u0026#39;, ]; } 參考資料  Ogres Are Like Middleware - Laracasts  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219822"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219822"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219822"></script>
 
     
   </div>
@@ -3864,6 +3864,17 @@
 }
 
 </code></pre></div><p>有設定 Http Request 中介層時，所有的請求都會丟給中介層的 <code>handle()</code> 函式做處理，第一個變數傳入的是 Request 本身，第二個變數是若檢查驗證成功之後要執行的函數，並把 Request 丟給下一層處理 <code>$next($request)</code>。</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="註冊中介層變數">註冊中介層變數</h2>
 <p>中介層設定好之後，必須要到 <code>app\Http\Kernel.php</code> 去註冊你的中介層</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span> <span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Http</span>;
@@ -3903,7 +3914,18 @@
 
 }
 
-</code></pre></div><p>在 <code>app\Http\Kernel.php</code> 類別中，<code>$middleware</code> 變數是設定全域中介層堆疊清單，每一個 Http Request 都會依序經過 <code>$middleware</code> 所有的中介層做判斷</p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>在 <code>app\Http\Kernel.php</code> 類別中，<code>$middleware</code> 變數是設定全域中介層堆疊清單，每一個 Http Request 都會依序經過 <code>$middleware</code> 所有的中介層做判斷</p>
 <p><code>$middleware</code> 中介層判斷完後都沒問題，才丟給路由中介層 <code>$routeMiddleware</code> 做處理（若路由有設定要使用哪個中介層的話，沒有設定則略過）。</p>
 <p>當我們有自己的中介層，我們可以依自己需求看要將中介層設定加到哪一個變數設定中，如果需要每一個 Request 都做檢查的話，則將中介層設定到 <code>$middleware</code>，否則設定在。 <code>$routeMiddleware</code> 並指定中介層名稱即可。</p>
 <h2 id="在-controller-使用中介層">在 Controller 使用中介層</h2>
@@ -3930,7 +3952,18 @@ $this-&gt;middleware(&#39;auth&#39;, [&#39;only&#39;=&gt;&#39;create&#39;]);
 
 // 只有設定的函式&#34;不要&#34;使用中介層
 $this-&gt;middleware(&#39;auth&#39;, [&#39;except&#39;=&gt;&#39;index&#39;]);
-</code></pre></div><h2 id="在-route-使用中介層">在 Route 使用中介層</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="在-route-使用中介層">在 Route 使用中介層</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// app\Http\routes.php
 
 Route::get(&#39;about&#39;, [
@@ -4012,28 +4045,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4222,6 +4233,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6228,19 +6261,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219822"></script>
+    <script src="/js/jquery.sticky.js?1615219822"></script>
+    <script src="/js/featherlight.min.js?1615219822"></script>
+    <script src="/js/highlight.pack.js?1615219822"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219822"></script>
+    <script src="/js/learn.js?1615219822"></script>
+    <script src="/js/hugo-learn.js?1615219822"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219822" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219822"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

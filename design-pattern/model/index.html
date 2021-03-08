@@ -12,21 +12,21 @@
     <title>Model :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Model 模型設計模式 我們在使用任何的 Framework 中，都會聽到 MVC 模型，V（View）是負責畫面顯示，C（Controller）是負責控制程式呼叫模型的邏輯，而最重要的 M（Model）是負責整個資料庫的操作，以及撈取資料的邏輯\n我們常常把模型用來作為處理資料的商業邏輯，不管是任何的「資料樣式的轉換」、「資料撈取的邏輯」、「資料格式的驗證」、「資料處理的順序及商業邏輯」\u0026hellip;等等都是放在模型（Model）去處理\n資料樣式的轉換\n\/\/ 2016-01-01 00:00:00.123789 $now = Carbon::now(); \/\/ 2016\/01\/01 $now_date = $now-\u0026gt;format(\u0026#39;Y\/m\/d\u0026#39;); 資料撈取的邏輯\n撈取所有的女會員資料，年紀小於 30 歲\nUser::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;female\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026lt;\u0026#39;, 30) -\u0026gt;get(); 撈取所有的男會員資料，年紀大於 30 歲\nUser::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;male\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 30) -\u0026gt;get(); 資料格式的驗證\n$validator = Validator::make(Request::all(), [ \u0026#39;title\u0026#39; =\u0026gt; \u0026#39;required|unique:posts|max:255\u0026#39;, \u0026#39;content\u0026#39; =\u0026gt; \u0026#39;required\u0026#39;, ]); 資料處理的順序及商業邏輯\n\/** * 發送 Email 及簡訊給所有女會員 *\/ \/\/ 取得所有女會員資料 $users = User::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;female\u0026#39;) -\u0026gt;get(); \/\/ 發送 Email foreach ($users as $u) { Mail::send(\u0026#39;emails.hello\u0026#39;, [\u0026#39;user\u0026#39; =\u0026gt; $u], function ($mail) use ($u) { $mail-\u0026gt;to($u-\u0026gt;email, $u-\u0026gt;name) -\u0026gt;subject(\u0026#39;安安!\u0026#39;); }); } \/\/ 發送簡訊 foreach ($users as $u) { SMS::send(\u0026#39;sms.hello\u0026#39;, [\u0026#39;user\u0026#39; =\u0026gt; $u], function ($sms) use ($u) { $sms-\u0026gt;to($u-\u0026gt;mobile_phone, $u-\u0026gt;name) -\u0026gt;content(\u0026#39;安安!\u0026#39;); }); } 如果把這些不同類別的資料全部丟到 Model 模型去處理會變得很亂，程式碼難以維護，所以我們會用設計模式來降低程式碼的耦合性，讓程式變得容易維護，我們會將 Model 分成：\n 實體（Entity） 資源庫（Repository） 服務（Service） 表單驗證（Form） 資料呈現（Presenter） ARCA 架構檔案結構  實體（Entity） 實體就是我們用來設定 Eloquent Model 的相關設定，像是資料表名稱（$table）、主鍵名稱（$primaryKey) 等等，裡面除了 Eloquent 相關設定以外，不要擺任何的商業邏輯或資料撈取方法\n實體與資料表的關係是「1 對 1」的關係，有幾個資料表就有幾個實體\n 詳情請見Eloquent Model (模型) - 設定\n 資源庫（Repository） 資源庫是我們要用來撈取資料表資料的各個邏輯，我們資料表會有不同的欄位，不同的欄位條件代表不同的意義，像是：\n撈取所有的女會員資料，年紀小於 30 歲\nUser::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;female\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026lt;\u0026#39;, 30) -\u0026gt;get(); 撈取所有的男會員資料，年紀大於 30 歲\nUser::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;male\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 30) -\u0026gt;get(); 這些不同的撈取資料邏輯，我會將它包在資源庫中，該資源庫長得會像這樣：\nclass UserRepository { \/** * 撈取所有的女會員資料，年紀小於 30 歲 *\/ public function getYoungFemale() { return User::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;female\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026lt;\u0026#39;, 30) -\u0026gt;get(); } \/** * 撈取所有的男會員資料，年紀大於 30 歲 *\/ public function getOldMale() { return User::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;male\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 30) -\u0026gt;get(); } } 這樣我們撈取這些不同資料邏輯時就可以這樣去撈取：\n$userRepository = new UserRepository(); \/\/ 撈取所有的女會員資料，年紀小於 30 歲 $young_female_user = $userRepository-\u0026gt;getYoungFemale(); \/\/ 撈取所有的男會員資料，年紀大於 30 歲 $old_male_user = $userRepository-\u0026gt;getOldMale(); 這樣除了可以讓程式碼易讀性提高之外，撈取資料的邏輯也可以抽離出來，下次如果有需要撈取同樣的資料時，就可以重複的去使用它，而且不會有重複的程式碼出現在專案的各個地方，讓管理程式碼變得簡單\n資源庫與實體的關係是「1 對 1」的關係，有幾個實體就有幾個資源庫，每個資源庫是代表那個實體的各個不同的資料撈取邏輯\n服務（Service） 服務代表我們程式要處理資料的商業邏輯，我會將各個功能邏輯獨立成一個服務，像是使用者「註冊身份驗證」是一個服務，而使用者「個人隱私設定」也是一個服務\n服務與資源庫的關係是「多 對 1」的關係，像是同樣使用者資料，有「註冊身份驗證」及「個人隱私設定」2 種不同類型的服務\n使用者「註冊身份驗證」服務\n\/** * 使用者「註冊身份驗證」服務 *\/ class UserAuthService { \/** * 註冊 *\/ public function signup() { } \/** * 登入驗證 *\/ public function signin() { } } 使用者「個人隱私設定」服務\n\/** * 使用者「個人隱私設定」服務 *\/ class UserPrivacyService extends AnotherClass { \/** * 取得使用者隱私設定 *\/ public function getUserPrivacy() { } \/** * 設定使用者隱私 *\/ public function setUserPrivacy() { } } 不同類型的服務，只要彼此耦合性很低，我傾向把他分成不同的服務去處理，這樣可以很清楚的知道哪個個服務是專門處理哪一種商業邏輯，程式也比較好管理，在異動程式時也比較不會影響到彼此，避免牽一髮動全身的狀況發生\n表單驗證（Form） 我們設計後端程式的原則，是不要相信任何第三方傳來的資料，在資料做進一步處理時都需要對資料格式做檢查，若於我們設定的資料格式相符，我們才會去做進一步的資料商業邏輯處理\n但是我們可能會在控制器（Controller）做表單資料的驗證，但是服務（Service）、資源庫（Repository）或實體（Entity）為了保護自己的程式邏輯，也有可能去做表單資料的驗證，若每一個階段都做表單資料的驗證，這樣不僅造成了資料發生重複驗證的狀況，也會降低程式的執行速度，更慘的是會造成驗證程式重複出現，如果有驗證規則要修改，我們就必須要確保所有有驗證表單資料的地方，都有正確的被修改，不然程式的商業邏輯可能會沒辦法順利的去執行。\n因為我們對模型做了分層地處理，所以模型的層級架構會像：\n 控制器 (Controller） \u0026gt; 服務（Service） \u0026gt; 資源庫（Repository） \u0026gt; 實體（Entity）\n 控制器會根據他需要的商業邏輯，呼叫不同的服務來處理他的程式邏輯，而且每個控制器，而且每個控制器可能會有不同類型的服務，可能會有使用者（User）的資料、文章（Posts）的資料\u0026hellip;等等需要做資料的驗證，所以驗證資料的規則複雜度會很多。\n我自己會傾向將所有的表單資料驗證都放在服務（Service）中去驗證，不同的商業邏輯可能需要驗證的資料規則不同，但是我們可以確定的是，同一個服務會是同一個類型的資料，像是使用者「註冊身份驗證」服務及使用者「個人隱私設定」服務\u0026lt; 裡面的資料一定是使用者相關的資料，若我們也有文章的服務（PostService），我們也一定可以確保裡面的驗證資料一定是文章相關的資料。\n所以除了服務（Service）層去做資料的驗證外，其他的層級都不需要做任何的資料驗證！\n資料呈現（Presenter） 我們會將需要處理不同資料樣式的邏輯，使用 laracasts\/presenter 去做實體（Entity）的分層處理，不要將有程式邏輯的功能出現在實體（Entity）中\nARCA 架構檔案結構 我會將 Model 的檔案結構依照 Domain 去區分，檔案結構大概會像這樣\n\/app \/KeJyunApp \/User \/Entities User.php UserPrivacy.php \/Repositories UserRepository.php UserPrivacyRepository.php \/Service UserAuthService.php UserPrivacyService.php \/Form UserForm.php UserPrivacyForm.php \/Presenter UserPresenter.php UserPrivacyPresenter.php \/Post \/Entities Post.php \/Repositories \/Service \/Form \/Presenter 這樣區分的好處是，類似功能的程式可以方便集中管理，當我們在撰寫某一功能的程式，我們可以很快地在同一個資料夾中找到這些檔案，若要找其他功能的程式時，也可以在同一個資料夾很快地去找到\n如果我們將程式檔案依照功能去放置，可能會像這樣\n\/app \/SomeApp \/Entities User.php Post.php Tags.php News.php Event.php ... \/Repositories \/Service UserAuthService.php UserPrivacyService.php UserStatisticService.php PostManageService.php PostRankService.php PostStatisticService.php TagsService.php NewsService.php EventService.php ... \/Form \/Presenter 當專案還小，只有少數幾個模型資料需要管理時，還沒有什麼大的問題，但是當我們撰寫很多複雜功能時，這樣檔案管理的方式會是個很大的夢靨，像是服務（Service）與資源庫（Repository）的關係是「多 對 1」的關係，所以服務（Services）資料夾的檔案可能有 40~50 個以上，在我們要找相關的檔案時，就很考驗我們的眼力了（工程師的眼睛是很珍貴的，我們要好好的珍惜～）\n參考資料  在 Laravel 4 使用資源庫 (Repositories) 及服務 (Services) 去降低程式的耦合性 胖胖Model減重的五個方法 by howtomakeaturn PHP 也有 Day #16 - 胖胖 Model 減重的五個方法 by 尤川豪  "
+		"articleBody": "Model 模型設計模式 我們在使用任何的 Framework 中，都會聽到 MVC 模型，V（View）是負責畫面顯示，C（Controller）是負責控制程式呼叫模型的邏輯，而最重要的 M（Model）是負責整個資料庫的操作，以及撈取資料的邏輯\n我們常常把模型用來作為處理資料的商業邏輯，不管是任何的「資料樣式的轉換」、「資料撈取的邏輯」、「資料格式的驗證」、「資料處理的順序及商業邏輯」\u0026hellip;等等都是放在模型（Model）去處理\n資料樣式的轉換\n\/\/ 2016-01-01 00:00:00.123789 $now = Carbon::now(); \/\/ 2016\/01\/01 $now_date = $now-\u0026gt;format(\u0026#39;Y\/m\/d\u0026#39;); 資料撈取的邏輯\n撈取所有的女會員資料，年紀小於 30 歲\nUser::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;female\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026lt;\u0026#39;, 30) -\u0026gt;get(); 撈取所有的男會員資料，年紀大於 30 歲\nUser::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;male\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 30) -\u0026gt;get(); 資料格式的驗證\n$validator = Validator::make(Request::all(), [ \u0026#39;title\u0026#39; =\u0026gt; \u0026#39;required|unique:posts|max:255\u0026#39;, \u0026#39;content\u0026#39; =\u0026gt; \u0026#39;required\u0026#39;, ]); 資料處理的順序及商業邏輯\n\/** * 發送 Email 及簡訊給所有女會員 *\/ \/\/ 取得所有女會員資料 $users = User::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;female\u0026#39;) -\u0026gt;get(); \/\/ 發送 Email foreach ($users as $u) { Mail::send(\u0026#39;emails.hello\u0026#39;, [\u0026#39;user\u0026#39; =\u0026gt; $u], function ($mail) use ($u) { $mail-\u0026gt;to($u-\u0026gt;email, $u-\u0026gt;name) -\u0026gt;subject(\u0026#39;安安!\u0026#39;); }); } \/\/ 發送簡訊 foreach ($users as $u) { SMS::send(\u0026#39;sms.hello\u0026#39;, [\u0026#39;user\u0026#39; =\u0026gt; $u], function ($sms) use ($u) { $sms-\u0026gt;to($u-\u0026gt;mobile_phone, $u-\u0026gt;name) -\u0026gt;content(\u0026#39;安安!\u0026#39;); }); }  如果把這些不同類別的資料全部丟到 Model 模型去處理會變得很亂，程式碼難以維護，所以我們會用設計模式來降低程式碼的耦合性，讓程式變得容易維護，我們會將 Model 分成：\n 實體（Entity） 資源庫（Repository） 服務（Service） 表單驗證（Form） 資料呈現（Presenter） ARCA 架構檔案結構  實體（Entity） 實體就是我們用來設定 Eloquent Model 的相關設定，像是資料表名稱（$table）、主鍵名稱（$primaryKey) 等等，裡面除了 Eloquent 相關設定以外，不要擺任何的商業邏輯或資料撈取方法\n實體與資料表的關係是「1 對 1」的關係，有幾個資料表就有幾個實體\n 詳情請見Eloquent Model (模型) - 設定\n 資源庫（Repository） 資源庫是我們要用來撈取資料表資料的各個邏輯，我們資料表會有不同的欄位，不同的欄位條件代表不同的意義，像是：\n撈取所有的女會員資料，年紀小於 30 歲\nUser::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;female\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026lt;\u0026#39;, 30) -\u0026gt;get(); 撈取所有的男會員資料，年紀大於 30 歲\nUser::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;male\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 30) -\u0026gt;get(); 這些不同的撈取資料邏輯，我會將它包在資源庫中，該資源庫長得會像這樣：\nclass UserRepository { \/** * 撈取所有的女會員資料，年紀小於 30 歲 *\/ public function getYoungFemale() { return User::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;female\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026lt;\u0026#39;, 30) -\u0026gt;get(); } \/** * 撈取所有的男會員資料，年紀大於 30 歲 *\/ public function getOldMale() { return User::where(\u0026#39;gender\u0026#39;=\u0026gt;\u0026#39;male\u0026#39;) -\u0026gt;where(\u0026#39;age\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 30) -\u0026gt;get(); } } 這樣我們撈取這些不同資料邏輯時就可以這樣去撈取：\n$userRepository = new UserRepository(); \/\/ 撈取所有的女會員資料，年紀小於 30 歲 $young_female_user = $userRepository-\u0026gt;getYoungFemale(); \/\/ 撈取所有的男會員資料，年紀大於 30 歲 $old_male_user = $userRepository-\u0026gt;getOldMale(); 這樣除了可以讓程式碼易讀性提高之外，撈取資料的邏輯也可以抽離出來，下次如果有需要撈取同樣的資料時，就可以重複的去使用它，而且不會有重複的程式碼出現在專案的各個地方，讓管理程式碼變得簡單\n資源庫與實體的關係是「1 對 1」的關係，有幾個實體就有幾個資源庫，每個資源庫是代表那個實體的各個不同的資料撈取邏輯\n 服務（Service） 服務代表我們程式要處理資料的商業邏輯，我會將各個功能邏輯獨立成一個服務，像是使用者「註冊身份驗證」是一個服務，而使用者「個人隱私設定」也是一個服務\n服務與資源庫的關係是「多 對 1」的關係，像是同樣使用者資料，有「註冊身份驗證」及「個人隱私設定」2 種不同類型的服務\n使用者「註冊身份驗證」服務\n\/** * 使用者「註冊身份驗證」服務 *\/ class UserAuthService { \/** * 註冊 *\/ public function signup() { } \/** * 登入驗證 *\/ public function signin() { } } 使用者「個人隱私設定」服務\n\/** * 使用者「個人隱私設定」服務 *\/ class UserPrivacyService extends AnotherClass { \/** * 取得使用者隱私設定 *\/ public function getUserPrivacy() { } \/** * 設定使用者隱私 *\/ public function setUserPrivacy() { } } 不同類型的服務，只要彼此耦合性很低，我傾向把他分成不同的服務去處理，這樣可以很清楚的知道哪個個服務是專門處理哪一種商業邏輯，程式也比較好管理，在異動程式時也比較不會影響到彼此，避免牽一髮動全身的狀況發生\n 表單驗證（Form） 我們設計後端程式的原則，是不要相信任何第三方傳來的資料，在資料做進一步處理時都需要對資料格式做檢查，若於我們設定的資料格式相符，我們才會去做進一步的資料商業邏輯處理\n但是我們可能會在控制器（Controller）做表單資料的驗證，但是服務（Service）、資源庫（Repository）或實體（Entity）為了保護自己的程式邏輯，也有可能去做表單資料的驗證，若每一個階段都做表單資料的驗證，這樣不僅造成了資料發生重複驗證的狀況，也會降低程式的執行速度，更慘的是會造成驗證程式重複出現，如果有驗證規則要修改，我們就必須要確保所有有驗證表單資料的地方，都有正確的被修改，不然程式的商業邏輯可能會沒辦法順利的去執行。\n因為我們對模型做了分層地處理，所以模型的層級架構會像：\n 控制器 (Controller） \u0026gt; 服務（Service） \u0026gt; 資源庫（Repository） \u0026gt; 實體（Entity）\n 控制器會根據他需要的商業邏輯，呼叫不同的服務來處理他的程式邏輯，而且每個控制器，而且每個控制器可能會有不同類型的服務，可能會有使用者（User）的資料、文章（Posts）的資料\u0026hellip;等等需要做資料的驗證，所以驗證資料的規則複雜度會很多。\n我自己會傾向將所有的表單資料驗證都放在服務（Service）中去驗證，不同的商業邏輯可能需要驗證的資料規則不同，但是我們可以確定的是，同一個服務會是同一個類型的資料，像是使用者「註冊身份驗證」服務及使用者「個人隱私設定」服務\u0026lt; 裡面的資料一定是使用者相關的資料，若我們也有文章的服務（PostService），我們也一定可以確保裡面的驗證資料一定是文章相關的資料。\n所以除了服務（Service）層去做資料的驗證外，其他的層級都不需要做任何的資料驗證！\n 資料呈現（Presenter） 我們會將需要處理不同資料樣式的邏輯，使用 laracasts\/presenter 去做實體（Entity）的分層處理，不要將有程式邏輯的功能出現在實體（Entity）中\nARCA 架構檔案結構 我會將 Model 的檔案結構依照 Domain 去區分，檔案結構大概會像這樣\n\/app \/KeJyunApp \/User \/Entities User.php UserPrivacy.php \/Repositories UserRepository.php UserPrivacyRepository.php \/Service UserAuthService.php UserPrivacyService.php \/Form UserForm.php UserPrivacyForm.php \/Presenter UserPresenter.php UserPrivacyPresenter.php \/Post \/Entities Post.php \/Repositories \/Service \/Form \/Presenter 這樣區分的好處是，類似功能的程式可以方便集中管理，當我們在撰寫某一功能的程式，我們可以很快地在同一個資料夾中找到這些檔案，若要找其他功能的程式時，也可以在同一個資料夾很快地去找到\n如果我們將程式檔案依照功能去放置，可能會像這樣\n\/app \/SomeApp \/Entities User.php Post.php Tags.php News.php Event.php ... \/Repositories \/Service UserAuthService.php UserPrivacyService.php UserStatisticService.php PostManageService.php PostRankService.php PostStatisticService.php TagsService.php NewsService.php EventService.php ... \/Form \/Presenter  當專案還小，只有少數幾個模型資料需要管理時，還沒有什麼大的問題，但是當我們撰寫很多複雜功能時，這樣檔案管理的方式會是個很大的夢靨，像是服務（Service）與資源庫（Repository）的關係是「多 對 1」的關係，所以服務（Services）資料夾的檔案可能有 40~50 個以上，在我們要找相關的檔案時，就很考驗我們的眼力了（工程師的眼睛是很珍貴的，我們要好好的珍惜～）\n參考資料  在 Laravel 4 使用資源庫 (Repositories) 及服務 (Services) 去降低程式的耦合性 胖胖Model減重的五個方法 by howtomakeaturn PHP 也有 Day #16 - 胖胖 Model 減重的五個方法 by 尤川豪  "
 	}
 </script>
 
@@ -473,14 +473,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3826,7 +3826,18 @@ foreach ($users as $u) {
           -&gt;content(&#39;安安!&#39;);
   });
 }
-</code></pre></div><p>如果把這些不同類別的資料全部丟到 Model 模型去處理會變得很亂，程式碼難以維護，所以我們會用設計模式來降低程式碼的耦合性，讓程式變得容易維護，我們會將 Model 分成：</p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>如果把這些不同類別的資料全部丟到 Model 模型去處理會變得很亂，程式碼難以維護，所以我們會用設計模式來降低程式碼的耦合性，讓程式變得容易維護，我們會將 Model 分成：</p>
 <ul>
 <li>實體（Entity）</li>
 <li>資源庫（Repository）</li>
@@ -3883,6 +3894,17 @@ $young_female_user = $userRepository-&gt;getYoungFemale();
 $old_male_user = $userRepository-&gt;getOldMale();
 </code></pre></div><p>這樣除了可以讓程式碼易讀性提高之外，撈取資料的邏輯也可以抽離出來，下次如果有需要撈取同樣的資料時，就可以重複的去使用它，而且不會有重複的程式碼出現在專案的各個地方，讓管理程式碼變得簡單</p>
 <p><em>資源庫與實體的關係是「1 對 1」的關係，有幾個實體就有幾個資源庫，每個資源庫是代表那個實體的各個不同的資料撈取邏輯</em></p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="服務service">服務（Service）</h2>
 <p>服務代表我們程式要處理資料的商業邏輯，我會將各個功能邏輯獨立成一個服務，像是使用者「註冊身份驗證」是一個服務，而使用者「個人隱私設定」也是一個服務</p>
 <p><em>服務與資源庫的關係是「多 對 1」的關係，像是同樣使用者資料，有「註冊身份驗證」及「個人隱私設定」2 種不同類型的服務</em></p>
@@ -3931,6 +3953,17 @@ class UserPrivacyService extends AnotherClass
   }
 }
 </code></pre></div><p>不同類型的服務，只要彼此耦合性很低，我傾向把他分成不同的服務去處理，這樣可以很清楚的知道哪個個服務是專門處理哪一種商業邏輯，程式也比較好管理，在異動程式時也比較不會影響到彼此，避免牽一髮動全身的狀況發生</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="表單驗證form">表單驗證（Form）</h2>
 <p>我們設計後端程式的原則，是不要相信任何第三方傳來的資料，在資料做進一步處理時都需要對資料格式做檢查，若於我們設定的資料格式相符，我們才會去做進一步的資料商業邏輯處理</p>
 <p>但是我們可能會在控制器（Controller）做表單資料的驗證，但是服務（Service）、資源庫（Repository）或實體（Entity）為了保護自己的程式邏輯，也有可能去做表單資料的驗證，若每一個階段都做表單資料的驗證，這樣不僅造成了資料發生重複驗證的狀況，也會降低程式的執行速度，更慘的是會造成驗證程式重複出現，如果有驗證規則要修改，我們就必須要確保所有有驗證表單資料的地方，都有正確的被修改，不然程式的商業邏輯可能會沒辦法順利的去執行。</p>
@@ -3942,6 +3975,17 @@ class UserPrivacyService extends AnotherClass
 <p>我自己會傾向將所有的表單資料驗證都放在服務（Service）中去驗證，不同的商業邏輯可能需要驗證的資料規則不同，但是我們可以確定的是，同一個服務會是同一個類型的資料，像是<em>使用者「註冊身份驗證」服務</em>及<em>使用者「個人隱私設定」服務</em>&lt;
 裡面的資料一定是使用者相關的資料，若我們也有<em>文章的服務（PostService）</em>，我們也一定可以確保裡面的驗證資料一定是文章相關的資料。</p>
 <p>所以除了服務（Service）層去做資料的驗證外，其他的層級都不需要做任何的資料驗證！</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="資料呈現presenter">資料呈現（Presenter）</h2>
 <p>我們會將需要處理不同資料樣式的邏輯，使用 <a href="https://github.com/laracasts/Presenter">laracasts/presenter</a> 去做實體（Entity）的分層處理，不要將有程式邏輯的功能出現在實體（Entity）中</p>
 <h2 id="arca-架構檔案結構">ARCA 架構檔案結構</h2>
@@ -3996,7 +4040,18 @@ class UserPrivacyService extends AnotherClass
       ...
     /Form
     /Presenter
-</code></pre><p>當專案還小，只有少數幾個模型資料需要管理時，還沒有什麼大的問題，但是當我們撰寫很多複雜功能時，這樣檔案管理的方式會是個很大的夢靨，像是服務（Service）與資源庫（Repository）的關係是「多 對 1」的關係，所以服務（Services）資料夾的檔案可能有 40~50 個以上，在我們要找相關的檔案時，就很考驗我們的眼力了（工程師的眼睛是很珍貴的，我們要好好的珍惜～）</p>
+</code></pre>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>當專案還小，只有少數幾個模型資料需要管理時，還沒有什麼大的問題，但是當我們撰寫很多複雜功能時，這樣檔案管理的方式會是個很大的夢靨，像是服務（Service）與資源庫（Repository）的關係是「多 對 1」的關係，所以服務（Services）資料夾的檔案可能有 40~50 個以上，在我們要找相關的檔案時，就很考驗我們的眼力了（工程師的眼睛是很珍貴的，我們要好好的珍惜～）</p>
 <h2 id="參考資料">參考資料</h2>
 <ul>
 <li><a href="http://laravel4-book.kejyun.com/laravel-design-pattern/model/decoupling-your-code-in-laravel-using-repositiories-and-services.html">在 Laravel 4 使用資源庫 (Repositories) 及服務 (Services) 去降低程式的耦合性</a></li>
@@ -4043,28 +4098,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4253,6 +4286,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6258,19 +6313,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219821"></script>
+    <script src="/js/jquery.sticky.js?1615219821"></script>
+    <script src="/js/featherlight.min.js?1615219821"></script>
+    <script src="/js/highlight.pack.js?1615219821"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219821"></script>
+    <script src="/js/learn.js?1615219821"></script>
+    <script src="/js/hugo-learn.js?1615219821"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219821" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219821"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -12,21 +12,21 @@
     <title>子網域路由（Sub-Domain Route） :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219822" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219822" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219822"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "子網域路由（Sub-Domain Route） 我們可能會因為有多個子網域，而我們希望各個不同的子網域有自己的路由設定，像是我們希望各個子網域的首頁能夠藍道不同的頁面，這個時候我們可以透過子網域路由去幫我們達成這樣的工作\n加入您的子網域到 hosts 設定 如果是正式環境則不用做此設定，如果是測試環境也想要達到子網域路由的效果，則必須做此設定\n開啟 \/etc\/hosts 檔案，並加入您需要的子網域\n127.0.0.1 resume.kejyun.dev 127.0.0.1 book.kejyun.dev Homestead 加入此子網域的虛擬主機設定 sites: - map: resume.kejyun.dev to: \/home\/vagrant\/Code\/KeJyunProject\/public - map: book.kejyun.dev to: \/home\/vagrant\/Code\/KeJyunProject\/public 重新讀取 Homestead 設定 若設定檔有修改要重新讀取，則可以使用下列指令重新讀取設定\nvagrant provision 加入子網域路由 在 route.php 檔案中加入子網域路由\nRoute::group([\u0026#39;domain\u0026#39; =\u0026gt; \u0026#39;resume.kejyun.dev\u0026#39;], function() { Route::get(\u0026#39;\/\u0026#39;, function() { return \u0026#39;KeJyun Resume\u0026#39;; }); }); Route::group([\u0026#39;domain\u0026#39; =\u0026gt; \u0026#39;book.kejyun.dev\u0026#39;], function() { Route::get(\u0026#39;\/\u0026#39;, function() { return \u0026#39;KeJyun Book\u0026#39;; }); }); 這樣我們就可以在 http:\/\/resume.kejyun.dev 及 http:\/\/book.kejyun.dev 這兩個子網域看到不同的首頁了！\n參考資料  Homestead and Subdomains  "
+		"articleBody": "子網域路由（Sub-Domain Route） 我們可能會因為有多個子網域，而我們希望各個不同的子網域有自己的路由設定，像是我們希望各個子網域的首頁能夠藍道不同的頁面，這個時候我們可以透過子網域路由去幫我們達成這樣的工作\n加入您的子網域到 hosts 設定 如果是正式環境則不用做此設定，如果是測試環境也想要達到子網域路由的效果，則必須做此設定\n開啟 \/etc\/hosts 檔案，並加入您需要的子網域\n127.0.0.1 resume.kejyun.dev 127.0.0.1 book.kejyun.dev Homestead 加入此子網域的虛擬主機設定 sites: - map: resume.kejyun.dev to: \/home\/vagrant\/Code\/KeJyunProject\/public - map: book.kejyun.dev to: \/home\/vagrant\/Code\/KeJyunProject\/public 重新讀取 Homestead 設定 若設定檔有修改要重新讀取，則可以使用下列指令重新讀取設定\nvagrant provision  加入子網域路由 在 route.php 檔案中加入子網域路由\nRoute::group([\u0026#39;domain\u0026#39; =\u0026gt; \u0026#39;resume.kejyun.dev\u0026#39;], function() { Route::get(\u0026#39;\/\u0026#39;, function() { return \u0026#39;KeJyun Resume\u0026#39;; }); }); Route::group([\u0026#39;domain\u0026#39; =\u0026gt; \u0026#39;book.kejyun.dev\u0026#39;], function() { Route::get(\u0026#39;\/\u0026#39;, function() { return \u0026#39;KeJyun Book\u0026#39;; }); }); 這樣我們就可以在 http:\/\/resume.kejyun.dev 及 http:\/\/book.kejyun.dev 這兩個子網域看到不同的首頁了！\n參考資料  Homestead and Subdomains  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219822"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219822"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219822"></script>
 
     
   </div>
@@ -3824,7 +3824,18 @@
 </code></pre></div><h2 id="重新讀取-homestead-設定">重新讀取 Homestead 設定</h2>
 <p>若設定檔有修改要重新讀取，則可以使用下列指令重新讀取設定</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">vagrant provision
-</code></pre></div><h2 id="加入子網域路由">加入子網域路由</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="加入子網域路由">加入子網域路由</h2>
 <p>在 <code>route.php</code> 檔案中加入子網域路由</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">Route::group([&#39;domain&#39; =&gt; &#39;resume.kejyun.dev&#39;], function()
 {
@@ -3884,28 +3895,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4094,6 +4083,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6100,19 +6111,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219822"></script>
+    <script src="/js/jquery.sticky.js?1615219822"></script>
+    <script src="/js/featherlight.min.js?1615219822"></script>
+    <script src="/js/highlight.pack.js?1615219822"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219822"></script>
+    <script src="/js/learn.js?1615219822"></script>
+    <script src="/js/hugo-learn.js?1615219822"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219822" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219822"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -12,21 +12,21 @@
     <title>Mailchimp :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219822" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219822" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217451"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219822"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Laravel Mailchimp 取得 API Key 登入 MailChimp 後，在右上方帳號選單中，選擇 Account\n在帳號選單頁面中，選擇 Extras 選單中的 API keys\n在 API keys 頁面中，點選 Create A Key，建立 API Key\n點選完後就可以看到你的 API Key 了\n取得 API 網址前綴 在 API 的網址可以看到前方有 \u0026lt;dc\u0026gt; 的字樣，\u0026lt;dc\u0026gt; 是要看自己所屬的服務是哪一個區域，可以登入 MailChimp 後從網址那邊取得如下\nhttps:\/\/\u0026lt;dc\u0026gt;.api.mailchimp.com\/3.0 可以看到網址是 https:\/\/us19.admin.mailchimp.com\/lists\/，所以 API Key 的 \u0026lt;dc\u0026gt; 就是 us19\n取得清單編號 List ID Mailchimp 可以管理許多不同的郵件清單，為了管理清單資料，需要有清單編號（List ID），到清單頁點選您要管理的清單\n在清單頁從 Settings 選單中點選 List name and defaults 選項\n在 List name and defaults 頁面中可以看到清單編號（List ID）在右上方\n安裝套件 Laravel : ~5.1.0|~5.2.0|~5.3.0|~5.4.0\n1. Composer 下載安裝\ncomposer require \u0026#34;spatie\/laravel-newsletter:3.7.*\u0026#34; 2. 設定 app.php\n\/\/ config\/app.php return [ \u0026#39;providers\u0026#39; =\u0026gt; [ ... Spatie\\Newsletter\\NewsletterServiceProvider::class, ... ], \/\/ config\/app.php \u0026#39;aliases\u0026#39; =\u0026gt; [ .. \u0026#39;Newsletter\u0026#39; =\u0026gt; Spatie\\Newsletter\\NewsletterFacade::class, ], ] 3. 發佈產生設定檔\nphp artisan vendor:publish --provider=\u0026#34;Spatie\\Newsletter\\NewsletterServiceProvider\u0026#34; 4. 設定 Mailchimp API Key \u0026amp; List Key\n在 config\/laravel-newsletter.php 設定檔中可以設定 API Key \u0026amp; List Key\nreturn [ \u0026#39;apiKey\u0026#39; =\u0026gt; env(\u0026#39;MAILCHIMP_APIKEY\u0026#39;), \u0026#39;lists\u0026#39; =\u0026gt; [ \u0026#39;subscribers\u0026#39; =\u0026gt; [ \u0026#39;id\u0026#39; =\u0026gt; env(\u0026#39;MAILCHIMP_LIST_ID\u0026#39;), ], ], ]; 可以到 .env 檔案中加入剛剛取得的 API Key \u0026amp; List Key\n# .env MAILCHIMP_APIKEY=xxxxxxx MAILCHIMP_LIST_ID=yyyyyyy 是否有此 email \/\/ 回傳 true or false $is_member_exist = Newsletter::hasMember($email); 訂閱 $SubscribeMember = Newsletter::subscribe($email); 訂閱後，在回傳資料的 status 欄位會看到狀態為 subscribed，曾經訂閱過的使用者無法再使用 subscribe() 去做訂閱，需要用 subscribeOrUpdate() 方法去做訂閱的更新\n$SubscribeMember = [ \u0026#34;id\u0026#34; =\u0026gt; \u0026#34;b08f6000ef0269370bc6d664a0bc42ae\u0026#34;, \u0026#34;email_address\u0026#34; =\u0026gt; \u0026#34;kj@kejyun.com\u0026#34;, \u0026#34;unique_email_id\u0026#34; =\u0026gt; \u0026#34;0c5596db5d\u0026#34;, \u0026#34;email_type\u0026#34; =\u0026gt; \u0026#34;html\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; \u0026#34;subscribed\u0026#34;, \u0026#34;merge_fields\u0026#34; =\u0026gt; [ \u0026#34;FNAME\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;LNAME\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ADDRESS\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;PHONE\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;BIRTHDAY\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;stats\u0026#34; =\u0026gt; [ \u0026#34;avg_open_rate\u0026#34; =\u0026gt; 0, \u0026#34;avg_click_rate\u0026#34; =\u0026gt; 0, ], \u0026#34;ip_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timestamp_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ip_opt\u0026#34; =\u0026gt; \u0026#34;1.1.1.1\u0026#34;, \u0026#34;timestamp_opt\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:30:44\u002b00:00\u0026#34;, \u0026#34;member_rating\u0026#34; =\u0026gt; 2, \u0026#34;last_changed\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:30:44\u002b00:00\u0026#34;, \u0026#34;language\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;vip\u0026#34; =\u0026gt; false, \u0026#34;email_client\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;location\u0026#34; =\u0026gt; [ \u0026#34;latitude\u0026#34; =\u0026gt; 0, \u0026#34;longitude\u0026#34; =\u0026gt; 0, \u0026#34;gmtoff\u0026#34; =\u0026gt; 0, \u0026#34;dstoff\u0026#34; =\u0026gt; 0, \u0026#34;country_code\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timezone\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;tags_count\u0026#34; =\u0026gt; 0, \u0026#34;tags\u0026#34; =\u0026gt; [], \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, ]; 取得會員資料 $Member = Newsletter::getMember($email); $Member = [ \u0026#34;id\u0026#34; =\u0026gt; \u0026#34;4bd1ccfqwdqwbtrbrtc8e064b7e037b5826\u0026#34;, \u0026#34;email_address\u0026#34; =\u0026gt; \u0026#34;kj@kejyun.com\u0026#34;, \u0026#34;unique_email_id\u0026#34; =\u0026gt; \u0026#34;20bb281925\u0026#34;, \u0026#34;email_type\u0026#34; =\u0026gt; \u0026#34;html\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; \u0026#34;subscribed\u0026#34;, \u0026#34;merge_fields\u0026#34; =\u0026gt; [ \u0026#34;FNAME\u0026#34; =\u0026gt; \u0026#34;KJ\u0026#34;, \u0026#34;LNAME\u0026#34; =\u0026gt; \u0026#34;Proj\u0026#34;, \u0026#34;ADDRESS\u0026#34; =\u0026gt; [ \u0026#34;addr1\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;addr2\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;city\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;state\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;zip\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;country\u0026#34; =\u0026gt; \u0026#34;US\u0026#34;, ], \u0026#34;PHONE\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;BIRTHDAY\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;stats\u0026#34; =\u0026gt; [ \u0026#34;avg_open_rate\u0026#34; =\u0026gt; 0, \u0026#34;avg_click_rate\u0026#34; =\u0026gt; 0, ], \u0026#34;ip_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timestamp_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ip_opt\u0026#34; =\u0026gt; \u0026#34;1.1.1.1\u0026#34;, \u0026#34;timestamp_opt\u0026#34; =\u0026gt; \u0026#34;2018-08-24T07:16:30\u002b00:00\u0026#34;, \u0026#34;member_rating\u0026#34; =\u0026gt; 2, \u0026#34;last_changed\u0026#34; =\u0026gt; \u0026#34;2018-08-24T07:16:30\u002b00:00\u0026#34;, \u0026#34;language\u0026#34; =\u0026gt; \u0026#34;en\u0026#34;, \u0026#34;vip\u0026#34; =\u0026gt; false, \u0026#34;email_client\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;location\u0026#34; =\u0026gt; [ \u0026#34;latitude\u0026#34; =\u0026gt; 0, \u0026#34;longitude\u0026#34; =\u0026gt; 0, \u0026#34;gmtoff\u0026#34; =\u0026gt; 0, \u0026#34;dstoff\u0026#34; =\u0026gt; 0, \u0026#34;country_code\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timezone\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;tags_count\u0026#34; =\u0026gt; 0, \u0026#34;tags\u0026#34; =\u0026gt; [], \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, ]; 解除訂閱 Newsletter::unsubscribe($email); 解除訂閱後，在回傳資料的 status 欄位會看到狀態為 unsubscribed，unsubscribe_reason 則會看到為 N\/A (Unsubscribed by admin)\n$UnSubscribeMember = [ \u0026#34;id\u0026#34; =\u0026gt; \u0026#34;b08f6000ef0269370bc6d664a0bc42ae\u0026#34;, \u0026#34;email_address\u0026#34; =\u0026gt; \u0026#34;kj@kejyun.com\u0026#34;, \u0026#34;unique_email_id\u0026#34; =\u0026gt; \u0026#34;0c5596db5d\u0026#34;, \u0026#34;email_type\u0026#34; =\u0026gt; \u0026#34;html\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; \u0026#34;unsubscribed\u0026#34;, \u0026#34;unsubscribe_reason\u0026#34; =\u0026gt; \u0026#34;N\/A (Unsubscribed by admin)\u0026#34;, \u0026#34;merge_fields\u0026#34; =\u0026gt; [ \u0026#34;FNAME\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;LNAME\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ADDRESS\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;PHONE\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;BIRTHDAY\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;stats\u0026#34; =\u0026gt; [ \u0026#34;avg_open_rate\u0026#34; =\u0026gt; 0, \u0026#34;avg_click_rate\u0026#34; =\u0026gt; 0, ], \u0026#34;ip_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timestamp_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ip_opt\u0026#34; =\u0026gt; \u0026#34;1.1.1.1\u0026#34;, \u0026#34;timestamp_opt\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:30:44\u002b00:00\u0026#34;, \u0026#34;member_rating\u0026#34; =\u0026gt; 2, \u0026#34;last_changed\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:57:21\u002b00:00\u0026#34;, \u0026#34;language\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;vip\u0026#34; =\u0026gt; false, \u0026#34;email_client\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;location\u0026#34; =\u0026gt; [ \u0026#34;latitude\u0026#34; =\u0026gt; 0, \u0026#34;longitude\u0026#34; =\u0026gt; 0, \u0026#34;gmtoff\u0026#34; =\u0026gt; 0, \u0026#34;dstoff\u0026#34; =\u0026gt; 0, \u0026#34;country_code\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timezone\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;tags_count\u0026#34; =\u0026gt; 0, \u0026#34;tags\u0026#34; =\u0026gt; [], \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, ]; 訂閱或更新使用者資料 $subscribe_member_info = [ \u0026#39;FNAME\u0026#39; =\u0026gt; \u0026#39;KJ\u0026#39;, \u0026#39;LNAME\u0026#39; =\u0026gt; \u0026#39;Hong\u0026#39;, \u0026#39;PHONE\u0026#39; =\u0026gt; \u0026#39;0900000000\u0026#39;, ]; $SubscribeMember = Newsletter::subscribeOrUpdate($email, subscribe_member_info); 訂閱後，在回傳資料的 status 欄位會看到狀態為 subscribed，也可以看到使用者的個人資料更新了\n$SubscribeMember = [ \u0026#34;id\u0026#34; =\u0026gt; \u0026#34;b08f6000ef0269370bc6d664a0bc42ae\u0026#34;, \u0026#34;email_address\u0026#34; =\u0026gt; \u0026#34;kj@kejyun.com\u0026#34;, \u0026#34;unique_email_id\u0026#34; =\u0026gt; \u0026#34;0c5596db5d\u0026#34;, \u0026#34;email_type\u0026#34; =\u0026gt; \u0026#34;html\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; \u0026#34;subscribed\u0026#34;, \u0026#34;merge_fields\u0026#34; =\u0026gt; [ \u0026#34;FNAME\u0026#34; =\u0026gt; \u0026#34;KJ\u0026#34;, \u0026#34;LNAME\u0026#34; =\u0026gt; \u0026#34;Hong\u0026#34;, \u0026#34;ADDRESS\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;PHONE\u0026#34; =\u0026gt; \u0026#34;0900000000\u0026#34;, \u0026#34;BIRTHDAY\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;stats\u0026#34; =\u0026gt; [ \u0026#34;avg_open_rate\u0026#34; =\u0026gt; 0, \u0026#34;avg_click_rate\u0026#34; =\u0026gt; 0, ], \u0026#34;ip_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timestamp_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ip_opt\u0026#34; =\u0026gt; \u0026#34;1.1.1.1\u0026#34;, \u0026#34;timestamp_opt\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:30:44\u002b00:00\u0026#34;, \u0026#34;member_rating\u0026#34; =\u0026gt; 2, \u0026#34;last_changed\u0026#34; =\u0026gt; \u0026#34;2018-08-24T09:11:58\u002b00:00\u0026#34;, \u0026#34;language\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;vip\u0026#34; =\u0026gt; false, \u0026#34;email_client\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;location\u0026#34; =\u0026gt; [ \u0026#34;latitude\u0026#34; =\u0026gt; 0, \u0026#34;longitude\u0026#34; =\u0026gt; 0, \u0026#34;gmtoff\u0026#34; =\u0026gt; 0, \u0026#34;dstoff\u0026#34; =\u0026gt; 0, \u0026#34;country_code\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timezone\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;tags_count\u0026#34; =\u0026gt; 0, \u0026#34;tags\u0026#34; =\u0026gt; [], \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, ]; 更新使用者 Email $UpdateMemberEmail = Newsletter::updateEmailAddress($old_email, $new_email); 若新的 email 已存在，則會無法更新\n$UpdateMemberEmail = [ \u0026#34;id\u0026#34; =\u0026gt; \u0026#34;11d3e8047829c996b4602f92bdfdc2f9\u0026#34;, \u0026#34;email_address\u0026#34; =\u0026gt; \u0026#34;kj.new@kejyun.com\u0026#34;, \u0026#34;unique_email_id\u0026#34; =\u0026gt; \u0026#34;21b5f58334\u0026#34;, \u0026#34;email_type\u0026#34; =\u0026gt; \u0026#34;html\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; \u0026#34;subscribed\u0026#34;, \u0026#34;merge_fields\u0026#34; =\u0026gt; [ \u0026#34;FNAME\u0026#34; =\u0026gt; \u0026#34;KJ\u0026#34;, \u0026#34;LNAME\u0026#34; =\u0026gt; \u0026#34;Hong\u0026#34;, \u0026#34;ADDRESS\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;PHONE\u0026#34; =\u0026gt; \u0026#34;0900000000\u0026#34;, \u0026#34;BIRTHDAY\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;stats\u0026#34; =\u0026gt; [ \u0026#34;avg_open_rate\u0026#34; =\u0026gt; 0, \u0026#34;avg_click_rate\u0026#34; =\u0026gt; 0, ], \u0026#34;ip_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timestamp_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ip_opt\u0026#34; =\u0026gt; \u0026#34;1.1.1.1\u0026#34;, \u0026#34;timestamp_opt\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:30:44\u002b00:00\u0026#34;, \u0026#34;member_rating\u0026#34; =\u0026gt; 2, \u0026#34;last_changed\u0026#34; =\u0026gt; \u0026#34;2018-08-24T09:46:24\u002b00:00\u0026#34;, \u0026#34;language\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;vip\u0026#34; =\u0026gt; false, \u0026#34;email_client\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;location\u0026#34; =\u0026gt; [ \u0026#34;latitude\u0026#34; =\u0026gt; 0, \u0026#34;longitude\u0026#34; =\u0026gt; 0, \u0026#34;gmtoff\u0026#34; =\u0026gt; 0, \u0026#34;dstoff\u0026#34; =\u0026gt; 0, \u0026#34;country_code\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timezone\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;tags_count\u0026#34; =\u0026gt; 0, \u0026#34;tags\u0026#34; =\u0026gt; [], \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, ]; 刪除使用者 email  刪除使用者 email，是指整個 email 從此消失，再也找不回來了\n $delete_status = Newsletter::delete($email); 刪除成功會回傳 true，刪除失敗則會將失敗的原因回傳\n\/\/ 刪除失敗 $delete_status = [ \u0026#34;type\u0026#34; =\u0026gt; \u0026#34;http:\/\/developer.mailchimp.com\/documentation\/mailchimp\/guides\/error-glossary\/\u0026#34;, \u0026#34;title\u0026#34; =\u0026gt; \u0026#34;Resource Not Found\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; 404, \u0026#34;detail\u0026#34; =\u0026gt; \u0026#34;The requested resource could not be found.\u0026#34;, \u0026#34;instance\u0026#34; =\u0026gt; \u0026#34;bb6db1ab-97e6-4da7-9db3-f97b5588ce3e\u0026#34;, ]; 取得使用者近期活動資訊 $MemberActivity = Newsletter::getMemberActivity($email); $MemberActivity = [ \u0026#34;activity\u0026#34; =\u0026gt; [ 0 =\u0026gt; [ \u0026#34;action\u0026#34; =\u0026gt; \u0026#34;unsub\u0026#34;, \u0026#34;timestamp\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:57:21\u002b00:00\u0026#34;, \u0026#34;type\u0026#34; =\u0026gt; \u0026#34;A\u0026#34;, \u0026#34;campaign_id\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], ], \u0026#34;email_id\u0026#34; =\u0026gt; \u0026#34;b08f6000ef0269370bc6d664a0bc42ae\u0026#34;, \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, \u0026#34;total_items\u0026#34; =\u0026gt; 1, ]; 參考資料  Developer | MailChimp About API Keys | MailChimp (MailChimp API Key)[https:\/\/us10.admin.mailchimp.com\/account\/api-key-popup\/] spatie\/laravel-newsletter: Manage newsletters in Laravel Laravel 5.1~5.4：spatie\/laravel-newsletter: Manage newsletters in Laravel ★ Easily integrate MailChimp in Laravel 5 - Freek Van der Herten\u0026rsquo;s blog on PHP and Laravel Guide On Laravel 5 and Mailchimp Newsletter- Helpful In Laravel Services  "
+		"articleBody": "Laravel Mailchimp 取得 API Key 登入 MailChimp 後，在右上方帳號選單中，選擇 Account\n在帳號選單頁面中，選擇 Extras 選單中的 API keys\n在 API keys 頁面中，點選 Create A Key，建立 API Key\n點選完後就可以看到你的 API Key 了\n 取得 API 網址前綴 在 API 的網址可以看到前方有 \u0026lt;dc\u0026gt; 的字樣，\u0026lt;dc\u0026gt; 是要看自己所屬的服務是哪一個區域，可以登入 MailChimp 後從網址那邊取得如下\nhttps:\/\/\u0026lt;dc\u0026gt;.api.mailchimp.com\/3.0 可以看到網址是 https:\/\/us19.admin.mailchimp.com\/lists\/，所以 API Key 的 \u0026lt;dc\u0026gt; 就是 us19\n取得清單編號 List ID Mailchimp 可以管理許多不同的郵件清單，為了管理清單資料，需要有清單編號（List ID），到清單頁點選您要管理的清單\n在清單頁從 Settings 選單中點選 List name and defaults 選項\n在 List name and defaults 頁面中可以看到清單編號（List ID）在右上方\n 安裝套件 Laravel : ~5.1.0|~5.2.0|~5.3.0|~5.4.0\n1. Composer 下載安裝\ncomposer require \u0026#34;spatie\/laravel-newsletter:3.7.*\u0026#34; 2. 設定 app.php\n\/\/ config\/app.php return [ \u0026#39;providers\u0026#39; =\u0026gt; [ ... Spatie\\Newsletter\\NewsletterServiceProvider::class, ... ], \/\/ config\/app.php \u0026#39;aliases\u0026#39; =\u0026gt; [ .. \u0026#39;Newsletter\u0026#39; =\u0026gt; Spatie\\Newsletter\\NewsletterFacade::class, ], ] 3. 發佈產生設定檔\nphp artisan vendor:publish --provider=\u0026#34;Spatie\\Newsletter\\NewsletterServiceProvider\u0026#34; 4. 設定 Mailchimp API Key \u0026amp; List Key\n在 config\/laravel-newsletter.php 設定檔中可以設定 API Key \u0026amp; List Key\nreturn [ \u0026#39;apiKey\u0026#39; =\u0026gt; env(\u0026#39;MAILCHIMP_APIKEY\u0026#39;), \u0026#39;lists\u0026#39; =\u0026gt; [ \u0026#39;subscribers\u0026#39; =\u0026gt; [ \u0026#39;id\u0026#39; =\u0026gt; env(\u0026#39;MAILCHIMP_LIST_ID\u0026#39;), ], ], ]; 可以到 .env 檔案中加入剛剛取得的 API Key \u0026amp; List Key\n# .env MAILCHIMP_APIKEY=xxxxxxx MAILCHIMP_LIST_ID=yyyyyyy  是否有此 email \/\/ 回傳 true or false $is_member_exist = Newsletter::hasMember($email); 訂閱 $SubscribeMember = Newsletter::subscribe($email); 訂閱後，在回傳資料的 status 欄位會看到狀態為 subscribed，曾經訂閱過的使用者無法再使用 subscribe() 去做訂閱，需要用 subscribeOrUpdate() 方法去做訂閱的更新\n$SubscribeMember = [ \u0026#34;id\u0026#34; =\u0026gt; \u0026#34;b08f6000ef0269370bc6d664a0bc42ae\u0026#34;, \u0026#34;email_address\u0026#34; =\u0026gt; \u0026#34;kj@kejyun.com\u0026#34;, \u0026#34;unique_email_id\u0026#34; =\u0026gt; \u0026#34;0c5596db5d\u0026#34;, \u0026#34;email_type\u0026#34; =\u0026gt; \u0026#34;html\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; \u0026#34;subscribed\u0026#34;, \u0026#34;merge_fields\u0026#34; =\u0026gt; [ \u0026#34;FNAME\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;LNAME\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ADDRESS\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;PHONE\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;BIRTHDAY\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;stats\u0026#34; =\u0026gt; [ \u0026#34;avg_open_rate\u0026#34; =\u0026gt; 0, \u0026#34;avg_click_rate\u0026#34; =\u0026gt; 0, ], \u0026#34;ip_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timestamp_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ip_opt\u0026#34; =\u0026gt; \u0026#34;1.1.1.1\u0026#34;, \u0026#34;timestamp_opt\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:30:44\u002b00:00\u0026#34;, \u0026#34;member_rating\u0026#34; =\u0026gt; 2, \u0026#34;last_changed\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:30:44\u002b00:00\u0026#34;, \u0026#34;language\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;vip\u0026#34; =\u0026gt; false, \u0026#34;email_client\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;location\u0026#34; =\u0026gt; [ \u0026#34;latitude\u0026#34; =\u0026gt; 0, \u0026#34;longitude\u0026#34; =\u0026gt; 0, \u0026#34;gmtoff\u0026#34; =\u0026gt; 0, \u0026#34;dstoff\u0026#34; =\u0026gt; 0, \u0026#34;country_code\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timezone\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;tags_count\u0026#34; =\u0026gt; 0, \u0026#34;tags\u0026#34; =\u0026gt; [], \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, ];  取得會員資料 $Member = Newsletter::getMember($email); $Member = [ \u0026#34;id\u0026#34; =\u0026gt; \u0026#34;4bd1ccfqwdqwbtrbrtc8e064b7e037b5826\u0026#34;, \u0026#34;email_address\u0026#34; =\u0026gt; \u0026#34;kj@kejyun.com\u0026#34;, \u0026#34;unique_email_id\u0026#34; =\u0026gt; \u0026#34;20bb281925\u0026#34;, \u0026#34;email_type\u0026#34; =\u0026gt; \u0026#34;html\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; \u0026#34;subscribed\u0026#34;, \u0026#34;merge_fields\u0026#34; =\u0026gt; [ \u0026#34;FNAME\u0026#34; =\u0026gt; \u0026#34;KJ\u0026#34;, \u0026#34;LNAME\u0026#34; =\u0026gt; \u0026#34;Proj\u0026#34;, \u0026#34;ADDRESS\u0026#34; =\u0026gt; [ \u0026#34;addr1\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;addr2\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;city\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;state\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;zip\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;country\u0026#34; =\u0026gt; \u0026#34;US\u0026#34;, ], \u0026#34;PHONE\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;BIRTHDAY\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;stats\u0026#34; =\u0026gt; [ \u0026#34;avg_open_rate\u0026#34; =\u0026gt; 0, \u0026#34;avg_click_rate\u0026#34; =\u0026gt; 0, ], \u0026#34;ip_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timestamp_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ip_opt\u0026#34; =\u0026gt; \u0026#34;1.1.1.1\u0026#34;, \u0026#34;timestamp_opt\u0026#34; =\u0026gt; \u0026#34;2018-08-24T07:16:30\u002b00:00\u0026#34;, \u0026#34;member_rating\u0026#34; =\u0026gt; 2, \u0026#34;last_changed\u0026#34; =\u0026gt; \u0026#34;2018-08-24T07:16:30\u002b00:00\u0026#34;, \u0026#34;language\u0026#34; =\u0026gt; \u0026#34;en\u0026#34;, \u0026#34;vip\u0026#34; =\u0026gt; false, \u0026#34;email_client\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;location\u0026#34; =\u0026gt; [ \u0026#34;latitude\u0026#34; =\u0026gt; 0, \u0026#34;longitude\u0026#34; =\u0026gt; 0, \u0026#34;gmtoff\u0026#34; =\u0026gt; 0, \u0026#34;dstoff\u0026#34; =\u0026gt; 0, \u0026#34;country_code\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timezone\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;tags_count\u0026#34; =\u0026gt; 0, \u0026#34;tags\u0026#34; =\u0026gt; [], \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, ];  解除訂閱 Newsletter::unsubscribe($email); 解除訂閱後，在回傳資料的 status 欄位會看到狀態為 unsubscribed，unsubscribe_reason 則會看到為 N\/A (Unsubscribed by admin)\n$UnSubscribeMember = [ \u0026#34;id\u0026#34; =\u0026gt; \u0026#34;b08f6000ef0269370bc6d664a0bc42ae\u0026#34;, \u0026#34;email_address\u0026#34; =\u0026gt; \u0026#34;kj@kejyun.com\u0026#34;, \u0026#34;unique_email_id\u0026#34; =\u0026gt; \u0026#34;0c5596db5d\u0026#34;, \u0026#34;email_type\u0026#34; =\u0026gt; \u0026#34;html\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; \u0026#34;unsubscribed\u0026#34;, \u0026#34;unsubscribe_reason\u0026#34; =\u0026gt; \u0026#34;N\/A (Unsubscribed by admin)\u0026#34;, \u0026#34;merge_fields\u0026#34; =\u0026gt; [ \u0026#34;FNAME\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;LNAME\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ADDRESS\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;PHONE\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;BIRTHDAY\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;stats\u0026#34; =\u0026gt; [ \u0026#34;avg_open_rate\u0026#34; =\u0026gt; 0, \u0026#34;avg_click_rate\u0026#34; =\u0026gt; 0, ], \u0026#34;ip_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timestamp_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ip_opt\u0026#34; =\u0026gt; \u0026#34;1.1.1.1\u0026#34;, \u0026#34;timestamp_opt\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:30:44\u002b00:00\u0026#34;, \u0026#34;member_rating\u0026#34; =\u0026gt; 2, \u0026#34;last_changed\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:57:21\u002b00:00\u0026#34;, \u0026#34;language\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;vip\u0026#34; =\u0026gt; false, \u0026#34;email_client\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;location\u0026#34; =\u0026gt; [ \u0026#34;latitude\u0026#34; =\u0026gt; 0, \u0026#34;longitude\u0026#34; =\u0026gt; 0, \u0026#34;gmtoff\u0026#34; =\u0026gt; 0, \u0026#34;dstoff\u0026#34; =\u0026gt; 0, \u0026#34;country_code\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timezone\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;tags_count\u0026#34; =\u0026gt; 0, \u0026#34;tags\u0026#34; =\u0026gt; [], \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, ];  訂閱或更新使用者資料 $subscribe_member_info = [ \u0026#39;FNAME\u0026#39; =\u0026gt; \u0026#39;KJ\u0026#39;, \u0026#39;LNAME\u0026#39; =\u0026gt; \u0026#39;Hong\u0026#39;, \u0026#39;PHONE\u0026#39; =\u0026gt; \u0026#39;0900000000\u0026#39;, ]; $SubscribeMember = Newsletter::subscribeOrUpdate($email, subscribe_member_info); 訂閱後，在回傳資料的 status 欄位會看到狀態為 subscribed，也可以看到使用者的個人資料更新了\n$SubscribeMember = [ \u0026#34;id\u0026#34; =\u0026gt; \u0026#34;b08f6000ef0269370bc6d664a0bc42ae\u0026#34;, \u0026#34;email_address\u0026#34; =\u0026gt; \u0026#34;kj@kejyun.com\u0026#34;, \u0026#34;unique_email_id\u0026#34; =\u0026gt; \u0026#34;0c5596db5d\u0026#34;, \u0026#34;email_type\u0026#34; =\u0026gt; \u0026#34;html\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; \u0026#34;subscribed\u0026#34;, \u0026#34;merge_fields\u0026#34; =\u0026gt; [ \u0026#34;FNAME\u0026#34; =\u0026gt; \u0026#34;KJ\u0026#34;, \u0026#34;LNAME\u0026#34; =\u0026gt; \u0026#34;Hong\u0026#34;, \u0026#34;ADDRESS\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;PHONE\u0026#34; =\u0026gt; \u0026#34;0900000000\u0026#34;, \u0026#34;BIRTHDAY\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;stats\u0026#34; =\u0026gt; [ \u0026#34;avg_open_rate\u0026#34; =\u0026gt; 0, \u0026#34;avg_click_rate\u0026#34; =\u0026gt; 0, ], \u0026#34;ip_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timestamp_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ip_opt\u0026#34; =\u0026gt; \u0026#34;1.1.1.1\u0026#34;, \u0026#34;timestamp_opt\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:30:44\u002b00:00\u0026#34;, \u0026#34;member_rating\u0026#34; =\u0026gt; 2, \u0026#34;last_changed\u0026#34; =\u0026gt; \u0026#34;2018-08-24T09:11:58\u002b00:00\u0026#34;, \u0026#34;language\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;vip\u0026#34; =\u0026gt; false, \u0026#34;email_client\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;location\u0026#34; =\u0026gt; [ \u0026#34;latitude\u0026#34; =\u0026gt; 0, \u0026#34;longitude\u0026#34; =\u0026gt; 0, \u0026#34;gmtoff\u0026#34; =\u0026gt; 0, \u0026#34;dstoff\u0026#34; =\u0026gt; 0, \u0026#34;country_code\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timezone\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;tags_count\u0026#34; =\u0026gt; 0, \u0026#34;tags\u0026#34; =\u0026gt; [], \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, ]; 更新使用者 Email $UpdateMemberEmail = Newsletter::updateEmailAddress($old_email, $new_email); 若新的 email 已存在，則會無法更新\n$UpdateMemberEmail = [ \u0026#34;id\u0026#34; =\u0026gt; \u0026#34;11d3e8047829c996b4602f92bdfdc2f9\u0026#34;, \u0026#34;email_address\u0026#34; =\u0026gt; \u0026#34;kj.new@kejyun.com\u0026#34;, \u0026#34;unique_email_id\u0026#34; =\u0026gt; \u0026#34;21b5f58334\u0026#34;, \u0026#34;email_type\u0026#34; =\u0026gt; \u0026#34;html\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; \u0026#34;subscribed\u0026#34;, \u0026#34;merge_fields\u0026#34; =\u0026gt; [ \u0026#34;FNAME\u0026#34; =\u0026gt; \u0026#34;KJ\u0026#34;, \u0026#34;LNAME\u0026#34; =\u0026gt; \u0026#34;Hong\u0026#34;, \u0026#34;ADDRESS\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;PHONE\u0026#34; =\u0026gt; \u0026#34;0900000000\u0026#34;, \u0026#34;BIRTHDAY\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;stats\u0026#34; =\u0026gt; [ \u0026#34;avg_open_rate\u0026#34; =\u0026gt; 0, \u0026#34;avg_click_rate\u0026#34; =\u0026gt; 0, ], \u0026#34;ip_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timestamp_signup\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;ip_opt\u0026#34; =\u0026gt; \u0026#34;1.1.1.1\u0026#34;, \u0026#34;timestamp_opt\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:30:44\u002b00:00\u0026#34;, \u0026#34;member_rating\u0026#34; =\u0026gt; 2, \u0026#34;last_changed\u0026#34; =\u0026gt; \u0026#34;2018-08-24T09:46:24\u002b00:00\u0026#34;, \u0026#34;language\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;vip\u0026#34; =\u0026gt; false, \u0026#34;email_client\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;location\u0026#34; =\u0026gt; [ \u0026#34;latitude\u0026#34; =\u0026gt; 0, \u0026#34;longitude\u0026#34; =\u0026gt; 0, \u0026#34;gmtoff\u0026#34; =\u0026gt; 0, \u0026#34;dstoff\u0026#34; =\u0026gt; 0, \u0026#34;country_code\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, \u0026#34;timezone\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], \u0026#34;tags_count\u0026#34; =\u0026gt; 0, \u0026#34;tags\u0026#34; =\u0026gt; [], \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, ];  刪除使用者 email  刪除使用者 email，是指整個 email 從此消失，再也找不回來了\n $delete_status = Newsletter::delete($email); 刪除成功會回傳 true，刪除失敗則會將失敗的原因回傳\n\/\/ 刪除失敗 $delete_status = [ \u0026#34;type\u0026#34; =\u0026gt; \u0026#34;http:\/\/developer.mailchimp.com\/documentation\/mailchimp\/guides\/error-glossary\/\u0026#34;, \u0026#34;title\u0026#34; =\u0026gt; \u0026#34;Resource Not Found\u0026#34;, \u0026#34;status\u0026#34; =\u0026gt; 404, \u0026#34;detail\u0026#34; =\u0026gt; \u0026#34;The requested resource could not be found.\u0026#34;, \u0026#34;instance\u0026#34; =\u0026gt; \u0026#34;bb6db1ab-97e6-4da7-9db3-f97b5588ce3e\u0026#34;, ]; 取得使用者近期活動資訊 $MemberActivity = Newsletter::getMemberActivity($email); $MemberActivity = [ \u0026#34;activity\u0026#34; =\u0026gt; [ 0 =\u0026gt; [ \u0026#34;action\u0026#34; =\u0026gt; \u0026#34;unsub\u0026#34;, \u0026#34;timestamp\u0026#34; =\u0026gt; \u0026#34;2018-08-24T08:57:21\u002b00:00\u0026#34;, \u0026#34;type\u0026#34; =\u0026gt; \u0026#34;A\u0026#34;, \u0026#34;campaign_id\u0026#34; =\u0026gt; \u0026#34;\u0026#34;, ], ], \u0026#34;email_id\u0026#34; =\u0026gt; \u0026#34;b08f6000ef0269370bc6d664a0bc42ae\u0026#34;, \u0026#34;list_id\u0026#34; =\u0026gt; \u0026#34;9fe4ab289a\u0026#34;, \u0026#34;total_items\u0026#34; =\u0026gt; 1, ]; 參考資料  Developer | MailChimp About API Keys | MailChimp (MailChimp API Key)[https:\/\/us10.admin.mailchimp.com\/account\/api-key-popup\/] spatie\/laravel-newsletter: Manage newsletters in Laravel Laravel 5.1~5.4：spatie\/laravel-newsletter: Manage newsletters in Laravel ★ Easily integrate MailChimp in Laravel 5 - Freek Van der Herten\u0026rsquo;s blog on PHP and Laravel Guide On Laravel 5 and Mailchimp Newsletter- Helpful In Laravel Services  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217451"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217451"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219822"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219822"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217451"></script>
+<script type="text/javascript" src="/js/search.js?1615219822"></script>
 
     
   </div>
@@ -3818,6 +3818,17 @@
 <p><img src="../images/mailchimp-api-key-create-start.png" alt="建立 API Key 開始"></p>
 <p>點選完後就可以看到你的 API Key 了</p>
 <p><img src="../images/mailchimp-api-key-create-finish.png" alt="建立 API Key 完成"></p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="取得-api-網址前綴">取得 API 網址前綴</h2>
 <p>在 API 的網址可以看到前方有 <code>&lt;dc&gt;</code> 的字樣，<code>&lt;dc&gt;</code> 是要看自己所屬的服務是哪一個區域，可以登入 MailChimp 後從網址那邊取得如下</p>
 <pre><code>https://&lt;dc&gt;.api.mailchimp.com/3.0
@@ -3830,6 +3841,17 @@
 <p><img src="../images/mailchimp-list-settings.png" alt="網址"></p>
 <p>在 <code>List name and defaults</code> 頁面中可以看到清單編號（List ID）在右上方</p>
 <p><img src="../images/mailchimp-list-settings-list-id.png" alt="網址"></p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="安裝套件">安裝套件</h2>
 <p><em>Laravel : ~5.1.0|~5.2.0|~5.3.0|~5.4.0</em></p>
 <p><strong>1. Composer 下載安裝</strong></p>
@@ -3864,7 +3886,18 @@ return [
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># .env</span>
 MAILCHIMP_APIKEY<span style="color:#f92672">=</span>xxxxxxx
 MAILCHIMP_LIST_ID<span style="color:#f92672">=</span>yyyyyyy
-</code></pre></div><h2 id="是否有此-email">是否有此 email</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="是否有此-email">是否有此 email</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// 回傳 true or false
 $is_member_exist = Newsletter::hasMember($email);
 </code></pre></div><h2 id="訂閱">訂閱</h2>
@@ -3908,7 +3941,18 @@ $is_member_exist = Newsletter::hasMember($email);
     &#34;tags&#34;             =&gt; [],
     &#34;list_id&#34;          =&gt; &#34;9fe4ab289a&#34;,
 ];
-</code></pre></div><h2 id="取得會員資料">取得會員資料</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="取得會員資料">取得會員資料</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$Member = Newsletter::getMember($email);
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$Member = [
     &#34;id&#34;               =&gt; &#34;4bd1ccfqwdqwbtrbrtc8e064b7e037b5826&#34;,
@@ -3955,7 +3999,18 @@ $is_member_exist = Newsletter::hasMember($email);
     &#34;tags&#34;             =&gt; [],
     &#34;list_id&#34;          =&gt; &#34;9fe4ab289a&#34;,
 ];
-</code></pre></div><h2 id="解除訂閱">解除訂閱</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="解除訂閱">解除訂閱</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">Newsletter::unsubscribe($email);
 </code></pre></div><p>解除訂閱後，在回傳資料的 <code>status</code> 欄位會看到狀態為 <code>unsubscribed</code>，<code>unsubscribe_reason</code> 則會看到為 <code>N/A (Unsubscribed by admin)</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$UnSubscribeMember = [
@@ -3997,7 +4052,18 @@ $is_member_exist = Newsletter::hasMember($email);
     &#34;tags&#34;               =&gt; [],
     &#34;list_id&#34;            =&gt; &#34;9fe4ab289a&#34;,
 ];
-</code></pre></div><h2 id="訂閱或更新使用者資料">訂閱或更新使用者資料</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="訂閱或更新使用者資料">訂閱或更新使用者資料</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$subscribe_member_info = [
     &#39;FNAME&#39;    =&gt; &#39;KJ&#39;,
     &#39;LNAME&#39;    =&gt; &#39;Hong&#39;,
@@ -4084,7 +4150,18 @@ $SubscribeMember = Newsletter::subscribeOrUpdate($email, subscribe_member_info);
     &#34;tags&#34;             =&gt; [],
     &#34;list_id&#34;          =&gt; &#34;9fe4ab289a&#34;,
 ];
-</code></pre></div><h2 id="刪除使用者-email">刪除使用者 email</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="刪除使用者-email">刪除使用者 email</h2>
 <blockquote>
 <p>刪除使用者 email，是指整個 email 從此消失，再也找不回來了</p>
 </blockquote>
@@ -4163,28 +4240,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4373,6 +4428,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6379,19 +6456,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217451"></script>
-    <script src="/js/jquery.sticky.js?1615217451"></script>
-    <script src="/js/featherlight.min.js?1615217451"></script>
-    <script src="/js/highlight.pack.js?1615217451"></script>
+    <script src="/js/clipboard.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219822"></script>
+    <script src="/js/jquery.sticky.js?1615219822"></script>
+    <script src="/js/featherlight.min.js?1615219822"></script>
+    <script src="/js/highlight.pack.js?1615219822"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217451"></script>
-    <script src="/js/learn.js?1615217451"></script>
-    <script src="/js/hugo-learn.js?1615217451"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219822"></script>
+    <script src="/js/learn.js?1615219822"></script>
+    <script src="/js/hugo-learn.js?1615219822"></script>
 
-    <link href="/mermaid/mermaid.css?1615217451" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217451"></script>
+    <link href="/mermaid/mermaid.css?1615219822" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219822"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

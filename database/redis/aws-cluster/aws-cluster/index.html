@@ -12,21 +12,21 @@
     <title>AWS Redis 設定 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "AWS Redis 設定  Laravel 版本：5.2\n AWS Redis Cluster Mode Enable 啟用群集模式 建立 Redis AWS Cluster Mode Enable 群集 建立 AWS Cluster Mode Enable 群集，將「Cluster Mode enabled」打勾，在下方的「Number of Shareds」設定資料分片數量，以及在「Replicas per Shared」設定每個分片數量要有幾個備援。\n取得群集端點（Endpoint） 建立完群集之後，在列表中取得群集端點（Configuration Endpoint）\n將群集端點設定到 database.php，並將 cluster 設定為 true，在設定檔加入 options 選項為 [\u0027cluster\u0027 =\u0026gt; \u0027redis\u0027]，並設定預設的 default 連線。\n\/\/ 檔案位置：config\/database.php return [ \u0026#39;redis\u0026#39; =\u0026gt; [ \u0026#39;cluster\u0026#39; =\u0026gt; true, \u0026#39;options\u0026#39; =\u0026gt; [\u0026#39;cluster\u0026#39; =\u0026gt; \u0026#39;redis\u0026#39;], \u0026#39;default\u0026#39; =\u0026gt; [ \u0026#39;host\u0026#39; =\u0026gt; env(\u0026#39;REDIS_HOST\u0026#39;, \u0026#39;localhost\u0026#39;), \u0026#39;password\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PASSWORD\u0026#39;, null), \u0026#39;port\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PORT\u0026#39;, 6379), \/\/ \u0026#34;persistent\u0026#34; =\u0026gt; \u0026#39;cache\u0026#39;, \u0026#39;database\u0026#39; =\u0026gt; 0, ], \u0026#39;session\u0026#39; =\u0026gt; [ \u0026#39;host\u0026#39; =\u0026gt; env(\u0026#39;REDIS_HOST\u0026#39;, \u0026#39;localhost\u0026#39;), \u0026#39;password\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PASSWORD\u0026#39;, null), \u0026#39;port\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PORT\u0026#39;, 6379), \/\/ \u0026#34;persistent\u0026#34; =\u0026gt; \u0026#39;cache\u0026#39;, \u0026#39;database\u0026#39; =\u0026gt; 0, ], \u0026#39;queue\u0026#39; =\u0026gt; [ \u0026#39;host\u0026#39; =\u0026gt; env(\u0026#39;REDIS_HOST\u0026#39;, \u0026#39;localhost\u0026#39;), \u0026#39;password\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PASSWORD\u0026#39;, null), \u0026#39;port\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PORT\u0026#39;, 6379), \/\/ \u0026#34;persistent\u0026#34; =\u0026gt; \u0026#39;cache\u0026#39;, \u0026#39;database\u0026#39; =\u0026gt; 0, ], ] ]; 因為 AWS Redis Cluster Enabled 的模式，database 的數量固定只有第 0 個，所以若有用其他的 database 的話，記得要把所有的 database 改為 0。\n"
+		"articleBody": "AWS Redis 設定  Laravel 版本：5.2\n AWS Redis Cluster Mode Enable 啟用群集模式 建立 Redis AWS Cluster Mode Enable 群集 建立 AWS Cluster Mode Enable 群集，將「Cluster Mode enabled」打勾，在下方的「Number of Shareds」設定資料分片數量，以及在「Replicas per Shared」設定每個分片數量要有幾個備援。\n 取得群集端點（Endpoint） 建立完群集之後，在列表中取得群集端點（Configuration Endpoint）\n將群集端點設定到 database.php，並將 cluster 設定為 true，在設定檔加入 options 選項為 [\u0027cluster\u0027 =\u0026gt; \u0027redis\u0027]，並設定預設的 default 連線。\n\/\/ 檔案位置：config\/database.php return [ \u0026#39;redis\u0026#39; =\u0026gt; [ \u0026#39;cluster\u0026#39; =\u0026gt; true, \u0026#39;options\u0026#39; =\u0026gt; [\u0026#39;cluster\u0026#39; =\u0026gt; \u0026#39;redis\u0026#39;], \u0026#39;default\u0026#39; =\u0026gt; [ \u0026#39;host\u0026#39; =\u0026gt; env(\u0026#39;REDIS_HOST\u0026#39;, \u0026#39;localhost\u0026#39;), \u0026#39;password\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PASSWORD\u0026#39;, null), \u0026#39;port\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PORT\u0026#39;, 6379), \/\/ \u0026#34;persistent\u0026#34; =\u0026gt; \u0026#39;cache\u0026#39;, \u0026#39;database\u0026#39; =\u0026gt; 0, ], \u0026#39;session\u0026#39; =\u0026gt; [ \u0026#39;host\u0026#39; =\u0026gt; env(\u0026#39;REDIS_HOST\u0026#39;, \u0026#39;localhost\u0026#39;), \u0026#39;password\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PASSWORD\u0026#39;, null), \u0026#39;port\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PORT\u0026#39;, 6379), \/\/ \u0026#34;persistent\u0026#34; =\u0026gt; \u0026#39;cache\u0026#39;, \u0026#39;database\u0026#39; =\u0026gt; 0, ], \u0026#39;queue\u0026#39; =\u0026gt; [ \u0026#39;host\u0026#39; =\u0026gt; env(\u0026#39;REDIS_HOST\u0026#39;, \u0026#39;localhost\u0026#39;), \u0026#39;password\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PASSWORD\u0026#39;, null), \u0026#39;port\u0026#39; =\u0026gt; env(\u0026#39;REDIS_PORT\u0026#39;, 6379), \/\/ \u0026#34;persistent\u0026#34; =\u0026gt; \u0026#39;cache\u0026#39;, \u0026#39;database\u0026#39; =\u0026gt; 0, ], ] ]; 因為 AWS Redis Cluster Enabled 的模式，database 的數量固定只有第 0 個，所以若有用其他的 database 的話，記得要把所有的 database 改為 0。\n"
 	}
 </script>
 
@@ -519,14 +519,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3839,6 +3839,17 @@
 <h3 id="建立-redis-aws-cluster-mode-enable-群集">建立 Redis AWS Cluster Mode Enable 群集</h3>
 <p>建立 AWS Cluster Mode Enable 群集，將「Cluster Mode enabled」打勾，在下方的「Number of Shareds」設定資料分片數量，以及在「Replicas per Shared」設定每個分片數量要有幾個備援。</p>
 <p><img src="./images/aws-create-redis-cluster-mode-enabled.png" alt="建立 AWS Redis Cluster Mode Enable 群集"></p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h3 id="取得群集端點endpoint">取得群集端點（Endpoint）</h3>
 <p>建立完群集之後，在列表中取得群集端點（Configuration Endpoint）</p>
 <p><img src="./images/aws-get-redis-endpoint.png" alt="取得群集端點（Configuration Endpoint）"></p>
@@ -3912,28 +3923,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4122,6 +4111,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6128,19 +6139,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219821"></script>
+    <script src="/js/jquery.sticky.js?1615219821"></script>
+    <script src="/js/featherlight.min.js?1615219821"></script>
+    <script src="/js/highlight.pack.js?1615219821"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219821"></script>
+    <script src="/js/learn.js?1615219821"></script>
+    <script src="/js/hugo-learn.js?1615219821"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219821" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219821"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

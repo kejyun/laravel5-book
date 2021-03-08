@@ -12,21 +12,21 @@
     <title>使用中繼模型繼承 Eloquent 模型造成無法使用大量資料新增 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "使用中繼模型繼承（extends）Eloquent 模型造成無法使用大量資料新增（Mess Assignment） 大部份的情況可能專案較小，所以我們會直接使用模型（Model）去新增資料，但若專案較大時，且不同的模型之間有共用的方法的話，我會會希望這些模型繼承同一個 Eloquent 模型的中繼類別物件，就像這樣：\nEloquent 模型的中繼類別物件\nclass CustomBaseModel extends Model { public $someVariable = null; public function doSomething() { } } 使用者模型繼承「Eloquent 模型的中繼類別物件」\nclass User extends CustomBaseModel { protected $fillable = [\u0026#39;first_name\u0026#39;, \u0026#39;last_name\u0026#39;, \u0026#39;email\u0026#39;]; } 使用這樣的中繼類別時，如果我們只有設定變數或實作中繼模型類別方法時，我們可以運作的很正常，但是如果我們需要實作中繼類別的建構子__construct()時，我們必須要時做原本 Eloquent Model 類別的建構子，否鑿會無法正常的運作原有的 Eloquent 模型\n在 vendor\/laravel\/framework\/src\/Illuminate\/Database\/Eloquent\/Model.php Eloquent 模型的檔案中，我們可以看到建構子__construct()有需要傳入資料表欄位的屬性值 $attributes。\n\/\/ vendor\/laravel\/framework\/src\/Illuminate\/Database\/Eloquent\/Model.php abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, QueueableEntity, UrlRoutable { public function __construct(array $attributes = array()) { $this-\u0026gt;bootIfNotBooted(); $this-\u0026gt;syncOriginal(); $this-\u0026gt;fill($attributes); } } 這個部分是用來做大量資料新增或異動時（Mass Assignment）需要用到的資料，所以如果我們在中繼類別沒有實作這個建構子__construct()，會讓我們的完整 Eloquent Model 出現問題\n所以在 Eloquent 中繼類別中我們必須要時作的建構子__construct()會長的像這樣：\nclass CustomBaseModel extends Model { public $someVariable = null; function __construct(array $attributes = array()) { parent::__construct($attributes); \/\/ 做中繼類別建構子想要做的事 $this-\u0026gt;someVariable = \u0026#39;5566\u0026#39;; } } 我們的中繼類別，需要傳入資料表欄位的屬性值 $attributes，並執行母類別 Eloquent Model 的建構子，這樣我們的 Eloquent 模型就能夠正常運作了！\n"
+		"articleBody": "使用中繼模型繼承（extends）Eloquent 模型造成無法使用大量資料新增（Mess Assignment） 大部份的情況可能專案較小，所以我們會直接使用模型（Model）去新增資料，但若專案較大時，且不同的模型之間有共用的方法的話，我會會希望這些模型繼承同一個 Eloquent 模型的中繼類別物件，就像這樣：\nEloquent 模型的中繼類別物件\nclass CustomBaseModel extends Model { public $someVariable = null; public function doSomething() { } } 使用者模型繼承「Eloquent 模型的中繼類別物件」\nclass User extends CustomBaseModel { protected $fillable = [\u0026#39;first_name\u0026#39;, \u0026#39;last_name\u0026#39;, \u0026#39;email\u0026#39;]; } 使用這樣的中繼類別時，如果我們只有設定變數或實作中繼模型類別方法時，我們可以運作的很正常，但是如果我們需要實作中繼類別的建構子__construct()時，我們必須要時做原本 Eloquent Model 類別的建構子，否鑿會無法正常的運作原有的 Eloquent 模型\n在 vendor\/laravel\/framework\/src\/Illuminate\/Database\/Eloquent\/Model.php Eloquent 模型的檔案中，我們可以看到建構子__construct()有需要傳入資料表欄位的屬性值 $attributes。\n\/\/ vendor\/laravel\/framework\/src\/Illuminate\/Database\/Eloquent\/Model.php abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, QueueableEntity, UrlRoutable { public function __construct(array $attributes = array()) { $this-\u0026gt;bootIfNotBooted(); $this-\u0026gt;syncOriginal(); $this-\u0026gt;fill($attributes); } }  這個部分是用來做大量資料新增或異動時（Mass Assignment）需要用到的資料，所以如果我們在中繼類別沒有實作這個建構子__construct()，會讓我們的完整 Eloquent Model 出現問題\n所以在 Eloquent 中繼類別中我們必須要時作的建構子__construct()會長的像這樣：\nclass CustomBaseModel extends Model { public $someVariable = null; function __construct(array $attributes = array()) { parent::__construct($attributes); \/\/ 做中繼類別建構子想要做的事 $this-\u0026gt;someVariable = \u0026#39;5566\u0026#39;; } } 我們的中繼類別，需要傳入資料表欄位的屬性值 $attributes，並執行母類別 Eloquent Model 的建構子，這樣我們的 Eloquent 模型就能夠正常運作了！\n"
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3840,7 +3840,18 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         $this-&gt;fill($attributes);
     }
 }
-</code></pre></div><p>這個部分是用來做大量資料新增或異動時（Mass Assignment）需要用到的資料，所以如果我們在中繼類別沒有實作這個<code>建構子__construct()</code>，會讓我們的完整 Eloquent Model 出現問題</p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>這個部分是用來做大量資料新增或異動時（Mass Assignment）需要用到的資料，所以如果我們在中繼類別沒有實作這個<code>建構子__construct()</code>，會讓我們的完整 Eloquent Model 出現問題</p>
 <p>所以在 Eloquent 中繼類別中我們必須要時作的<code>建構子__construct()</code>會長的像這樣：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">class CustomBaseModel extends Model
 {
@@ -3895,28 +3906,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4105,6 +4094,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6114,19 +6125,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219821"></script>
+    <script src="/js/jquery.sticky.js?1615219821"></script>
+    <script src="/js/featherlight.min.js?1615219821"></script>
+    <script src="/js/highlight.pack.js?1615219821"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219821"></script>
+    <script src="/js/learn.js?1615219821"></script>
+    <script src="/js/hugo-learn.js?1615219821"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219821" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219821"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -12,21 +12,21 @@
     <title>.env 檔案 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": ".env 檔案 Laravel 4 .env 檔案 在 Laravel 4 的時候，我們通常會在 \/bootstrap\/start.php 中，去設定我們的 hostname 是屬於哪一種開發環境，再針對不同的開發環境有不同的設定檔（.env.*.php）\n\u0026lt;?php $env = $app-\u0026gt;detectEnvironment(array( \u0026#39;local\u0026#39; =\u0026gt; array( \u0026#39;KeJyun-Macbook\u0026#39; ), \u0026#39;dev\u0026#39; =\u0026gt; [], \u0026#39;testing\u0026#39; =\u0026gt; [], \u0026#39;staging\u0026#39; =\u0026gt; [], )); .env.*.php 設定檔通常放在根目錄下，這些檔案不會在版本控制當中\napp\/ bootstrap\/ public\/ vendor\/ .env.php .env.local.php .env.dev.php .env.testing.php .env.staging.php 在 Laravel 4 .env 設定檔案長的會像是這樣：\n\u0026lt;?php return [ \u0026#39;DB_USERNAME\u0026#39; =\u0026gt; \u0026#39;root\u0026#39;, \u0026#39;DB_PASSWORD\u0026#39; =\u0026gt; \u0026#39;password\u0026#39;, ]; 我們的 config 檔案就可以使用 $_ENV 去讀取當前環境的設定檔資料\n\u0026lt;?php $_ENV[\u0026#39;DB_USERNAME\u0026#39;] $_ENV[\u0026#39;DB_PASSWORD\u0026#39;] Laravel 5 .env 檔案 在 Laravel 5 使用 .env 檔案的方式跟 Laravel 4 有很大的不同，在 Laravel 5 中就只有 .env 與 .env.example 這兩個檔案而已，.env 檔案不會在版本控制中，.env.example 則會在版本控制中\n自己可以根據自己的環境設定目前的 .env 狀況，而 .env.example 則是可以讓大家參考 .env 的範例用的，自己根據自己目前的環境設定是什麼樣到開發還境（local、dev、stage、production\u0026hellip;etc）。\n在 Laravel 5 .env 設定檔案長的會像是這樣：\nAPP_ENV=local APP_DEBUG=true APP_KEY=VDqhX1LiHKEReHH16YNEzxUZziOdZVtT DB_HOST=localhost DB_DATABASE=homestead DB_USERNAME=homestead DB_PASSWORD=secret CACHE_DRIVER=file SESSION_DRIVER=file 然後我們在設定檔中，我們可以使用 env() 函式去取得我們設定檔案中的設定，會設定像是這樣的設定\n\/\/ config\/app.php [ \u0026#39;debug\u0026#39; =\u0026gt; env(\u0026#39;APP_DEBUG\u0026#39;, false), ] \/\/ config\/database.php [ \u0026#39;pgsql\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;pgsql\u0026#39;, \u0026#39;host\u0026#39; =\u0026gt; env(\u0026#39;DB_HOST\u0026#39;, \u0026#39;localhost\u0026#39;), \u0026#39;database\u0026#39; =\u0026gt; env(\u0026#39;DB_DATABASE\u0026#39;, \u0026#39;forge\u0026#39;), \u0026#39;username\u0026#39; =\u0026gt; env(\u0026#39;DB_USERNAME\u0026#39;, \u0026#39;forge\u0026#39;), \u0026#39;password\u0026#39; =\u0026gt; env(\u0026#39;DB_PASSWORD\u0026#39;, \u0026#39;\u0026#39;), \u0026#39;charset\u0026#39; =\u0026gt; \u0026#39;utf8\u0026#39;, \u0026#39;prefix\u0026#39; =\u0026gt; \u0026#39;\u0026#39;, \u0026#39;schema\u0026#39; =\u0026gt; \u0026#39;public\u0026#39;, ], ] env() 中第一個參數是 .env 檔案中的設定鍵值名稱，第二個參數是預設值，若讀取不到環境設定鍵值則會使用預設值\n這樣在每個人的開發環境只要去管理自己的 .env 檔案就好，不需要像 Laravel 4 需要在 config 資料夾中建立各種環境變數設定的資料夾，像是 config\/local\/database.php 或 config\/stage\/database.php。\n參考資料  Environments and Configuration - Laravel 5 Fundamentals  "
+		"articleBody": ".env 檔案 Laravel 4 .env 檔案 在 Laravel 4 的時候，我們通常會在 \/bootstrap\/start.php 中，去設定我們的 hostname 是屬於哪一種開發環境，再針對不同的開發環境有不同的設定檔（.env.*.php）\n\u0026lt;?php $env = $app-\u0026gt;detectEnvironment(array( \u0026#39;local\u0026#39; =\u0026gt; array( \u0026#39;KeJyun-Macbook\u0026#39; ), \u0026#39;dev\u0026#39; =\u0026gt; [], \u0026#39;testing\u0026#39; =\u0026gt; [], \u0026#39;staging\u0026#39; =\u0026gt; [], )); .env.*.php 設定檔通常放在根目錄下，這些檔案不會在版本控制當中\napp\/ bootstrap\/ public\/ vendor\/ .env.php .env.local.php .env.dev.php .env.testing.php .env.staging.php 在 Laravel 4 .env 設定檔案長的會像是這樣：\n\u0026lt;?php return [ \u0026#39;DB_USERNAME\u0026#39; =\u0026gt; \u0026#39;root\u0026#39;, \u0026#39;DB_PASSWORD\u0026#39; =\u0026gt; \u0026#39;password\u0026#39;, ]; 我們的 config 檔案就可以使用 $_ENV 去讀取當前環境的設定檔資料\n\u0026lt;?php $_ENV[\u0026#39;DB_USERNAME\u0026#39;] $_ENV[\u0026#39;DB_PASSWORD\u0026#39;]  Laravel 5 .env 檔案 在 Laravel 5 使用 .env 檔案的方式跟 Laravel 4 有很大的不同，在 Laravel 5 中就只有 .env 與 .env.example 這兩個檔案而已，.env 檔案不會在版本控制中，.env.example 則會在版本控制中\n自己可以根據自己的環境設定目前的 .env 狀況，而 .env.example 則是可以讓大家參考 .env 的範例用的，自己根據自己目前的環境設定是什麼樣到開發還境（local、dev、stage、production\u0026hellip;etc）。\n在 Laravel 5 .env 設定檔案長的會像是這樣：\nAPP_ENV=local APP_DEBUG=true APP_KEY=VDqhX1LiHKEReHH16YNEzxUZziOdZVtT DB_HOST=localhost DB_DATABASE=homestead DB_USERNAME=homestead DB_PASSWORD=secret CACHE_DRIVER=file SESSION_DRIVER=file 然後我們在設定檔中，我們可以使用 env() 函式去取得我們設定檔案中的設定，會設定像是這樣的設定\n\/\/ config\/app.php [ \u0026#39;debug\u0026#39; =\u0026gt; env(\u0026#39;APP_DEBUG\u0026#39;, false), ] \/\/ config\/database.php [ \u0026#39;pgsql\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;pgsql\u0026#39;, \u0026#39;host\u0026#39; =\u0026gt; env(\u0026#39;DB_HOST\u0026#39;, \u0026#39;localhost\u0026#39;), \u0026#39;database\u0026#39; =\u0026gt; env(\u0026#39;DB_DATABASE\u0026#39;, \u0026#39;forge\u0026#39;), \u0026#39;username\u0026#39; =\u0026gt; env(\u0026#39;DB_USERNAME\u0026#39;, \u0026#39;forge\u0026#39;), \u0026#39;password\u0026#39; =\u0026gt; env(\u0026#39;DB_PASSWORD\u0026#39;, \u0026#39;\u0026#39;), \u0026#39;charset\u0026#39; =\u0026gt; \u0026#39;utf8\u0026#39;, \u0026#39;prefix\u0026#39; =\u0026gt; \u0026#39;\u0026#39;, \u0026#39;schema\u0026#39; =\u0026gt; \u0026#39;public\u0026#39;, ], ] env() 中第一個參數是 .env 檔案中的設定鍵值名稱，第二個參數是預設值，若讀取不到環境設定鍵值則會使用預設值\n這樣在每個人的開發環境只要去管理自己的 .env 檔案就好，不需要像 Laravel 4 需要在 config 資料夾中建立各種環境變數設定的資料夾，像是 config\/local\/database.php 或 config\/stage\/database.php。\n參考資料  Environments and Configuration - Laravel 5 Fundamentals  "
 	}
 </script>
 
@@ -473,14 +473,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3811,7 +3811,18 @@ vendor/
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 $_ENV[<span style="color:#e6db74">&#39;DB_USERNAME&#39;</span>]
 $_ENV[<span style="color:#e6db74">&#39;DB_PASSWORD&#39;</span>]
-</code></pre></div><h2 id="laravel-5-env-檔案">Laravel 5 .env 檔案</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="laravel-5-env-檔案">Laravel 5 .env 檔案</h2>
 <p>在 Laravel 5 使用 <code>.env</code> 檔案的方式跟 Laravel 4 有很大的不同，在 Laravel 5 中就只有 <code>.env</code> 與 <code>.env.example</code> 這兩個檔案而已，<code>.env</code> 檔案不會在版本控制中，<code>.env.example</code> 則會在版本控制中</p>
 <p>自己可以根據自己的環境設定目前的 .env 狀況，而 .env.example 則是可以讓大家參考 .env 的範例用的，自己根據自己目前的環境設定是什麼樣到開發還境（local、dev、stage、production&hellip;etc）。</p>
 <p>在 Laravel 5 .env 設定檔案長的會像是這樣：</p>
@@ -3891,28 +3902,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4101,6 +4090,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6100,19 +6111,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219822"></script>
+    <script src="/js/jquery.sticky.js?1615219822"></script>
+    <script src="/js/featherlight.min.js?1615219822"></script>
+    <script src="/js/highlight.pack.js?1615219822"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219822"></script>
+    <script src="/js/learn.js?1615219822"></script>
+    <script src="/js/hugo-learn.js?1615219822"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219822" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219822"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

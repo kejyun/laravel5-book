@@ -12,21 +12,21 @@
     <title>Ajax Request &amp; JSON Response :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219824" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219824" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217452"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219824"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Ajax Request \u0026amp; JSON Response 在 Unit test 需要模擬 Ajax 請求時，可以在 $server 參數設定下列設定\n$server = [ \u0027HTTP_X-Requested-With\u0027 =\u0026gt; \u0027XMLHttpRequest\u0027, \/\/ Ajax Request \u0027HTTP_ACCEPT\u0027=\u0026gt; \u0027application\/json\u0027, \/\/ 請求 JSON Response ]; \u0026lt;?php class ServerTest { public function testAjaxRequestAndJsonResponse() { $uri = \u0026#39;\/test\/ajax\u0026#39;; $server = [ \u0026#39;HTTP_X-Requested-With\u0026#39; =\u0026gt; \u0026#39;XMLHttpRequest\u0026#39;, \/\/ Ajax Request  \u0026#39;HTTP_ACCEPT\u0026#39;=\u0026gt; \u0026#39;application\/json\u0026#39;, \/\/ 請求 JSON Response  ]; $res = $this-\u0026gt;call(\u0026#39;POST\u0026#39;, $uri, $parameters, $cookies, $files, $server); } } 當設定完 HTTP_X-Requested-With 為 XMLHttpRequest 時，Laravel 會把這個請求視為 Ajax 請求，所以在呼叫 request()-\u0026gt;ajax() 方法時會回傳 true\nrequest()-\u0026gt;ajax(); \/\/ true 當設定完 HTTP_ACCEPT 為 application\/json 時，Laravel 會把這個請求需要回傳的資訊視為需要 JSON 格式資料，所以在呼叫 request()-\u0026gt;wantsJson() 方法時會回傳 true\nrequest()-\u0026gt;wantsJson(); \/\/ true 參考資料  How to simulate xmlHttpRequests in a laravel testcase? - Stack Overflow  "
+		"articleBody": "Ajax Request \u0026amp; JSON Response 在 Unit test 需要模擬 Ajax 請求時，可以在 $server 參數設定下列設定\n$server = [ \u0027HTTP_X-Requested-With\u0027 =\u0026gt; \u0027XMLHttpRequest\u0027, \/\/ Ajax Request \u0027HTTP_ACCEPT\u0027=\u0026gt; \u0027application\/json\u0027, \/\/ 請求 JSON Response ]; \u0026lt;?php class ServerTest { public function testAjaxRequestAndJsonResponse() { $uri = \u0026#39;\/test\/ajax\u0026#39;; $server = [ \u0026#39;HTTP_X-Requested-With\u0026#39; =\u0026gt; \u0026#39;XMLHttpRequest\u0026#39;, \/\/ Ajax Request  \u0026#39;HTTP_ACCEPT\u0026#39;=\u0026gt; \u0026#39;application\/json\u0026#39;, \/\/ 請求 JSON Response  ]; $res = $this-\u0026gt;call(\u0026#39;POST\u0026#39;, $uri, $parameters, $cookies, $files, $server); } }  當設定完 HTTP_X-Requested-With 為 XMLHttpRequest 時，Laravel 會把這個請求視為 Ajax 請求，所以在呼叫 request()-\u0026gt;ajax() 方法時會回傳 true\nrequest()-\u0026gt;ajax(); \/\/ true 當設定完 HTTP_ACCEPT 為 application\/json 時，Laravel 會把這個請求需要回傳的資訊視為需要 JSON 格式資料，所以在呼叫 request()-\u0026gt;wantsJson() 方法時會回傳 true\nrequest()-\u0026gt;wantsJson(); \/\/ true 參考資料  How to simulate xmlHttpRequests in a laravel testcase? - Stack Overflow  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217452"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217452"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219824"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219824"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217452"></script>
+<script type="text/javascript" src="/js/search.js?1615219824"></script>
 
     
   </div>
@@ -3825,7 +3825,18 @@
         $res <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">call</span>(<span style="color:#e6db74">&#39;POST&#39;</span>, $uri, $parameters, $cookies, $files, $server);
     }
 }
-</code></pre></div><p>當設定完 <code>HTTP_X-Requested-With</code> 為 <code>XMLHttpRequest</code> 時，Laravel 會把這個請求視為 Ajax 請求，所以在呼叫 <code>request()-&gt;ajax()</code> 方法時會回傳 <code>true</code></p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>當設定完 <code>HTTP_X-Requested-With</code> 為 <code>XMLHttpRequest</code> 時，Laravel 會把這個請求視為 Ajax 請求，所以在呼叫 <code>request()-&gt;ajax()</code> 方法時會回傳 <code>true</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">request()-&gt;ajax();  // true
 </code></pre></div><p>當設定完 <code>HTTP_ACCEPT</code> 為 <code>application/json</code> 時，Laravel 會把這個請求需要回傳的資訊視為需要 JSON 格式資料，所以在呼叫 <code>request()-&gt;wantsJson()</code> 方法時會回傳 <code>true</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">request()-&gt;wantsJson();  // true
@@ -3873,28 +3884,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4083,6 +4072,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6092,19 +6103,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217452"></script>
-    <script src="/js/jquery.sticky.js?1615217452"></script>
-    <script src="/js/featherlight.min.js?1615217452"></script>
-    <script src="/js/highlight.pack.js?1615217452"></script>
+    <script src="/js/clipboard.min.js?1615219824"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219824"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219824"></script>
+    <script src="/js/jquery.sticky.js?1615219824"></script>
+    <script src="/js/featherlight.min.js?1615219824"></script>
+    <script src="/js/highlight.pack.js?1615219824"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217452"></script>
-    <script src="/js/learn.js?1615217452"></script>
-    <script src="/js/hugo-learn.js?1615217452"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219824"></script>
+    <script src="/js/learn.js?1615219824"></script>
+    <script src="/js/hugo-learn.js?1615219824"></script>
 
-    <link href="/mermaid/mermaid.css?1615217452" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217452"></script>
+    <link href="/mermaid/mermaid.css?1615219824" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219824"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

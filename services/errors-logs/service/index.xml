@@ -22,7 +22,7 @@
 1.安裝套件
 composer require understand/understand-laravel5 2.加入套件設定
 在 config/app.php 檔案中加入設定
-&amp;lt;?php // config/app.php return [ &amp;#39;providers&amp;#39; =&amp;gt; [ Understand\UnderstandLaravel5\UnderstandLaravel5ServiceProvider::class, ], ] 3.設定 .env 檔案
+&amp;lt;?php // config/app.php return [ &amp;#39;providers&amp;#39; =&amp;gt; [ Understand\UnderstandLaravel5\UnderstandLaravel5ServiceProvider::class, ], ]  3.設定 .env 檔案
 UNDERSTAND_ENABLED=true UNDERSTAND_TOKEN=&amp;lt;API TOKEN 放這裡&amp;gt; 4.紀錄 Log
 &amp;lt;?php \Log::error(&amp;#39;Understand.io test error&amp;#39;); 參考資料  Understand.io - Online Event and Log Management understand/understand-laravel5  </description>
     </item>
@@ -39,7 +39,7 @@ composer require sentry/sentry-laravel 2.加入套件設定
 在 config/app.php 檔案中加入設定
 &amp;lt;?php // config/app.php return [ &amp;#39;providers&amp;#39; =&amp;gt; [ Sentry\SentryLaravel\SentryLaravelServiceProvider::class, ], &amp;#39;aliases&amp;#39; =&amp;gt; [ &amp;#39;Sentry&amp;#39; =&amp;gt; Sentry\SentryLaravel\SentryFacade::class, ], ] 3.錯誤處理加入 Sentry 設定
 在 config/app.php 檔案中加入設定
-&amp;lt;?php class Handler extends ExceptionHandler { public function report(Exception $e) { if (app()-&amp;gt;bound(&amp;#39;sentry&amp;#39;) &amp;amp;&amp;amp; $this-&amp;gt;shouldReport($e)) { app(&amp;#39;sentry&amp;#39;)-&amp;gt;captureException($e); } return parent::report($e); } } 4.發佈設定
+&amp;lt;?php class Handler extends ExceptionHandler { public function report(Exception $e) { if (app()-&amp;gt;bound(&amp;#39;sentry&amp;#39;) &amp;amp;&amp;amp; $this-&amp;gt;shouldReport($e)) { app(&amp;#39;sentry&amp;#39;)-&amp;gt;captureException($e); } return parent::report($e); } }  4.發佈設定
 php artisan vendor:publish --provider=&amp;#34;Sentry\SentryLaravel\SentryLaravelServiceProvider&amp;#34; 5.設定 .env 檔案
 SENTRY_LARAVEL_DSN=https://&amp;lt;SENTRY_DSN_URL&amp;gt; 參考資料  Sentry | Error Tracking Software — JavaScript, Python, PHP, Ruby, more  </description>
     </item>
@@ -70,13 +70,12 @@ Laravel 5.6
       <description>Rollbar 1. 安裝
 composer require rollbar/rollbar-laravel 2. 設定 config/app.php
  Laravel 5.5 以上不用做這個設定
- &amp;lt;?php // config/app.php return [ &amp;#39;providers&amp;#39; =&amp;gt; [ Rollbar\Laravel\RollbarServiceProvider::class, ], ]; 3. 設定 API KEY
+ &amp;lt;?php // config/app.php return [ &amp;#39;providers&amp;#39; =&amp;gt; [ Rollbar\Laravel\RollbarServiceProvider::class, ], ];  3. 設定 API KEY
 到 .env 檔案設定 API KEY，根據官方安裝引導可以取得此 API KEY
 # .env ROLLBAR_TOKEN=&amp;lt;API_KEY&amp;gt; 4. 發送錯誤訊息到 rollbar
-try { throw new Exception(&amp;#39;Hello there is something wrong&amp;#39;); } catch (Exception $exception) { Log::debug($exception); Log::debug(&amp;#39;Hello my test&amp;#39;); } 5. 檢視 rollbar 錯誤訊息
+try { throw new Exception(&amp;#39;Hello there is something wrong&amp;#39;); } catch (Exception $exception) { Log::debug($exception); Log::debug(&amp;#39;Hello my test&amp;#39;); }  5. 檢視 rollbar 錯誤訊息
 錯誤訊息 dashboard
-個別錯誤訊息
-參考資料  Error Tracking &amp;amp; Crash Reporting for Software Developers - Rollbar Rollbar Doc - Laravel  </description>
+個別錯誤訊息</description>
     </item>
     
     <item>

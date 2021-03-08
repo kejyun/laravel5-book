@@ -12,21 +12,21 @@
     <title>Artisan tail :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219822" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219822" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217451"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219822"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Artisan tail 在 Laravel 4 我們常常用 php artisan tail 去即時顯示系統的 Log，以便我們進行除錯，但在 Laravel 5 預設是將這個套件拿到的，所以如果我們要繼續使用的話，必須要手動的將套件加回去。\n安裝 Laravel tail 套件 首先在命令列執行 composer require spatie\/laravel-tail 安裝 tail 套件\n$ composer require spatie\/laravel-tail 接著在 config\/app.php 檔案中的 providers 加入 tail ServiceProvider\n\/\/ config\/app.php \u0026#39;providers\u0026#39; =\u0026gt; [ ... \u0026#39;Spatie\\Tail\\TailServiceProvider\u0026#39;, ... ]; 安裝完畢之後就可以繼續使用 php artisan tail 去觀看你的 Log 了！\n$ php artisan tail tail 遠端主機 Log 檔 tail 命令可以讓我們即時觀看遠端的 Log 檔案，我們只要將遠端主機的相關設定加入即可，可以使用下列指令建立 config\/tail.php 檔案\n$ php artisan vendor:publish --provider=\u0026#34;Spatie\\Tail\\TailServiceProvider\u0026#34; 之後只要在 tail 指令後面加入要觀看的主機名稱，即可立即觀看該主機的 Log 檔摟\n$ php artisan tail production 參考資料  The missing tail command for Laravel 5  "
+		"articleBody": "Artisan tail 在 Laravel 4 我們常常用 php artisan tail 去即時顯示系統的 Log，以便我們進行除錯，但在 Laravel 5 預設是將這個套件拿到的，所以如果我們要繼續使用的話，必須要手動的將套件加回去。\n安裝 Laravel tail 套件 首先在命令列執行 composer require spatie\/laravel-tail 安裝 tail 套件\n$ composer require spatie\/laravel-tail 接著在 config\/app.php 檔案中的 providers 加入 tail ServiceProvider\n\/\/ config\/app.php \u0026#39;providers\u0026#39; =\u0026gt; [ ... \u0026#39;Spatie\\Tail\\TailServiceProvider\u0026#39;, ... ]; 安裝完畢之後就可以繼續使用 php artisan tail 去觀看你的 Log 了！\n$ php artisan tail  tail 遠端主機 Log 檔 tail 命令可以讓我們即時觀看遠端的 Log 檔案，我們只要將遠端主機的相關設定加入即可，可以使用下列指令建立 config\/tail.php 檔案\n$ php artisan vendor:publish --provider=\u0026#34;Spatie\\Tail\\TailServiceProvider\u0026#34; 之後只要在 tail 指令後面加入要觀看的主機名稱，即可立即觀看該主機的 Log 檔摟\n$ php artisan tail production 參考資料  The missing tail command for Laravel 5  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217451"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217451"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219822"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219822"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217451"></script>
+<script type="text/javascript" src="/js/search.js?1615219822"></script>
 
     
   </div>
@@ -3823,7 +3823,18 @@
 ];
 </code></pre></div><p>安裝完畢之後就可以繼續使用 <code>php artisan tail</code> 去觀看你的 Log 了！</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ php artisan tail
-</code></pre></div><h2 id="tail-遠端主機-log-檔">tail 遠端主機 Log 檔</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="tail-遠端主機-log-檔">tail 遠端主機 Log 檔</h2>
 <p>tail 命令可以讓我們即時觀看遠端的 Log 檔案，我們只要將遠端主機的相關設定加入即可，可以使用下列指令建立 <code>config/tail.php</code> 檔案</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ php artisan vendor:publish --provider<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Spatie\Tail\TailServiceProvider&#34;</span>
 </code></pre></div><p>之後只要在 tail 指令後面加入要觀看的主機名稱，即可立即觀看該主機的 Log 檔摟</p>
@@ -3872,28 +3883,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4082,6 +4071,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6088,19 +6099,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217451"></script>
-    <script src="/js/jquery.sticky.js?1615217451"></script>
-    <script src="/js/featherlight.min.js?1615217451"></script>
-    <script src="/js/highlight.pack.js?1615217451"></script>
+    <script src="/js/clipboard.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219822"></script>
+    <script src="/js/jquery.sticky.js?1615219822"></script>
+    <script src="/js/featherlight.min.js?1615219822"></script>
+    <script src="/js/highlight.pack.js?1615219822"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217451"></script>
-    <script src="/js/learn.js?1615217451"></script>
-    <script src="/js/hugo-learn.js?1615217451"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219822"></script>
+    <script src="/js/learn.js?1615219822"></script>
+    <script src="/js/hugo-learn.js?1615219822"></script>
 
-    <link href="/mermaid/mermaid.css?1615217451" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217451"></script>
+    <link href="/mermaid/mermaid.css?1615219822" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219822"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

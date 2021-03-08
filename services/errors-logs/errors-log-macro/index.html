@@ -12,21 +12,21 @@
     <title>日誌巨集 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219823" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219823" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217451"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219823"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "日誌巨集 前言 我們會用 Laravel 內建的 Response 去回應服務的訊息，我們可能會用的回應會像這樣：\n\/\/ 建立 JSON 回應 return Response::json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]); return response()-\u0026gt;json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]); \/\/ 建立 JSONP 回應 return Response::json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]) -\u0026gt;setCallback($request-\u0026gt;input(\u0026#39;callback\u0026#39;)); return response()-\u0026gt;json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]) -\u0026gt;setCallback($request-\u0026gt;input(\u0026#39;callback\u0026#39;)); \/\/ 建立檔案下載的回應 return response()-\u0026gt;download($pathToFile); return response()-\u0026gt;download($pathToFile, $name, $headers); return response()-\u0026gt;download($pathToFile)-\u0026gt;deleteFileAfterSend(true); 在這樣的使用下，我們可以很容易的回應訊息給使用者，但是在伺服器發生程式例外錯誤 (Exception) 時，我們可能也需要回應像是這樣的資料：\nreturn Response::json([\u0026#39;status\u0026#39; =\u0026gt; \u0026#39;failure\u0026#39;, \u0026#39;error_code\u0026#39; =\u0026gt; \u0026#39;5566\u0026#39;]); return response()-\u0026gt;json([\u0026#39;status\u0026#39; =\u0026gt; \u0026#39;failure\u0026#39;, \u0026#39;error_code\u0026#39; =\u0026gt; \u0026#39;5566\u0026#39;]); 在我們用 Laravel 做 API 給手機用的時候，更需要有這些錯誤狀態的資料，所以我們沒辦法直接像網頁一樣跳出整個的錯誤 debug 畫面\n但我們若想在 API 回應給手機這樣的錯誤資訊時，也能夠將例外錯誤記錄下來，以便我們進行除錯，我們可以做一個 Response 的巨集，去處理紀錄我們的回應\n建立服務提供者 我們在命令列輸入 php artisan make:provider ResponseServiceProvider 建立回應的服務提供者\n$ php artisan make:provider ResponseServiceProvider 該服務提供者檔案會被建立在 app\/Providers\/ResponseServiceProvider.php 中，命名空間為 App\\Providers\\ResponseServiceProvider\n 我們不一定要將服務提供者的檔案放到 app\/Providers 目錄中，我們可以依照自己專案的需求，將他移動到像是 app\/KeJyun\/Providers 目錄中，這樣命名空間就會變成 App\\KeJyun\\Providers\\ResponseServiceProvider，檔案放置的位置隨自己專案需求而定，只要遵照 PSR-4 的規定去設定命名空間及檔案位置即可\n 我新增了一個名稱為 jsonLog 的 Response 巨集，該巨集會回應 json 資料，並依照記錄層級紀錄我們傳給他的資訊，ResponseServiceProvider 程式會像這樣\n\u0026lt;?php namespace App\\KeJyun\\Providers; \/\/ app\/KeJyun\/Providers\/ResponseServiceProvider.php  use Illuminate\\Support\\ServiceProvider; use Response, Log; class ResponseServiceProvider extends ServiceProvider { \/** * Bootstrap the application services. * * @return void *\/ public function boot() { \/** * 註冊 Response 記錄錯誤巨集 * * @param Array $response_data 回傳的 json 資料 * @param Array|Object|String $log_data 紀錄的資料 * @param String $log_level 紀錄資料的等級（預設為 info） * * @return Response $response 回應的 json 資料 * * @access public * @author KeJyun kejyun@gmail.com * @date 2015-06-06 *\/ Response::macro(\u0026#39;jsonLog\u0026#39;, function( $response_data, $log_data =\u0026#39;No Data Be log!!!\u0026#39;, $log_level = \u0026#39;info\u0026#39; ) { \/\/ 增加 Log檔案錯訊息間距以便閱讀  Log::debug(\u0026#34;\\n\\n\\n\\n\\n\u0026#34;); Log::debug($response_data); Log::debug(\u0026#34;\\n\\n\u0026#34;); switch ($log_level) { case \u0026#39;debug\u0026#39;: Log::debug($log_data); break; case \u0026#39;notice\u0026#39;: Log::notice($log_data); break; case \u0026#39;warning\u0026#39;: Log::warning($log_data); break; case \u0026#39;error\u0026#39;: Log::error($log_data); break; case \u0026#39;critical\u0026#39;: Log::critical($log_data); break; case \u0026#39;alert\u0026#39;: Log::alert($log_data); break; case \u0026#39;info\u0026#39;: default: Log::info($log_data); break; } \/\/ 增加 Log檔案錯訊息間距以便閱讀  Log::debug(\u0026#34;\\n\\n\\n\\n\\n\u0026#34;); return Response::json($response_data); }); } \/** * Register the application services. * * @return void *\/ public function register() { \/\/  } } 設定服務提供者 設定完自己的 jsonLog 紀錄巨集後，我們需要到 config\/app.php 設定這個 Response 服務提供者，我的命名空間為 App\\KeJyun\\Providers\\ResponseServiceProvider，所以設定會像這樣：\n\/\/ config\/app.php \u0026#39;providers\u0026#39; =\u0026gt; [ \/\/ 其他的服務提供者 \u0026#39;App\\KeJyun\\Providers\\ResponseServiceProvider\u0026#39;, ], 設定完之後，Laravel 在啟動時就會自動載入該服務提供者了\n使用自定的 Response 巨集 jsonLog 在我們撰寫商業邏輯時若發生無法預期的例外狀況，我們會想要紀錄該例外狀況的資料，我們就可以這樣使用 Response jsonLog 巨集：\ntry{ \/\/ 商業邏輯處理 } catch (Exception $exception) { $response_data = [ \u0026#39;status\u0026#39;=\u0026gt;\u0026#39;failure\u0026#39;, \u0026#39;error_code\u0026#39;=\u0026gt;5566, ]; return response()-\u0026gt;jsonLog($response_data, $exception, \u0026#39;alert\u0026#39;); } 這樣在系統發生預期之外的例外時，我們也有參考的資料可以幫我們進行除錯了！！\n參考資料  HTTP 回應：回應巨集 - Laravel.tw 服務提供者 - Laravel.tw  "
+		"articleBody": "日誌巨集 前言 我們會用 Laravel 內建的 Response 去回應服務的訊息，我們可能會用的回應會像這樣：\n\/\/ 建立 JSON 回應 return Response::json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]); return response()-\u0026gt;json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]); \/\/ 建立 JSONP 回應 return Response::json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]) -\u0026gt;setCallback($request-\u0026gt;input(\u0026#39;callback\u0026#39;)); return response()-\u0026gt;json([\u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;, \u0026#39;Country\u0026#39; =\u0026gt; \u0026#39;Taiwan\u0026#39;]) -\u0026gt;setCallback($request-\u0026gt;input(\u0026#39;callback\u0026#39;)); \/\/ 建立檔案下載的回應 return response()-\u0026gt;download($pathToFile); return response()-\u0026gt;download($pathToFile, $name, $headers); return response()-\u0026gt;download($pathToFile)-\u0026gt;deleteFileAfterSend(true); 在這樣的使用下，我們可以很容易的回應訊息給使用者，但是在伺服器發生程式例外錯誤 (Exception) 時，我們可能也需要回應像是這樣的資料：\nreturn Response::json([\u0026#39;status\u0026#39; =\u0026gt; \u0026#39;failure\u0026#39;, \u0026#39;error_code\u0026#39; =\u0026gt; \u0026#39;5566\u0026#39;]); return response()-\u0026gt;json([\u0026#39;status\u0026#39; =\u0026gt; \u0026#39;failure\u0026#39;, \u0026#39;error_code\u0026#39; =\u0026gt; \u0026#39;5566\u0026#39;]); 在我們用 Laravel 做 API 給手機用的時候，更需要有這些錯誤狀態的資料，所以我們沒辦法直接像網頁一樣跳出整個的錯誤 debug 畫面\n但我們若想在 API 回應給手機這樣的錯誤資訊時，也能夠將例外錯誤記錄下來，以便我們進行除錯，我們可以做一個 Response 的巨集，去處理紀錄我們的回應\n 建立服務提供者 我們在命令列輸入 php artisan make:provider ResponseServiceProvider 建立回應的服務提供者\n$ php artisan make:provider ResponseServiceProvider 該服務提供者檔案會被建立在 app\/Providers\/ResponseServiceProvider.php 中，命名空間為 App\\Providers\\ResponseServiceProvider\n 我們不一定要將服務提供者的檔案放到 app\/Providers 目錄中，我們可以依照自己專案的需求，將他移動到像是 app\/KeJyun\/Providers 目錄中，這樣命名空間就會變成 App\\KeJyun\\Providers\\ResponseServiceProvider，檔案放置的位置隨自己專案需求而定，只要遵照 PSR-4 的規定去設定命名空間及檔案位置即可\n 我新增了一個名稱為 jsonLog 的 Response 巨集，該巨集會回應 json 資料，並依照記錄層級紀錄我們傳給他的資訊，ResponseServiceProvider 程式會像這樣\n\u0026lt;?php namespace App\\KeJyun\\Providers; \/\/ app\/KeJyun\/Providers\/ResponseServiceProvider.php  use Illuminate\\Support\\ServiceProvider; use Response, Log; class ResponseServiceProvider extends ServiceProvider { \/** * Bootstrap the application services. * * @return void *\/ public function boot() { \/** * 註冊 Response 記錄錯誤巨集 * * @param Array $response_data 回傳的 json 資料 * @param Array|Object|String $log_data 紀錄的資料 * @param String $log_level 紀錄資料的等級（預設為 info） * * @return Response $response 回應的 json 資料 * * @access public * @author KeJyun kejyun@gmail.com * @date 2015-06-06 *\/ Response::macro(\u0026#39;jsonLog\u0026#39;, function( $response_data, $log_data =\u0026#39;No Data Be log!!!\u0026#39;, $log_level = \u0026#39;info\u0026#39; ) { \/\/ 增加 Log檔案錯訊息間距以便閱讀  Log::debug(\u0026#34;\\n\\n\\n\\n\\n\u0026#34;); Log::debug($response_data); Log::debug(\u0026#34;\\n\\n\u0026#34;); switch ($log_level) { case \u0026#39;debug\u0026#39;: Log::debug($log_data); break; case \u0026#39;notice\u0026#39;: Log::notice($log_data); break; case \u0026#39;warning\u0026#39;: Log::warning($log_data); break; case \u0026#39;error\u0026#39;: Log::error($log_data); break; case \u0026#39;critical\u0026#39;: Log::critical($log_data); break; case \u0026#39;alert\u0026#39;: Log::alert($log_data); break; case \u0026#39;info\u0026#39;: default: Log::info($log_data); break; } \/\/ 增加 Log檔案錯訊息間距以便閱讀  Log::debug(\u0026#34;\\n\\n\\n\\n\\n\u0026#34;); return Response::json($response_data); }); } \/** * Register the application services. * * @return void *\/ public function register() { \/\/  } }  設定服務提供者 設定完自己的 jsonLog 紀錄巨集後，我們需要到 config\/app.php 設定這個 Response 服務提供者，我的命名空間為 App\\KeJyun\\Providers\\ResponseServiceProvider，所以設定會像這樣：\n\/\/ config\/app.php \u0026#39;providers\u0026#39; =\u0026gt; [ \/\/ 其他的服務提供者 \u0026#39;App\\KeJyun\\Providers\\ResponseServiceProvider\u0026#39;, ], 設定完之後，Laravel 在啟動時就會自動載入該服務提供者了\n使用自定的 Response 巨集 jsonLog 在我們撰寫商業邏輯時若發生無法預期的例外狀況，我們會想要紀錄該例外狀況的資料，我們就可以這樣使用 Response jsonLog 巨集：\ntry{ \/\/ 商業邏輯處理 } catch (Exception $exception) { $response_data = [ \u0026#39;status\u0026#39;=\u0026gt;\u0026#39;failure\u0026#39;, \u0026#39;error_code\u0026#39;=\u0026gt;5566, ]; return response()-\u0026gt;jsonLog($response_data, $exception, \u0026#39;alert\u0026#39;); } 這樣在系統發生預期之外的例外時，我們也有參考的資料可以幫我們進行除錯了！！\n參考資料  HTTP 回應：回應巨集 - Laravel.tw 服務提供者 - Laravel.tw  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217451"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217451"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219823"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219823"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217451"></script>
+<script type="text/javascript" src="/js/search.js?1615219823"></script>
 
     
   </div>
@@ -3832,6 +3832,17 @@ return response()-&gt;download($pathToFile)-&gt;deleteFileAfterSend(true);
 return response()-&gt;json([&#39;status&#39; =&gt; &#39;failure&#39;, &#39;error_code&#39; =&gt; &#39;5566&#39;]);
 </code></pre></div><p>在我們用 Laravel 做 API 給手機用的時候，更需要有這些錯誤狀態的資料，所以我們沒辦法直接像網頁一樣跳出整個的錯誤 debug 畫面</p>
 <p>但我們若想在 API 回應給手機這樣的錯誤資訊時，也能夠將例外錯誤記錄下來，以便我們進行除錯，我們可以做一個 Response 的巨集，去處理紀錄我們的回應</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="建立服務提供者">建立服務提供者</h2>
 <p>我們在命令列輸入 <code>php artisan make:provider ResponseServiceProvider</code> 建立回應的服務提供者</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ php artisan make:provider ResponseServiceProvider
@@ -3921,7 +3932,18 @@ return response()-&gt;json([&#39;status&#39; =&gt; &#39;failure&#39;, &#39;error
 </span><span style="color:#75715e"></span>    }
 
 }
-</code></pre></div><h2 id="設定服務提供者">設定服務提供者</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="設定服務提供者">設定服務提供者</h2>
 <p>設定完自己的 jsonLog 紀錄巨集後，我們需要到 <code>config/app.php</code> 設定這個 Response 服務提供者，我的命名空間為 <code>App\KeJyun\Providers\ResponseServiceProvider</code>，所以設定會像這樣：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// config/app.php
 
@@ -3988,28 +4010,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4198,6 +4198,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6207,19 +6229,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217451"></script>
-    <script src="/js/jquery.sticky.js?1615217451"></script>
-    <script src="/js/featherlight.min.js?1615217451"></script>
-    <script src="/js/highlight.pack.js?1615217451"></script>
+    <script src="/js/clipboard.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219823"></script>
+    <script src="/js/jquery.sticky.js?1615219823"></script>
+    <script src="/js/featherlight.min.js?1615219823"></script>
+    <script src="/js/highlight.pack.js?1615219823"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217451"></script>
-    <script src="/js/learn.js?1615217451"></script>
-    <script src="/js/hugo-learn.js?1615217451"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219823"></script>
+    <script src="/js/learn.js?1615219823"></script>
+    <script src="/js/hugo-learn.js?1615219823"></script>
 
-    <link href="/mermaid/mermaid.css?1615217451" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217451"></script>
+    <link href="/mermaid/mermaid.css?1615219823" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219823"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

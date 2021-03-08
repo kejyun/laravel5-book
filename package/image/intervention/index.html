@@ -12,21 +12,21 @@
     <title>intervention :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217453" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217453" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217453" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217453" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217453" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217453" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217453" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217453" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217453" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219825" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217453" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219825" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217453"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219825"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -73,14 +73,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217453"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217453"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219825"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219825"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217453"></script>
+<script type="text/javascript" src="/js/search.js?1615219825"></script>
 
     
   </div>
@@ -3372,20 +3372,6 @@
 
 
 
-
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1990193713845546"
-     data-ad-slot="5417606383"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-
-
 	<h1 id="intervention-image-圖片套件">Intervention Image 圖片套件</h1>
 <h2 id="安裝">安裝</h2>
 <pre><code>$ php composer require intervention/image
@@ -3403,7 +3389,18 @@
     // 套件支援 &quot;gd&quot;, &quot;imagick&quot; 圖片處理驅動
     'driver' =&gt; 'gd'
 ];
-</code></pre><h2 id="記憶體">記憶體</h2>
+</code></pre>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="記憶體">記憶體</h2>
 <p>圖片處理非常消耗記憶體，必須確保 PHP 能夠有權限使用較多的記憶體資源，從 3000 x 2000 像素的圖片 resize 到 300 x 200 像素，可能需要大約 32 MB 的記憶體。</p>
 <ul>
 <li><a href="http://www.php.net/manual/en/ini.core.php#ini.memory-limit">memory_limit</a></li>
@@ -3431,7 +3428,18 @@ return [
         &#39;large&#39; =&gt; &#39;Intervention\Image\Templates\Large&#39;,
     ),
 ];
-</code></pre></div><p>可以看到 <code>Intervention\Image\Templates\Small</code> 檔案中有 Small filter 的程式，會自動將圖片 fit 到 120x90 的大小</p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>可以看到 <code>Intervention\Image\Templates\Small</code> 檔案中有 Small filter 的程式，會自動將圖片 fit 到 120x90 的大小</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 
 <span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">Intervention\Image\Templates</span>;
@@ -3454,6 +3462,17 @@ return [
 	&#39;lifetime&#39; =&gt; 43200,
 ]
 </code></pre></div><p>Intervention 有提供 <code>original</code> 及 <code>download</code> 這兩個 filter，如果用 <code>http://yourhost.com/img/original/xxx.jpg</code> 可以存取到原始圖片，而用 <code>http://yourhost.com/img/download/xxx.jpg</code> 則可以下載圖片，這是 Intervention 提供的 filter。</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="建立圖片方式">建立圖片方式</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// create a new image resource from file
 $img = Image::make(&#39;public/foo.jpg&#39;);
@@ -3475,19 +3494,6 @@ $img = Image::make(Input::file(&#39;photo&#39;));
 <li><a href="http://image.intervention.io/use/url">Intervention Image - Url</a></li>
 </ul>
 
-
-
-
-
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1990193713845546"
-     data-ad-slot="5417606383"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
 
 
@@ -3516,28 +3522,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -3726,6 +3710,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -5732,19 +5738,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217453"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217453"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217453"></script>
-    <script src="/js/jquery.sticky.js?1615217453"></script>
-    <script src="/js/featherlight.min.js?1615217453"></script>
-    <script src="/js/highlight.pack.js?1615217453"></script>
+    <script src="/js/clipboard.min.js?1615219825"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219825"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219825"></script>
+    <script src="/js/jquery.sticky.js?1615219825"></script>
+    <script src="/js/featherlight.min.js?1615219825"></script>
+    <script src="/js/highlight.pack.js?1615219825"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217453"></script>
-    <script src="/js/learn.js?1615217453"></script>
-    <script src="/js/hugo-learn.js?1615217453"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219825"></script>
+    <script src="/js/learn.js?1615219825"></script>
+    <script src="/js/hugo-learn.js?1615219825"></script>
 
-    <link href="/mermaid/mermaid.css?1615217453" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217453"></script>
+    <link href="/mermaid/mermaid.css?1615219825" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219825"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

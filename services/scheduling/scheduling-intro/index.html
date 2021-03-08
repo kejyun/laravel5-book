@@ -12,21 +12,21 @@
     <title>任務排程（Scheduling） :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219822" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219822" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217451"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219822"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "任務排程（Scheduling） 我們通常會把一些每小時、每 6 小時、每日、每週、每月等等之類固定時間要做的工作丟到 Linux 系統的 crontab 中去執行，通常像是每日要統計昨天網站的活動資訊做數據分析之類的工作，這類的工作通常會花費比較久的時間\n在 Linux 設定排程工作 我們通常會在命令列用 $ crontab -e 的方式去編輯排程工作\n$ crontab -e 在用到 crontab 的時候，我們需要瞭解怎麼設定排程工作的執行時間，整個的 crontab 的設定可能會像這樣：\n# 每天凌晨 3 點統計昨天的 Pageview 0 3 * * * \/usr\/bin\/php \/home\/kejyun\/laravel4\/artisan cronjob:statisticYesterdayPageview 在前方可以看到有 5 個數字可以做設定，依序分別代表的意思為：\n 分鐘 (0-59) 小時 (0-23) 每個月第幾天 (1-31) 月份 (1-12) 每週的第幾天 (0-6) 0：星期日 1：星期一 2：星期二 3：星期三 4：星期四 5：星期五 6：星期六  這 5 個參數之間用空白隔開，每個參數除了設定單一個數字，也可以用逗號(,)去隔開設定相同單位的時間設定，像是：\n# 每天凌晨 4 點及 16 點寄送廣告信 0 4,16 * * * \/usr\/bin\/php \/home\/kejyun\/laravel4\/artisan cronjob:sendCommercialMail 這裏有一些相關的設定範例可以當作參考：\n# 每小時的第 18 分鐘執行 18 * * * * # 8 點 10 分執行 10 8 * * * # 8 點的每分鐘執行一次（共執行 60 次） * 8 * * * # 在每個禮拜二每小時的第 18 分鐘執行 18 * * * 2 # 你也可以每隔一段時間去執行 crontab # 如果我們每 15 分鐘要去執行，你可以用這樣的格式 *\/15 # 這樣的意思是將分鐘數，切割成（除以）每 15 分鐘執行 *\/15 * * * * # 每 2 小時執行 0 *\/2 * * * # 每 2 小時又 20 分鐘執行 *\/20 *\/2 * * * 小提醒\n 系統的 crontab 運作方式是每分鐘會到設定的 crontab 找看看有沒有符合現在這個時間的排程工作，所以像是 * 8 * * * 這樣的設定，因為沒有明確指定分鐘，在 8 點每分鐘檢查的 60 次都符合條件，所以會執行 60 次，若僅要 8 點時執行一次，請明確設定要執行的分鐘條件，像是 0 8 * * *\n 使用 Laravel 5.2 Scheduling 設定排程工作 因為 Linux 每分鐘都會去檢查當時是否有排程需要執行的工作，符合條件的時間就會執行，Laravel 利用這個特性，告訴排程每分鐘都要執行 Laravel 的 schedule:run 的指令\n* * * * * php \/path\/to\/artisan schedule:run \u0026gt;\u0026gt; \/dev\/null 2\u0026gt;\u0026amp;1 之後 Laravel 每分鐘就會執行 app\/Console\/Command\/Kernal@schedule 的程式，Laravel 會依照 schedule 裡面的設定時間，執行符合條件的排程工作\n排程範例 假如我們有一個排程每分鐘都會紀錄他執行的時間，程式碼會放在 app\/Console\/Command\/TestLog.php，程式碼會像是：\n\u0026lt;?php namespace App\\Console\\Commands; use Illuminate\\Console\\Command; use File; class TestLog extends Command { \/\/ 命令名稱  protected $signature = \u0026#39;test:Log\u0026#39;; \/\/ 說明文字  protected $description = \u0026#39;[測試] Log 檔案\u0026#39;; public function __construct() { parent::__construct(); } \/\/ Console 執行的程式  public function handle() { \/\/ 檔案紀錄在 storage\/test.log  $log_file_path = storage_path(\u0026#39;test.log\u0026#39;); \/\/ 記錄當時的時間  $log_info = [ \u0026#39;date\u0026#39;=\u0026gt;date(\u0026#39;Y-m-d H:i:s\u0026#39;) ]; \/\/ 記錄 JSON 字串  $log_info_json = json_encode($log_info) . \u0026#34;\\r\\n\u0026#34;; \/\/ 記錄 Log  File::append($log_file_path, $log_info_json); } } 以上排程的命令是 php artisan test:Log，執行之後就會記錄當時執行的時間\n排程程式建立好之後，在 app\/Console\/Command\/Kernal.php 定義此排程的工作，並設定每分鐘執行一次，程式碼會像是：\n\u0026lt;?php namespace App\\Console; use Illuminate\\Console\\Scheduling\\Schedule; use Illuminate\\Foundation\\Console\\Kernel as ConsoleKernel; class Kernel extends ConsoleKernel { \/\/ 定義應用程式的 Artisan 指令  protected $commands = [ \\App\\Console\\Commands\\TestLog::class, ]; \/\/ 定義應用程式的排程  protected function schedule(Schedule $schedule) { \/\/ 每分鐘執行 Artisan 命令 test:Log  $schedule-\u0026gt;command(\u0026#39;test:Log\u0026#39;)-\u0026gt;everyMinute(); } } 這樣你就可以在 storage\/test.log 每分鐘看到像這樣的紀錄，這樣就表示你的排程設定成功了！！\n{\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:12:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:13:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:14:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:15:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:16:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:17:07\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:18:09\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:19:05\u0026quot;} 你也可以使用其他 Laravel 提供的時間方法去定義要執行的時間\n   方法 說明     -\u0026gt;cron(\u0027* * * * * *\u0027); 自訂 Cron 排成時間   -\u0026gt;everyMinute(); 每分鐘執行   -\u0026gt;everyFiveMinutes(); 每 5 分鐘執行   -\u0026gt;everyTenMinutes(); 每 10 分鐘執行   -\u0026gt;everyThirtyMinutes(); 每 30 分鐘執行   -\u0026gt;hourly(); 每小時執行   -\u0026gt;daily(); 每天執行   -\u0026gt;dailyAt(\u0026lsquo;13:00\u0026rsquo;); 每天 13:00 執行   -\u0026gt;twiceDaily(1, 13); 每天 1:00 及 13:00 執行   -\u0026gt;weekly(); 每週執行   -\u0026gt;monthly(); 每月執行   -\u0026gt;yearly(); 每年執行   -\u0026gt;sundays() 每週日執行   -\u0026gt;mondays() 每週一執行   -\u0026gt;tuesdays() 每週二執行   -\u0026gt;wednesdays() 每週三執行   -\u0026gt;thursdays() 每週四執行   -\u0026gt;fridays() 每週五執行   -\u0026gt;saturdays() 每週六執行   -\u0026gt;when(Closure) 每當符合條件就執行（return true）    避免重複執行排程 排程預設每次符合條件就要執行，但若我們執行一個需要跑很久的程式，在下一次符合條件的時間若上一個同樣的工作還沒有執行完，我們就不執行的話，我們可以用 -\u0026gt;withoutOverlapping() 方法去避免排程程式重複執行，像是\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;)-\u0026gt;withoutOverlapping(); 輸出執行結果 我們的在執行 Artisan 指令時，我們通常會在畫面上列印一些執行狀態，像是 $this-\u0026gt;info(\u0027把我顯示在畫面上\u0027);，如果我們想要知道排程執行時，這些顯示在畫面的文字記錄下來，我們可以用\n   方法 說明     -\u0026gt;sendOutputTo($filePath); 將結果輸出到檔案（複寫該檔案）   -\u0026gt;appendOutputTo($filePath); 將結果附加在檔案後面（不複寫檔案）   -\u0026gt;emailOutputTo(\u0027foo@example.com\u0027); 將結果寄送到指定 Email    *** 將結果輸出到檔案（複寫該檔案） ***\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;sendOutputTo($filePath); *** 將結果附加在檔案後面（不複寫檔案） ***\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;appendOutputTo($filePath); *** 將結果寄送到指定 Email ***\n$schedule-\u0026gt;command(\u0026#39;foo\u0026#39;) -\u0026gt;daily() -\u0026gt;sendOutputTo($filePath) -\u0026gt;emailOutputTo(\u0026#39;foo@example.com\u0026#39;); 排程觸發 我們可以在排程執行前後，分別使用 -\u0026gt;before() 或 -\u0026gt;after() 去執行排程其他的工作\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;before(function () { \/\/ 在排程執行前觸發 }) -\u0026gt;after(function () { \/\/ 在排程執行完成後觸發 }); 參考資料  crontab.guru - the cron schedule expression editor A visual crontab editor Task Scheduling - Laravel 5.2  "
+		"articleBody": "任務排程（Scheduling） 我們通常會把一些每小時、每 6 小時、每日、每週、每月等等之類固定時間要做的工作丟到 Linux 系統的 crontab 中去執行，通常像是每日要統計昨天網站的活動資訊做數據分析之類的工作，這類的工作通常會花費比較久的時間\n在 Linux 設定排程工作 我們通常會在命令列用 $ crontab -e 的方式去編輯排程工作\n$ crontab -e 在用到 crontab 的時候，我們需要瞭解怎麼設定排程工作的執行時間，整個的 crontab 的設定可能會像這樣：\n# 每天凌晨 3 點統計昨天的 Pageview 0 3 * * * \/usr\/bin\/php \/home\/kejyun\/laravel4\/artisan cronjob:statisticYesterdayPageview 在前方可以看到有 5 個數字可以做設定，依序分別代表的意思為：\n 分鐘 (0-59) 小時 (0-23) 每個月第幾天 (1-31) 月份 (1-12) 每週的第幾天 (0-6) 0：星期日 1：星期一 2：星期二 3：星期三 4：星期四 5：星期五 6：星期六  這 5 個參數之間用空白隔開，每個參數除了設定單一個數字，也可以用逗號(,)去隔開設定相同單位的時間設定，像是：\n# 每天凌晨 4 點及 16 點寄送廣告信 0 4,16 * * * \/usr\/bin\/php \/home\/kejyun\/laravel4\/artisan cronjob:sendCommercialMail  這裏有一些相關的設定範例可以當作參考：\n# 每小時的第 18 分鐘執行 18 * * * * # 8 點 10 分執行 10 8 * * * # 8 點的每分鐘執行一次（共執行 60 次） * 8 * * * # 在每個禮拜二每小時的第 18 分鐘執行 18 * * * 2 # 你也可以每隔一段時間去執行 crontab # 如果我們每 15 分鐘要去執行，你可以用這樣的格式 *\/15 # 這樣的意思是將分鐘數，切割成（除以）每 15 分鐘執行 *\/15 * * * * # 每 2 小時執行 0 *\/2 * * * # 每 2 小時又 20 分鐘執行 *\/20 *\/2 * * * 小提醒\n 系統的 crontab 運作方式是每分鐘會到設定的 crontab 找看看有沒有符合現在這個時間的排程工作，所以像是 * 8 * * * 這樣的設定，因為沒有明確指定分鐘，在 8 點每分鐘檢查的 60 次都符合條件，所以會執行 60 次，若僅要 8 點時執行一次，請明確設定要執行的分鐘條件，像是 0 8 * * *\n  使用 Laravel 5.2 Scheduling 設定排程工作 因為 Linux 每分鐘都會去檢查當時是否有排程需要執行的工作，符合條件的時間就會執行，Laravel 利用這個特性，告訴排程每分鐘都要執行 Laravel 的 schedule:run 的指令\n* * * * * php \/path\/to\/artisan schedule:run \u0026gt;\u0026gt; \/dev\/null 2\u0026gt;\u0026amp;1 之後 Laravel 每分鐘就會執行 app\/Console\/Command\/Kernal@schedule 的程式，Laravel 會依照 schedule 裡面的設定時間，執行符合條件的排程工作\n排程範例 假如我們有一個排程每分鐘都會紀錄他執行的時間，程式碼會放在 app\/Console\/Command\/TestLog.php，程式碼會像是：\n\u0026lt;?php namespace App\\Console\\Commands; use Illuminate\\Console\\Command; use File; class TestLog extends Command { \/\/ 命令名稱  protected $signature = \u0026#39;test:Log\u0026#39;; \/\/ 說明文字  protected $description = \u0026#39;[測試] Log 檔案\u0026#39;; public function __construct() { parent::__construct(); } \/\/ Console 執行的程式  public function handle() { \/\/ 檔案紀錄在 storage\/test.log  $log_file_path = storage_path(\u0026#39;test.log\u0026#39;); \/\/ 記錄當時的時間  $log_info = [ \u0026#39;date\u0026#39;=\u0026gt;date(\u0026#39;Y-m-d H:i:s\u0026#39;) ]; \/\/ 記錄 JSON 字串  $log_info_json = json_encode($log_info) . \u0026#34;\\r\\n\u0026#34;; \/\/ 記錄 Log  File::append($log_file_path, $log_info_json); } } 以上排程的命令是 php artisan test:Log，執行之後就會記錄當時執行的時間\n排程程式建立好之後，在 app\/Console\/Command\/Kernal.php 定義此排程的工作，並設定每分鐘執行一次，程式碼會像是：\n\u0026lt;?php namespace App\\Console; use Illuminate\\Console\\Scheduling\\Schedule; use Illuminate\\Foundation\\Console\\Kernel as ConsoleKernel; class Kernel extends ConsoleKernel { \/\/ 定義應用程式的 Artisan 指令  protected $commands = [ \\App\\Console\\Commands\\TestLog::class, ]; \/\/ 定義應用程式的排程  protected function schedule(Schedule $schedule) { \/\/ 每分鐘執行 Artisan 命令 test:Log  $schedule-\u0026gt;command(\u0026#39;test:Log\u0026#39;)-\u0026gt;everyMinute(); } } 這樣你就可以在 storage\/test.log 每分鐘看到像這樣的紀錄，這樣就表示你的排程設定成功了！！\n{\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:12:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:13:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:14:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:15:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:16:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:17:07\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:18:09\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:19:05\u0026quot;}  你也可以使用其他 Laravel 提供的時間方法去定義要執行的時間\n   方法 說明     -\u0026gt;cron(\u0027* * * * * *\u0027); 自訂 Cron 排成時間   -\u0026gt;everyMinute(); 每分鐘執行   -\u0026gt;everyFiveMinutes(); 每 5 分鐘執行   -\u0026gt;everyTenMinutes(); 每 10 分鐘執行   -\u0026gt;everyThirtyMinutes(); 每 30 分鐘執行   -\u0026gt;hourly(); 每小時執行   -\u0026gt;daily(); 每天執行   -\u0026gt;dailyAt(\u0026lsquo;13:00\u0026rsquo;); 每天 13:00 執行   -\u0026gt;twiceDaily(1, 13); 每天 1:00 及 13:00 執行   -\u0026gt;weekly(); 每週執行   -\u0026gt;monthly(); 每月執行   -\u0026gt;yearly(); 每年執行   -\u0026gt;sundays() 每週日執行   -\u0026gt;mondays() 每週一執行   -\u0026gt;tuesdays() 每週二執行   -\u0026gt;wednesdays() 每週三執行   -\u0026gt;thursdays() 每週四執行   -\u0026gt;fridays() 每週五執行   -\u0026gt;saturdays() 每週六執行   -\u0026gt;when(Closure) 每當符合條件就執行（return true）     避免重複執行排程 排程預設每次符合條件就要執行，但若我們執行一個需要跑很久的程式，在下一次符合條件的時間若上一個同樣的工作還沒有執行完，我們就不執行的話，我們可以用 -\u0026gt;withoutOverlapping() 方法去避免排程程式重複執行，像是\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;)-\u0026gt;withoutOverlapping(); 輸出執行結果 我們的在執行 Artisan 指令時，我們通常會在畫面上列印一些執行狀態，像是 $this-\u0026gt;info(\u0027把我顯示在畫面上\u0027);，如果我們想要知道排程執行時，這些顯示在畫面的文字記錄下來，我們可以用\n   方法 說明     -\u0026gt;sendOutputTo($filePath); 將結果輸出到檔案（複寫該檔案）   -\u0026gt;appendOutputTo($filePath); 將結果附加在檔案後面（不複寫檔案）   -\u0026gt;emailOutputTo(\u0027foo@example.com\u0027); 將結果寄送到指定 Email    *** 將結果輸出到檔案（複寫該檔案） ***\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;sendOutputTo($filePath); *** 將結果附加在檔案後面（不複寫檔案） ***\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;appendOutputTo($filePath); *** 將結果寄送到指定 Email ***\n$schedule-\u0026gt;command(\u0026#39;foo\u0026#39;) -\u0026gt;daily() -\u0026gt;sendOutputTo($filePath) -\u0026gt;emailOutputTo(\u0026#39;foo@example.com\u0026#39;);  排程觸發 我們可以在排程執行前後，分別使用 -\u0026gt;before() 或 -\u0026gt;after() 去執行排程其他的工作\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;before(function () { \/\/ 在排程執行前觸發 }) -\u0026gt;after(function () { \/\/ 在排程執行完成後觸發 }); 參考資料  crontab.guru - the cron schedule expression editor A visual crontab editor Task Scheduling - Laravel 5.2  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217451"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217451"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219823"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219823"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217451"></script>
+<script type="text/javascript" src="/js/search.js?1615219823"></script>
 
     
   </div>
@@ -3828,7 +3828,18 @@
 <p>這 5 個參數之間用空白隔開，每個參數除了設定單一個數字，也可以用逗號(,)去隔開設定相同單位的時間設定，像是：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 每天凌晨 4 點及 16 點寄送廣告信</span>
 <span style="color:#ae81ff">0</span> 4,16 * * * /usr/bin/php /home/kejyun/laravel4/artisan cronjob:sendCommercialMail
-</code></pre></div><p>這裏有一些相關的設定範例可以當作參考：</p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>這裏有一些相關的設定範例可以當作參考：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 每小時的第 18 分鐘執行</span>
 <span style="color:#ae81ff">18</span> * * * *
 
@@ -3855,6 +3866,17 @@
 <blockquote>
 <p>系統的 crontab 運作方式是<code>每分鐘</code>會到設定的 crontab 找看看有沒有符合現在這個時間的排程工作，所以像是 <code>* 8 * * *</code> 這樣的設定，因為沒有明確指定分鐘，在 8 點每分鐘檢查的 60 次都符合條件，所以會執行 60 次，若僅要 8 點時執行一次，請明確設定要執行的分鐘條件，像是 <code>0 8 * * *</code></p>
 </blockquote>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="使用-laravel-52-scheduling-設定排程工作">使用 Laravel 5.2 Scheduling 設定排程工作</h2>
 <p>因為 Linux 每分鐘都會去檢查當時是否有排程需要執行的工作，符合條件的時間就會執行，Laravel 利用這個特性，告訴排程每分鐘都要執行 Laravel 的 <code>schedule:run</code> 的指令</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">* * * * * php /path/to/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span>
@@ -3932,7 +3954,18 @@
 {&quot;date&quot;:&quot;2016-01-11 22:17:07&quot;}
 {&quot;date&quot;:&quot;2016-01-11 22:18:09&quot;}
 {&quot;date&quot;:&quot;2016-01-11 22:19:05&quot;}
-</code></pre><p>你也可以使用其他 Laravel 提供的時間方法去定義要執行的時間</p>
+</code></pre>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>你也可以使用其他 Laravel 提供的時間方法去定義要執行的時間</p>
 <table>
 <thead>
 <tr>
@@ -4023,6 +4056,17 @@
 </tr>
 </tbody>
 </table>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h3 id="避免重複執行排程">避免重複執行排程</h3>
 <p>排程預設每次符合條件就要執行，但若我們執行一個需要跑很久的程式，在下一次符合條件的時間若上一個同樣的工作還沒有執行完，我們就不執行的話，我們可以用 <code>-&gt;withoutOverlapping()</code> 方法去避免排程程式重複執行，像是</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$schedule-&gt;command(&#39;emails:send&#39;)-&gt;withoutOverlapping();
@@ -4063,7 +4107,18 @@
          -&gt;daily()
          -&gt;sendOutputTo($filePath)
          -&gt;emailOutputTo(&#39;foo@example.com&#39;);
-</code></pre></div><h3 id="排程觸發">排程觸發</h3>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h3 id="排程觸發">排程觸發</h3>
 <p>我們可以在排程執行前後，分別使用 <code>-&gt;before()</code> 或 <code>-&gt;after()</code> 去執行排程其他的工作</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$schedule-&gt;command(&#39;emails:send&#39;)
          -&gt;daily()
@@ -4119,28 +4174,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4329,6 +4362,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6334,19 +6389,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217451"></script>
-    <script src="/js/jquery.sticky.js?1615217451"></script>
-    <script src="/js/featherlight.min.js?1615217451"></script>
-    <script src="/js/highlight.pack.js?1615217451"></script>
+    <script src="/js/clipboard.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219823"></script>
+    <script src="/js/jquery.sticky.js?1615219823"></script>
+    <script src="/js/featherlight.min.js?1615219823"></script>
+    <script src="/js/highlight.pack.js?1615219823"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217451"></script>
-    <script src="/js/learn.js?1615217451"></script>
-    <script src="/js/hugo-learn.js?1615217451"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219823"></script>
+    <script src="/js/learn.js?1615219823"></script>
+    <script src="/js/hugo-learn.js?1615219823"></script>
 
-    <link href="/mermaid/mermaid.css?1615217451" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217451"></script>
+    <link href="/mermaid/mermaid.css?1615219823" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219823"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

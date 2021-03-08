@@ -12,21 +12,21 @@
     <title>Homestead :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Homestead 常常我我們需要開發Web Application時候，都需要花很長的時間把環境建置起來，而Homestead以讓我們透過簡單的設定檔，輕鬆的建置好整個執行環境，讓我們能夠更專注於在開發上\n OSX El Capitan 10.11.3\n  Laravel 5.2\n  Vagrant 1.8.1\n  Virtualbox 5.0.14\n 安裝 Virtualbox 從 VirtualBox 官方網站 下載並安裝 VirtualBox\n下載連結：http:\/\/download.virtualbox.org\/virtualbox\/5.0.14\/VirtualBox-5.0.14-105127-OSX.dmg\n安裝 Vagrant 從 Vagrant 官方網站 下載並安裝 Vagrant\n下載連結：https:\/\/releases.hashicorp.com\/vagrant\/1.8.1\/vagrant_1.8.1.dmg\n安裝 Homestead Vagrant Box 在 VirtualBox 及 Vagrant 安裝完後，使用下列指令將 Homestead 加入您的虛擬主機中\nvagrant box add laravel\/homestead 使用 Git 複製 Laravel homestead 並建立 Homestead 設定檔 $ git clone https:\/\/github.com\/laravel\/homestead.git Homestead $ cd Homestead ~\/Homestead$ bash init.sh 建立ssh key $ ssh-keygen -t rsa -C \u0026#34;kejyun@homestead\u0026#34; 編輯 Homestead 設定檔 $ vim ~\/.homestead\/Homestead.yaml 確認設定檔中ssh key有對應到正確的路徑\nauthorize: ~\/.ssh\/id_rsa.pub keys: - ~\/.ssh\/id_rsa 設定虛擬主機提供者 vagrant 支援 virtualbox, vmware_fusion 或 vmware_workstation 這幾個虛擬主機，我們使用 VirtualBox 所以就填入 virtualbox\nprovider: virtualbox 設定本機程式碼路徑對應到測試環境的路徑共用資料夾  map：本機路徑\n  to：Vagrant測試機路徑\n 程式路徑 folders: - map: ~\/Code to: \/home\/vagrant\/Code - map: ~\/laravel52 to: \/home\/vagrant\/laravel52 網站路徑 sites: - map: kejyun.app to: \/home\/vagrant\/laravel52\/public 設定 \/ect\/hosts 對應本機網址到 Vagrant $ sudo vim \/etc\/hosts 加入下列設定\n192.168.10.10 kejyun.app  IP 位址為 Homestead.yaml 設定中的 ip 設定值，kejyun.app 則是參照設定檔中的 sites map 設定有哪些則加進去 hosts 設定檔中\n 啟動 Vagrant ~\/Homestead $ vagrant up  在剛剛使用Git複製下來的homestead資料夾中執行vagrant up指令，會自動下載virtualbox相關的虛擬主機設定，並依照設定檔設置虛擬主機。\n 設定完成後可以開啟瀏覽器到 http:\/\/kejyun.app 看看Homestead是否有正常啟動，若看到下列畫面表示可以正常運作了！！！\n備註 若要關閉Homestead虛擬機器，則可以使用下列指令關閉\nvagrant halt 若設定檔有修改要重新讀取，則可以使用下列指令重新讀取設定\nvagrant provision SSL read: error:00000000:lib(0):func(0):reason(0), errno 60 若在啟動 homestead 時出現 SSL read 的錯誤訊息的話，可以重新加入新的 homestead vagrand box\n$ vagrant up Bringing machine \u0026#39;default\u0026#39; up with \u0026#39;virtualbox\u0026#39; provider... ==\u0026gt; default: Box \u0026#39;laravel\/homestead\u0026#39; could not be found. Attempting to find and install... default: Box Provider: virtualbox default: Box Version: \u0026gt;= 0.4.0 ==\u0026gt; default: Loading metadata for box \u0026#39;laravel\/homestead\u0026#39; default: URL: https:\/\/atlas.hashicorp.com\/laravel\/homestead ==\u0026gt; default: Adding box \u0026#39;laravel\/homestead\u0026#39; (v0.4.4) for provider: virtualbox default: Downloading: https:\/\/atlas.hashicorp.com\/laravel\/boxes\/homestead\/versions\/0.4.4\/providers\/virtualbox.box An error occurred while downloading the remote file. The error message, if any, is reproduced below. Please fix this error and try again. SSL read: error:00000000:lib(0):func(0):reason(0), errno 60 加入新的 homestead vagrand box vagrant box add --insecure -c laravel\/homestead http:\/\/atlas.hashicorp.com\/laravel\/boxes\/homestead $ vagrant box add --insecure -c laravel\/homestead http:\/\/atlas.hashicorp.com\/laravel\/boxes\/homestead ==\u0026gt; box: Loading metadata for box \u0026#39;http:\/\/atlas.hashicorp.com\/laravel\/boxes\/homestead\u0026#39; This box can work with multiple providers! The providers that it can work with are listed below. Please review the list and choose the provider you will be working with. 1) virtualbox 2) vmware_desktop Enter your choice: 1 ==\u0026gt; box: Adding box \u0026#39;laravel\/homestead\u0026#39; (v0.4.4) for provider: virtualbox box: Downloading: https:\/\/atlas.hashicorp.com\/laravel\/boxes\/homestead\/versions\/0.4.4\/providers\/virtualbox.box ==\u0026gt; box: Successfully added box \u0026#39;laravel\/homestead\u0026#39; (v0.4.4) for \u0026#39;virtualbox\u0026#39;! 加入完成後，再重新啟動 homestead 即可\n$ vagrant up 變更 Homestead 主機 ip 當我們想要有多台 Homestead 主機時，會因為 Homestead 預設的主機 ip 都為 192.168.10.11 而導致 ip 之間有衝突，所以我們也可以透過置換 ip 去達到同時開不同的 Homestead 主機。\n--- ip: \u0026#34;192.168.99.10\u0026#34; 我們僅需要將 ip 直接換成我們想要的 ip，這裡我將 ip 換成 192.168.99.10，換完 ip 之後，僅需要打 vagrant reload 這樣就可以成功將 ip 置換掉了！\nvagrant reload VT-x is disabled in the BIOS for all CPU modes 在使用 vagrant up 的時候，若出現 VT-x is disabled in the BIOS for all CPU modes 表示你的 BIOS 沒有開啟虛擬化功能\nThere was an error while executing VBoxManage, a CLI used by Vagrant for controlling VirtualBox. The command and stderr is shown below. Command: [\u0026quot;startvm\u0026quot;, \u0026quot;4316329f-815b-4088-b04f-e7ff0c224c4a\u0026quot;, \u0026quot;--type\u0026quot;, \u0026quot;headless\u0026quot;] Stderr: VBoxManage.exe: error: Not in a hypervisor partition (HVP=0) (VERR_NEM_NOT_AVAILABLE). VBoxManage.exe: error: VT-x is disabled in the BIOS for all CPU modes (VERR_VMX_MSR_ALL_VMX_DISABLED) VBoxManage.exe: error: Details: code E_FAIL (0x80004005), component ConsoleWrap, interface IConsole 此時只需要到 BIOS 將虛擬化功能開啟即可\n 虛擬化功能名稱可能會像是：“Intel VT-x,” “Intel Virtualization Technology,” “Virtualization Extensions,” “Vanderpool”，並且放在 “Chipset,” “Northbridge,” “Advanced Chipset Control,” or “Advanced CPU Configuration” 的選單上\n 開啟後重新使用 vagrant up 即可順利開啟虛擬機器\n除錯 安裝 Laravel 過程出現 Could not scan for classes inside \u0026quot;\/home\/vagrant\/Code\/blog\/vendor\/phpunit\/php-code-coverage\/src\/\u0026quot; 訊息 2020\/04\/05 時在安裝新版 Homestead 時，發現一直出現以下錯誤訊息，一直無法順利安裝 Laravel\n安裝過程是用官網的步驟直接安裝\nvagrant box add laravel\/homestead git clone https:\/\/github.com\/laravel\/homestead.git ~\/Homestead cd ~\/Homestead git checkout release 當前的 Homestead 版本是 release v10.7.0，然後使用標準 composer 指令去安裝 Laravel\ncomposer create-project --prefer-dist laravel\/laravel blog 安裝過程最後不斷出現 Could not scan for classes inside \u0026quot;\/home\/vagrant\/Code\/blog\/vendor\/phpunit\/php-code-coverage\/src\/\u0026quot; 的訊息\nPackage jakub-onderka\/php-console-color is abandoned, you should avoid using it. Use php-parallel-lint\/php-console-color instead. Package jakub-onderka\/php-console-highlighter is abandoned, you should avoid using it. Use php-parallel-lint\/php-console-highlighter instead. Generating optimized autoload files [RuntimeException] Could not scan for classes inside \u0026#34;\/home\/vagrant\/Code\/blog\/vendor\/phpunit\/php-code-coverage\/src\/\u0026#34; which does not appear to be a file nor a folder install [--prefer-source] [--prefer-dist] [--dry-run] [--dev] [--no-dev] [--no-custom-installers] [--no-autoloader] [--no-scripts] [--no-progress] [--no-suggest] [-v|vv|vvv|--verbose] [-o|--optimize-autoloader] [-a|--classmap-authoritative] [--apcu-autoloader] [--ignore-platform-reqs] [--] [\u0026lt;packages\u0026gt;]... vagrant@homestead:~\/Code\/test$ 在搜尋了許久發現 Homestead 9新盒子建立一个新的Laravel專案作曲家無法掃描裏面的類\/ vendor \/ phpunit \/ php-code-coverage \/ src \/ - laravel - Codebug 文章中提到了一個關鍵字\n 將 VirtualBox 更新為 v6。\n  在GitHub上查看此問题：https:\/\/github.com\/laravel\/homestead\/issues\/1219\n  Unable to load the \u0026ldquo;app\u0026rdquo; configuration file. · Issue #1219 · laravel\/homestead\n 發現自己的 VirtualBox 版本為 5.x，立即去官網將 VirtualBox 更新至 6.x 就可以順利安裝了，安裝過程中完全沒有提到跟 VirtualBox 有關的錯誤訊息，導致我鬼打牆了好久 QQ\n也有人遇到的問題是因為 composer cache 的問題，也可以用這個方式移除 compser cache 來解決安裝問題\ncomposer clear-cache cd project\/ rm -rf vendor composer install 參考資料  Say Hello to Laravel Homestead 2.0 Laravel - Homestead Virtualbox Vagrant Vagrant 常用指令 SSL read: error · Issue #401 · Varying-Vagrant-Vagrants\/VVV Vagrant: Fix for error 60 \/ SSL read - Slick Change ip homestead Vagrant error on Windows 10 · Issue #195 · scotch-io\/scotch-box · GitHub VBoxManage: error: VT-x is disabled in the BIOS for all CPU modes · Issue #1301 · openebs\/openebs · GitHub How to Enable Intel VT-x in Your Computer’s BIOS or UEFI Firmware Homestead 9新盒子建立一个新的Laravel專案作曲家無法掃描裏面的類\/ vendor \/ phpunit \/ php-code-coverage \/ src \/ - laravel - Codebug Unable to load the \u0026ldquo;app\u0026rdquo; configuration file. · Issue #1219 · laravel\/homestead Fresh install laravel 5.3 on Homestead 3.0.2 fail \u0026ldquo;\/vendor\/phpunit\/php-code-coverage\/src\/\u0026rdquo; · Issue #15105 · laravel\/framework  "
+		"articleBody": "Homestead 常常我我們需要開發Web Application時候，都需要花很長的時間把環境建置起來，而Homestead以讓我們透過簡單的設定檔，輕鬆的建置好整個執行環境，讓我們能夠更專注於在開發上\n OSX El Capitan 10.11.3\n  Laravel 5.2\n  Vagrant 1.8.1\n  Virtualbox 5.0.14\n 安裝 Virtualbox 從 VirtualBox 官方網站 下載並安裝 VirtualBox\n下載連結：http:\/\/download.virtualbox.org\/virtualbox\/5.0.14\/VirtualBox-5.0.14-105127-OSX.dmg\n安裝 Vagrant 從 Vagrant 官方網站 下載並安裝 Vagrant\n下載連結：https:\/\/releases.hashicorp.com\/vagrant\/1.8.1\/vagrant_1.8.1.dmg\n安裝 Homestead Vagrant Box 在 VirtualBox 及 Vagrant 安裝完後，使用下列指令將 Homestead 加入您的虛擬主機中\nvagrant box add laravel\/homestead  使用 Git 複製 Laravel homestead 並建立 Homestead 設定檔 $ git clone https:\/\/github.com\/laravel\/homestead.git Homestead $ cd Homestead ~\/Homestead$ bash init.sh 建立ssh key $ ssh-keygen -t rsa -C \u0026#34;kejyun@homestead\u0026#34; 編輯 Homestead 設定檔 $ vim ~\/.homestead\/Homestead.yaml 確認設定檔中ssh key有對應到正確的路徑\nauthorize: ~\/.ssh\/id_rsa.pub keys: - ~\/.ssh\/id_rsa 設定虛擬主機提供者 vagrant 支援 virtualbox, vmware_fusion 或 vmware_workstation 這幾個虛擬主機，我們使用 VirtualBox 所以就填入 virtualbox\nprovider: virtualbox  設定本機程式碼路徑對應到測試環境的路徑共用資料夾  map：本機路徑\n  to：Vagrant測試機路徑\n 程式路徑 folders: - map: ~\/Code to: \/home\/vagrant\/Code - map: ~\/laravel52 to: \/home\/vagrant\/laravel52 網站路徑 sites: - map: kejyun.app to: \/home\/vagrant\/laravel52\/public 設定 \/ect\/hosts 對應本機網址到 Vagrant $ sudo vim \/etc\/hosts 加入下列設定\n192.168.10.10 kejyun.app  IP 位址為 Homestead.yaml 設定中的 ip 設定值，kejyun.app 則是參照設定檔中的 sites map 設定有哪些則加進去 hosts 設定檔中\n  啟動 Vagrant ~\/Homestead $ vagrant up  在剛剛使用Git複製下來的homestead資料夾中執行vagrant up指令，會自動下載virtualbox相關的虛擬主機設定，並依照設定檔設置虛擬主機。\n 設定完成後可以開啟瀏覽器到 http:\/\/kejyun.app 看看Homestead是否有正常啟動，若看到下列畫面表示可以正常運作了！！！\n備註 若要關閉Homestead虛擬機器，則可以使用下列指令關閉\nvagrant halt 若設定檔有修改要重新讀取，則可以使用下列指令重新讀取設定\nvagrant provision  SSL read: error:00000000:lib(0):func(0):reason(0), errno 60 若在啟動 homestead 時出現 SSL read 的錯誤訊息的話，可以重新加入新的 homestead vagrand box\n$ vagrant up Bringing machine \u0026#39;default\u0026#39; up with \u0026#39;virtualbox\u0026#39; provider... ==\u0026gt; default: Box \u0026#39;laravel\/homestead\u0026#39; could not be found. Attempting to find and install... default: Box Provider: virtualbox default: Box Version: \u0026gt;= 0.4.0 ==\u0026gt; default: Loading metadata for box \u0026#39;laravel\/homestead\u0026#39; default: URL: https:\/\/atlas.hashicorp.com\/laravel\/homestead ==\u0026gt; default: Adding box \u0026#39;laravel\/homestead\u0026#39; (v0.4.4) for provider: virtualbox default: Downloading: https:\/\/atlas.hashicorp.com\/laravel\/boxes\/homestead\/versions\/0.4.4\/providers\/virtualbox.box An error occurred while downloading the remote file. The error message, if any, is reproduced below. Please fix this error and try again. SSL read: error:00000000:lib(0):func(0):reason(0), errno 60 加入新的 homestead vagrand box vagrant box add --insecure -c laravel\/homestead http:\/\/atlas.hashicorp.com\/laravel\/boxes\/homestead $ vagrant box add --insecure -c laravel\/homestead http:\/\/atlas.hashicorp.com\/laravel\/boxes\/homestead ==\u0026gt; box: Loading metadata for box \u0026#39;http:\/\/atlas.hashicorp.com\/laravel\/boxes\/homestead\u0026#39; This box can work with multiple providers! The providers that it can work with are listed below. Please review the list and choose the provider you will be working with. 1) virtualbox 2) vmware_desktop Enter your choice: 1 ==\u0026gt; box: Adding box \u0026#39;laravel\/homestead\u0026#39; (v0.4.4) for provider: virtualbox box: Downloading: https:\/\/atlas.hashicorp.com\/laravel\/boxes\/homestead\/versions\/0.4.4\/providers\/virtualbox.box ==\u0026gt; box: Successfully added box \u0026#39;laravel\/homestead\u0026#39; (v0.4.4) for \u0026#39;virtualbox\u0026#39;! 加入完成後，再重新啟動 homestead 即可\n$ vagrant up 變更 Homestead 主機 ip 當我們想要有多台 Homestead 主機時，會因為 Homestead 預設的主機 ip 都為 192.168.10.11 而導致 ip 之間有衝突，所以我們也可以透過置換 ip 去達到同時開不同的 Homestead 主機。\n--- ip: \u0026#34;192.168.99.10\u0026#34; 我們僅需要將 ip 直接換成我們想要的 ip，這裡我將 ip 換成 192.168.99.10，換完 ip 之後，僅需要打 vagrant reload 這樣就可以成功將 ip 置換掉了！\nvagrant reload VT-x is disabled in the BIOS for all CPU modes 在使用 vagrant up 的時候，若出現 VT-x is disabled in the BIOS for all CPU modes 表示你的 BIOS 沒有開啟虛擬化功能\nThere was an error while executing VBoxManage, a CLI used by Vagrant for controlling VirtualBox. The command and stderr is shown below. Command: [\u0026quot;startvm\u0026quot;, \u0026quot;4316329f-815b-4088-b04f-e7ff0c224c4a\u0026quot;, \u0026quot;--type\u0026quot;, \u0026quot;headless\u0026quot;] Stderr: VBoxManage.exe: error: Not in a hypervisor partition (HVP=0) (VERR_NEM_NOT_AVAILABLE). VBoxManage.exe: error: VT-x is disabled in the BIOS for all CPU modes (VERR_VMX_MSR_ALL_VMX_DISABLED) VBoxManage.exe: error: Details: code E_FAIL (0x80004005), component ConsoleWrap, interface IConsole 此時只需要到 BIOS 將虛擬化功能開啟即可\n 虛擬化功能名稱可能會像是：“Intel VT-x,” “Intel Virtualization Technology,” “Virtualization Extensions,” “Vanderpool”，並且放在 “Chipset,” “Northbridge,” “Advanced Chipset Control,” or “Advanced CPU Configuration” 的選單上\n 開啟後重新使用 vagrant up 即可順利開啟虛擬機器\n 除錯 安裝 Laravel 過程出現 Could not scan for classes inside \u0026quot;\/home\/vagrant\/Code\/blog\/vendor\/phpunit\/php-code-coverage\/src\/\u0026quot; 訊息 2020\/04\/05 時在安裝新版 Homestead 時，發現一直出現以下錯誤訊息，一直無法順利安裝 Laravel\n安裝過程是用官網的步驟直接安裝\nvagrant box add laravel\/homestead git clone https:\/\/github.com\/laravel\/homestead.git ~\/Homestead cd ~\/Homestead git checkout release 當前的 Homestead 版本是 release v10.7.0，然後使用標準 composer 指令去安裝 Laravel\ncomposer create-project --prefer-dist laravel\/laravel blog 安裝過程最後不斷出現 Could not scan for classes inside \u0026quot;\/home\/vagrant\/Code\/blog\/vendor\/phpunit\/php-code-coverage\/src\/\u0026quot; 的訊息\nPackage jakub-onderka\/php-console-color is abandoned, you should avoid using it. Use php-parallel-lint\/php-console-color instead. Package jakub-onderka\/php-console-highlighter is abandoned, you should avoid using it. Use php-parallel-lint\/php-console-highlighter instead. Generating optimized autoload files [RuntimeException] Could not scan for classes inside \u0026#34;\/home\/vagrant\/Code\/blog\/vendor\/phpunit\/php-code-coverage\/src\/\u0026#34; which does not appear to be a file nor a folder install [--prefer-source] [--prefer-dist] [--dry-run] [--dev] [--no-dev] [--no-custom-installers] [--no-autoloader] [--no-scripts] [--no-progress] [--no-suggest] [-v|vv|vvv|--verbose] [-o|--optimize-autoloader] [-a|--classmap-authoritative] [--apcu-autoloader] [--ignore-platform-reqs] [--] [\u0026lt;packages\u0026gt;]... vagrant@homestead:~\/Code\/test$ 在搜尋了許久發現 Homestead 9新盒子建立一个新的Laravel專案作曲家無法掃描裏面的類\/ vendor \/ phpunit \/ php-code-coverage \/ src \/ - laravel - Codebug 文章中提到了一個關鍵字\n 將 VirtualBox 更新為 v6。\n  在GitHub上查看此問题：https:\/\/github.com\/laravel\/homestead\/issues\/1219\n  Unable to load the \u0026ldquo;app\u0026rdquo; configuration file. · Issue #1219 · laravel\/homestead\n 發現自己的 VirtualBox 版本為 5.x，立即去官網將 VirtualBox 更新至 6.x 就可以順利安裝了，安裝過程中完全沒有提到跟 VirtualBox 有關的錯誤訊息，導致我鬼打牆了好久 QQ\n也有人遇到的問題是因為 composer cache 的問題，也可以用這個方式移除 compser cache 來解決安裝問題\ncomposer clear-cache cd project\/ rm -rf vendor composer install 參考資料  Say Hello to Laravel Homestead 2.0 Laravel - Homestead Virtualbox Vagrant Vagrant 常用指令 SSL read: error · Issue #401 · Varying-Vagrant-Vagrants\/VVV Vagrant: Fix for error 60 \/ SSL read - Slick Change ip homestead Vagrant error on Windows 10 · Issue #195 · scotch-io\/scotch-box · GitHub VBoxManage: error: VT-x is disabled in the BIOS for all CPU modes · Issue #1301 · openebs\/openebs · GitHub How to Enable Intel VT-x in Your Computer’s BIOS or UEFI Firmware Homestead 9新盒子建立一个新的Laravel專案作曲家無法掃描裏面的類\/ vendor \/ phpunit \/ php-code-coverage \/ src \/ - laravel - Codebug Unable to load the \u0026ldquo;app\u0026rdquo; configuration file. · Issue #1219 · laravel\/homestead Fresh install laravel 5.3 on Homestead 3.0.2 fail \u0026ldquo;\/vendor\/phpunit\/php-code-coverage\/src\/\u0026rdquo; · Issue #15105 · laravel\/framework  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3825,7 +3825,18 @@
 <h2 id="安裝-homestead-vagrant-box">安裝 Homestead Vagrant Box</h2>
 <p>在 VirtualBox 及 Vagrant 安裝完後，使用下列指令將 Homestead 加入您的虛擬主機中</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">vagrant box add laravel/homestead
-</code></pre></div><h2 id="使用-git-複製-laravel-homestead-並建立-homestead-設定檔">使用 Git 複製 Laravel homestead 並建立 Homestead 設定檔</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="使用-git-複製-laravel-homestead-並建立-homestead-設定檔">使用 Git 複製 Laravel homestead 並建立 Homestead 設定檔</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git clone https://github.com/laravel/homestead.git Homestead
 $ cd Homestead
 ~/Homestead$ bash init.sh
@@ -3840,7 +3851,18 @@ keys:
 </code></pre><h2 id="設定虛擬主機提供者">設定虛擬主機提供者</h2>
 <p>vagrant 支援 <code>virtualbox</code>, <code>vmware_fusion</code> 或 <code>vmware_workstation</code> 這幾個虛擬主機，我們使用 VirtualBox 所以就填入 virtualbox</p>
 <pre><code>provider: virtualbox
-</code></pre><h3 id="設定本機程式碼路徑對應到測試環境的路徑共用資料夾">設定本機程式碼路徑對應到測試環境的路徑共用資料夾</h3>
+</code></pre>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h3 id="設定本機程式碼路徑對應到測試環境的路徑共用資料夾">設定本機程式碼路徑對應到測試環境的路徑共用資料夾</h3>
 <blockquote>
 <p>map：本機路徑</p>
 </blockquote>
@@ -3865,6 +3887,17 @@ keys:
 </code></pre><blockquote>
 <p>IP 位址為 Homestead.yaml 設定中的 ip 設定值，kejyun.app 則是參照設定檔中的 sites map 設定有哪些則加進去 hosts 設定檔中</p>
 </blockquote>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="啟動-vagrant">啟動 Vagrant</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">~/Homestead $ vagrant up
 </code></pre></div><blockquote>
@@ -3878,7 +3911,18 @@ keys:
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">vagrant halt
 </code></pre></div><p>若設定檔有修改要重新讀取，則可以使用下列指令重新讀取設定</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">vagrant provision
-</code></pre></div><h2 id="ssl-read-error00000000lib0func0reason0-errno-60">SSL read: error:00000000:lib(0):func(0):reason(0), errno 60</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="ssl-read-error00000000lib0func0reason0-errno-60">SSL read: error:00000000:lib(0):func(0):reason(0), errno 60</h2>
 <p>若在啟動 homestead 時出現 SSL read 的錯誤訊息的話，可以重新加入新的 homestead vagrand box</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ vagrant up
 Bringing machine <span style="color:#e6db74">&#39;default&#39;</span> up with <span style="color:#e6db74">&#39;virtualbox&#39;</span> provider...
@@ -3933,6 +3977,17 @@ VBoxManage.exe: error: Details: code E_FAIL (0x80004005), component ConsoleWrap,
 <p>虛擬化功能名稱可能會像是：“Intel VT-x,” “Intel Virtualization Technology,” “Virtualization Extensions,” “Vanderpool”，並且放在 “Chipset,” “Northbridge,” “Advanced Chipset Control,” or “Advanced CPU Configuration” 的選單上</p>
 </blockquote>
 <p>開啟後重新使用 <code>vagrant up</code> 即可順利開啟虛擬機器</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="除錯">除錯</h2>
 <h3 id="安裝-laravel-過程出現-could-not-scan-for-classes-inside-homevagrantcodeblogvendorphpunitphp-code-coveragesrc-訊息">安裝 Laravel 過程出現 <code>Could not scan for classes inside &quot;/home/vagrant/Code/blog/vendor/phpunit/php-code-coverage/src/&quot;</code> 訊息</h3>
 <p>2020/04/05 時在安裝新版 Homestead 時，發現一直出現以下錯誤訊息，一直無法順利安裝 Laravel</p>
@@ -4030,28 +4085,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4240,6 +4273,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6242,19 +6297,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219822"></script>
+    <script src="/js/jquery.sticky.js?1615219822"></script>
+    <script src="/js/featherlight.min.js?1615219822"></script>
+    <script src="/js/highlight.pack.js?1615219822"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219822"></script>
+    <script src="/js/learn.js?1615219822"></script>
+    <script src="/js/hugo-learn.js?1615219822"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219822" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219822"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

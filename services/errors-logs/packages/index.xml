@@ -35,7 +35,7 @@
 4. 取得 Slack App Incoming Webhook 網址
 5. 設定 log 方式
 在 config/logging.php 檔案中的 stack 加入 slack 設定，這樣 Log 資料會記錄到 Log File 及 Slack
-// config/logging.php return [ &amp;#39;default&amp;#39; =&amp;gt; env(&amp;#39;LOG_CHANNEL&amp;#39;, &amp;#39;stack&amp;#39;), &amp;#39;channels&amp;#39; =&amp;gt; [ &amp;#39;stack&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;stack&amp;#39;, &amp;#39;channels&amp;#39; =&amp;gt; [&amp;#39;single&amp;#39;, &amp;#39;slack&amp;#39;], ], &amp;#39;slack&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;slack&amp;#39;, &amp;#39;url&amp;#39; =&amp;gt; env(&amp;#39;LOG_SLACK_WEBHOOK_URL&amp;#39;), &amp;#39;username&amp;#39; =&amp;gt; &amp;#39;Laravel Log&amp;#39;, &amp;#39;emoji&amp;#39; =&amp;gt; &amp;#39;:boom:&amp;#39;, &amp;#39;level&amp;#39; =&amp;gt; &amp;#39;debug&amp;#39;, ], ], ]; 設定 .</description>
+ // config/logging.php return [ &amp;#39;default&amp;#39; =&amp;gt; env(&amp;#39;LOG_CHANNEL&amp;#39;, &amp;#39;stack&amp;#39;), &amp;#39;channels&amp;#39; =&amp;gt; [ &amp;#39;stack&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;stack&amp;#39;, &amp;#39;channels&amp;#39; =&amp;gt; [&amp;#39;single&amp;#39;, &amp;#39;slack&amp;#39;], ], &amp;#39;slack&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;slack&amp;#39;, &amp;#39;url&amp;#39; =&amp;gt; env(&amp;#39;LOG_SLACK_WEBHOOK_URL&amp;#39;), &amp;#39;username&amp;#39; =&amp;gt; &amp;#39;Laravel Log&amp;#39;, &amp;#39;emoji&amp;#39; =&amp;gt; &amp;#39;:boom:&amp;#39;, &amp;#39;level&amp;#39; =&amp;gt; &amp;#39;debug&amp;#39;, ], ], ]; 設定 .</description>
     </item>
     
   </channel>

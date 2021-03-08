@@ -12,21 +12,21 @@
     <title>API throttle middleware :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "API throttle middleware 在 app\/Http\/Kernel.php 檔案中會看到 api 的 $middlewareGroups 有一個 \u0027throttle:60,1\u0027，這邊的意思是 每 1 分鐘同個 ip 可以請求 60 次，可以針對你的 API 請求需求，去限制 API 請求次數，已保護你的 API 不會被隨意無限制的存取\n\u0026lt;?php namespace App\\Http; use Illuminate\\Foundation\\Http\\Kernel as HttpKernel; class Kernel extends HttpKernel { \/** * The application\u0026#39;s route middleware groups. * * @var array *\/ protected $middlewareGroups = [ \u0026#39;web\u0026#39; =\u0026gt; [ \\App\\Http\\Middleware\\EncryptCookies::class, \\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse::class, \\Illuminate\\Session\\Middleware\\StartSession::class, \/\/ \\Illuminate\\Session\\Middleware\\AuthenticateSession::class,  \\Illuminate\\View\\Middleware\\ShareErrorsFromSession::class, \\App\\Http\\Middleware\\VerifyCsrfToken::class, \\Illuminate\\Routing\\Middleware\\SubstituteBindings::class, ], \u0026#39;api\u0026#39; =\u0026gt; [ \u0026#39;throttle:60,1\u0026#39;, \u0026#39;bindings\u0026#39;, ], ]; } 詳情可以參考 Illuminate\\Routing\\Middleware\\ThrottleRequests 檔案\nLaravel 5.6 throttle middleware 在 Laravel 5.6 的 throttle middleware 提供動態的限制使用者存取數量，在 Middleware 可以設定 throttle:rate_limit,1\nRoute:middleware(\u0026#39;throttle:rate_limit,1\u0026#39;)-\u0026gt;get(\u0026#39;\/\u0026#39;, function(){ return \u0026#39;Test Rate Limit\u0026#39;; }); 然後在使用者 Model 加入 public $rate_limit 屬性，限制使用者最多可以存取多少次\n\u0026lt;?php namespace App; use Illuminate\\Notifications\\Notifiable; use Illuminate\\Contracts\\Auth\\MustVerifyEmail; use Illuminate\\Foundation\\Auth\\User as Authenticatable; class User extends Authenticatable { use Notifiable; public $rate_limit = 3; } 這樣登入的使用者就可以按照設定的次數限制去限制請求次數了\n 沒有登入的使用者，將限制只能存取一次\n "
+		"articleBody": "API throttle middleware 在 app\/Http\/Kernel.php 檔案中會看到 api 的 $middlewareGroups 有一個 \u0027throttle:60,1\u0027，這邊的意思是 每 1 分鐘同個 ip 可以請求 60 次，可以針對你的 API 請求需求，去限制 API 請求次數，已保護你的 API 不會被隨意無限制的存取\n\u0026lt;?php namespace App\\Http; use Illuminate\\Foundation\\Http\\Kernel as HttpKernel; class Kernel extends HttpKernel { \/** * The application\u0026#39;s route middleware groups. * * @var array *\/ protected $middlewareGroups = [ \u0026#39;web\u0026#39; =\u0026gt; [ \\App\\Http\\Middleware\\EncryptCookies::class, \\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse::class, \\Illuminate\\Session\\Middleware\\StartSession::class, \/\/ \\Illuminate\\Session\\Middleware\\AuthenticateSession::class,  \\Illuminate\\View\\Middleware\\ShareErrorsFromSession::class, \\App\\Http\\Middleware\\VerifyCsrfToken::class, \\Illuminate\\Routing\\Middleware\\SubstituteBindings::class, ], \u0026#39;api\u0026#39; =\u0026gt; [ \u0026#39;throttle:60,1\u0026#39;, \u0026#39;bindings\u0026#39;, ], ]; } 詳情可以參考 Illuminate\\Routing\\Middleware\\ThrottleRequests 檔案\n Laravel 5.6 throttle middleware 在 Laravel 5.6 的 throttle middleware 提供動態的限制使用者存取數量，在 Middleware 可以設定 throttle:rate_limit,1\nRoute:middleware(\u0026#39;throttle:rate_limit,1\u0026#39;)-\u0026gt;get(\u0026#39;\/\u0026#39;, function(){ return \u0026#39;Test Rate Limit\u0026#39;; }); 然後在使用者 Model 加入 public $rate_limit 屬性，限制使用者最多可以存取多少次\n\u0026lt;?php namespace App; use Illuminate\\Notifications\\Notifiable; use Illuminate\\Contracts\\Auth\\MustVerifyEmail; use Illuminate\\Foundation\\Auth\\User as Authenticatable; class User extends Authenticatable { use Notifiable; public $rate_limit = 3; } 這樣登入的使用者就可以按照設定的次數限制去限制請求次數了\n 沒有登入的使用者，將限制只能存取一次\n "
 	}
 </script>
 
@@ -473,14 +473,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3812,6 +3812,17 @@
     ];
 }
 </code></pre></div><p>詳情可以參考 <code>Illuminate\Routing\Middleware\ThrottleRequests</code> 檔案</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="laravel-56-throttle-middleware">Laravel 5.6 throttle middleware</h2>
 <p>在 Laravel 5.6 的 throttle middleware 提供動態的限制使用者存取數量，在 Middleware 可以設定 <code>throttle:rate_limit,1</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">Route:middleware(&#39;throttle:rate_limit,1&#39;)-&gt;get(&#39;/&#39;, function(){
@@ -3875,28 +3886,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4085,6 +4074,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6087,19 +6098,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219821"></script>
+    <script src="/js/jquery.sticky.js?1615219821"></script>
+    <script src="/js/featherlight.min.js?1615219821"></script>
+    <script src="/js/highlight.pack.js?1615219821"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219821"></script>
+    <script src="/js/learn.js?1615219821"></script>
+    <script src="/js/hugo-learn.js?1615219821"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219821" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219821"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

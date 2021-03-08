@@ -32,7 +32,7 @@
       
       <guid>https://laravel5-book.kejyun.com/package/image/intervention/package-image-intervention-other/</guid>
       <description>Intervention Image 其他圖片處理 cache() 快取 // 試著讀取快取的圖片 $img = Image::cache(function($image) { // 讀取本機圖片，將圖片 resize 至 300x200，並作灰階處理 return $image-&amp;gt;make(&amp;#39;public/foo.jpg&amp;#39;) -&amp;gt;resize(300, 200) -&amp;gt;greyscale(); }); 若用檔案快取，快取的圖片資料會存放在 storage/framework/cache/data 目錄下。
- Intervention/imagecache: Caching extension for the Intervention Image Class  canvas() 建立圖片畫布 // 建立畫布 $img = Image::canvas(300, 100); Image::canvas(300, 100);
+ Intervention/imagecache: Caching extension for the Intervention Image Class   canvas() 建立圖片畫布 // 建立畫布 $img = Image::canvas(300, 100); Image::canvas(300, 100);
 // 建立畫布，並使用 #ff0000 顏色當作背景 $img = Image::canvas(32, 32, &amp;#39;#ff0000&amp;#39;); Image::canvas(32, 32, &amp;lsquo;#ff0000&amp;rsquo;);
 ellipse() 畫橢圓 // 建立顏色為 #ddd，寬度 300px，高度 100px 的畫布 $img = Image::canvas(300, 100, &amp;#39;#ddd&amp;#39;); // 在畫布中畫出寬度 25px，高度 60px，位置在 (50,50) ，顏色為 #0000ff 的橢圓 $img-&amp;gt;ellipse(25, 60, 50, 50, function ($draw) { $draw-&amp;gt;background(&amp;#39;#0000ff&amp;#39;); }); ellipse(25, 60, 50, 50) color #0000ff&#34;</description>
     </item>

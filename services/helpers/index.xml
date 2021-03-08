@@ -19,7 +19,7 @@
       <guid>https://laravel5-book.kejyun.com/services/helpers/custom-helpers/</guid>
       <description>自定義輔助方法 Laravel 中有提供許多的輔助方法（Helpers），但有時候我們會想要自訂自己的輔助方法，我們可以這樣做
 加入自定義引用的 Helpers.php 檔案到 /app/Support/Helpers/Helpers.php 路徑下 &amp;lt;?php // /app/Support/Helpers/Helpers.php  // Helper 檔案路徑 $helpers = [ &amp;#39;CustomHelper.php&amp;#39; ]; // 載入 Helper 檔案 foreach ($helpers as $helperFileName) { include __DIR__ . &amp;#39;/&amp;#39; .$helperFileName; } 以後若有其他的 Helper 需要加入，僅需要加到 Helpers.php 檔案中的 $helpers 變數當中即可
-在 composer.json 中自動載入加入該 Helper.php /*composer.json*/ { &amp;#34;autoload&amp;#34;: { &amp;#34;classmap&amp;#34;: [ &amp;#34;database&amp;#34; ], &amp;#34;psr-4&amp;#34;: { &amp;#34;App\\&amp;#34;: &amp;#34;app/&amp;#34; }, &amp;#34;files&amp;#34;: [ &amp;#34;app/Support/Helpers/helpers.php&amp;#34; ] } } 重新編譯 autoload.php $ composer dump-autoload Generating autoload files 這樣我們就可以自動的載入我們自定義的 Helper 函式了！！</description>
+在 composer.json 中自動載入加入該 Helper.php /*composer.json*/ { &amp;#34;autoload&amp;#34;: { &amp;#34;classmap&amp;#34;: [ &amp;#34;database&amp;#34; ], &amp;#34;psr-4&amp;#34;: { &amp;#34;App\\&amp;#34;: &amp;#34;app/&amp;#34; }, &amp;#34;files&amp;#34;: [ &amp;#34;app/Support/Helpers/helpers.php&amp;#34; ] } }  重新編譯 autoload.php $ composer dump-autoload Generating autoload files 這樣我們就可以自動的載入我們自定義的 Helper 函式了！！</description>
     </item>
     
     <item>

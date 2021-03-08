@@ -12,21 +12,21 @@
     <title>使用 Mailgun 寄信 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219824" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219824" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217452"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219824"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "使用 Mailgun 寄信 Mailgun 對於初期的產品是一個不錯的郵件服務，每個月可以免費寄送 10000 封信，對於初期的應用應該是綽綽有餘，而且 Laravel 5 預設有支援 Mailgun 的服務，所以我們來介紹如何使用 Mailgun 寄信\n設定 config\/mail.php  driver 設為 mailgun\n  host 設為 smtp.mailgun.org\n  port 設為 587\n  username 設為 postmaster@mailgun.kejyun.com，這個帳號可以登入後到 Domains 頁選擇你設定的 Domains，找到 Default SMTP Login 就可以看到這個帳號\n  password 設為你自己的密碼，Mailgun 顯次的欄位為 Default Password，密碼長度為 32 碼\n  pretend 設為 true，這樣才可以正常使用 Mailgun 寄送\n 設定完後會像這樣：\n\/\/ config\/mail.php return [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;mailgun\u0026#39;, \u0026#39;host\u0026#39; =\u0026gt; \u0026#39;smtp.mailgun.org\u0026#39;, \u0026#39;port\u0026#39; =\u0026gt; 587, \u0026#39;from\u0026#39; =\u0026gt; [\u0026#39;address\u0026#39; =\u0026gt; \u0026#39;kejyun@example.com\u0026#39;, \u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;], \u0026#39;encryption\u0026#39; =\u0026gt; \u0026#39;tls\u0026#39;, \u0026#39;username\u0026#39; =\u0026gt;\u0026#39;postmaster@mailgun.kejyun.com\u0026#39;, \u0026#39;password\u0026#39; =\u0026gt; \u0026#39;abcdefghijklmnopqrstuvwxyz123456\u0026#39;, \u0026#39;sendmail\u0026#39; =\u0026gt; \u0026#39;\/usr\/sbin\/sendmail -bs\u0026#39;, \u0026#39;pretend\u0026#39; =\u0026gt; false, ]; 設定 config\/services.php  domain 設定為你自己定義的 domain，若沒有自己定義 domain 的話，可以使用 Mailgun 替你產生的 domain，可以看看 Default SMTP Login 後面的 sandboxXXXXXX.mailgun.org，這個為 Mailgun 產生的 domain\n  secret 設為 Mailgun 提供的 API Key，會長的像 key-abcdefghijklmnopqrstuvwxyz123456\n 設定完後會像這樣：\n\/\/ config\/services.php [ \u0026#39;mailgun\u0026#39; =\u0026gt; [ \u0026#39;domain\u0026#39; =\u0026gt; \u0026#39;mailgun.kejyun.com\u0026#39;, \u0026#39;secret\u0026#39; =\u0026gt; \u0026#39;key-abcdefghijklmnopqrstuvwxyz123456\u0026#39;, ], ] 測試使用 Mailgun 寄信 Mail::raw(\u0026#39;測試使用 Laravel 5 的 Mailgun 寄信服務\u0026#39;, function($message) { $message-\u0026gt;to(\u0026#39;kejyun@example.com\u0026#39;); }); 這樣我們就可以使用 Mailgun 去當作我們的郵件寄送服務了！！！\n參考資料  Mailgun Setting up Mailgun with Laravel 5 郵件 - Laravel.tw  "
+		"articleBody": "使用 Mailgun 寄信 Mailgun 對於初期的產品是一個不錯的郵件服務，每個月可以免費寄送 10000 封信，對於初期的應用應該是綽綽有餘，而且 Laravel 5 預設有支援 Mailgun 的服務，所以我們來介紹如何使用 Mailgun 寄信\n設定 config\/mail.php  driver 設為 mailgun\n  host 設為 smtp.mailgun.org\n  port 設為 587\n  username 設為 postmaster@mailgun.kejyun.com，這個帳號可以登入後到 Domains 頁選擇你設定的 Domains，找到 Default SMTP Login 就可以看到這個帳號\n  password 設為你自己的密碼，Mailgun 顯次的欄位為 Default Password，密碼長度為 32 碼\n  pretend 設為 true，這樣才可以正常使用 Mailgun 寄送\n 設定完後會像這樣：\n\/\/ config\/mail.php return [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;mailgun\u0026#39;, \u0026#39;host\u0026#39; =\u0026gt; \u0026#39;smtp.mailgun.org\u0026#39;, \u0026#39;port\u0026#39; =\u0026gt; 587, \u0026#39;from\u0026#39; =\u0026gt; [\u0026#39;address\u0026#39; =\u0026gt; \u0026#39;kejyun@example.com\u0026#39;, \u0026#39;name\u0026#39; =\u0026gt; \u0026#39;KeJyun\u0026#39;], \u0026#39;encryption\u0026#39; =\u0026gt; \u0026#39;tls\u0026#39;, \u0026#39;username\u0026#39; =\u0026gt;\u0026#39;postmaster@mailgun.kejyun.com\u0026#39;, \u0026#39;password\u0026#39; =\u0026gt; \u0026#39;abcdefghijklmnopqrstuvwxyz123456\u0026#39;, \u0026#39;sendmail\u0026#39; =\u0026gt; \u0026#39;\/usr\/sbin\/sendmail -bs\u0026#39;, \u0026#39;pretend\u0026#39; =\u0026gt; false, ];  設定 config\/services.php  domain 設定為你自己定義的 domain，若沒有自己定義 domain 的話，可以使用 Mailgun 替你產生的 domain，可以看看 Default SMTP Login 後面的 sandboxXXXXXX.mailgun.org，這個為 Mailgun 產生的 domain\n  secret 設為 Mailgun 提供的 API Key，會長的像 key-abcdefghijklmnopqrstuvwxyz123456\n 設定完後會像這樣：\n\/\/ config\/services.php [ \u0026#39;mailgun\u0026#39; =\u0026gt; [ \u0026#39;domain\u0026#39; =\u0026gt; \u0026#39;mailgun.kejyun.com\u0026#39;, \u0026#39;secret\u0026#39; =\u0026gt; \u0026#39;key-abcdefghijklmnopqrstuvwxyz123456\u0026#39;, ], ]  測試使用 Mailgun 寄信 Mail::raw(\u0026#39;測試使用 Laravel 5 的 Mailgun 寄信服務\u0026#39;, function($message) { $message-\u0026gt;to(\u0026#39;kejyun@example.com\u0026#39;); }); 這樣我們就可以使用 Mailgun 去當作我們的郵件寄送服務了！！！\n參考資料  Mailgun Setting up Mailgun with Laravel 5 郵件 - Laravel.tw  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217452"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217452"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219824"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219824"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217452"></script>
+<script type="text/javascript" src="/js/search.js?1615219824"></script>
 
     
   </div>
@@ -3842,7 +3842,18 @@ return [
   &#39;sendmail&#39;   =&gt; &#39;/usr/sbin/sendmail -bs&#39;,
   &#39;pretend&#39;    =&gt; false,
 ];
-</code></pre></div><h2 id="設定-configservicesphp">設定 <code>config/services.php</code></h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="設定-configservicesphp">設定 <code>config/services.php</code></h2>
 <blockquote>
 <p>domain 設定為你自己定義的 domain，若沒有自己定義 domain 的話，可以使用 Mailgun 替你產生的 domain，可以看看 <code>Default SMTP Login</code> 後面的 <code>sandboxXXXXXX.mailgun.org</code>，這個為 Mailgun 產生的 domain</p>
 </blockquote>
@@ -3857,7 +3868,18 @@ return [
         &#39;secret&#39; =&gt; &#39;key-abcdefghijklmnopqrstuvwxyz123456&#39;,
     ],
 ]
-</code></pre></div><h2 id="測試使用-mailgun-寄信">測試使用 Mailgun 寄信</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="測試使用-mailgun-寄信">測試使用 Mailgun 寄信</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">Mail::raw(&#39;測試使用 Laravel 5 的 Mailgun 寄信服務&#39;, function($message)
 {
     $message-&gt;to(&#39;kejyun@example.com&#39;);
@@ -3909,28 +3931,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4119,6 +4119,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6128,19 +6150,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217452"></script>
-    <script src="/js/jquery.sticky.js?1615217452"></script>
-    <script src="/js/featherlight.min.js?1615217452"></script>
-    <script src="/js/highlight.pack.js?1615217452"></script>
+    <script src="/js/clipboard.min.js?1615219824"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219824"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219824"></script>
+    <script src="/js/jquery.sticky.js?1615219824"></script>
+    <script src="/js/featherlight.min.js?1615219824"></script>
+    <script src="/js/highlight.pack.js?1615219824"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217452"></script>
-    <script src="/js/learn.js?1615217452"></script>
-    <script src="/js/hugo-learn.js?1615217452"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219824"></script>
+    <script src="/js/learn.js?1615219824"></script>
+    <script src="/js/hugo-learn.js?1615219824"></script>
 
-    <link href="/mermaid/mermaid.css?1615217452" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217452"></script>
+    <link href="/mermaid/mermaid.css?1615219824" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219824"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

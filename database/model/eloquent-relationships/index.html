@@ -12,21 +12,21 @@
     <title>Eloquent 關聯 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Eloquent 關聯 假如我們有兩個模型，「文章（Article）」及「使用者（Users）」，假設一個情境，1 個使用者可以寫多篇的文章，但 1 篇文章只能被 1 個使用者發表\n如果我們想要透過關聯關係，從使用者模型去取得使用者的文章，就像：\n\/\/ 取得使用者編號 1 的物件 $user = \\App\\Users::find(1); \/\/ 取得使用者的所有發表的文章 $user-\u0026gt;articles(); 我們會想要使用者模型內設定這樣的關聯關係，就像：\nclass Users extends Model { \/\/ 設定使用者擁有許多文章 public function articles() { return $this-\u0026gt;hasMany(\u0026#39;App\\Article\u0026#39;); } } 如果我們想透過關聯關係，從文章模型去取得是哪一個使用者發表文章，就像：\n\/\/ 取得文章編號 1 的物件 $article = \\App\\Article::find(1); \/\/ 取得發表文章的使用者資訊 $user = $article-\u0026gt;user(); class Article extends Model { \/\/ 設定文章屬於某一的使用者 public function user() { return $this-\u0026gt;belongsTo(\u0026#39;App\\User\u0026#39;); } public function owner() { return $this-\u0026gt;belongsTo(\u0026#39;App\\User\u0026#39;); } public function writer() { return $this-\u0026gt;belongsTo(\u0026#39;App\\User\u0026#39;); } } 設定關聯屬性的函式名稱可以自訂，看自己覺得什麼樣的名稱適合自己就可以了，自訂完後一樣可以使用關聯的方式，撈取出發表文章使用者的資訊\n\/\/ 取得文章編號 1 的物件 $article = \\App\\Article::find(1); \/\/ 取得發表文章的使用者資訊 $owner_user = $article-\u0026gt;owner(); $writer_user = $article-\u0026gt;writer(); 設定完之後，必須確定文章（Article）資料表有使用者編號（user_id）的外來鍵欄位\n\u0026lt;?php \/\/ database\/migrations\/2015_04_13_154720_create_article_table.php  use Illuminate\\Database\\Schema\\Blueprint; use Illuminate\\Database\\Migrations\\Migration; class CreateArticleTable extends Migration { public function up() { Schema::table(\u0026#39;article\u0026#39;, function(Blueprint $table) { \/\/ 發表文章使用者編號  $table-\u0026gt;integer(\u0026#39;user_id\u0026#39;)-\u0026gt;unsigned(); \/\/ 設定外來鍵  $table-\u0026gt;foreign(\u0026#39;user_id\u0026#39;) -\u0026gt;references(\u0026#39;id\u0026#39;) -\u0026gt;on(\u0026#39;users\u0026#39;) -\u0026gt;onDelete(\u0026#39;cascade\u0026#39;); }); } public function down() { Schema::drop(\u0026#39;users\u0026#39;); } } 參考資料  Eloquent Relationships - Laracasts  "
+		"articleBody": "Eloquent 關聯 假如我們有兩個模型，「文章（Article）」及「使用者（Users）」，假設一個情境，1 個使用者可以寫多篇的文章，但 1 篇文章只能被 1 個使用者發表\n如果我們想要透過關聯關係，從使用者模型去取得使用者的文章，就像：\n\/\/ 取得使用者編號 1 的物件 $user = \\App\\Users::find(1); \/\/ 取得使用者的所有發表的文章 $user-\u0026gt;articles(); 我們會想要使用者模型內設定這樣的關聯關係，就像：\nclass Users extends Model { \/\/ 設定使用者擁有許多文章 public function articles() { return $this-\u0026gt;hasMany(\u0026#39;App\\Article\u0026#39;); } } 如果我們想透過關聯關係，從文章模型去取得是哪一個使用者發表文章，就像：\n\/\/ 取得文章編號 1 的物件 $article = \\App\\Article::find(1); \/\/ 取得發表文章的使用者資訊 $user = $article-\u0026gt;user(); class Article extends Model { \/\/ 設定文章屬於某一的使用者 public function user() { return $this-\u0026gt;belongsTo(\u0026#39;App\\User\u0026#39;); } public function owner() { return $this-\u0026gt;belongsTo(\u0026#39;App\\User\u0026#39;); } public function writer() { return $this-\u0026gt;belongsTo(\u0026#39;App\\User\u0026#39;); } }  設定關聯屬性的函式名稱可以自訂，看自己覺得什麼樣的名稱適合自己就可以了，自訂完後一樣可以使用關聯的方式，撈取出發表文章使用者的資訊\n\/\/ 取得文章編號 1 的物件 $article = \\App\\Article::find(1); \/\/ 取得發表文章的使用者資訊 $owner_user = $article-\u0026gt;owner(); $writer_user = $article-\u0026gt;writer(); 設定完之後，必須確定文章（Article）資料表有使用者編號（user_id）的外來鍵欄位\n\u0026lt;?php \/\/ database\/migrations\/2015_04_13_154720_create_article_table.php  use Illuminate\\Database\\Schema\\Blueprint; use Illuminate\\Database\\Migrations\\Migration; class CreateArticleTable extends Migration { public function up() { Schema::table(\u0026#39;article\u0026#39;, function(Blueprint $table) { \/\/ 發表文章使用者編號  $table-\u0026gt;integer(\u0026#39;user_id\u0026#39;)-\u0026gt;unsigned(); \/\/ 設定外來鍵  $table-\u0026gt;foreign(\u0026#39;user_id\u0026#39;) -\u0026gt;references(\u0026#39;id\u0026#39;) -\u0026gt;on(\u0026#39;users\u0026#39;) -\u0026gt;onDelete(\u0026#39;cascade\u0026#39;); }); } public function down() { Schema::drop(\u0026#39;users\u0026#39;); } } 參考資料  Eloquent Relationships - Laracasts  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3847,7 +3847,18 @@ $user = $article-&gt;user();
     }
 
 }
-</code></pre></div><p>設定關聯屬性的函式名稱可以自訂，看自己覺得什麼樣的名稱適合自己就可以了，自訂完後一樣可以使用關聯的方式，撈取出發表文章使用者的資訊</p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>設定關聯屬性的函式名稱可以自訂，看自己覺得什麼樣的名稱適合自己就可以了，自訂完後一樣可以使用關聯的方式，撈取出發表文章使用者的資訊</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// 取得文章編號 1 的物件
 $article = \App\Article::find(1);
 
@@ -3930,28 +3941,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4140,6 +4129,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6149,19 +6160,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219821"></script>
+    <script src="/js/jquery.sticky.js?1615219821"></script>
+    <script src="/js/featherlight.min.js?1615219821"></script>
+    <script src="/js/highlight.pack.js?1615219821"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219821"></script>
+    <script src="/js/learn.js?1615219821"></script>
+    <script src="/js/hugo-learn.js?1615219821"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219821" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219821"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

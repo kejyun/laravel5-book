@@ -12,21 +12,21 @@
     <title>子查詢 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "子查詢 當我想要計算子查詢的數量時，會想要執行像下方的 SQL 查詢語法\nSELECT count(*) FROM ( SELECT UID FROM `posts` WHERE `status` = 1 GROUP BY `user_id` ) sub 在 Eloquent 可以用下面方式達到子查詢的目的\n\u0026lt;?php \/\/ Eloquent Builder instance $SubQuery = Posts::where(\u0026#39;status\u0026#39;, 1) -\u0026gt;groupBy(\u0026#39;user_id\u0026#39;); $count = DB::table( DB::raw(\u0026#34;({$SubQuery-\u0026gt;toSql()}) as sub\u0026#34;) ) -\u0026gt;mergeBindings($SubQuery-\u0026gt;getQuery()) -\u0026gt;count(); 記得當你的子查詢結束後，若有更多的條件需要執行，則必須將查詢條件放在 mergeBindings() 方法後方，否則原本 SubQuery 的查詢資料順序會綁定錯誤\n$count = DB::table( DB::raw(\u0026#34;({$SubQuery-\u0026gt;toSql()}) as sub\u0026#34;) ) \/\/ -\u0026gt;where(..) 這裡會出錯 -\u0026gt;mergeBindings($SubQuery-\u0026gt;getQuery()) \/\/ -\u0026gt;where(..) 正確 -\u0026gt;count(); Laravel v5.6.12 (2018-03-14) 之後，加入了 fromSub() 及 fromRaw() 的方法可以直接產生子查詢語法\n\u0026lt;?php DB::query()-\u0026gt;fromSub(function ($query) { $query-\u0026gt;from(\u0026#39;posts\u0026#39;) -\u0026gt;where(\u0026#39;status\u0026#39;, 1) -\u0026gt;groupBy(\u0026#39;user_id\u0026#39;); }, \u0026#39;sub\u0026#39;)-\u0026gt;count(); \/\/ select count(*) as aggregate from (select * from `abc` group by `col1`) as `a` 參考資料  sql - How to select from subquery using Laravel Query Builder? - Stack Overflow  "
+		"articleBody": "子查詢 當我想要計算子查詢的數量時，會想要執行像下方的 SQL 查詢語法\nSELECT count(*) FROM ( SELECT UID FROM `posts` WHERE `status` = 1 GROUP BY `user_id` ) sub 在 Eloquent 可以用下面方式達到子查詢的目的\n\u0026lt;?php \/\/ Eloquent Builder instance $SubQuery = Posts::where(\u0026#39;status\u0026#39;, 1) -\u0026gt;groupBy(\u0026#39;user_id\u0026#39;); $count = DB::table( DB::raw(\u0026#34;({$SubQuery-\u0026gt;toSql()}) as sub\u0026#34;) ) -\u0026gt;mergeBindings($SubQuery-\u0026gt;getQuery()) -\u0026gt;count(); 記得當你的子查詢結束後，若有更多的條件需要執行，則必須將查詢條件放在 mergeBindings() 方法後方，否則原本 SubQuery 的查詢資料順序會綁定錯誤\n$count = DB::table( DB::raw(\u0026#34;({$SubQuery-\u0026gt;toSql()}) as sub\u0026#34;) ) \/\/ -\u0026gt;where(..) 這裡會出錯 -\u0026gt;mergeBindings($SubQuery-\u0026gt;getQuery()) \/\/ -\u0026gt;where(..) 正確 -\u0026gt;count();  Laravel v5.6.12 (2018-03-14) 之後，加入了 fromSub() 及 fromRaw() 的方法可以直接產生子查詢語法\n\u0026lt;?php DB::query()-\u0026gt;fromSub(function ($query) { $query-\u0026gt;from(\u0026#39;posts\u0026#39;) -\u0026gt;where(\u0026#39;status\u0026#39;, 1) -\u0026gt;groupBy(\u0026#39;user_id\u0026#39;); }, \u0026#39;sub\u0026#39;)-\u0026gt;count(); \/\/ select count(*) as aggregate from (select * from `abc` group by `col1`) as `a` 參考資料  sql - How to select from subquery using Laravel Query Builder? - Stack Overflow  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3833,7 +3833,18 @@ $count <span style="color:#f92672">=</span> <span style="color:#a6e22e">DB</span
     -&gt;mergeBindings($SubQuery-&gt;getQuery())
     // -&gt;where(..) 正確
     -&gt;count();
-</code></pre></div><p>Laravel v5.6.12 (2018-03-14) 之後，加入了 <code>fromSub()</code> 及 <code>fromRaw()</code> 的方法可以直接產生子查詢語法</p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p>Laravel v5.6.12 (2018-03-14) 之後，加入了 <code>fromSub()</code> 及 <code>fromRaw()</code> 的方法可以直接產生子查詢語法</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 <span style="color:#a6e22e">DB</span><span style="color:#f92672">::</span><span style="color:#a6e22e">query</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">fromSub</span>(<span style="color:#66d9ef">function</span> ($query) {
     $query<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">from</span>(<span style="color:#e6db74">&#39;posts&#39;</span>)
@@ -3886,28 +3897,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4096,6 +4085,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6105,19 +6116,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219821"></script>
+    <script src="/js/jquery.sticky.js?1615219821"></script>
+    <script src="/js/featherlight.min.js?1615219821"></script>
+    <script src="/js/highlight.pack.js?1615219821"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219821"></script>
+    <script src="/js/learn.js?1615219821"></script>
+    <script src="/js/hugo-learn.js?1615219821"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219821" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219821"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

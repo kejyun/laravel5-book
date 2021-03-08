@@ -19,7 +19,7 @@
       <guid>https://laravel5-book.kejyun.com/package/api/package-api-guzzlehttp/</guid>
       <description>GuzzleHttp 設定 API 主網址 在參數設定 base_uri 即可設定主網址，之後所有的 Request 都會依照這個主網址去做請求
 use GuzzleHttp\Client; $client = new Client([ // Base URI is used with relative requests &amp;#39;base_uri&amp;#39; =&amp;gt; &amp;#39;http://httpbin.org&amp;#39;, ]); 設定 Timeout 時間 API 為了避免請求時間過久影響到系統存取的效能，會設定 API 存取時間，可以在參數設定至 timeout 欄位限定 API 存取時間限制
-use GuzzleHttp\Client; $client = new Client([ // You can set any number of default request options. &amp;#39;timeout&amp;#39; =&amp;gt; 2.14, ]); 取得回傳資料 可以使用強制轉換 $GuzzleHttpResponse-&amp;gt;getBody() 型別為 string 去取得回傳的資料
+use GuzzleHttp\Client; $client = new Client([ // You can set any number of default request options. &amp;#39;timeout&amp;#39; =&amp;gt; 2.14, ]);  取得回傳資料 可以使用強制轉換 $GuzzleHttpResponse-&amp;gt;getBody() 型別為 string 去取得回傳的資料
 $repsonse_content = (string) $GuzzleHttpResponse-&amp;gt;getBody(); 也可以使用 $GuzzleHttpResponse-&amp;gt;getBody()-&amp;gt;getContents() 去取得回傳的資料</description>
     </item>
     

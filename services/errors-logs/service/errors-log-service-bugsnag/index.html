@@ -12,21 +12,21 @@
     <title>Bugsnag :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219823" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219823" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217451"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219823"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Bugsnag  版本：Laravel 5.0 ~ 5.6\n  紀錄指定的錯誤訊息及系統錯誤\n 1. 安裝\ncomposer require \u0026#34;bugsnag\/bugsnag-laravel:^2.0\u0026#34; 2. 設定 config\/app.php\n\u0026lt;?php \/\/ config\/app.php return [ \u0026#39;providers\u0026#39; =\u0026gt; [ Bugsnag\\BugsnagLaravel\\BugsnagServiceProvider::class, ], ]; 3. 設定 API KEY\n到 .env 檔案設定 API KEY，根據官方安裝引導可以取得此 API KEY\n# .env BUGSNAG_API_KEY=\u0026lt;API_KEY\u0026gt; 3. 設定檔\nLaravel 5.6\n\u0026lt;?php \/\/ config\/logging.php: return [ \u0026#39;channels\u0026#39; =\u0026gt; [ \u0026#39;stack\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;stack\u0026#39;, \/\/ Add bugsnag to the stack:  \u0026#39;channels\u0026#39; =\u0026gt; [\u0026#39;single\u0026#39;, \u0026#39;bugsnag\u0026#39;], ], \/\/ Create a bugsnag logging channel:  \u0026#39;bugsnag\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;bugsnag\u0026#39;, ], ], ] Laravel 5.0~5.5\n到 app\/Providers\/AppServiceProvider.php 檔案中的 register 方法加入此設定\nclass AppServiceProvider extends ServiceProvider { public function register() { $this-\u0026gt;app-\u0026gt;alias(\u0026#39;bugsnag.logger\u0026#39;, \\Illuminate\\Contracts\\Logging\\Log::class); $this-\u0026gt;app-\u0026gt;alias(\u0026#39;bugsnag.logger\u0026#39;, \\Psr\\Log\\LoggerInterface::class); } } 4. 發送錯誤訊息到 Bugsnag\nuse Bugsnag\\BugsnagLaravel\\Facades\\Bugsnag; use RuntimeException; Bugsnag::notifyException(new RuntimeException(\u0026#34;Test error\u0026#34;)); 5. 檢視 Bugsnag 錯誤訊息\n6. 留下麵包屑\ntry { \/\/ 留下麵包屑 Bugsnag::leaveBreadcrumb(\u0026#39;leaveBreadcrumb 111\u0026#39;); Bugsnag::leaveBreadcrumb(\u0026#39;leaveBreadcrumb 222\u0026#39;); throw new Exception(\u0026#39;Test Hello Exception\u0026#39;); } catch (Exception $exception) { \/\/ 傳送訊息 Bugsnag::notifyException($exception); } 7. 檢視麵包屑訊息\n可以看到在程式中留下的麵包屑，可以知道程式在哪一段麵包屑後出錯\n程式系統錯誤 當程式或系統發生錯誤時，也會記錄相關資訊\n參考資料  Error reporting, monitoring, and resolution with Bugsnag bugsnag\/bugsnag-laravel: Bugsnag notifier for the Laravel PHP framework. Monitor and report Laravel errors. Bugsnag docs › Platforms › PHP › Laravel  "
+		"articleBody": "Bugsnag  版本：Laravel 5.0 ~ 5.6\n  紀錄指定的錯誤訊息及系統錯誤\n 1. 安裝\ncomposer require \u0026#34;bugsnag\/bugsnag-laravel:^2.0\u0026#34; 2. 設定 config\/app.php\n\u0026lt;?php \/\/ config\/app.php return [ \u0026#39;providers\u0026#39; =\u0026gt; [ Bugsnag\\BugsnagLaravel\\BugsnagServiceProvider::class, ], ]; 3. 設定 API KEY\n到 .env 檔案設定 API KEY，根據官方安裝引導可以取得此 API KEY\n# .env BUGSNAG_API_KEY=\u0026lt;API_KEY\u0026gt; 3. 設定檔\nLaravel 5.6\n\u0026lt;?php \/\/ config\/logging.php: return [ \u0026#39;channels\u0026#39; =\u0026gt; [ \u0026#39;stack\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;stack\u0026#39;, \/\/ Add bugsnag to the stack:  \u0026#39;channels\u0026#39; =\u0026gt; [\u0026#39;single\u0026#39;, \u0026#39;bugsnag\u0026#39;], ], \/\/ Create a bugsnag logging channel:  \u0026#39;bugsnag\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;bugsnag\u0026#39;, ], ], ] Laravel 5.0~5.5\n到 app\/Providers\/AppServiceProvider.php 檔案中的 register 方法加入此設定\nclass AppServiceProvider extends ServiceProvider { public function register() { $this-\u0026gt;app-\u0026gt;alias(\u0026#39;bugsnag.logger\u0026#39;, \\Illuminate\\Contracts\\Logging\\Log::class); $this-\u0026gt;app-\u0026gt;alias(\u0026#39;bugsnag.logger\u0026#39;, \\Psr\\Log\\LoggerInterface::class); } }  4. 發送錯誤訊息到 Bugsnag\nuse Bugsnag\\BugsnagLaravel\\Facades\\Bugsnag; use RuntimeException; Bugsnag::notifyException(new RuntimeException(\u0026#34;Test error\u0026#34;)); 5. 檢視 Bugsnag 錯誤訊息\n6. 留下麵包屑\ntry { \/\/ 留下麵包屑 Bugsnag::leaveBreadcrumb(\u0026#39;leaveBreadcrumb 111\u0026#39;); Bugsnag::leaveBreadcrumb(\u0026#39;leaveBreadcrumb 222\u0026#39;); throw new Exception(\u0026#39;Test Hello Exception\u0026#39;); } catch (Exception $exception) { \/\/ 傳送訊息 Bugsnag::notifyException($exception); } 7. 檢視麵包屑訊息\n可以看到在程式中留下的麵包屑，可以知道程式在哪一段麵包屑後出錯\n 程式系統錯誤 當程式或系統發生錯誤時，也會記錄相關資訊\n參考資料  Error reporting, monitoring, and resolution with Bugsnag bugsnag\/bugsnag-laravel: Bugsnag notifier for the Laravel PHP framework. Monitor and report Laravel errors. Bugsnag docs › Platforms › PHP › Laravel  "
 	}
 </script>
 
@@ -519,14 +519,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217451"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217451"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219823"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219823"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217451"></script>
+<script type="text/javascript" src="/js/search.js?1615219823"></script>
 
     
   </div>
@@ -3887,7 +3887,18 @@ BUGSNAG_API_KEY<span style="color:#f92672">=</span>&lt;API_KEY&gt;
         $this-&gt;app-&gt;alias(&#39;bugsnag.logger&#39;, \Psr\Log\LoggerInterface::class);
     }
 }
-</code></pre></div><p><strong>4. 發送錯誤訊息到 Bugsnag</strong></p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p><strong>4. 發送錯誤訊息到 Bugsnag</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 use RuntimeException;
 
@@ -3907,6 +3918,17 @@ Bugsnag::notifyException(new RuntimeException(&#34;Test error&#34;));
 </code></pre></div><p><strong>7. 檢視麵包屑訊息</strong></p>
 <p>可以看到在程式中留下的麵包屑，可以知道程式在哪一段麵包屑後出錯</p>
 <p><img src="../images/bugsnag-log-breadcrumb.png" alt="檢視 Bugsnag 檢視麵包屑訊息"></p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="程式系統錯誤">程式系統錯誤</h2>
 <p>當程式或系統發生錯誤時，也會記錄相關資訊</p>
 <p><img src="../images/bugsnag-log-fatal-throwable-error.png" alt="檢視 Bugsnag 程式系統錯誤"></p>
@@ -3956,28 +3978,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4166,6 +4166,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6179,19 +6201,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217451"></script>
-    <script src="/js/jquery.sticky.js?1615217451"></script>
-    <script src="/js/featherlight.min.js?1615217451"></script>
-    <script src="/js/highlight.pack.js?1615217451"></script>
+    <script src="/js/clipboard.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219823"></script>
+    <script src="/js/jquery.sticky.js?1615219823"></script>
+    <script src="/js/featherlight.min.js?1615219823"></script>
+    <script src="/js/highlight.pack.js?1615219823"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217451"></script>
-    <script src="/js/learn.js?1615217451"></script>
-    <script src="/js/hugo-learn.js?1615217451"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219823"></script>
+    <script src="/js/learn.js?1615219823"></script>
+    <script src="/js/hugo-learn.js?1615219823"></script>
 
-    <link href="/mermaid/mermaid.css?1615217451" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217451"></script>
+    <link href="/mermaid/mermaid.css?1615219823" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219823"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

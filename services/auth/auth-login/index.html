@@ -12,21 +12,21 @@
     <title>認證登入 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219822" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219822" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217451"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219822"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "認證登入（Auth） 設定 Laravel 內建認證的設定檔案放在 config\/auth.php 中，預設會使用 App\\User 的類別當作驗證的 Eloquent 模型\n[ \u0026#39;model\u0026#39; =\u0026gt; App\\User::class, ] 如果我們用Model 模型設計模式去設計我們的程式架構，我們 User 實體模型的程式可能會放在 App\\KeJyunApp\\User\\Entities\\User.php 中，這時候我們的認證模型設定可以設定成像這樣（依照命名空間去設定）：\n[ \u0026#39;model\u0026#39; =\u0026gt; App\\KeJyunApp\\User\\Entities\\User::class, ] 這樣 Laravel 內建的認證就可以用我們指定的實體模型去進行認證了！！\n手動登入認證 Laravel 內建的認證使用 Auth 去進行身份認證，如果我們要用使用者的「email」及「密碼」做登入，我們的登入程式可能會像：\n$email = \u0026#39;kejyun@gmail.com\u0026#39;; $password = \u0026#39;1234\u0026#39;; if (Auth::attempt([\u0026#39;email\u0026#39; =\u0026gt; $email, \u0026#39;password\u0026#39; =\u0026gt; $password])) { \/\/ 已登入成功！！！ } 使用 Auth:attempt() 的方式去驗證使用者時，Laravel 會先到 User 資料表透過 Email 抓取使用者的資料，產生出來的 SQL 會像：\nSELECT * FROM \u0026#34;users\u0026#34; WHERE \u0026#34;email\u0026#34; = \u0026#39;kejyun@gmail.com\u0026#39; LIMIT 1; 抓取完使用者之料後再將 password 欄位用雜湊的 Hash::check() 方式去比對驗證密碼是否正確，再記錄使用者的 SESSION 資料\n如果我們的使用者有限制啟用帳號的人才可以登入，所以我們要用使用者的「email」、「密碼」及「啟用狀態」做登入，我們的登入程式可能會像：\n$email = \u0026#39;kejyun@gmail.com\u0026#39;; $password = \u0026#39;1234\u0026#39;; $status = \u0026#39;active\u0026#39;; if (Auth::attempt([\u0026#39;email\u0026#39; =\u0026gt; $email, \u0026#39;password\u0026#39; =\u0026gt; $password, \u0026#39;status\u0026#39; =\u0026gt; $status])) { \/\/ 已登入成功！！！ } 產生出來的 SQL 會像：\nSELECT * FROM \u0026#34;users\u0026#34; WHERE \u0026#34;email\u0026#34; = \u0026#39;kejyun@gmail.com\u0026#39; AND \u0026#34;status\u0026#34; = \u0026#39;active\u0026#39; LIMIT 1; Laravel 一樣是先抓取使用者資料後，再做密碼驗證的動作！\n使用記住我的方式登入 $email = \u0026#39;kejyun@gmail.com\u0026#39;; $password = \u0026#39;1234\u0026#39;; $remember_me = true; if (Auth::attempt([\u0026#39;email\u0026#39; =\u0026gt; $email, \u0026#39;password\u0026#39; =\u0026gt; $password], $remember_me)) { \/\/ 已使用記住我登入成功！！！ }  如果你是自己建立自己 User 資料表的 Migration，記得在自己的 Migration 中加入 $table-\u0026gt;rememberToken(); 的設定，加入 remember_token 欄位，這個欄位可以讓 Laravel 使用 記住我 的方式去記住使用者的 session token\n 判斷使用者是否已登入 我們可以使用 Auth::check() 的方式，判斷使用者是否已登入\nif (Auth::check()) { \/\/ 已登入 } 取得登入使用者的物件 $user = Auth::user(); \/\/ KeJyun var_dump($user-\u0026gt;name); 使用特定使用者的 ID 登入 $user_id = \u0026#39;1\u0026#39;; Auth::loginUsingId($user_id); 登出 Auth::logout(); 登出其他裝置使用者  Laravel 5.6 or higher\n Auth::logoutOtherDevices($password); 參考資料  認證 - Laravel.tw Authentication - Laravel - The PHP Framework For Web Artisans  "
+		"articleBody": "認證登入（Auth） 設定 Laravel 內建認證的設定檔案放在 config\/auth.php 中，預設會使用 App\\User 的類別當作驗證的 Eloquent 模型\n[ \u0026#39;model\u0026#39; =\u0026gt; App\\User::class, ] 如果我們用Model 模型設計模式去設計我們的程式架構，我們 User 實體模型的程式可能會放在 App\\KeJyunApp\\User\\Entities\\User.php 中，這時候我們的認證模型設定可以設定成像這樣（依照命名空間去設定）：\n[ \u0026#39;model\u0026#39; =\u0026gt; App\\KeJyunApp\\User\\Entities\\User::class, ] 這樣 Laravel 內建的認證就可以用我們指定的實體模型去進行認證了！！\n 手動登入認證 Laravel 內建的認證使用 Auth 去進行身份認證，如果我們要用使用者的「email」及「密碼」做登入，我們的登入程式可能會像：\n$email = \u0026#39;kejyun@gmail.com\u0026#39;; $password = \u0026#39;1234\u0026#39;; if (Auth::attempt([\u0026#39;email\u0026#39; =\u0026gt; $email, \u0026#39;password\u0026#39; =\u0026gt; $password])) { \/\/ 已登入成功！！！ } 使用 Auth:attempt() 的方式去驗證使用者時，Laravel 會先到 User 資料表透過 Email 抓取使用者的資料，產生出來的 SQL 會像：\nSELECT * FROM \u0026#34;users\u0026#34; WHERE \u0026#34;email\u0026#34; = \u0026#39;kejyun@gmail.com\u0026#39; LIMIT 1; 抓取完使用者之料後再將 password 欄位用雜湊的 Hash::check() 方式去比對驗證密碼是否正確，再記錄使用者的 SESSION 資料\n如果我們的使用者有限制啟用帳號的人才可以登入，所以我們要用使用者的「email」、「密碼」及「啟用狀態」做登入，我們的登入程式可能會像：\n$email = \u0026#39;kejyun@gmail.com\u0026#39;; $password = \u0026#39;1234\u0026#39;; $status = \u0026#39;active\u0026#39;; if (Auth::attempt([\u0026#39;email\u0026#39; =\u0026gt; $email, \u0026#39;password\u0026#39; =\u0026gt; $password, \u0026#39;status\u0026#39; =\u0026gt; $status])) { \/\/ 已登入成功！！！ } 產生出來的 SQL 會像：\nSELECT * FROM \u0026#34;users\u0026#34; WHERE \u0026#34;email\u0026#34; = \u0026#39;kejyun@gmail.com\u0026#39; AND \u0026#34;status\u0026#34; = \u0026#39;active\u0026#39; LIMIT 1; Laravel 一樣是先抓取使用者資料後，再做密碼驗證的動作！\n使用記住我的方式登入 $email = \u0026#39;kejyun@gmail.com\u0026#39;; $password = \u0026#39;1234\u0026#39;; $remember_me = true; if (Auth::attempt([\u0026#39;email\u0026#39; =\u0026gt; $email, \u0026#39;password\u0026#39; =\u0026gt; $password], $remember_me)) { \/\/ 已使用記住我登入成功！！！ }  如果你是自己建立自己 User 資料表的 Migration，記得在自己的 Migration 中加入 $table-\u0026gt;rememberToken(); 的設定，加入 remember_token 欄位，這個欄位可以讓 Laravel 使用 記住我 的方式去記住使用者的 session token\n 判斷使用者是否已登入 我們可以使用 Auth::check() 的方式，判斷使用者是否已登入\nif (Auth::check()) { \/\/ 已登入 }  取得登入使用者的物件 $user = Auth::user(); \/\/ KeJyun var_dump($user-\u0026gt;name); 使用特定使用者的 ID 登入 $user_id = \u0026#39;1\u0026#39;; Auth::loginUsingId($user_id); 登出 Auth::logout();  登出其他裝置使用者  Laravel 5.6 or higher\n Auth::logoutOtherDevices($password); 參考資料  認證 - Laravel.tw Authentication - Laravel - The PHP Framework For Web Artisans  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217451"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217451"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219823"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219823"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217451"></script>
+<script type="text/javascript" src="/js/search.js?1615219823"></script>
 
     
   </div>
@@ -3819,6 +3819,17 @@
     &#39;model&#39; =&gt; App\KeJyunApp\User\Entities\User::class,
 ]
 </code></pre></div><p>這樣 Laravel 內建的認證就可以用我們指定的實體模型去進行認證了！！</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="手動登入認證">手動登入認證</h2>
 <p>Laravel 內建的認證使用 Auth 去進行身份認證，如果我們要用使用者的「email」及「密碼」做登入，我們的登入程式可能會像：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$email = &#39;kejyun@gmail.com&#39;;
@@ -3860,7 +3871,18 @@ if (Auth::attempt([&#39;email&#39; =&gt; $email, &#39;password&#39; =&gt; $passw
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">if (Auth::check()) {
   // 已登入
 }
-</code></pre></div><h2 id="取得登入使用者的物件">取得登入使用者的物件</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="取得登入使用者的物件">取得登入使用者的物件</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$user = Auth::user();
 // KeJyun
 var_dump($user-&gt;name);
@@ -3869,7 +3891,18 @@ var_dump($user-&gt;name);
 Auth::loginUsingId($user_id);
 </code></pre></div><h2 id="登出">登出</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">Auth::logout();
-</code></pre></div><h2 id="登出其他裝置使用者">登出其他裝置使用者</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="登出其他裝置使用者">登出其他裝置使用者</h2>
 <blockquote>
 <p>Laravel 5.6 or higher</p>
 </blockquote>
@@ -3919,28 +3952,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4129,6 +4140,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6132,19 +6165,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217451"></script>
-    <script src="/js/jquery.sticky.js?1615217451"></script>
-    <script src="/js/featherlight.min.js?1615217451"></script>
-    <script src="/js/highlight.pack.js?1615217451"></script>
+    <script src="/js/clipboard.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219823"></script>
+    <script src="/js/jquery.sticky.js?1615219823"></script>
+    <script src="/js/featherlight.min.js?1615219823"></script>
+    <script src="/js/highlight.pack.js?1615219823"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217451"></script>
-    <script src="/js/learn.js?1615217451"></script>
-    <script src="/js/hugo-learn.js?1615217451"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219823"></script>
+    <script src="/js/learn.js?1615219823"></script>
+    <script src="/js/hugo-learn.js?1615219823"></script>
 
-    <link href="/mermaid/mermaid.css?1615217451" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217451"></script>
+    <link href="/mermaid/mermaid.css?1615219823" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219823"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -12,21 +12,21 @@
     <title>服務容器（Service Container） :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "服務容器（Service Container） Laravel 的服務容器就像 IoC 容器一樣，可以讓你很容易的反轉控制物件\n假如我們沒有注入類別去進行反轉控制，則我們每次使用 Mail 類別去寄送郵件時都要去 new 它，如果這個 Mail 類別在裡面是會被很頻繁的使用時，這樣會讓我們很惱人。\n\/\/ 通知類別 class Notification { \/\/ 通知會員有新訊息 public function noticeNewMessage() { $mail = new Mail(); $mail-\u0026gt;send(); } \/\/ 通知會員有新文章 public function noticeNewArticle() { $mail = new Mail(); $mail-\u0026gt;send(); } } 為了能夠讓通知類別 Notification 能夠隨時取用 Mail 類別，我們會希望將此類別直接注入，讓通知類別可以直接去進行反轉控制。\n在我們使用反轉控制（IoC）時，我們時常需要在建構子 __construct() 或方法 function() 中注入需要反轉控制的類別，讓被注入的類別可以直接控制其物件，就像：\n\/\/ 通知類別 class Notification { public $mail; public function __construct (Mail $mail) { $this-\u0026gt;mail = $mail; } \/\/ 通知會員有新訊息 public function noticeNewMessage() { $this-\u0026gt;mail-\u0026gt;send(); } \/\/ 通知會員有新文章 public function noticeNewArticle() { $this-\u0026gt;mail-\u0026gt;send(); } } 我們在通知類別 Notification 建構子中注入 Mail 類別給內部 mail 變數，之後要使用此 Mail 類別時，就直接使用傳送信件 send() 的功能即可。\n我們也可以在個別的函式中分別注入需要反轉控制的類別，就像：\n\/\/ 通知類別 class Notification { \/\/ 通知會員有新訊息 public function noticeNewMessage(Mail $mail) { $mail-\u0026gt;send(); } \/\/ 通知會員有新文章 public function noticeNewArticle(Mail $mail) { $mail-\u0026gt;send(); } } 但是在 Laravel 4 要注入類別之前，必須先對類別名稱對 app 進行綁定，讓 Laravel 4 認得這個要注入的類別是什麼物件\nApp::bind(\u0026#39;Mail\u0026#39;, function($app) { return new SomeEmailService; }); 但是在 Laravel 5 除了可以用這樣手動綁定類別的方式，也有提供強大的自動綁定功能，你不需要在 app 內事先定義所有的類別，當 Laravel 5 在 app 內找不到該類別的時候，就會自動找所有引入（include）的類別中有沒有此類別，自動進行注入綁定！\n參考資料  The Service Container - Laracast 服務容器 - Laravel.tw IoC 容器 Dependency Injection with Laravel’s IoC  "
+		"articleBody": "服務容器（Service Container） Laravel 的服務容器就像 IoC 容器一樣，可以讓你很容易的反轉控制物件\n假如我們沒有注入類別去進行反轉控制，則我們每次使用 Mail 類別去寄送郵件時都要去 new 它，如果這個 Mail 類別在裡面是會被很頻繁的使用時，這樣會讓我們很惱人。\n\/\/ 通知類別 class Notification { \/\/ 通知會員有新訊息 public function noticeNewMessage() { $mail = new Mail(); $mail-\u0026gt;send(); } \/\/ 通知會員有新文章 public function noticeNewArticle() { $mail = new Mail(); $mail-\u0026gt;send(); } } 為了能夠讓通知類別 Notification 能夠隨時取用 Mail 類別，我們會希望將此類別直接注入，讓通知類別可以直接去進行反轉控制。\n在我們使用反轉控制（IoC）時，我們時常需要在建構子 __construct() 或方法 function() 中注入需要反轉控制的類別，讓被注入的類別可以直接控制其物件，就像：\n\/\/ 通知類別 class Notification { public $mail; public function __construct (Mail $mail) { $this-\u0026gt;mail = $mail; } \/\/ 通知會員有新訊息 public function noticeNewMessage() { $this-\u0026gt;mail-\u0026gt;send(); } \/\/ 通知會員有新文章 public function noticeNewArticle() { $this-\u0026gt;mail-\u0026gt;send(); } } 我們在通知類別 Notification 建構子中注入 Mail 類別給內部 mail 變數，之後要使用此 Mail 類別時，就直接使用傳送信件 send() 的功能即可。\n我們也可以在個別的函式中分別注入需要反轉控制的類別，就像：\n \/\/ 通知類別 class Notification { \/\/ 通知會員有新訊息 public function noticeNewMessage(Mail $mail) { $mail-\u0026gt;send(); } \/\/ 通知會員有新文章 public function noticeNewArticle(Mail $mail) { $mail-\u0026gt;send(); } } 但是在 Laravel 4 要注入類別之前，必須先對類別名稱對 app 進行綁定，讓 Laravel 4 認得這個要注入的類別是什麼物件\nApp::bind(\u0026#39;Mail\u0026#39;, function($app) { return new SomeEmailService; }); 但是在 Laravel 5 除了可以用這樣手動綁定類別的方式，也有提供強大的自動綁定功能，你不需要在 app 內事先定義所有的類別，當 Laravel 5 在 app 內找不到該類別的時候，就會自動找所有引入（include）的類別中有沒有此類別，自動進行注入綁定！\n參考資料  The Service Container - Laracast 服務容器 - Laravel.tw IoC 容器 Dependency Injection with Laravel’s IoC  "
 	}
 </script>
 
@@ -473,14 +473,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3819,6 +3819,17 @@ class Notification {
 }
 </code></pre></div><p>我們在通知類別 <code>Notification</code> 建構子中注入 <code>Mail</code> 類別給內部 <code>mail</code> 變數，之後要使用此 Mail 類別時，就直接使用傳送信件 <code>send()</code> 的功能即可。</p>
 <p>我們也可以在個別的函式中分別注入需要反轉控制的類別，就像：</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// 通知類別
 class Notification {
 
@@ -3885,28 +3896,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4095,6 +4084,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6097,19 +6108,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219821"></script>
+    <script src="/js/jquery.sticky.js?1615219821"></script>
+    <script src="/js/featherlight.min.js?1615219821"></script>
+    <script src="/js/highlight.pack.js?1615219821"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219821"></script>
+    <script src="/js/learn.js?1615219821"></script>
+    <script src="/js/hugo-learn.js?1615219821"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219821" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219821"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -24,7 +24,7 @@
 $ php artisan migrate [PDOException] could not find driver $ 這表示我們沒有相關的連線驅動程式去連線到 PostgreSQL，所以我們需要安裝我們所需要的驅動程式
 在 OS X 的 PHP 相關環境我是用 brew 去安裝的，如果你也是用 brew 去安裝，可以先看看自己的套件是用哪一個版本的 PHP
 $ brew list autoconf git libpng mhash php56 readline zlib freetype icu4c libtool nvm php56-mcrypt unixodbc gettext jpeg mcrypt openssl postgresql wget 然後搜尋現在 brew 支援的 PostgreSQL 驅動程式
-$ brew search pgsql osm2pgsql	php54-pdo-pgsql php55-pdo-pgsql php56-pdo-pgsql 我們找到我們 php 5.</description>
+$ brew search pgsql osm2pgsql	php54-pdo-pgsql php55-pdo-pgsql php56-pdo-pgsql  我們找到我們 php 5.</description>
     </item>
     
   </channel>

@@ -12,21 +12,21 @@
     <title>Assert :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219824" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219824" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219824" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217452"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219824"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Assert 狀態碼測試 assertOk ： 測試回傳狀態碼為 200 assertForbidden ： 測試回傳狀態碼為 403 assertNotFound ： 測試回傳狀態碼為 404 assertSuccessful ： 測試回傳狀態碼為 200 ~ 299 \u0026lt;?php $response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/status-code\u0026#39;); \/\/ 測試狀態碼 $response-\u0026gt;assertOk(); \/\/ 狀態碼 200 $response-\u0026gt;assertNotFound(); \/\/ 狀態碼 404 $response-\u0026gt;assertForbidden(); \/\/ 狀態碼 403 $response-\u0026gt;assertSuccessful(); \/\/ 狀態碼 200 ~ 299 assertStatus ： 測試指定狀態碼 \u0026lt;?php $response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/status-code\u0026#39;); \/\/ 測試狀態碼 $response-\u0026gt;assertStatus(201); \/\/ 狀態碼 201 assertRedirect ： 測試是否為重新導向狀態碼  重新導向狀態碼：201, 301, 302, 303, 307, 308\n \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/redirect-uri\u0026#39;); \/\/ 測試狀態碼 $response-\u0026gt;assertRedirect($redirect_uri); 狀態測試 assertLocation ： 測試目前網址位置 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/specific-location\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertLocation(\u0026#39;\/specific-location\u0026#39;); 資料測試 assertSee ： 測試是否有包含指定資料 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertSee(\u0026#39;\u0026lt;h1\u0026gt;Hello World\u0026lt;\/h1\u0026gt;\u0026#39;); assertSeeInOrder ： 測試是否看到指定順序資料 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否沒有包含指定資料 $response-\u0026gt;assertSeeInOrder([ \u0026#39;\u0026lt;h1\u0026gt;\u0026#39;, \u0026#39;Hello\u0026#39;, \u0026#39;World\u0026#39;, \u0026#39;\u0026lt;\/h1\u0026gt;\u0026#39;, ]); assertSeeText ： 測試是否看到指定文字（不包含 html tag） \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertSeeText(\u0026#39;Hello World\u0026#39;); assertSeeTextInOrder ： 測試是否看到指定順序文字（不包含 html tag） \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否沒有包含指定資料 $response-\u0026gt;assertSeeTextInOrder([ \u0026#39;Hello\u0026#39;, \u0026#39;World\u0026#39;, ]); assertDontSee ： 測試是否沒有看到指定資料 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否沒有包含指定資料 $response-\u0026gt;assertDontSee(\u0026#39;\u0026lt;h1\u0026gt;No Hello World\u0026lt;\/h1\u0026gt;\u0026#39;); assertDontSeeText ： 測試是否沒有看到指定文字 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否沒有包含指定資料 $response-\u0026gt;assertDontSeeText(\u0026#39;No Hello World\u0026#39;); Cookie 測試 assertPlainCookie ： 測試是否為未加密 Cookie \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/get-cookie\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertPlainCookie(\u0026#39;cookie-name\u0026#39;); assertCookie ： 測試指定 Cookie 是否有包含指定鍵值資料 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/get-cookie\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertCookie(\u0026#39;cookie-name\u0026#39;, \u0026#39;cookie-value\u0026#39;, $encrypted = true, $unserialize = false); assertCookieExpired ： 測試指定鍵值 cookie 是否失效 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/get-cookie\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertCookieExpired(\u0026#39;expired-cookie-name\u0026#39;); JSON 測試 assertJson ： 測試 JSON 子集合資訊  測試的資料，僅需為原始資料的子集合即可\n 回傳資料 { \u0026#34;status\u0026#34; : true, \u0026#34;data\u0026#34;: { \u0026#34;title\u0026#34;: \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;: \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;: false } } 測試 JSON 子集合資訊 $response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/json\u0026#39;); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, ]); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, \u0026#39;data\u0026#39; =\u0026gt; [ \u0026#34;active\u0026#34;=\u0026gt; false ] ]); assertJsonFragment ： 測試 JSON 部分鍵值資訊 回傳資料 { \u0026#34;status\u0026#34; : true, \u0026#34;data\u0026#34;: { \u0026#34;title\u0026#34;: \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;: \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;: false } } 測試成功\n$response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/json\u0026#39;); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, ]); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, \u0026#39;data\u0026#39; =\u0026gt; [ \u0026#34;title\u0026#34; =\u0026gt; \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;=\u0026gt; \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;=\u0026gt; false ] ]); 測試 JSON 部分鍵值資訊  若有要指定測試鍵值的資料，則測試的鍵值資料必須包含所有的資訊\n 測試成功\n$response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/json\u0026#39;); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, ]); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, \u0026#39;data\u0026#39; =\u0026gt; [ \u0026#34;title\u0026#34; =\u0026gt; \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;=\u0026gt; \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;=\u0026gt; false ] ]); 測試失敗\n\/\/ 測試失敗 $response-\u0026gt;assertJsonFragment([ \u0027status\u0027 =\u0026gt; true, \u0027data\u0027 =\u0026gt; [ \u0026quot;title\u0026quot; =\u0026gt; \u0026quot;Nam saepe earum molestias consequuntur et doloremque ea.\u0026quot;, ] ]); assertJsonStructure ： 測試 JSON 結構 回傳資料 { \u0026#34;status\u0026#34; : true, \u0026#34;data\u0026#34;: { \u0026#34;title\u0026#34;: \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;: \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;: false } } 測試 JSON 結構 $response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/json\u0026#39;); $response-\u0026gt;assertJsonStructure([ \u0026#39;status\u0026#39;, \u0026#39;data\u0026#39; =\u0026gt; [ \u0026#39;body\u0026#39;, \u0026#39;title\u0026#39;, \u0026#39;active\u0026#39; ] ]) assertExactJson ： 測試 JSON 資料是否完全符合 回傳資料 { \u0026#34;status\u0026#34; : true, \u0026#34;data\u0026#34;: { \u0026#34;title\u0026#34;: \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;: \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;: false } } 測試 JSON 結構 $response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/json\u0026#39;); $response-\u0026gt;assertExactJson([ \u0026#39;status\u0026#39; =\u0026gt; true, \u0026#39;data\u0026#39; =\u0026gt; [ \u0026#34;title\u0026#34; =\u0026gt; \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;=\u0026gt; \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;=\u0026gt; false ] ]) 參考資料  Testing JSON APIs, specifically: assertJsonStructure  "
+		"articleBody": "Assert 狀態碼測試 assertOk ： 測試回傳狀態碼為 200 assertForbidden ： 測試回傳狀態碼為 403 assertNotFound ： 測試回傳狀態碼為 404 assertSuccessful ： 測試回傳狀態碼為 200 ~ 299 \u0026lt;?php $response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/status-code\u0026#39;); \/\/ 測試狀態碼 $response-\u0026gt;assertOk(); \/\/ 狀態碼 200 $response-\u0026gt;assertNotFound(); \/\/ 狀態碼 404 $response-\u0026gt;assertForbidden(); \/\/ 狀態碼 403 $response-\u0026gt;assertSuccessful(); \/\/ 狀態碼 200 ~ 299 assertStatus ： 測試指定狀態碼 \u0026lt;?php $response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/status-code\u0026#39;); \/\/ 測試狀態碼 $response-\u0026gt;assertStatus(201); \/\/ 狀態碼 201 assertRedirect ： 測試是否為重新導向狀態碼  重新導向狀態碼：201, 301, 302, 303, 307, 308\n \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/redirect-uri\u0026#39;); \/\/ 測試狀態碼 $response-\u0026gt;assertRedirect($redirect_uri);  狀態測試 assertLocation ： 測試目前網址位置 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/specific-location\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertLocation(\u0026#39;\/specific-location\u0026#39;); 資料測試 assertSee ： 測試是否有包含指定資料 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertSee(\u0026#39;\u0026lt;h1\u0026gt;Hello World\u0026lt;\/h1\u0026gt;\u0026#39;); assertSeeInOrder ： 測試是否看到指定順序資料 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否沒有包含指定資料 $response-\u0026gt;assertSeeInOrder([ \u0026#39;\u0026lt;h1\u0026gt;\u0026#39;, \u0026#39;Hello\u0026#39;, \u0026#39;World\u0026#39;, \u0026#39;\u0026lt;\/h1\u0026gt;\u0026#39;, ]); assertSeeText ： 測試是否看到指定文字（不包含 html tag） \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertSeeText(\u0026#39;Hello World\u0026#39;);  assertSeeTextInOrder ： 測試是否看到指定順序文字（不包含 html tag） \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否沒有包含指定資料 $response-\u0026gt;assertSeeTextInOrder([ \u0026#39;Hello\u0026#39;, \u0026#39;World\u0026#39;, ]); assertDontSee ： 測試是否沒有看到指定資料 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否沒有包含指定資料 $response-\u0026gt;assertDontSee(\u0026#39;\u0026lt;h1\u0026gt;No Hello World\u0026lt;\/h1\u0026gt;\u0026#39;); assertDontSeeText ： 測試是否沒有看到指定文字 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/hello-world\u0026#39;); \/\/ 測試是否沒有包含指定資料 $response-\u0026gt;assertDontSeeText(\u0026#39;No Hello World\u0026#39;);  Cookie 測試 assertPlainCookie ： 測試是否為未加密 Cookie \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/get-cookie\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertPlainCookie(\u0026#39;cookie-name\u0026#39;); assertCookie ： 測試指定 Cookie 是否有包含指定鍵值資料 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/get-cookie\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertCookie(\u0026#39;cookie-name\u0026#39;, \u0026#39;cookie-value\u0026#39;, $encrypted = true, $unserialize = false); assertCookieExpired ： 測試指定鍵值 cookie 是否失效 \u0026lt;?php $response = $this-\u0026gt;call(\u0026#39;GET\u0026#39;, \u0026#39;\/get-cookie\u0026#39;); \/\/ 測試是否包含指定資料 $response-\u0026gt;assertCookieExpired(\u0026#39;expired-cookie-name\u0026#39;);  JSON 測試 assertJson ： 測試 JSON 子集合資訊  測試的資料，僅需為原始資料的子集合即可\n 回傳資料 { \u0026#34;status\u0026#34; : true, \u0026#34;data\u0026#34;: { \u0026#34;title\u0026#34;: \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;: \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;: false } } 測試 JSON 子集合資訊 $response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/json\u0026#39;); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, ]); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, \u0026#39;data\u0026#39; =\u0026gt; [ \u0026#34;active\u0026#34;=\u0026gt; false ] ]); assertJsonFragment ： 測試 JSON 部分鍵值資訊 回傳資料 { \u0026#34;status\u0026#34; : true, \u0026#34;data\u0026#34;: { \u0026#34;title\u0026#34;: \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;: \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;: false } } 測試成功\n$response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/json\u0026#39;); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, ]); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, \u0026#39;data\u0026#39; =\u0026gt; [ \u0026#34;title\u0026#34; =\u0026gt; \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;=\u0026gt; \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;=\u0026gt; false ] ]);  測試 JSON 部分鍵值資訊  若有要指定測試鍵值的資料，則測試的鍵值資料必須包含所有的資訊\n 測試成功\n$response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/json\u0026#39;); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, ]); \/\/ 測試成功 $response-\u0026gt;assertJsonFragment([ \u0026#39;status\u0026#39; =\u0026gt; true, \u0026#39;data\u0026#39; =\u0026gt; [ \u0026#34;title\u0026#34; =\u0026gt; \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;=\u0026gt; \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;=\u0026gt; false ] ]); 測試失敗\n\/\/ 測試失敗 $response-\u0026gt;assertJsonFragment([ \u0027status\u0027 =\u0026gt; true, \u0027data\u0027 =\u0026gt; [ \u0026quot;title\u0026quot; =\u0026gt; \u0026quot;Nam saepe earum molestias consequuntur et doloremque ea.\u0026quot;, ] ]);  assertJsonStructure ： 測試 JSON 結構 回傳資料 { \u0026#34;status\u0026#34; : true, \u0026#34;data\u0026#34;: { \u0026#34;title\u0026#34;: \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;: \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;: false } } 測試 JSON 結構 $response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/json\u0026#39;); $response-\u0026gt;assertJsonStructure([ \u0026#39;status\u0026#39;, \u0026#39;data\u0026#39; =\u0026gt; [ \u0026#39;body\u0026#39;, \u0026#39;title\u0026#39;, \u0026#39;active\u0026#39; ] ]) assertExactJson ： 測試 JSON 資料是否完全符合 回傳資料 { \u0026#34;status\u0026#34; : true, \u0026#34;data\u0026#34;: { \u0026#34;title\u0026#34;: \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;: \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;: false } }  測試 JSON 結構 $response = $this-\u0026gt;json(\u0026#39;GET\u0026#39;, \u0026#39;\/api\/json\u0026#39;); $response-\u0026gt;assertExactJson([ \u0026#39;status\u0026#39; =\u0026gt; true, \u0026#39;data\u0026#39; =\u0026gt; [ \u0026#34;title\u0026#34; =\u0026gt; \u0026#34;Nam saepe earum molestias consequuntur et doloremque ea.\u0026#34;, \u0026#34;body\u0026#34;=\u0026gt; \u0026#34;Consequatur iure omnis distinctio tempore accusamus...\u0026#34;, \u0026#34;active\u0026#34;=\u0026gt; false ] ]) 參考資料  Testing JSON APIs, specifically: assertJsonStructure  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217452"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217452"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219824"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219824"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217452"></script>
+<script type="text/javascript" src="/js/search.js?1615219824"></script>
 
     
   </div>
@@ -3837,7 +3837,18 @@ $response <span style="color:#f92672">=</span> $this<span style="color:#f92672">
 
 <span style="color:#75715e">// 測試狀態碼
 </span><span style="color:#75715e"></span>$response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">assertRedirect</span>($redirect_uri);
-</code></pre></div><h3 id="狀態測試">狀態測試</h3>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h3 id="狀態測試">狀態測試</h3>
 <h3 id="assertlocation--測試目前網址位置">assertLocation ： 測試目前網址位置</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 $response <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">call</span>(<span style="color:#e6db74">&#39;GET&#39;</span>, <span style="color:#e6db74">&#39;/specific-location&#39;</span>);
@@ -3868,7 +3879,18 @@ $response <span style="color:#f92672">=</span> $this<span style="color:#f92672">
 
 <span style="color:#75715e">// 測試是否包含指定資料
 </span><span style="color:#75715e"></span>$response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">assertSeeText</span>(<span style="color:#e6db74">&#39;Hello World&#39;</span>);
-</code></pre></div><h3 id="assertseetextinorder--測試是否看到指定順序文字不包含-html-tag">assertSeeTextInOrder ： 測試是否看到指定順序文字（不包含 html tag）</h3>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h3 id="assertseetextinorder--測試是否看到指定順序文字不包含-html-tag">assertSeeTextInOrder ： 測試是否看到指定順序文字（不包含 html tag）</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 $response <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">call</span>(<span style="color:#e6db74">&#39;GET&#39;</span>, <span style="color:#e6db74">&#39;/hello-world&#39;</span>);
 
@@ -3889,7 +3911,18 @@ $response <span style="color:#f92672">=</span> $this<span style="color:#f92672">
 
 <span style="color:#75715e">// 測試是否沒有包含指定資料
 </span><span style="color:#75715e"></span>$response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">assertDontSeeText</span>(<span style="color:#e6db74">&#39;No Hello World&#39;</span>);
-</code></pre></div><h2 id="cookie-測試">Cookie 測試</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="cookie-測試">Cookie 測試</h2>
 <h3 id="assertplaincookie--測試是否為未加密-cookie">assertPlainCookie ： 測試是否為未加密 Cookie</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 $response <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">call</span>(<span style="color:#e6db74">&#39;GET&#39;</span>, <span style="color:#e6db74">&#39;/get-cookie&#39;</span>);
@@ -3908,7 +3941,18 @@ $response <span style="color:#f92672">=</span> $this<span style="color:#f92672">
 
 <span style="color:#75715e">// 測試是否包含指定資料
 </span><span style="color:#75715e"></span>$response<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">assertCookieExpired</span>(<span style="color:#e6db74">&#39;expired-cookie-name&#39;</span>);
-</code></pre></div><h2 id="json-測試">JSON 測試</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="json-測試">JSON 測試</h2>
 <h3 id="assertjson--測試-json-子集合資訊">assertJson ： 測試 JSON 子集合資訊</h3>
 <blockquote>
 <p>測試的資料，僅需為原始資料的子集合即可</p>
@@ -3964,7 +4008,18 @@ $response-&gt;assertJsonFragment([
         &#34;active&#34;=&gt; false
     ]
 ]);
-</code></pre></div><h4 id="測試-json-部分鍵值資訊"><em>測試 JSON 部分鍵值資訊</em></h4>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h4 id="測試-json-部分鍵值資訊"><em>測試 JSON 部分鍵值資訊</em></h4>
 <blockquote>
 <p>若有要指定測試鍵值的資料，則測試的鍵值資料必須包含所有的資訊</p>
 </blockquote>
@@ -3993,7 +4048,18 @@ $response-&gt;assertJsonFragment([
         &quot;title&quot; =&gt; &quot;Nam saepe earum molestias consequuntur et doloremque ea.&quot;,
     ]
 ]);
-</code></pre><h3 id="assertjsonstructure--測試-json-結構">assertJsonStructure ： 測試 JSON 結構</h3>
+</code></pre>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h3 id="assertjsonstructure--測試-json-結構">assertJsonStructure ： 測試 JSON 結構</h3>
 <h4 id="回傳資料-2"><em>回傳資料</em></h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#f92672">&#34;status&#34;</span> : <span style="color:#66d9ef">true</span>,
@@ -4024,7 +4090,18 @@ $response-&gt;assertJsonStructure([
         <span style="color:#f92672">&#34;active&#34;</span>: <span style="color:#66d9ef">false</span>
     }
 }
-</code></pre></div><h4 id="測試-json-結構-1"><em>測試 JSON 結構</em></h4>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h4 id="測試-json-結構-1"><em>測試 JSON 結構</em></h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$response = $this-&gt;json(&#39;GET&#39;, &#39;/api/json&#39;);
 
 $response-&gt;assertExactJson([
@@ -4079,28 +4156,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4289,6 +4344,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6298,19 +6375,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217452"></script>
-    <script src="/js/jquery.sticky.js?1615217452"></script>
-    <script src="/js/featherlight.min.js?1615217452"></script>
-    <script src="/js/highlight.pack.js?1615217452"></script>
+    <script src="/js/clipboard.min.js?1615219824"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219824"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219824"></script>
+    <script src="/js/jquery.sticky.js?1615219824"></script>
+    <script src="/js/featherlight.min.js?1615219824"></script>
+    <script src="/js/highlight.pack.js?1615219824"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217452"></script>
-    <script src="/js/learn.js?1615217452"></script>
-    <script src="/js/hugo-learn.js?1615217452"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219824"></script>
+    <script src="/js/learn.js?1615219824"></script>
+    <script src="/js/hugo-learn.js?1615219824"></script>
 
-    <link href="/mermaid/mermaid.css?1615217452" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217452"></script>
+    <link href="/mermaid/mermaid.css?1615219824" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219824"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

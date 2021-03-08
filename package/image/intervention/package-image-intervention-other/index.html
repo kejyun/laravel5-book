@@ -12,21 +12,21 @@
     <title>其他圖片處理 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219822" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219822" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219822" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217451"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219822"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Intervention Image 其他圖片處理 cache() 快取 \/\/ 試著讀取快取的圖片 $img = Image::cache(function($image) { \/\/ 讀取本機圖片，將圖片 resize 至 300x200，並作灰階處理 return $image-\u0026gt;make(\u0026#39;public\/foo.jpg\u0026#39;) -\u0026gt;resize(300, 200) -\u0026gt;greyscale(); }); 若用檔案快取，快取的圖片資料會存放在 storage\/framework\/cache\/data 目錄下。\n Intervention\/imagecache: Caching extension for the Intervention Image Class  canvas() 建立圖片畫布 \/\/ 建立畫布 $img = Image::canvas(300, 100); Image::canvas(300, 100);\n\/\/ 建立畫布，並使用 #ff0000 顏色當作背景 $img = Image::canvas(32, 32, \u0026#39;#ff0000\u0026#39;); Image::canvas(32, 32, \u0026lsquo;#ff0000\u0026rsquo;);\nellipse() 畫橢圓 \/\/ 建立顏色為 #ddd，寬度 300px，高度 100px 的畫布 $img = Image::canvas(300, 100, \u0026#39;#ddd\u0026#39;); \/\/ 在畫布中畫出寬度 25px，高度 60px，位置在 (50,50) ，顏色為 #0000ff 的橢圓 $img-\u0026gt;ellipse(25, 60, 50, 50, function ($draw) { $draw-\u0026gt;background(\u0026#39;#0000ff\u0026#39;); }); ellipse(25, 60, 50, 50) color #0000ff\u0022\n$img-\u0026gt;ellipse(25, 60, 50, 50) color #0000ff\nexif() 取得圖片 exif 資訊 必須使用 Imagick 2.3.9 的函式庫，並且必須編譯 --enable-exif，且有 mbstring 的套件才可取得 exif 資訊\n\/\/ 取得所有 exif 資訊 $data = Image::make(\u0026#39;public\/foo.jpg\u0026#39;)-\u0026gt;exif(); \/\/ 讀取鏡頭 Model $name = Image::make(\u0026#39;public\/foo.jpg\u0026#39;)-\u0026gt;exif(\u0026#39;Model\u0026#39;); filesize() 檔案大小 當檔案不是從實際的檔案讀取，則會回傳 false\n\/\/ 建立圖片實例 $img = Image::make(\u0026#39;public\/foo.jpg\u0026#39;); \/\/ 取得檔案大小 $size = $img-\u0026gt;filesize(); fill() 填滿顏色或圖片 \/\/ 建立畫布，寬度 800px 高度 600px $img = Image::canvas(800, 600); \/\/ 填滿 #ff5500 顏色 $img-\u0026gt;fill(\u0026#39;#ff5500\u0026#39;); fill(\u0027#ff5500\u0026rsquo;);\u0022\n$img-\u0026gt;fill(\u0027#ff5500\u0026rsquo;);\n\/\/ 填滿圖片 $img-\u0026gt;fill(\u0026#39;tile.png\u0026#39;); fill(\u0026lsquo;tile.png\u0026rsquo;);\u0022\n$img-\u0026gt;fill(\u0026lsquo;tile.png\u0026rsquo;);\nfilter() 指定過濾器 可以將一些常用的過濾規則通通寫在過濾器中，這樣就可以直接指定 Filter 去做過濾\n\/\/ init new image instance $img = Image::make(\u0026#39;foo.jpg\u0026#39;); \/\/ apply filter $img-\u0026gt;filter(new DemoFilter(45)); \u0026lt;?php namespace Intervention\\Image\\Filters; class DemoFilter implements FilterInterface { const DEFAULT_SIZE = 10; private $size; public function __construct($size = null) { $this-\u0026gt;size = is_numeric($size) ? intval($size) : self::DEFAULT_SIZE; } \/** * 執行圖片過濾 *\/ public function applyFilter(\\Intervention\\Image\\Image $image) { $image-\u0026gt;pixelate($this-\u0026gt;size); $image-\u0026gt;greyscale(); return $image; } } width() 圖片寬度 \/\/ 取得圖片寬度 $width = Image::make(\u0026#39;public\/foo.jpg\u0026#39;)-\u0026gt;width(); height() 圖片高度 \/\/ 取得圖片高度 $height = Image::make(\u0026#39;public\/foo.jpg\u0026#39;)-\u0026gt;height(); interlace() 交錯模式 如果是 JPEG 的圖片，將會把圖片儲存成 progressive JPEG 的圖片\n\/\/ 建立圖片實例 $img = Image::make(\u0026#39;public\/foo.png\u0026#39;); \/\/ 啟用 interlacing $img-\u0026gt;interlace(); \/\/ 儲存為 interlaced 的圖片 $img-\u0026gt;save(); \/\/ 開啟 interlaced 圖片 $img = Image::make(\u0026#39;public\/interlaced.gif\u0026#39;); \/\/ 關閉 interlacing $img-\u0026gt;interlace(false); \/\/ 儲存為 standard mode 的圖片 $img-\u0026gt;save(); mime() 取得圖片 mime $mime = Image::make(\u0026#39;public\/foo.jpg\u0026#39;)-\u0026gt;mime(); pickColor() 選出圖片顏色色碼 \/\/ 建立圖片實例 $img = Image::make(\u0026#39;public\/foo.jpg\u0026#39;); \/\/ 選出位置在 (100,100) 的像素顏色: 陣列資料 $arraycolor = $img-\u0026gt;pickColor(100, 100); \/* array:4 [ 0 =\u0026gt; 43 1 =\u0026gt; 58 2 =\u0026gt; 78 3 =\u0026gt; 1.0 ] *\/ \/\/ 選出位置在 (100,100) 的像素顏色: rgb $rgb_color = $img-\u0026gt;pickColor(100, 100, \u0026#39;rgb\u0026#39;); \/\/ rgba(43, 58, 78) \/\/ 選出位置在 (100,100) 的像素顏色: rgba $rgba_color = $img-\u0026gt;pickColor(100, 100, \u0026#39;rgba\u0026#39;); \/\/ rgba(43, 58, 78, 1.00) \/\/ 選出位置在 (100,100) 的像素顏色: hex $hex_color = $img-\u0026gt;pickColor(100, 100, \u0026#39;hex\u0026#39;); \/\/ #2b3a4e pixel() 在指定像素點畫出顏色 \/\/ 建立畫布 $img = Image::canvas(100, 100, \u0026#39;#ddd\u0026#39;); \/\/ 在 (32,32) 像素畫出藍色 $img-\u0026gt;pixel(\u0026#39;#0000ff\u0026#39;, 32, 32); \/\/ 在 (32,32) 像素畫出紅色 $img-\u0026gt;pixel(\u0026#39;#ff0000\u0026#39;, 64, 64); pixel();\u0022\n$img-\u0026gt;pixel();\npolygon() 畫出多邊形 \/\/ 建立畫布 $img = Image::canvas(800, 600, \u0026#39;#ddd\u0026#39;); \/\/ 定義多邊形位置 $points = array( 40, 50, \/\/ Point 1 (x, y) 20, 240, \/\/ Point 2 (x, y) 60, 60, \/\/ Point 3 (x, y) 240, 20, \/\/ Point 4 (x, y) 50, 40, \/\/ Point 5 (x, y) 10, 10 \/\/ Point 6 (x, y) ); \/\/ 畫出多邊形 $img-\u0026gt;polygon($points, function ($draw) { \/\/ 背景顏色 #000ff $draw-\u0026gt;background(\u0026#39;#0000ff\u0026#39;); \/\/ 邊框寬度 1，顏色 #ff0000 $draw-\u0026gt;border(1, \u0026#39;#ff0000\u0026#39;); }); rectangle() 畫出四邊形 \/\/ 建立畫布 $img = Image::canvas(250, 300, \u0026#39;#ddd\u0026#39;); \/\/ 畫出紅色四邊形 $img-\u0026gt;rectangle(5, 5, 195, 195, function ($draw) { $draw-\u0026gt;background(\u0026#39;#ff0000\u0026#39;); }); rectangle() background #ff0000\u0022\n$img-\u0026gt;rectangle() background #ff0000\n\/\/ 畫出透明度 0.5 的四邊形，使用 2px 黑色邊框 $img-\u0026gt;rectangle(5, 5, 195, 195, function ($draw) { $draw-\u0026gt;background(\u0026#39;rgba(255, 255, 255, 0.5)\u0026#39;); $draw-\u0026gt;border(2, \u0026#39;#000\u0026#39;); }); rectangle() background rgba(255, 255, 255, 0.5) border 2px #000\u0022\n$img-\u0026gt;rectangle() background rgba(255, 255, 255, 0.5) border 2px #000\nresponse() 回應包含 HTTP Header 圖片 參數1: 圖片類型\n jpg — return JPEG encoded image data png — return Portable Network Graphics (PNG) encoded image data gif — return Graphics Interchange Format (GIF) encoded image data tif — return Tagged Image File Format (TIFF) encoded image data bmp — return Bitmap (BMP) encoded image data  參數2: 圖片品質\n 數值介於 0~100  \/\/ 建立圖片實例 $img = Image::make(\u0026#39;public\/foo.jpg\u0026#39;); return $img-\u0026gt;response(); \/\/ 回應 png 圖片 return $img-\u0026gt;response(\u0026#39;jpg\u0026#39;); response(\u0026lsquo;jpg\u0026rsquo;);\u0022\n$img-\u0026gt;response(\u0026lsquo;jpg\u0026rsquo;);\n\/\/ 回應 jpg 圖片 品質 20 return $img-\u0026gt;response(\u0026#39;jpg\u0026#39;, 20); response(\u0026lsquo;jpg\u0026rsquo;, 20);\u0022\n$img-\u0026gt;response(\u0026lsquo;jpg\u0026rsquo;, 20);\n"
+		"articleBody": "Intervention Image 其他圖片處理 cache() 快取 \/\/ 試著讀取快取的圖片 $img = Image::cache(function($image) { \/\/ 讀取本機圖片，將圖片 resize 至 300x200，並作灰階處理 return $image-\u0026gt;make(\u0026#39;public\/foo.jpg\u0026#39;) -\u0026gt;resize(300, 200) -\u0026gt;greyscale(); }); 若用檔案快取，快取的圖片資料會存放在 storage\/framework\/cache\/data 目錄下。\n Intervention\/imagecache: Caching extension for the Intervention Image Class   canvas() 建立圖片畫布 \/\/ 建立畫布 $img = Image::canvas(300, 100); Image::canvas(300, 100);\n\/\/ 建立畫布，並使用 #ff0000 顏色當作背景 $img = Image::canvas(32, 32, \u0026#39;#ff0000\u0026#39;); Image::canvas(32, 32, \u0026lsquo;#ff0000\u0026rsquo;);\nellipse() 畫橢圓 \/\/ 建立顏色為 #ddd，寬度 300px，高度 100px 的畫布 $img = Image::canvas(300, 100, \u0026#39;#ddd\u0026#39;); \/\/ 在畫布中畫出寬度 25px，高度 60px，位置在 (50,50) ，顏色為 #0000ff 的橢圓 $img-\u0026gt;ellipse(25, 60, 50, 50, function ($draw) { $draw-\u0026gt;background(\u0026#39;#0000ff\u0026#39;); }); ellipse(25, 60, 50, 50) color #0000ff\u0022\n$img-\u0026gt;ellipse(25, 60, 50, 50) color #0000ff\n exif() 取得圖片 exif 資訊 必須使用 Imagick 2.3.9 的函式庫，並且必須編譯 --enable-exif，且有 mbstring 的套件才可取得 exif 資訊\n\/\/ 取得所有 exif 資訊 $data = Image::make(\u0026#39;public\/foo.jpg\u0026#39;)-\u0026gt;exif(); \/\/ 讀取鏡頭 Model $name = Image::make(\u0026#39;public\/foo.jpg\u0026#39;)-\u0026gt;exif(\u0026#39;Model\u0026#39;); filesize() 檔案大小 當檔案不是從實際的檔案讀取，則會回傳 false\n\/\/ 建立圖片實例 $img = Image::make(\u0026#39;public\/foo.jpg\u0026#39;); \/\/ 取得檔案大小 $size = $img-\u0026gt;filesize();  fill() 填滿顏色或圖片 \/\/ 建立畫布，寬度 800px 高度 600px $img = Image::canvas(800, 600); \/\/ 填滿 #ff5500 顏色 $img-\u0026gt;fill(\u0026#39;#ff5500\u0026#39;); fill(\u0027#ff5500\u0026rsquo;);\u0022\n$img-\u0026gt;fill(\u0027#ff5500\u0026rsquo;);\n\/\/ 填滿圖片 $img-\u0026gt;fill(\u0026#39;tile.png\u0026#39;); fill(\u0026lsquo;tile.png\u0026rsquo;);\u0022\n$img-\u0026gt;fill(\u0026lsquo;tile.png\u0026rsquo;);\nfilter() 指定過濾器 可以將一些常用的過濾規則通通寫在過濾器中，這樣就可以直接指定 Filter 去做過濾\n\/\/ init new image instance $img = Image::make(\u0026#39;foo.jpg\u0026#39;); \/\/ apply filter $img-\u0026gt;filter(new DemoFilter(45)); \u0026lt;?php namespace Intervention\\Image\\Filters; class DemoFilter implements FilterInterface { const DEFAULT_SIZE = 10; private $size; public function __construct($size = null) { $this-\u0026gt;size = is_numeric($size) ? intval($size) : self::DEFAULT_SIZE; } \/** * 執行圖片過濾 *\/ public function applyFilter(\\Intervention\\Image\\Image $image) { $image-\u0026gt;pixelate($this-\u0026gt;size); $image-\u0026gt;greyscale(); return $image; } }  width() 圖片寬度 \/\/ 取得圖片寬度 $width = Image::make(\u0026#39;public\/foo.jpg\u0026#39;)-\u0026gt;width(); height() 圖片高度 \/\/ 取得圖片高度 $height = Image::make(\u0026#39;public\/foo.jpg\u0026#39;)-\u0026gt;height(); interlace() 交錯模式 如果是 JPEG 的圖片，將會把圖片儲存成 progressive JPEG 的圖片\n\/\/ 建立圖片實例 $img = Image::make(\u0026#39;public\/foo.png\u0026#39;); \/\/ 啟用 interlacing $img-\u0026gt;interlace(); \/\/ 儲存為 interlaced 的圖片 $img-\u0026gt;save(); \/\/ 開啟 interlaced 圖片 $img = Image::make(\u0026#39;public\/interlaced.gif\u0026#39;); \/\/ 關閉 interlacing $img-\u0026gt;interlace(false); \/\/ 儲存為 standard mode 的圖片 $img-\u0026gt;save(); mime() 取得圖片 mime $mime = Image::make(\u0026#39;public\/foo.jpg\u0026#39;)-\u0026gt;mime();  pickColor() 選出圖片顏色色碼 \/\/ 建立圖片實例 $img = Image::make(\u0026#39;public\/foo.jpg\u0026#39;); \/\/ 選出位置在 (100,100) 的像素顏色: 陣列資料 $arraycolor = $img-\u0026gt;pickColor(100, 100); \/* array:4 [ 0 =\u0026gt; 43 1 =\u0026gt; 58 2 =\u0026gt; 78 3 =\u0026gt; 1.0 ] *\/ \/\/ 選出位置在 (100,100) 的像素顏色: rgb $rgb_color = $img-\u0026gt;pickColor(100, 100, \u0026#39;rgb\u0026#39;); \/\/ rgba(43, 58, 78) \/\/ 選出位置在 (100,100) 的像素顏色: rgba $rgba_color = $img-\u0026gt;pickColor(100, 100, \u0026#39;rgba\u0026#39;); \/\/ rgba(43, 58, 78, 1.00) \/\/ 選出位置在 (100,100) 的像素顏色: hex $hex_color = $img-\u0026gt;pickColor(100, 100, \u0026#39;hex\u0026#39;); \/\/ #2b3a4e pixel() 在指定像素點畫出顏色 \/\/ 建立畫布 $img = Image::canvas(100, 100, \u0026#39;#ddd\u0026#39;); \/\/ 在 (32,32) 像素畫出藍色 $img-\u0026gt;pixel(\u0026#39;#0000ff\u0026#39;, 32, 32); \/\/ 在 (32,32) 像素畫出紅色 $img-\u0026gt;pixel(\u0026#39;#ff0000\u0026#39;, 64, 64); pixel();\u0022\n$img-\u0026gt;pixel();\npolygon() 畫出多邊形 \/\/ 建立畫布 $img = Image::canvas(800, 600, \u0026#39;#ddd\u0026#39;); \/\/ 定義多邊形位置 $points = array( 40, 50, \/\/ Point 1 (x, y) 20, 240, \/\/ Point 2 (x, y) 60, 60, \/\/ Point 3 (x, y) 240, 20, \/\/ Point 4 (x, y) 50, 40, \/\/ Point 5 (x, y) 10, 10 \/\/ Point 6 (x, y) ); \/\/ 畫出多邊形 $img-\u0026gt;polygon($points, function ($draw) { \/\/ 背景顏色 #000ff $draw-\u0026gt;background(\u0026#39;#0000ff\u0026#39;); \/\/ 邊框寬度 1，顏色 #ff0000 $draw-\u0026gt;border(1, \u0026#39;#ff0000\u0026#39;); }); rectangle() 畫出四邊形 \/\/ 建立畫布 $img = Image::canvas(250, 300, \u0026#39;#ddd\u0026#39;); \/\/ 畫出紅色四邊形 $img-\u0026gt;rectangle(5, 5, 195, 195, function ($draw) { $draw-\u0026gt;background(\u0026#39;#ff0000\u0026#39;); }); rectangle() background #ff0000\u0022\n$img-\u0026gt;rectangle() background #ff0000\n\/\/ 畫出透明度 0.5 的四邊形，使用 2px 黑色邊框 $img-\u0026gt;rectangle(5, 5, 195, 195, function ($draw) { $draw-\u0026gt;background(\u0026#39;rgba(255, 255, 255, 0.5)\u0026#39;); $draw-\u0026gt;border(2, \u0026#39;#000\u0026#39;); }); rectangle() background rgba(255, 255, 255, 0.5) border 2px #000\u0022\n$img-\u0026gt;rectangle() background rgba(255, 255, 255, 0.5) border 2px #000\n response() 回應包含 HTTP Header 圖片 參數1: 圖片類型\n jpg — return JPEG encoded image data png — return Portable Network Graphics (PNG) encoded image data gif — return Graphics Interchange Format (GIF) encoded image data tif — return Tagged Image File Format (TIFF) encoded image data bmp — return Bitmap (BMP) encoded image data  參數2: 圖片品質\n 數值介於 0~100  \/\/ 建立圖片實例 $img = Image::make(\u0026#39;public\/foo.jpg\u0026#39;); return $img-\u0026gt;response(); \/\/ 回應 png 圖片 return $img-\u0026gt;response(\u0026#39;jpg\u0026#39;); response(\u0026lsquo;jpg\u0026rsquo;);\u0022\n$img-\u0026gt;response(\u0026lsquo;jpg\u0026rsquo;);\n\/\/ 回應 jpg 圖片 品質 20 return $img-\u0026gt;response(\u0026#39;jpg\u0026#39;, 20); response(\u0026lsquo;jpg\u0026rsquo;, 20);\u0022\n$img-\u0026gt;response(\u0026lsquo;jpg\u0026rsquo;, 20);\n"
 	}
 </script>
 
@@ -519,14 +519,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217451"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217451"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219822"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219822"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217451"></script>
+<script type="text/javascript" src="/js/search.js?1615219822"></script>
 
     
   </div>
@@ -3850,6 +3850,17 @@ $img = Image::cache(function($image) {
 <ul>
 <li><a href="https://github.com/Intervention/imagecache">Intervention/imagecache: Caching extension for the Intervention Image Class</a></li>
 </ul>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="canvas-建立圖片畫布">canvas() 建立圖片畫布</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// 建立畫布
 $img = Image::canvas(300, 100);
@@ -3869,6 +3880,17 @@ $img-&gt;ellipse(25, 60, 50, 50, function ($draw) {
 });
 </code></pre></div><p><img src="../images/canvas-ellipse-width25-height60-x50-y50.jpg" alt="$img->ellipse(25, 60, 50, 50) color #0000ff"></p>
 <p><strong>$img-&gt;ellipse(25, 60, 50, 50) color #0000ff</strong></p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="exif-取得圖片-exif-資訊">exif() 取得圖片 exif 資訊</h2>
 <p>必須使用 Imagick 2.3.9 的函式庫，並且必須編譯 <code>--enable-exif</code>，且有 <code>mbstring</code> 的套件才可取得 exif 資訊</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// 取得所有 exif 資訊
@@ -3883,7 +3905,18 @@ $img = Image::make(&#39;public/foo.jpg&#39;);
 
 // 取得檔案大小
 $size = $img-&gt;filesize();
-</code></pre></div><h2 id="fill-填滿顏色或圖片">fill() 填滿顏色或圖片</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="fill-填滿顏色或圖片">fill() 填滿顏色或圖片</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// 建立畫布，寬度 800px 高度 600px
 $img = Image::canvas(800, 600);
 
@@ -3927,7 +3960,18 @@ $img-&gt;filter(new DemoFilter(45));
         <span style="color:#66d9ef">return</span> $image;
     }
 }
-</code></pre></div><h2 id="width-圖片寬度">width() 圖片寬度</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="width-圖片寬度">width() 圖片寬度</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// 取得圖片寬度
 $width = Image::make(&#39;public/foo.jpg&#39;)-&gt;width();
 </code></pre></div><h2 id="height-圖片高度">height() 圖片高度</h2>
@@ -3954,7 +3998,18 @@ $img-&gt;interlace(false);
 $img-&gt;save();
 </code></pre></div><h2 id="mime-取得圖片-mime">mime() 取得圖片 mime</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$mime = Image::make(&#39;public/foo.jpg&#39;)-&gt;mime();
-</code></pre></div><h2 id="pickcolor-選出圖片顏色色碼">pickColor() 選出圖片顏色色碼</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="pickcolor-選出圖片顏色色碼">pickColor() 選出圖片顏色色碼</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// 建立圖片實例
 $img = Image::make(&#39;public/foo.jpg&#39;);
 
@@ -4031,6 +4086,17 @@ $img-&gt;rectangle(5, 5, 195, 195, function ($draw) {
 });
 </code></pre></div><p><img src="../images/rectangle-background-rgba-255-255-255-0.5-border-2-color-000.jpg" alt="$img->rectangle() background rgba(255, 255, 255, 0.5) border 2px #000"></p>
 <p><strong>$img-&gt;rectangle() background rgba(255, 255, 255, 0.5) border 2px #000</strong></p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="response-回應包含-http-header-圖片">response() 回應包含 HTTP Header 圖片</h2>
 <p><strong>參數1: 圖片類型</strong></p>
 <ul>
@@ -4096,28 +4162,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4306,6 +4350,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6316,19 +6382,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217451"></script>
-    <script src="/js/jquery.sticky.js?1615217451"></script>
-    <script src="/js/featherlight.min.js?1615217451"></script>
-    <script src="/js/highlight.pack.js?1615217451"></script>
+    <script src="/js/clipboard.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219822"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219822"></script>
+    <script src="/js/jquery.sticky.js?1615219822"></script>
+    <script src="/js/featherlight.min.js?1615219822"></script>
+    <script src="/js/highlight.pack.js?1615219822"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217451"></script>
-    <script src="/js/learn.js?1615217451"></script>
-    <script src="/js/hugo-learn.js?1615217451"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219822"></script>
+    <script src="/js/learn.js?1615219822"></script>
+    <script src="/js/hugo-learn.js?1615219822"></script>
 
-    <link href="/mermaid/mermaid.css?1615217451" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217451"></script>
+    <link href="/mermaid/mermaid.css?1615219822" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219822"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

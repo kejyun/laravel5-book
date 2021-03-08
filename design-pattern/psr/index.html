@@ -12,21 +12,21 @@
     <title>PSR :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "PSR (php standard recommendations) 為了讓大家開發的套件，能夠更輕鬆地整合到自己的專案當中，在 PHP 社群中大家一起定義了一些標準的程式碼撰寫規則\n但是 Laravel 5.0.x 版本之前，Laravel 都沒有真正的遵照 PSR 的規範去撰寫程式碼，直到 Laravel 5.1 LTS 版本時，Laravel 終於將所有的程式碼遵照 PSR-2 及 PSR-4 的程式碼撰寫規則了，詳細的規則說明大家可以自己參考相關的說明文件。\n而為了讓自己專案的開發也能夠遵照 PSR 規則，除了自己一個檔案一個檔案自己修改外，也可以用 PHP Coding Standards Fixer 套件去幫我們自動地將程式修改成遵照 PSR 規則的程式！\nPHP Coding Standards Fixer 安裝使用教學 使用 compser 下載套件 使用 composer 將 php-cs-fixer 安裝到全域（global）目錄下\n$ composer global require fabpot\/php-cs-fixer 設定 composer bin 目錄到環境變數中 我們必須要將我們家目錄下的全域 ~\/.composer\/vendor\/bin 目錄，設到環境變數中，這樣我們在命令列就可以直接執行 ~\/.composer\/vendor\/bin 下面的可執行檔案了\n$ export PATH=\u0026#34;$PATH:$HOME\/.composer\/vendor\/bin\u0026#34;  我們可以直接在命令列下這樣的指令就可以了，但每次開啟新的 Terminal 視窗時，都要再重新的設定一次這樣的環境變數，所以我們也可以把這個設定寫在 ~\/.bash_profile 檔案中，這樣每次執行 Terminal 時，就會自動將 ~\/.composer\/vendor\/bin 設到環境變數中了！\n 使用 php-cs-fixer 修正 PHP 檔案 設定完成後，我們就可以使用 php-cs-fixer fix \/path\/to\/project --level=psr2 這樣的指令去修正我們專案目錄下的檔案了\n一些 php-cs-fixer 相關的指令會像這樣:\n$ php-cs-fixer fix \/path\/to\/project --level=psr0 $ php-cs-fixer fix \/path\/to\/project --level=psr1 $ php-cs-fixer fix \/path\/to\/project --level=psr2 $ php-cs-fixer fix \/path\/to\/project --level=symfony 設定 Sublime 使用 php-cs-fixer 修正程式碼 在 Sublime 上方工具列 Tools\\Bulid System\\New Build System 我們可以新增一個新的建立指令，指令中我們輸入像這樣的指令：\n{ \u0026#34;shell_cmd\u0026#34;: \u0026#34;php-cs-fixer fix $file --level=psr2\u0026#34; } 將新的指令檔案名稱取為 php-cs-fixer.sublime-bulid，這樣我們回到 Sublime 去開啟任一 PHP 檔案，只要按下 Command（⌘）\u002bB，Sublime 就會自動幫我們執行 php-cs-fixer 的 shell script 指令，去修正我們的 PHP 檔案了！！\nphp-cs-fixer 使用小技巧 我們可以將修改 ~\/.bash_profile 檔案，將使用 php-cs-fixer 修正 Terminal 目前目錄的 PHP 指令加入，這樣我們只要用 Terminal 瀏覽到我們想要做 php-cs-fixer 的目錄下，我們每次只需要下 phpCSFixerThisFolder 指令就可以了，這樣就不用記住也不用打那麼落落長的 php-cs-fixer 指令了！\nalias phpCSFixerThisFolder=\u0026#34;php-cs-fixer fix .\/ --level=psr2\u0026#34; PSR 中文文件  PSR-1 - Basic Coding Standard PSR-2 - Coding Style Guide PSR-3 - 日誌介面 PSR-4 - Autoloader  參考資料  PHP-FIG — PHP Framework Interop Group PHP: The Right Way - 繁體中文 PHP Coding Standards Fixer PHP-CS-Fixer Adopting PSR-2 - laracasts  "
+		"articleBody": "PSR (php standard recommendations) 為了讓大家開發的套件，能夠更輕鬆地整合到自己的專案當中，在 PHP 社群中大家一起定義了一些標準的程式碼撰寫規則\n但是 Laravel 5.0.x 版本之前，Laravel 都沒有真正的遵照 PSR 的規範去撰寫程式碼，直到 Laravel 5.1 LTS 版本時，Laravel 終於將所有的程式碼遵照 PSR-2 及 PSR-4 的程式碼撰寫規則了，詳細的規則說明大家可以自己參考相關的說明文件。\n而為了讓自己專案的開發也能夠遵照 PSR 規則，除了自己一個檔案一個檔案自己修改外，也可以用 PHP Coding Standards Fixer 套件去幫我們自動地將程式修改成遵照 PSR 規則的程式！\nPHP Coding Standards Fixer 安裝使用教學 使用 compser 下載套件 使用 composer 將 php-cs-fixer 安裝到全域（global）目錄下\n$ composer global require fabpot\/php-cs-fixer 設定 composer bin 目錄到環境變數中 我們必須要將我們家目錄下的全域 ~\/.composer\/vendor\/bin 目錄，設到環境變數中，這樣我們在命令列就可以直接執行 ~\/.composer\/vendor\/bin 下面的可執行檔案了\n$ export PATH=\u0026#34;$PATH:$HOME\/.composer\/vendor\/bin\u0026#34;  我們可以直接在命令列下這樣的指令就可以了，但每次開啟新的 Terminal 視窗時，都要再重新的設定一次這樣的環境變數，所以我們也可以把這個設定寫在 ~\/.bash_profile 檔案中，這樣每次執行 Terminal 時，就會自動將 ~\/.composer\/vendor\/bin 設到環境變數中了！\n 使用 php-cs-fixer 修正 PHP 檔案 設定完成後，我們就可以使用 php-cs-fixer fix \/path\/to\/project --level=psr2 這樣的指令去修正我們專案目錄下的檔案了\n一些 php-cs-fixer 相關的指令會像這樣:\n$ php-cs-fixer fix \/path\/to\/project --level=psr0 $ php-cs-fixer fix \/path\/to\/project --level=psr1 $ php-cs-fixer fix \/path\/to\/project --level=psr2 $ php-cs-fixer fix \/path\/to\/project --level=symfony  設定 Sublime 使用 php-cs-fixer 修正程式碼 在 Sublime 上方工具列 Tools\\Bulid System\\New Build System 我們可以新增一個新的建立指令，指令中我們輸入像這樣的指令：\n{ \u0026#34;shell_cmd\u0026#34;: \u0026#34;php-cs-fixer fix $file --level=psr2\u0026#34; } 將新的指令檔案名稱取為 php-cs-fixer.sublime-bulid，這樣我們回到 Sublime 去開啟任一 PHP 檔案，只要按下 Command（⌘）\u002bB，Sublime 就會自動幫我們執行 php-cs-fixer 的 shell script 指令，去修正我們的 PHP 檔案了！！\nphp-cs-fixer 使用小技巧 我們可以將修改 ~\/.bash_profile 檔案，將使用 php-cs-fixer 修正 Terminal 目前目錄的 PHP 指令加入，這樣我們只要用 Terminal 瀏覽到我們想要做 php-cs-fixer 的目錄下，我們每次只需要下 phpCSFixerThisFolder 指令就可以了，這樣就不用記住也不用打那麼落落長的 php-cs-fixer 指令了！\nalias phpCSFixerThisFolder=\u0026#34;php-cs-fixer fix .\/ --level=psr2\u0026#34;  PSR 中文文件  PSR-1 - Basic Coding Standard PSR-2 - Coding Style Guide PSR-3 - 日誌介面 PSR-4 - Autoloader  參考資料  PHP-FIG — PHP Framework Interop Group PHP: The Right Way - 繁體中文 PHP Coding Standards Fixer PHP-CS-Fixer Adopting PSR-2 - laracasts  "
 	}
 </script>
 
@@ -473,14 +473,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3800,7 +3800,18 @@
 $ php-cs-fixer fix /path/to/project --level<span style="color:#f92672">=</span>psr1
 $ php-cs-fixer fix /path/to/project --level<span style="color:#f92672">=</span>psr2
 $ php-cs-fixer fix /path/to/project --level<span style="color:#f92672">=</span>symfony
-</code></pre></div><h3 id="設定-sublime-使用-php-cs-fixer-修正程式碼">設定 Sublime 使用 php-cs-fixer 修正程式碼</h3>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h3 id="設定-sublime-使用-php-cs-fixer-修正程式碼">設定 Sublime 使用 php-cs-fixer 修正程式碼</h3>
 <p>在 Sublime 上方工具列 <code>Tools\Bulid System\New Build System</code> 我們可以新增一個新的建立指令，指令中我們輸入像這樣的指令：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
 	<span style="color:#f92672">&#34;shell_cmd&#34;</span>: <span style="color:#e6db74">&#34;php-cs-fixer fix $file --level=psr2&#34;</span>
@@ -3810,7 +3821,18 @@ $ php-cs-fixer fix /path/to/project --level<span style="color:#f92672">=</span>s
 <h3 id="php-cs-fixer-使用小技巧">php-cs-fixer 使用小技巧</h3>
 <p>我們可以將修改 <code>~/.bash_profile</code> 檔案，將使用 php-cs-fixer 修正 Terminal 目前目錄的 PHP 指令加入，這樣我們只要用 Terminal 瀏覽到我們想要做 php-cs-fixer 的目錄下，我們每次只需要下 <code>phpCSFixerThisFolder</code> 指令就可以了，這樣就不用記住也不用打那麼落落長的 php-cs-fixer 指令了！</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">alias phpCSFixerThisFolder<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;php-cs-fixer fix ./ --level=psr2&#34;</span>
-</code></pre></div><h2 id="psr-中文文件">PSR 中文文件</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="psr-中文文件">PSR 中文文件</h2>
 <ul>
 <li><a href="https://github.com/laravel-taiwan/fig-standards/blob/master/accepted/zh-TW/PSR-1-basic-coding-standard.md">PSR-1 - Basic Coding Standard</a></li>
 <li><a href="https://github.com/laravel-taiwan/fig-standards/blob/master/accepted/zh-TW/PSR-2-coding-style-guide.md">PSR-2 - Coding Style Guide</a></li>
@@ -3865,28 +3887,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4075,6 +4075,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6080,19 +6102,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219821"></script>
+    <script src="/js/jquery.sticky.js?1615219821"></script>
+    <script src="/js/featherlight.min.js?1615219821"></script>
+    <script src="/js/highlight.pack.js?1615219821"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219821"></script>
+    <script src="/js/learn.js?1615219821"></script>
+    <script src="/js/hugo-learn.js?1615219821"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219821" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219821"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

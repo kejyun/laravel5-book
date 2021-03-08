@@ -12,21 +12,21 @@
     <title>鎖定資料 Lock :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217450" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219821" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219821" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217450" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219821" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217450"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219821"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "鎖定資料 Lock 鎖定資料有 shared lock (sharedLock) 與 lock for update (lockForUpdate)，兩者都可以避面同一行資料被其他的 transaction update\n在 Laravel 鎖定資料庫資料 範例 sharedLock DB::table(\u0026#39;users\u0026#39;) -\u0026gt;where(\u0026#39;votes\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 100) -\u0026gt;sharedLock() -\u0026gt;get(); select * from `users` where `votes` \u0026gt; \u0026#39;100\u0026#39; lock in share mode DB::table(\u0026#39;tasks\u0026#39;) -\u0026gt;select(\u0026#39;details\u0026#39;, \u0026#39;created_at\u0026#39;) -\u0026gt;whereDate(\u0026#39;created_at\u0026#39;, \u0026#39;=\u0026#39;, \u0026#39;2011-11-11\u0026#39;) -\u0026gt;sharedLock() -\u0026gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = \u0026#39;2011-11-11\u0026#39; lock in share mode 可以使用 -\u0026gt;sharedLock() 或 -\u0026gt;lock(false) 去做 sharedLock\nlockForUpdate DB::table(\u0026#39;users\u0026#39;)-\u0026gt;where(\u0026#39;votes\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 100)-\u0026gt;lockForUpdate()-\u0026gt;get(); select * from `users` where `votes` \u0026gt; \u0026#39;100\u0026#39; for update DB::table(\u0026#39;tasks\u0026#39;) -\u0026gt;select(\u0026#39;details\u0026#39;, \u0026#39;created_at\u0026#39;) -\u0026gt;whereDate(\u0026#39;created_at\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, \u0026#39;2016-11-24\u0026#39;) -\u0026gt;lockForUpdate() -\u0026gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = \u0026#39;2016-11-24\u0026#39; for update 可以使用 -\u0026gt;lockForUpdate() 或 -\u0026gt;lock(true) 去做 lockForUpdate\n不同的地方 定義  sharedLock locks only for write, lockForUpdate also prevents them from being selected\n shared lock (sharedLock) 與 lock for update (lockForUpdate) 兩者都是鎖定類型的 transaction，但這兩個鎖定類型的 transaction 不會避免非鎖定的 transaction 去讀取到資料。\nsharedLock 其他的 Session 可以 Select，但無法 Update 資料\n如果 Session_1 使用 sharedLock 去讀取資料並對資料進行修改，而 Session_2 也使用 sharedLock 去讀取資料並對資料進行修改，則 Session_2 會等到 Session_1 commit 之後，才能對資料進行 update，若 Session_1 與 Session_2 都有修改到同樣欄位資料，則會變成最後修改的 Session_2 的資料。\n使用情境\n有 parent 及 child 兩個資料表，而兩者資料是有關聯性的，當要新增資料至 child 資料表時，必須確保 parent 資料表有資料，才不會讓 child 找不到他的 parent，此時可以使用 sharedLock 去避免資料被異動（刪除、更新）\nSELECT * FROM parent WHERE NAME = \u0026#39;Jones\u0026#39; FOR SHARE; lockForUpdate 可以避免被其他鎖定型 transaction 進行 Select\n當需要對同一欄位確保資料 update 是正確的，如計數器，則必須使用 lockForUpdate 來鎖定資料\n當 parent 內有一個計數器欄位紀錄總共有多少 child，則為了數字正確更新，必須避免其他鎖定型的 transaction 進行資料異動\nSELECT counter_field FROM child_codes FOR UPDATE; UPDATE child_codes SET counter_field = counter_field \u002b 1; 參考資料  Database: Query Builder - Laravel - The PHP Framework For Web Artisans Laravel 5: Query Builder Helpers – locks – Jeff\u0026rsquo;s Reference Pessimistic Locking in Laravel 5 使用 Laravel sharedLock 与 lockForUpdate 进行数据表行锁 - Laravel - 大象笔记 MySQL :: MySQL 8.0 Reference Manual :: 15.5.2.4 Locking Reads transactions - MySQL InnoDB: Difference Between FOR UPDATE and LOCK IN SHARE MODE - Stack Overflow MySQL InnoDB Transaction – 交易指南 (SELECT … FOR UPDATE) – YIDAS Code Pessimistic vs Optimistic Locking in Laravel – Ali AslRousta – Medium  "
+		"articleBody": "鎖定資料 Lock 鎖定資料有 shared lock (sharedLock) 與 lock for update (lockForUpdate)，兩者都可以避面同一行資料被其他的 transaction update\n在 Laravel 鎖定資料庫資料 範例 sharedLock DB::table(\u0026#39;users\u0026#39;) -\u0026gt;where(\u0026#39;votes\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 100) -\u0026gt;sharedLock() -\u0026gt;get(); select * from `users` where `votes` \u0026gt; \u0026#39;100\u0026#39; lock in share mode DB::table(\u0026#39;tasks\u0026#39;) -\u0026gt;select(\u0026#39;details\u0026#39;, \u0026#39;created_at\u0026#39;) -\u0026gt;whereDate(\u0026#39;created_at\u0026#39;, \u0026#39;=\u0026#39;, \u0026#39;2011-11-11\u0026#39;) -\u0026gt;sharedLock() -\u0026gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = \u0026#39;2011-11-11\u0026#39; lock in share mode 可以使用 -\u0026gt;sharedLock() 或 -\u0026gt;lock(false) 去做 sharedLock\n lockForUpdate DB::table(\u0026#39;users\u0026#39;)-\u0026gt;where(\u0026#39;votes\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 100)-\u0026gt;lockForUpdate()-\u0026gt;get(); select * from `users` where `votes` \u0026gt; \u0026#39;100\u0026#39; for update DB::table(\u0026#39;tasks\u0026#39;) -\u0026gt;select(\u0026#39;details\u0026#39;, \u0026#39;created_at\u0026#39;) -\u0026gt;whereDate(\u0026#39;created_at\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, \u0026#39;2016-11-24\u0026#39;) -\u0026gt;lockForUpdate() -\u0026gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = \u0026#39;2016-11-24\u0026#39; for update 可以使用 -\u0026gt;lockForUpdate() 或 -\u0026gt;lock(true) 去做 lockForUpdate\n 不同的地方 定義  sharedLock locks only for write, lockForUpdate also prevents them from being selected\n shared lock (sharedLock) 與 lock for update (lockForUpdate) 兩者都是鎖定類型的 transaction，但這兩個鎖定類型的 transaction 不會避免非鎖定的 transaction 去讀取到資料。\nsharedLock 其他的 Session 可以 Select，但無法 Update 資料\n如果 Session_1 使用 sharedLock 去讀取資料並對資料進行修改，而 Session_2 也使用 sharedLock 去讀取資料並對資料進行修改，則 Session_2 會等到 Session_1 commit 之後，才能對資料進行 update，若 Session_1 與 Session_2 都有修改到同樣欄位資料，則會變成最後修改的 Session_2 的資料。\n使用情境\n有 parent 及 child 兩個資料表，而兩者資料是有關聯性的，當要新增資料至 child 資料表時，必須確保 parent 資料表有資料，才不會讓 child 找不到他的 parent，此時可以使用 sharedLock 去避免資料被異動（刪除、更新）\nSELECT * FROM parent WHERE NAME = \u0026#39;Jones\u0026#39; FOR SHARE;  lockForUpdate 可以避免被其他鎖定型 transaction 進行 Select\n當需要對同一欄位確保資料 update 是正確的，如計數器，則必須使用 lockForUpdate 來鎖定資料\n當 parent 內有一個計數器欄位紀錄總共有多少 child，則為了數字正確更新，必須避免其他鎖定型的 transaction 進行資料異動\nSELECT counter_field FROM child_codes FOR UPDATE; UPDATE child_codes SET counter_field = counter_field \u002b 1; 參考資料  Database: Query Builder - Laravel - The PHP Framework For Web Artisans Laravel 5: Query Builder Helpers – locks – Jeff\u0026rsquo;s Reference Pessimistic Locking in Laravel 5 使用 Laravel sharedLock 与 lockForUpdate 进行数据表行锁 - Laravel - 大象笔记 MySQL :: MySQL 8.0 Reference Manual :: 15.5.2.4 Locking Reads transactions - MySQL InnoDB: Difference Between FOR UPDATE and LOCK IN SHARE MODE - Stack Overflow MySQL InnoDB Transaction – 交易指南 (SELECT … FOR UPDATE) – YIDAS Code Pessimistic vs Optimistic Locking in Laravel – Ali AslRousta – Medium  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217450"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217450"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219821"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219821"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217450"></script>
+<script type="text/javascript" src="/js/search.js?1615219821"></script>
 
     
   </div>
@@ -3827,6 +3827,17 @@
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#f92672">`</span>details<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>created_at<span style="color:#f92672">`</span> <span style="color:#66d9ef">from</span> <span style="color:#f92672">`</span>tasks<span style="color:#f92672">`</span>
 <span style="color:#66d9ef">where</span> date(<span style="color:#f92672">`</span>created_at<span style="color:#f92672">`</span>) <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;2011-11-11&#39;</span> <span style="color:#66d9ef">lock</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">share</span> <span style="color:#66d9ef">mode</span>
 </code></pre></div><p>可以使用 <code>-&gt;sharedLock()</code> 或 <code>-&gt;lock(false)</code> 去做 sharedLock</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h4 id="lockforupdate"><em><strong>lockForUpdate</strong></em></h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">DB::table(&#39;users&#39;)-&gt;where(&#39;votes&#39;, &#39;&gt;&#39;, 100)-&gt;lockForUpdate()-&gt;get();
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span>
@@ -3839,6 +3850,17 @@
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#f92672">`</span>details<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>created_at<span style="color:#f92672">`</span> <span style="color:#66d9ef">from</span> <span style="color:#f92672">`</span>tasks<span style="color:#f92672">`</span>
 <span style="color:#66d9ef">where</span> date(<span style="color:#f92672">`</span>created_at<span style="color:#f92672">`</span>) <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;2016-11-24&#39;</span> <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">update</span>
 </code></pre></div><p>可以使用 <code>-&gt;lockForUpdate()</code> 或 <code>-&gt;lock(true)</code> 去做 lockForUpdate</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="不同的地方">不同的地方</h2>
 <h2 id="定義"><em>定義</em></h2>
 <blockquote>
@@ -3851,7 +3873,18 @@
 <p><em>使用情境</em></p>
 <p>有 <code>parent</code> 及 <code>child</code> 兩個資料表，而兩者資料是有關聯性的，當要新增資料至 <code>child</code> 資料表時，必須確保 <code>parent</code> 資料表有資料，才不會讓 <code>child</code> 找不到他的 <code>parent</code>，此時可以使用 sharedLock 去避免資料被異動（刪除、更新）</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> parent <span style="color:#66d9ef">WHERE</span> NAME <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Jones&#39;</span> <span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">SHARE</span>;
-</code></pre></div><h3 id="lockforupdate-1">lockForUpdate</h3>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h3 id="lockforupdate-1">lockForUpdate</h3>
 <p>可以避免被其他鎖定型 transaction 進行 Select</p>
 <p>當需要對同一欄位確保資料 update 是正確的，如計數器，則必須使用 lockForUpdate 來鎖定資料</p>
 <p>當 <code>parent</code> 內有一個計數器欄位紀錄總共有多少 <code>child</code>，則為了數字正確更新，必須避免其他鎖定型的 transaction 進行資料異動</p>
@@ -3908,28 +3941,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4118,6 +4129,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6127,19 +6160,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217450"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217450"></script>
-    <script src="/js/jquery.sticky.js?1615217450"></script>
-    <script src="/js/featherlight.min.js?1615217450"></script>
-    <script src="/js/highlight.pack.js?1615217450"></script>
+    <script src="/js/clipboard.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219821"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219821"></script>
+    <script src="/js/jquery.sticky.js?1615219821"></script>
+    <script src="/js/featherlight.min.js?1615219821"></script>
+    <script src="/js/highlight.pack.js?1615219821"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217450"></script>
-    <script src="/js/learn.js?1615217450"></script>
-    <script src="/js/hugo-learn.js?1615217450"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219821"></script>
+    <script src="/js/learn.js?1615219821"></script>
+    <script src="/js/hugo-learn.js?1615219821"></script>
 
-    <link href="/mermaid/mermaid.css?1615217450" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217450"></script>
+    <link href="/mermaid/mermaid.css?1615219821" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219821"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

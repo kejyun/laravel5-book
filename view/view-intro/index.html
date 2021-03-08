@@ -12,21 +12,21 @@
     <title>視圖介紹 :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217452" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219825" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219825" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217452" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219825" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217452"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219825"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "視圖介紹 這裏會介紹如何在 Laravel 5 處理視圖（View）\nLaravel 的視圖是放在 resource\/views 目錄內\n建立共用的視圖 我們網頁常常會出現 header 跟 footer 在不同的視圖中為相同的狀況，唯一有變的只有中間的內容隨著不同的請求而有變動，如果有這樣的設計需求，我們可以替所有視圖建立共用的視圖，假設我們把這個共用的視圖放在 resource\/view\/app.blade.php 下，其內容可能是：\n\u0026lt;!-- resource\/view\/app.blade.php --\u0026gt; \u0026lt;!doctype html\u0026gt; \u0026lt;html lang=\u0026#34;zh-TW\u0026#34;\u0026gt; \u0026lt;head\u0026gt; \u0026lt;meta charset=\u0026#34;UTF-8\u0026#34;\u0026gt; \u0026lt;title\u0026gt;我的網站\u0026lt;\/title\u0026gt; \u0026lt;\/head\u0026gt; \u0026lt;body\u0026gt; \u0026lt;div class=\u0026#34;container\u0026#34;\u0026gt; @yield(\u0026#39;content\u0026#39;) \u0026lt;\/div\u0026gt; @yield(\u0026#39;other_info\u0026#39;) \u0026lt;\/body\u0026gt; \u0026lt;\/html\u0026gt; 如果我們要顯示文章的資訊在 content 中，文章的說明在 other_info 中，我們可以在 blade 中這樣設定：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) \u0026lt;h1\u0026gt;文章標題\u0026lt;\/h1\u0026gt; \u0026lt;p\u0026gt; Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \u0026lt;\/p\u0026gt; @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 這樣 Laravel 就會幫我們把相對應的資訊塞到 app.blade.php 當中相對應的位置\n引入共用的視圖 假如我們要在特定的某幾頁使用 Facebook 留言板，像是：\n\u0026lt;div id=\u0026#34;fb-root\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; \u0026lt;script\u0026gt;(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = \u0026#34;\/\/connect.facebook.net\/zh_TW\/sdk.js#xfbml=1\u0026amp;version=v2.3\u0026amp;appId=12345566\u0026#34;; fjs.parentNode.insertBefore(js, fjs); }(document, \u0026#39;script\u0026#39;, \u0026#39;facebook-jssdk\u0026#39;));\u0026lt;\/script\u0026gt; \u0026lt;div class=\u0026#34;fb-comments\u0026#34; data-href=\u0026#34;http:\/\/laravel5-book.kejyun.com\/\u0026#34; data-numposts=\u0026#34;5\u0026#34; data-colorscheme=\u0026#34;light\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; 但我們不想要這些相同的程式碼片段散落在各個不同的視圖中，我們可以把它整理在 resource\/views\/vendor\/_fbcomment.blade.php 當中\n然後在文章視圖當中我們就可以這樣去引入 Facebook 留言板：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) \u0026lt;h1\u0026gt;文章標題\u0026lt;\/h1\u0026gt; \u0026lt;p\u0026gt; Lorem ipsum dolor sit amet \u0026lt;\/p\u0026gt; @include(\u0026#39;vendor\/_fbcomment\u0026#39;) @include(\u0026#39;vendor._fbcomment\u0026#39;) @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 傳入變數到引用的視圖當中 在我們新增與編輯文章的視圖當中，幾乎所有的視圖都是一樣的，不一樣的地方可能只有「表單處理的 action 不同（create \u0026amp; edit）」、「送出的按鈕文字不同（新增違章 \u0026amp; 編輯文章）」\n但我們還是希望兩個視圖能夠一起被引用，把其他不同的地方當作變數傳入，就可以達到視圖重構的效果，避免類似的視圖重複出現在不同地方，像是：\n\u0026lt;!-- resource\/view\/partials\/articles\/_form.blade.php --\u0026gt; {!! Form::label(\u0026#39;title\u0026#39;,\u0026#39;標題\u0026#39;) !!} {!! Form::text(\u0026#39;title\u0026#39;, null) !!} {!! Form::label(\u0026#39;content\u0026#39;,\u0026#39;內文\u0026#39;) !!} {!! Form::text(\u0026#39;content\u0026#39;, null) !!} {!! Form::submit($submitButtonText) !!} 當我們要引用表單的視圖，則必須把按鈕的文字傳送給表單，像是：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) @include(\u0026#39;partials\/articles\/_form\u0026#39;, [\u0026#39;submitButtonText\u0026#39; =\u0026gt; \u0026#39;新增文章\u0026#39;]) @include(\u0026#39;partials\/articles\/_form\u0026#39;, [\u0026#39;submitButtonText\u0026#39; =\u0026gt; \u0026#39;編輯文章\u0026#39;]) @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 備註 引用或載入視圖路徑 在使用 blade 中的 @extend() 或 @include() 函數，他所參照的視圖相對位置是從 resource\/views\/ 開始的\n所以如果你的視圖是放在 resource\/views\/partials\/other.blade.php 中，你要引用或載入的話則可以用 . 或 \/ 去指定相對的視圖位置，像是：\n\u0026lt;!-- 引用 --\u0026gt; @extend(\u0026#39;partials._other\u0026#39;) @extend(\u0026#39;partials\/_other\u0026#39;) \u0026lt;!-- 載入 --\u0026gt; @include(\u0026#39;partials._other\u0026#39;) @include(\u0026#39;partials\/_other\u0026#39;) 設計模式 樣板檔案名稱 通常若不是完整的視圖，僅是部分的視圖，通常會將檔案名稱最前面加上底線 _，用來告知團隊程式設計師這個 blade 視圖不是完整的視圖\n參考資訊  View Partials and Form Reuse - Laracasts  "
+		"articleBody": "視圖介紹 這裏會介紹如何在 Laravel 5 處理視圖（View）\nLaravel 的視圖是放在 resource\/views 目錄內\n建立共用的視圖 我們網頁常常會出現 header 跟 footer 在不同的視圖中為相同的狀況，唯一有變的只有中間的內容隨著不同的請求而有變動，如果有這樣的設計需求，我們可以替所有視圖建立共用的視圖，假設我們把這個共用的視圖放在 resource\/view\/app.blade.php 下，其內容可能是：\n\u0026lt;!-- resource\/view\/app.blade.php --\u0026gt; \u0026lt;!doctype html\u0026gt; \u0026lt;html lang=\u0026#34;zh-TW\u0026#34;\u0026gt; \u0026lt;head\u0026gt; \u0026lt;meta charset=\u0026#34;UTF-8\u0026#34;\u0026gt; \u0026lt;title\u0026gt;我的網站\u0026lt;\/title\u0026gt; \u0026lt;\/head\u0026gt; \u0026lt;body\u0026gt; \u0026lt;div class=\u0026#34;container\u0026#34;\u0026gt; @yield(\u0026#39;content\u0026#39;) \u0026lt;\/div\u0026gt; @yield(\u0026#39;other_info\u0026#39;) \u0026lt;\/body\u0026gt; \u0026lt;\/html\u0026gt; 如果我們要顯示文章的資訊在 content 中，文章的說明在 other_info 中，我們可以在 blade 中這樣設定：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) \u0026lt;h1\u0026gt;文章標題\u0026lt;\/h1\u0026gt; \u0026lt;p\u0026gt; Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \u0026lt;\/p\u0026gt; @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 這樣 Laravel 就會幫我們把相對應的資訊塞到 app.blade.php 當中相對應的位置\n 引入共用的視圖 假如我們要在特定的某幾頁使用 Facebook 留言板，像是：\n\u0026lt;div id=\u0026#34;fb-root\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; \u0026lt;script\u0026gt;(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = \u0026#34;\/\/connect.facebook.net\/zh_TW\/sdk.js#xfbml=1\u0026amp;version=v2.3\u0026amp;appId=12345566\u0026#34;; fjs.parentNode.insertBefore(js, fjs); }(document, \u0026#39;script\u0026#39;, \u0026#39;facebook-jssdk\u0026#39;));\u0026lt;\/script\u0026gt; \u0026lt;div class=\u0026#34;fb-comments\u0026#34; data-href=\u0026#34;http:\/\/laravel5-book.kejyun.com\/\u0026#34; data-numposts=\u0026#34;5\u0026#34; data-colorscheme=\u0026#34;light\u0026#34;\u0026gt;\u0026lt;\/div\u0026gt; 但我們不想要這些相同的程式碼片段散落在各個不同的視圖中，我們可以把它整理在 resource\/views\/vendor\/_fbcomment.blade.php 當中\n然後在文章視圖當中我們就可以這樣去引入 Facebook 留言板：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) \u0026lt;h1\u0026gt;文章標題\u0026lt;\/h1\u0026gt; \u0026lt;p\u0026gt; Lorem ipsum dolor sit amet \u0026lt;\/p\u0026gt; @include(\u0026#39;vendor\/_fbcomment\u0026#39;) @include(\u0026#39;vendor._fbcomment\u0026#39;) @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop  傳入變數到引用的視圖當中 在我們新增與編輯文章的視圖當中，幾乎所有的視圖都是一樣的，不一樣的地方可能只有「表單處理的 action 不同（create \u0026amp; edit）」、「送出的按鈕文字不同（新增違章 \u0026amp; 編輯文章）」\n但我們還是希望兩個視圖能夠一起被引用，把其他不同的地方當作變數傳入，就可以達到視圖重構的效果，避免類似的視圖重複出現在不同地方，像是：\n\u0026lt;!-- resource\/view\/partials\/articles\/_form.blade.php --\u0026gt; {!! Form::label(\u0026#39;title\u0026#39;,\u0026#39;標題\u0026#39;) !!} {!! Form::text(\u0026#39;title\u0026#39;, null) !!} {!! Form::label(\u0026#39;content\u0026#39;,\u0026#39;內文\u0026#39;) !!} {!! Form::text(\u0026#39;content\u0026#39;, null) !!} {!! Form::submit($submitButtonText) !!} 當我們要引用表單的視圖，則必須把按鈕的文字傳送給表單，像是：\n\u0026lt;!-- resource\/view\/article.blade.php --\u0026gt; @extend(\u0026#39;app\u0026#39;) @section(\u0026#39;content\u0026#39;) @include(\u0026#39;partials\/articles\/_form\u0026#39;, [\u0026#39;submitButtonText\u0026#39; =\u0026gt; \u0026#39;新增文章\u0026#39;]) @include(\u0026#39;partials\/articles\/_form\u0026#39;, [\u0026#39;submitButtonText\u0026#39; =\u0026gt; \u0026#39;編輯文章\u0026#39;]) @stop @section(\u0026#39;other_info\u0026#39;) 其他資訊 @stop 備註 引用或載入視圖路徑 在使用 blade 中的 @extend() 或 @include() 函數，他所參照的視圖相對位置是從 resource\/views\/ 開始的\n所以如果你的視圖是放在 resource\/views\/partials\/other.blade.php 中，你要引用或載入的話則可以用 . 或 \/ 去指定相對的視圖位置，像是：\n\u0026lt;!-- 引用 --\u0026gt; @extend(\u0026#39;partials._other\u0026#39;) @extend(\u0026#39;partials\/_other\u0026#39;) \u0026lt;!-- 載入 --\u0026gt; @include(\u0026#39;partials._other\u0026#39;) @include(\u0026#39;partials\/_other\u0026#39;)  設計模式 樣板檔案名稱 通常若不是完整的視圖，僅是部分的視圖，通常會將檔案名稱最前面加上底線 _，用來告知團隊程式設計師這個 blade 視圖不是完整的視圖\n參考資訊  View Partials and Form Reuse - Laracasts  "
 	}
 </script>
 
@@ -473,14 +473,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217452"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217452"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219825"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219825"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217452"></script>
+<script type="text/javascript" src="/js/search.js?1615219825"></script>
 
     
   </div>
@@ -3820,6 +3820,17 @@
     其他資訊
 @stop
 </code></pre></div><p>這樣 Laravel 就會幫我們把相對應的資訊塞到 <code>app.blade.php</code> 當中相對應的位置</p>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 <h2 id="引入共用的視圖">引入共用的視圖</h2>
 <p>假如我們要在特定的某幾頁使用 <a href="https://developers.facebook.com/docs/plugins/comments">Facebook 留言板</a>，像是：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fb-root&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
@@ -3851,7 +3862,18 @@
 @section(&#39;other_info&#39;)
     其他資訊
 @stop
-</code></pre></div><h2 id="傳入變數到引用的視圖當中">傳入變數到引用的視圖當中</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="傳入變數到引用的視圖當中">傳入變數到引用的視圖當中</h2>
 <p>在我們新增與編輯文章的視圖當中，幾乎所有的視圖都是一樣的，不一樣的地方可能只有「表單處理的 action 不同（create &amp; edit）」、「送出的按鈕文字不同（新增違章 &amp; 編輯文章）」</p>
 <p>但我們還是希望兩個視圖能夠一起被引用，把其他不同的地方當作變數傳入，就可以達到視圖重構的效果，避免類似的視圖重複出現在不同地方，像是：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- resource/view/partials/articles/_form.blade.php --&gt;</span>
@@ -3887,7 +3909,18 @@
 <span style="color:#75715e">&lt;!-- 載入 --&gt;</span>
 @include(&#39;partials._other&#39;)
 @include(&#39;partials/_other&#39;)
-</code></pre></div><h3 id="設計模式">設計模式</h3>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h3 id="設計模式">設計模式</h3>
 <h4 id="樣板檔案名稱">樣板檔案名稱</h4>
 <p>通常若不是完整的視圖，僅是部分的視圖，通常會將檔案名稱最前面加上底線 <code>_</code>，用來告知團隊程式設計師這個 blade 視圖不是完整的視圖</p>
 <h2 id="參考資訊">參考資訊</h2>
@@ -3934,28 +3967,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4144,6 +4155,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6146,19 +6179,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217452"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217452"></script>
-    <script src="/js/jquery.sticky.js?1615217452"></script>
-    <script src="/js/featherlight.min.js?1615217452"></script>
-    <script src="/js/highlight.pack.js?1615217452"></script>
+    <script src="/js/clipboard.min.js?1615219825"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219825"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219825"></script>
+    <script src="/js/jquery.sticky.js?1615219825"></script>
+    <script src="/js/featherlight.min.js?1615219825"></script>
+    <script src="/js/highlight.pack.js?1615219825"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217452"></script>
-    <script src="/js/learn.js?1615217452"></script>
-    <script src="/js/hugo-learn.js?1615217452"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219825"></script>
+    <script src="/js/learn.js?1615219825"></script>
+    <script src="/js/hugo-learn.js?1615219825"></script>
 
-    <link href="/mermaid/mermaid.css?1615217452" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217452"></script>
+    <link href="/mermaid/mermaid.css?1615219825" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219825"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

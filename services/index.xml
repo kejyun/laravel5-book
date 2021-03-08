@@ -19,7 +19,7 @@
       <guid>https://laravel5-book.kejyun.com/services/encryption/encryption-intro/</guid>
       <description>加密（encryption） 使用情境 我們若需要在資料庫儲存一些敏感資料（像是信用卡的資料），但我們又為了避免資料庫遭到入侵，而導致所有使用者相關的敏感資料全都被竊取，我們可以使用 Laravel 提供的「加密與解密」演算法，將我們的敏感資料加密儲存到資料庫，待我們讀取資料的時候，再將其資料解密出來處理。
 設定 在 Laravel 做「加密與解密」演算法時，會使用 config/app.php 中的 key 值去當作加解密的 salt，自己的應用需要設定自己的 key 值，若沒有設定的話被加密過的值還是有可能被暴力破解出來，所以要記得去設定，而這個 key 值若變更了，雜湊的驗證也不會相同喔～
-使用 // 加密 $original_data = &amp;#39;需要加密的資料&amp;#39;; $encrypt_data = Crypt::encrypt($original_data); // 解密 $decrypted = Crypt::decrypt($encrypt_data); 備註 重複加密相同的資料得到的密文不會一樣，所以不要使用像 md5 的方式去比對密文資料是否相同
+使用 // 加密 $original_data = &amp;#39;需要加密的資料&amp;#39;; $encrypt_data = Crypt::encrypt($original_data); // 解密 $decrypted = Crypt::decrypt($encrypt_data);  備註 重複加密相同的資料得到的密文不會一樣，所以不要使用像 md5 的方式去比對密文資料是否相同
 使用 md5 比較密文 $original_data = &amp;#39;需要加密的資料&amp;#39;; // 第 1 次使用 md5 加密的資料 $first_md5_hash_data = md5($original_data); // 第 2 次使用 md5 加密的資料 $second_md5_hash_data = md5($original_data); // 資料相同 // true var_dump($first_md5_hash_data === $second_md5_hash_data); 使用加密演算法比較密文 $original_data = &amp;#39;需要加密的資料&amp;#39;; // 第 1 次使用加密演算法加密的資料 $first_encrypt_data = Crypt::encrypt($original_data); // 第 2 次使用加密演算法加密的資料 $second_encrypt_data = Crypt::encrypt($original_data); // 資料不相同 // false var_dump($first_encrypt_data === $second_encrypt_data); 參考資料  加密 - Laravel.</description>
     </item>
     
@@ -32,8 +32,8 @@
       <description>雜湊（Hashing） 使用情境 使用者輸入的密碼，通常我們將其加密再存到資料庫中，但這類的資料我們通常不需要反解回來處理，所以我們不需要使用加密的演算法去加密資料
 因為加密演算法需要完整的解回原先的資料，所以若資料越長密文也會越長，但雜湊不需要解回原先的資料，只需要驗證原先的資料，經過再雜湊的檢查是相同的就好（輸入的密碼雜湊驗證與原先存在資料庫的雜湊資料相同），所以雜湊的資料可以有固定的長度，像是 md5 的雜湊資料長度固定為 32，而 Laravel 提供的 Hash 雜湊演算法，資料長度固定為 60。
 設定 在 Laravel 做「雜湊」演算法時，會使用 config/app.php 中的 key 值去當作雜湊的 salt，自己的應用需要設定自己的 key 值，若沒有設定的話被加密過的值還是有可能被暴力破解出來，所以要記得去設定，而這個 key 值若變更了，雜湊的驗證也不會相同喔～
-使用 雜湊 // 雜湊 $original_password = &amp;#39;密碼明碼&amp;#39;; $hash_password = Hash::make($original_password); 驗證 // 雜湊 $original_password = &amp;#39;密碼明碼&amp;#39;; $hash_password = Hash::make($original_password); // 驗證 $check_result = Hash::check($original_password, $hash_password); // true var_dump($check_result); 備註 重複雜湊相同的資料得到的密文不會一樣，所以不要使用像 md5 的方式去比對密文資料是否相同
-使用 md5 比較密文 $original_password = &amp;#39;密碼明碼&amp;#39;; // 第 1 次使用 md5 加密的資料 $first_md5_hash_password = md5($original_password); // 第 2 次使用 md5 加密的資料 $second_md5_hash_password = md5($original_password); // 資料相同 // true var_dump($first_md5_encrypt_password === $second_md5_encrypt_password); 雖然每次雜湊的結果都不一樣，但你可以放心的將任何一次雜湊的資料存放到資料庫中，因為雖然密文不同，但 Laravel 的雜湊演算法，還是可以比對出來是不是由相同的資料去做雜湊的</description>
+ 使用 雜湊 // 雜湊 $original_password = &amp;#39;密碼明碼&amp;#39;; $hash_password = Hash::make($original_password); 驗證 // 雜湊 $original_password = &amp;#39;密碼明碼&amp;#39;; $hash_password = Hash::make($original_password); // 驗證 $check_result = Hash::check($original_password, $hash_password); // true var_dump($check_result); 備註 重複雜湊相同的資料得到的密文不會一樣，所以不要使用像 md5 的方式去比對密文資料是否相同
+ 使用 md5 比較密文 $original_password = &amp;#39;密碼明碼&amp;#39;; // 第 1 次使用 md5 加密的資料 $first_md5_hash_password = md5($original_password); // 第 2 次使用 md5 加密的資料 $second_md5_hash_password = md5($original_password); // 資料相同 // true var_dump($first_md5_encrypt_password === $second_md5_encrypt_password); 雖然每次雜湊的結果都不一樣，但你可以放心的將任何一次雜湊的資料存放到資料庫中，因為雖然密文不同，但 Laravel 的雜湊演算法，還是可以比對出來是不是由相同的資料去做雜湊的</description>
     </item>
     
     <item>
@@ -59,7 +59,7 @@ Route::group([&amp;#39;middleware&amp;#39; =&amp;gt; [&amp;#39;force-json-respon
 $ crontab -e 在用到 crontab 的時候，我們需要瞭解怎麼設定排程工作的執行時間，整個的 crontab 的設定可能會像這樣：
 # 每天凌晨 3 點統計昨天的 Pageview 0 3 * * * /usr/bin/php /home/kejyun/laravel4/artisan cronjob:statisticYesterdayPageview 在前方可以看到有 5 個數字可以做設定，依序分別代表的意思為：
  分鐘 (0-59) 小時 (0-23) 每個月第幾天 (1-31) 月份 (1-12) 每週的第幾天 (0-6) 0：星期日 1：星期一 2：星期二 3：星期三 4：星期四 5：星期五 6：星期六  這 5 個參數之間用空白隔開，每個參數除了設定單一個數字，也可以用逗號(,)去隔開設定相同單位的時間設定，像是：
-# 每天凌晨 4 點及 16 點寄送廣告信 0 4,16 * * * /usr/bin/php /home/kejyun/laravel4/artisan cronjob:sendCommercialMail 這裏有一些相關的設定範例可以當作參考：</description>
+# 每天凌晨 4 點及 16 點寄送廣告信 0 4,16 * * * /usr/bin/php /home/kejyun/laravel4/artisan cronjob:sendCommercialMail  這裏有一些相關的設定範例可以當作參考：</description>
     </item>
     
     <item>
@@ -74,7 +74,7 @@ $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804B
 rvm list known 安裝指定版本
 rvm install 2.3.1  必須使用管理者權限安裝過以下套件：
   autoconf, automake, bison, libffi-dev, libgdbm-dev, libncurses5-dev, libsqlite3-dev, libtool, libyaml-dev, pkg-config, sqlite3, zlib1g-dev, libgmp-dev, libreadline6-dev
- 安裝 Compass gem update --system gem install compass 監控 Compass gulp watch 參考資料  RVM: Ruby Version Manager - Installing RVM Install the Compass Stylesheet Authoring Framework | Compass Documentation creationix/nvm: Node Version Manager - Simple bash script to manage multiple active node.</description>
+  安裝 Compass gem update --system gem install compass 監控 Compass gulp watch 參考資料  RVM: Ruby Version Manager - Installing RVM Install the Compass Stylesheet Authoring Framework | Compass Documentation creationix/nvm: Node Version Manager - Simple bash script to manage multiple active node.</description>
     </item>
     
   </channel>

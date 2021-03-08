@@ -21,12 +21,12 @@
 在帳號選單頁面中，選擇 Extras 選單中的 API keys
 在 API keys 頁面中，點選 Create A Key，建立 API Key
 點選完後就可以看到你的 API Key 了
-取得 API 網址前綴 在 API 的網址可以看到前方有 &amp;lt;dc&amp;gt; 的字樣，&amp;lt;dc&amp;gt; 是要看自己所屬的服務是哪一個區域，可以登入 MailChimp 後從網址那邊取得如下
+ 取得 API 網址前綴 在 API 的網址可以看到前方有 &amp;lt;dc&amp;gt; 的字樣，&amp;lt;dc&amp;gt; 是要看自己所屬的服務是哪一個區域，可以登入 MailChimp 後從網址那邊取得如下
 https://&amp;lt;dc&amp;gt;.api.mailchimp.com/3.0 可以看到網址是 https://us19.admin.mailchimp.com/lists/，所以 API Key 的 &amp;lt;dc&amp;gt; 就是 us19
 取得清單編號 List ID Mailchimp 可以管理許多不同的郵件清單，為了管理清單資料，需要有清單編號（List ID），到清單頁點選您要管理的清單
 在清單頁從 Settings 選單中點選 List name and defaults 選項
 在 List name and defaults 頁面中可以看到清單編號（List ID）在右上方
-安裝套件 Laravel : ~5.</description>
+ 安裝套件 Laravel : ~5.</description>
     </item>
     
   </channel>

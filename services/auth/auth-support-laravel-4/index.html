@@ -12,21 +12,21 @@
     <title>認證支援 Laravel 4 Session :: Laravel 5 學習筆記</title>
 
     
-    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615217451" rel="stylesheet">
-    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/nucleus.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/fontawesome-all.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hybrid.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/featherlight.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/perfect-scrollbar.min.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/auto-complete.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/atom-one-dark-reasonable.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme.css?1615219823" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/hugo-theme.css?1615219823" rel="stylesheet">
     
-    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615217451" rel="stylesheet">
+    <link href="https://laravel5-book.kejyun.com/css/theme-mine.css?1615219823" rel="stylesheet">
     
     
 
-    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615217451"></script>
+    <script src="https://laravel5-book.kejyun.com/js/jquery-3.3.1.min.js?1615219823"></script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
@@ -163,7 +163,7 @@
 		],
 		"genre":["KeJyun"],
 		"articleSection": "KeJyun",
-		"articleBody": "Laravel 5 認證支援 Laravel 4 Session Step1. Laravel 4 加密方式支援 AES Laravel 4 因為加密方式支援 rijndael-128，不支援 AES，所以無法使用 php 7.1 執行 Laravel 4 專案，在 Laravel 4 中的 app\/config\/app.php 檔案可以看到金鑰及加密方式的設定：\n\u0026lt;?php \/\/ Laravel 4 \/\/ app\/config\/app.php return [ \u0026#39;key\u0026#39; =\u0026gt; \u0026#39;randomStringLength32xxxxxxxxxxxx\u0026#39; \u0026#39;cipher\u0026#39; =\u0026gt; MCRYPT_RIJNDAEL_128, ]; Laravel 4 安裝 tomgrohl\/laravel4-php71-encrypter 套件支援 AES 加密\ncomposer require tomgrohl\/laravel4-php71-encrypter 修改 Nginx 設定使用 PHP 7.1\nserver { root \u0026quot;\/home\/kejyun\/web\/laravel-4-project\/public\u0026quot;; location ~ [^\/]\\.php(\/|$) { fastcgi_pass unix:\/run\/php\/php7.1-fpm.sock; } } 修改 Laravel 4 加密方式支援 AES-256\nAES-256 金鑰需要長度 32 的字串，AES-128 需要長度 16 的字串，我們支援 AES-256 所以需要將金鑰長度設定為 32\n\u0026lt;?php \/\/ Laravel 4 \/\/ app\/config\/app.php return [ \u0026#39;key\u0026#39; =\u0026gt; \u0026#39;randomStringLength32xxxxxxxxxxxx\u0026#39; \u0026#39;cipher\u0026#39; =\u0026gt; \u0026#39;AES-256-CBC\u0026#39;, ]; Step2. 修改 Laravel 5 金鑰格式 在使用 php artisan key:generate 產生 APP_KEY 時會產生 base64 的金鑰，但這樣格式的金鑰在 Laravel 4 是不支援的\n# .env APP_KEY=base64:z\u002bldCPR\/vzxMBzZ6k\u002bmptblu82qbeSM\u002bkK5ZVKOUdFg= 所以需要將 Laravel 4 的金鑰直接貼到 .env 檔案，不要經過 base64 的加密\n# .env APP_KEY=randomStringLength32xxxxxxxxxxxx Step3. 修改 Laravel 5 Cookie 加密方式 由於 Laravel 4 會將 Cookie 的資料經過 serialize，但 Laravel 5 不會將 Cookie serialize，所以為了讓 Laravel 5 可以正常讀取 Laravel 4 的 Cookie，需要將 Laravel 5 serialize 的功能打開。\n在 app\/Http\/Middleware\/EncryptCookies.php 檔案中可以設定靜態變數 $serialize 為 true 即可。\n\u0026lt;?php \/\/ app\/Http\/Middleware\/EncryptCookies.php namespace App\\Http\\Middleware; use Illuminate\\Cookie\\Middleware\\EncryptCookies as Middleware; class EncryptCookies extends Middleware { protected static $serialize = true; } Step4. 修改 Laravel 5 Auth 驗證方式 Laravel 4的驗證 Auth 方法與 Laravel 5 有些許不同，主要是在取得 session 名稱 的方法有點不同，在 Laravel 4 的 vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php 可以看到 getName() 與 getRecallerName() 函式與 Laravel 5 不同\nLaravel 4 Guard\n vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php\n \u0026lt;?php namespace Illuminate\\Auth; \/\/ Laravel 4 \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php  use Illuminate\\Cookie\\CookieJar; use Illuminate\\Events\\Dispatcher; use Symfony\\Component\\HttpFoundation\\Request; use Illuminate\\Session\\Store as SessionStore; use Symfony\\Component\\HttpFoundation\\Response; class Guard { \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.md5(get_class($this)); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.md5(get_class($this)); } } Laravel 5 Session Guard\n vendor\/laravel\/framework\/src\/Illuminate\/Auth\/SessionGuard.php\n \u0026lt;?php \/\/ Laravel 5 \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/SessionGuard.php  namespace Illuminate\\Auth; class SessionGuard implements StatefulGuard, SupportsBasicAuth { \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.$this-\u0026gt;name.\u0026#39;_\u0026#39;.sha1(static::class); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.$this-\u0026gt;name.\u0026#39;_\u0026#39;.sha1(static::class); } } 為了讓 Laravel 5 支援 Laravel 4 的 Session，則必須要將取得 Session 名稱 方法修改為 Laravel 4 的方式\nLaravel 5 目錄建立 app\/Auth\/Laravel4SessionGuard.php 檔案，繼承原本 Illuminate\\Auth\\SessionGuard 的方法，並加入 getName() 及 getRecallerName() 方法修改為 Laravel 4 的方法\n\u0026lt;?php namespace App\\Auth; use Auth; use Illuminate\\Auth\\SessionGuard; use Illuminate\\Contracts\\Auth\\Guard; class Laravel4SessionGuard extends SessionGuard implements Guard { protected $laravel4_guard_class_name = \u0026#39;Illuminate\\Auth\\Guard\u0026#39;; \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.md5($this-\u0026gt;laravel4_guard_class_name); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.md5($this-\u0026gt;laravel4_guard_class_name); } \/** * Extend Auth for Laravel 4 *\/ public static function AuthExtend() { \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/AuthManager.php  \/\/ - createSessionDriver  Auth::extend(\u0026#39;laravel4Session\u0026#39;, function ($app, $name, array $config) { $provider = Auth::createUserProvider($config[\u0026#39;provider\u0026#39;]); $guard = new Laravel4SessionGuard($name, $provider, $app[\u0026#39;session.store\u0026#39;]); \/\/ When using the remember me functionality of the authentication services we  \/\/ will need to be set the encryption instance of the guard, which allows  \/\/ secure, encrypted cookie values to get generated for those cookies.  if (method_exists($guard, \u0026#39;setCookieJar\u0026#39;)) { $guard-\u0026gt;setCookieJar($app[\u0026#39;cookie\u0026#39;]); } if (method_exists($guard, \u0026#39;setDispatcher\u0026#39;)) { $guard-\u0026gt;setDispatcher($app[\u0026#39;events\u0026#39;]); } if (method_exists($guard, \u0026#39;setRequest\u0026#39;)) { $guard-\u0026gt;setRequest($app-\u0026gt;refresh(\u0026#39;request\u0026#39;, $guard, \u0026#39;setRequest\u0026#39;)); } return $guard; }); } } 修改 config\/auth.php 設定檔案\n\u0026lt;?php return [ \u0026#39;defaults\u0026#39; =\u0026gt; [ \/\/ \u0026#39;guard\u0026#39; =\u0026gt; \u0026#39;web\u0026#39;,  \u0026#39;guard\u0026#39; =\u0026gt; \u0026#39;laravel4_web\u0026#39;, \u0026#39;passwords\u0026#39; =\u0026gt; \u0026#39;users\u0026#39;, ], \u0026#39;guards\u0026#39; =\u0026gt; [ \u0026#39;laravel4_web\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;laravel4Session\u0026#39;, \u0026#39;provider\u0026#39; =\u0026gt; \u0026#39;users\u0026#39;, ], ], ]; Laravel 5 使用自訂驗證方法\n在 Laravel 5 中的 app\/Providers\/AuthServiceProvider.php 檔案中呼叫 Laravel4SessionGuard::AuthExtend(); 方法，之後即可讀取到 Laravel 4 產生的 Session 驗證資料\n\u0026lt;?php \/\/ Laravel 5 \/\/ app\/Providers\/AuthServiceProvider.php  namespace App\\Providers; use App\\Auth\\Laravel4SessionGuard; use Illuminate\\Support\\Facades\\Gate; use Illuminate\\Foundation\\Support\\Providers\\AuthServiceProvider as ServiceProvider; class AuthServiceProvider extends ServiceProvider { \/** * Register any authentication \/ authorization services. * * @return void *\/ public function boot() { $this-\u0026gt;registerPolicies(); \/\/ 設定 Laravel 4 Auth  Laravel4SessionGuard::AuthExtend(); } } 參考資料  tomgrohl\/laravel4-php71-encrypter: Laravel 4.2 Encrypter for PHP 7.1\u002b The only supported ciphers are AES-128-CBC and AES-256-CBC · Issue #9080 · laravel\/framework Laravel 5.6.30 breaks passport · Issue #795 · laravel\/passport Authentication - Laravel - The PHP Framework For Web Artisans How to Create a Custom Authentication Guard in Laravel  "
+		"articleBody": "Laravel 5 認證支援 Laravel 4 Session Step1. Laravel 4 加密方式支援 AES Laravel 4 因為加密方式支援 rijndael-128，不支援 AES，所以無法使用 php 7.1 執行 Laravel 4 專案，在 Laravel 4 中的 app\/config\/app.php 檔案可以看到金鑰及加密方式的設定：\n\u0026lt;?php \/\/ Laravel 4 \/\/ app\/config\/app.php return [ \u0026#39;key\u0026#39; =\u0026gt; \u0026#39;randomStringLength32xxxxxxxxxxxx\u0026#39; \u0026#39;cipher\u0026#39; =\u0026gt; MCRYPT_RIJNDAEL_128, ]; Laravel 4 安裝 tomgrohl\/laravel4-php71-encrypter 套件支援 AES 加密\ncomposer require tomgrohl\/laravel4-php71-encrypter 修改 Nginx 設定使用 PHP 7.1\nserver { root \u0026quot;\/home\/kejyun\/web\/laravel-4-project\/public\u0026quot;; location ~ [^\/]\\.php(\/|$) { fastcgi_pass unix:\/run\/php\/php7.1-fpm.sock; } } 修改 Laravel 4 加密方式支援 AES-256\nAES-256 金鑰需要長度 32 的字串，AES-128 需要長度 16 的字串，我們支援 AES-256 所以需要將金鑰長度設定為 32\n\u0026lt;?php \/\/ Laravel 4 \/\/ app\/config\/app.php return [ \u0026#39;key\u0026#39; =\u0026gt; \u0026#39;randomStringLength32xxxxxxxxxxxx\u0026#39; \u0026#39;cipher\u0026#39; =\u0026gt; \u0026#39;AES-256-CBC\u0026#39;, ]; Step2. 修改 Laravel 5 金鑰格式 在使用 php artisan key:generate 產生 APP_KEY 時會產生 base64 的金鑰，但這樣格式的金鑰在 Laravel 4 是不支援的\n# .env APP_KEY=base64:z\u002bldCPR\/vzxMBzZ6k\u002bmptblu82qbeSM\u002bkK5ZVKOUdFg= 所以需要將 Laravel 4 的金鑰直接貼到 .env 檔案，不要經過 base64 的加密\n# .env APP_KEY=randomStringLength32xxxxxxxxxxxx  Step3. 修改 Laravel 5 Cookie 加密方式 由於 Laravel 4 會將 Cookie 的資料經過 serialize，但 Laravel 5 不會將 Cookie serialize，所以為了讓 Laravel 5 可以正常讀取 Laravel 4 的 Cookie，需要將 Laravel 5 serialize 的功能打開。\n在 app\/Http\/Middleware\/EncryptCookies.php 檔案中可以設定靜態變數 $serialize 為 true 即可。\n\u0026lt;?php \/\/ app\/Http\/Middleware\/EncryptCookies.php namespace App\\Http\\Middleware; use Illuminate\\Cookie\\Middleware\\EncryptCookies as Middleware; class EncryptCookies extends Middleware { protected static $serialize = true; } Step4. 修改 Laravel 5 Auth 驗證方式 Laravel 4的驗證 Auth 方法與 Laravel 5 有些許不同，主要是在取得 session 名稱 的方法有點不同，在 Laravel 4 的 vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php 可以看到 getName() 與 getRecallerName() 函式與 Laravel 5 不同\nLaravel 4 Guard\n vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php\n \u0026lt;?php namespace Illuminate\\Auth; \/\/ Laravel 4 \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/Guard.php  use Illuminate\\Cookie\\CookieJar; use Illuminate\\Events\\Dispatcher; use Symfony\\Component\\HttpFoundation\\Request; use Illuminate\\Session\\Store as SessionStore; use Symfony\\Component\\HttpFoundation\\Response; class Guard { \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.md5(get_class($this)); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.md5(get_class($this)); } } Laravel 5 Session Guard\n vendor\/laravel\/framework\/src\/Illuminate\/Auth\/SessionGuard.php\n \u0026lt;?php \/\/ Laravel 5 \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/SessionGuard.php  namespace Illuminate\\Auth; class SessionGuard implements StatefulGuard, SupportsBasicAuth { \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.$this-\u0026gt;name.\u0026#39;_\u0026#39;.sha1(static::class); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.$this-\u0026gt;name.\u0026#39;_\u0026#39;.sha1(static::class); } } 為了讓 Laravel 5 支援 Laravel 4 的 Session，則必須要將取得 Session 名稱 方法修改為 Laravel 4 的方式\nLaravel 5 目錄建立 app\/Auth\/Laravel4SessionGuard.php 檔案，繼承原本 Illuminate\\Auth\\SessionGuard 的方法，並加入 getName() 及 getRecallerName() 方法修改為 Laravel 4 的方法\n\u0026lt;?php namespace App\\Auth; use Auth; use Illuminate\\Auth\\SessionGuard; use Illuminate\\Contracts\\Auth\\Guard; class Laravel4SessionGuard extends SessionGuard implements Guard { protected $laravel4_guard_class_name = \u0026#39;Illuminate\\Auth\\Guard\u0026#39;; \/** * Get a unique identifier for the auth session value. * * @return string *\/ public function getName() { return \u0026#39;login_\u0026#39;.md5($this-\u0026gt;laravel4_guard_class_name); } \/** * Get the name of the cookie used to store the \u0026#34;recaller\u0026#34;. * * @return string *\/ public function getRecallerName() { return \u0026#39;remember_\u0026#39;.md5($this-\u0026gt;laravel4_guard_class_name); } \/** * Extend Auth for Laravel 4 *\/ public static function AuthExtend() { \/\/ vendor\/laravel\/framework\/src\/Illuminate\/Auth\/AuthManager.php  \/\/ - createSessionDriver  Auth::extend(\u0026#39;laravel4Session\u0026#39;, function ($app, $name, array $config) { $provider = Auth::createUserProvider($config[\u0026#39;provider\u0026#39;]); $guard = new Laravel4SessionGuard($name, $provider, $app[\u0026#39;session.store\u0026#39;]); \/\/ When using the remember me functionality of the authentication services we  \/\/ will need to be set the encryption instance of the guard, which allows  \/\/ secure, encrypted cookie values to get generated for those cookies.  if (method_exists($guard, \u0026#39;setCookieJar\u0026#39;)) { $guard-\u0026gt;setCookieJar($app[\u0026#39;cookie\u0026#39;]); } if (method_exists($guard, \u0026#39;setDispatcher\u0026#39;)) { $guard-\u0026gt;setDispatcher($app[\u0026#39;events\u0026#39;]); } if (method_exists($guard, \u0026#39;setRequest\u0026#39;)) { $guard-\u0026gt;setRequest($app-\u0026gt;refresh(\u0026#39;request\u0026#39;, $guard, \u0026#39;setRequest\u0026#39;)); } return $guard; }); } }  修改 config\/auth.php 設定檔案\n\u0026lt;?php return [ \u0026#39;defaults\u0026#39; =\u0026gt; [ \/\/ \u0026#39;guard\u0026#39; =\u0026gt; \u0026#39;web\u0026#39;,  \u0026#39;guard\u0026#39; =\u0026gt; \u0026#39;laravel4_web\u0026#39;, \u0026#39;passwords\u0026#39; =\u0026gt; \u0026#39;users\u0026#39;, ], \u0026#39;guards\u0026#39; =\u0026gt; [ \u0026#39;laravel4_web\u0026#39; =\u0026gt; [ \u0026#39;driver\u0026#39; =\u0026gt; \u0026#39;laravel4Session\u0026#39;, \u0026#39;provider\u0026#39; =\u0026gt; \u0026#39;users\u0026#39;, ], ], ]; Laravel 5 使用自訂驗證方法\n在 Laravel 5 中的 app\/Providers\/AuthServiceProvider.php 檔案中呼叫 Laravel4SessionGuard::AuthExtend(); 方法，之後即可讀取到 Laravel 4 產生的 Session 驗證資料\n\u0026lt;?php \/\/ Laravel 5 \/\/ app\/Providers\/AuthServiceProvider.php  namespace App\\Providers; use App\\Auth\\Laravel4SessionGuard; use Illuminate\\Support\\Facades\\Gate; use Illuminate\\Foundation\\Support\\Providers\\AuthServiceProvider as ServiceProvider; class AuthServiceProvider extends ServiceProvider { \/** * Register any authentication \/ authorization services. * * @return void *\/ public function boot() { $this-\u0026gt;registerPolicies(); \/\/ 設定 Laravel 4 Auth  Laravel4SessionGuard::AuthExtend(); } } 參考資料  tomgrohl\/laravel4-php71-encrypter: Laravel 4.2 Encrypter for PHP 7.1\u002b The only supported ciphers are AES-128-CBC and AES-256-CBC · Issue #9080 · laravel\/framework Laravel 5.6.30 breaks passport · Issue #795 · laravel\/passport Authentication - Laravel - The PHP Framework For Web Artisans How to Create a Custom Authentication Guard in Laravel  "
 	}
 </script>
 
@@ -496,14 +496,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1615217451"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1615217451"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1615219823"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1615219823"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/laravel5-book.kejyun.com\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1615217451"></script>
+<script type="text/javascript" src="/js/search.js?1615219823"></script>
 
     
   </div>
@@ -3844,7 +3844,18 @@ APP_KEY<span style="color:#f92672">=</span>base64:z+ldCPR/vzxMBzZ6k+mptblu82qbeS
 </code></pre></div><p>所以需要將 Laravel 4 的金鑰直接貼到 <code>.env</code> 檔案，不要經過 base64 的加密</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># .env</span>
 APP_KEY<span style="color:#f92672">=</span>randomStringLength32xxxxxxxxxxxx
-</code></pre></div><h2 id="step3-修改-laravel-5-cookie-加密方式">Step3. 修改 Laravel 5 Cookie 加密方式</h2>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<h2 id="step3-修改-laravel-5-cookie-加密方式">Step3. 修改 Laravel 5 Cookie 加密方式</h2>
 <p>由於 <code>Laravel 4</code> 會將 Cookie 的資料經過 <em>serialize</em>，但 <code>Laravel 5</code> 不會將 Cookie <em>serialize</em>，所以為了讓 <code>Laravel 5</code> 可以正常讀取 Laravel 4 的 Cookie，需要將 <code>Laravel 5</code> <em>serialize</em> 的功能打開。</p>
 <p>在 <code>app/Http/Middleware/EncryptCookies.php</code> 檔案中可以設定靜態變數 <code>$serialize</code> 為 <code>true</code> 即可。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
@@ -3989,7 +4000,18 @@ APP_KEY<span style="color:#f92672">=</span>randomStringLength32xxxxxxxxxxxx
         });
     }
 }
-</code></pre></div><p><em>修改 <code>config/auth.php</code> 設定檔案</em></p>
+</code></pre></div>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1990193713845546"
+     data-ad-slot="5417606383"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<p><em>修改 <code>config/auth.php</code> 設定檔案</em></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 
 <span style="color:#66d9ef">return</span> [
@@ -4080,28 +4102,6 @@ if (!doNotTrack) {
 }
 </script>
 
-
-
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
 
@@ -4290,6 +4290,28 @@ if (!doNotTrack) {
     </tr>
 </table>
 
+
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "laravel-5-learning-notes" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
 
     <div id="navigation">
@@ -6296,19 +6318,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.min.js?1615217451"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1615217451"></script>
-    <script src="/js/jquery.sticky.js?1615217451"></script>
-    <script src="/js/featherlight.min.js?1615217451"></script>
-    <script src="/js/highlight.pack.js?1615217451"></script>
+    <script src="/js/clipboard.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.min.js?1615219823"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1615219823"></script>
+    <script src="/js/jquery.sticky.js?1615219823"></script>
+    <script src="/js/featherlight.min.js?1615219823"></script>
+    <script src="/js/highlight.pack.js?1615219823"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1615217451"></script>
-    <script src="/js/learn.js?1615217451"></script>
-    <script src="/js/hugo-learn.js?1615217451"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1615219823"></script>
+    <script src="/js/learn.js?1615219823"></script>
+    <script src="/js/hugo-learn.js?1615219823"></script>
 
-    <link href="/mermaid/mermaid.css?1615217451" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1615217451"></script>
+    <link href="/mermaid/mermaid.css?1615219823" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1615219823"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
