@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>學習資源 on Laravel 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/resource/</link>
+    <description>Recent content in 學習資源 on Laravel 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 07 Mar 2021 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/resource/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>官方</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-official/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-official/</guid>
+      <description>官方學習資源 Framework  Laravel - The PHP Framework For Web Artisans Lumen - PHP Micro-Framework By Laravel  最新消息  Laravel News Laravel Weekly  文件 (Document)  Welcome! - Laravel PHP Framework Laravel wiki   API  Laravel 5 API Documentation  套件清單  Packalyst :: Packages for Laravel Packagist - tag laravel Laravel Collective Arsenal :: Cartalyst  作者  Taylor Otwell | Twitter  </description>
+    </item>
+    
+    <item>
+      <title>社群</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-community/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-community/</guid>
+      <description>社群 Facebook  PHP 台灣 Laravel 台灣 PHP 也有 Day Laravel (@laravelphp) | Twitter Laravel - 社群 - Google+ Laravel - Reddit Laravel - Quora Laravel - Facebook Laravel - LinkedIn  共享文件  歡迎來到 Laravel 台灣 - laraveltw.hackpad.com  活動  Laravel 台灣 - KKTIX   論壇  SitePoint PHP Scotch - Laravel http://www.codetutorial.io/tag/laravel/ Forum - Laravel.IO Laravel Forum - Laracssts The Laravel Podcast Laravel Slack laravel/laravel - Gitter  Blog  MattStauffer.</description>
+    </item>
+    
+    <item>
+      <title>會議議程</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-conference/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-conference/</guid>
+      <description>會議議程 會議  Laracon US Laracon EU ArtisanConf  會議影片  Laracon EU 2014 Laracon US 2014 Laracon EU 2013 Laracon US 2013  </description>
+    </item>
+    
+    <item>
+      <title>工作</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-jobs/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-jobs/</guid>
+      <description>工作  LaraJobs Laravel Consultants and Freelancers + Laravel Gurus WithLaravel - The job board for Laravel projects and developers  </description>
+    </item>
+    
+    <item>
+      <title>文件</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-document/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-document/</guid>
+      <description>文件 Laravel  A Laravel 5 Boilerplate Project Laravel Book Web development, design, and other nerdy topics! | Dayle Rees Laravel-簡潔、優雅的PHP開發框架(PHP Web Framework)。 - Laravel中文網Laravel中國社區 Simple Laravel ♥ Scotch Awesome Laravel Curso de Laravel 5 en español desde cero | styde.net Laravel Collective  PHP  Awesome PHP PHP-Tools SitePoint PHP – Learn PHP, MySQL, SOAP &amp;amp; more  設計模式  PSR 繁體中文   安裝  How to Setup Laravel 4 - Tuts+ Code Tutorial  指令函式  Laravel Cheat Sheet Laravel-Tricks.</description>
+    </item>
+    
+    <item>
+      <title>文章</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-article/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-article/</guid>
+      <description>文章 部落格  MattStauffer.co  文件  Awesome Laravel  除錯  Debugging Queries in Laravel  IoC  神奇的服务容器  事件  Step by Step Guide to Installing Socket.io and Broadcasting Events with Laravel 5.1  </description>
+    </item>
+    
+    <item>
+      <title>套件</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-packages/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-packages/</guid>
+      <description>套件 清單  Packalyst :: Packages for Laravel Packagist - tag laravel Laravel Collective Arsenal :: Cartalyst Built with Laravel  時間  Carbon - A simple PHP API extension for DateTime.  編輯器  Laravel Markdown  檔案  Laravel Flysystem  除錯  The missing tail command for Laravel 5 Laravel Exceptions Laravel Debugbar  條碼  Simple QrCode   社群  Laravel GitHub  CMS  Wardrobe Bootstrap CMS TypiCMS PHPHub Cachet Paperwork  Open Source  laravel-tricks  </description>
+    </item>
+    
+    <item>
+      <title>教學影片</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-learning-video/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-learning-video/</guid>
+      <description>教學影片 English 初學  Laravel 5 Fundamentals What&amp;rsquo;s New in Laravel 5.1 Laravel Basics Course Laravel From Scratch  進階  The Best Laravel and PHP Screencasts PHP Academy Anthony Vipond muukrls Lynda Laravel Tuts+ Code Courses - Laravel  繁體中文  Laravel 台灣 - Youtube  </description>
+    </item>
+    
+    <item>
+      <title>服務工具</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-laravel-service/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-laravel-service/</guid>
+      <description>佈署程式  Laravel Forge  ForgeRecipes   Envoyer - Zero Downtime PHP Deployment Laravel hosting in the cloud Rocketeer  </description>
+    </item>
+    
+    <item>
+      <title>教學網站</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-learning-website/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-learning-website/</guid>
+      <description>教學網站 英文  Laravel Recipes Laravel-Tricks.com Web development, design, and other nerdy topics! | Dayle Rees Laravel Book PHP: The Right Way  中文  Laravel 初體驗 - 實作 Blog 系統 | Laravel Dojo PHP: The Right Way 繁體中文  </description>
+    </item>
+    
+    <item>
+      <title>編輯開發</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-editor-tool/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-editor-tool/</guid>
+      <description>Sublime  Pro Workflow in Laravel and Sublime Text - Tuts+ Code Tutorial  </description>
+    </item>
+    
+    <item>
+      <title>主機</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-hosting/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-hosting/</guid>
+      <description>主機 Hosting  Amazon Web Services (AWS) Google Cloud Computing Services (GCP) Microsoft Azure DigitalOcean Linode Heroku OpenShift Vultr  教學  Run Laravel 5.1 on OpenShift Installing a Laravel app on Heroku Laravel 5 - Pagoda Box Documentation  </description>
+    </item>
+    
+    <item>
+      <title>成功案例</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-laravel-case/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-laravel-case/</guid>
+      <description>案例  VDemocracy.tw - 群眾募資‧群眾集資網站 Crowdfunding Platform in Taiwan Builtwithlaravel.com  </description>
+    </item>
+    
+  </channel>
+</rss>

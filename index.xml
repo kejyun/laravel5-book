@@ -1,15 +1,62 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>首頁 on Laravel 5 學習筆記</title>
+    <title>首頁 on Laravel 學習筆記</title>
     <link>https://laravel5-book.kejyun.com/</link>
-    <description>Recent content in 首頁 on Laravel 5 學習筆記</description>
+    <description>Recent content in 首頁 on Laravel 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>
     
 	<atom:link href="https://laravel5-book.kejyun.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Call to undefined method getCachedCompilePath()</title>
+      <link>https://laravel5-book.kejyun.com/qa/qa-call-undefined-method-getcachedcompilepath/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/qa/qa-call-undefined-method-getcachedcompilepath/</guid>
+      <description>Call to undefined method getCachedCompilePath() 我在使用 Laravel 5.0.x 時，使用 composer update 去更新目前的套件時，跳出了這樣的訊息：
+（PS:也有人在執行 php artisan clear-compiled 出現這樣的狀況）
+ PHP Fatal error: Call to undefined method Illuminate\Foundation\Application::getCachedCompilePath()
+ 這個是因為 Laravel 5 在執行時會把整個 Framework 編譯到 storage/framework/compiled.php，若這個檔案已產生，Laravel 5 在更新套件時執行一些相關 Laravel 的功能時，會預設執行 compiled.php 檔案中的類別函式，而更新的檔案中有 getCachedCompilePath() 這個方法，所以呼叫時 Laravel 會在舊的 compiled.php 找不到這個方法
+ 解決方式
+直接把 storage/framework/compiled.php 刪除即可，Laravel 5 會自動重新產生這個 compiled.php 檔案！
+參考資料  RuntimeException on fresh install  </description>
+    </item>
+    
+    <item>
+      <title>Redis</title>
+      <link>https://laravel5-book.kejyun.com/software/software-redis/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/software/software-redis/</guid>
+      <description>Redis 管理  Redis Desktop Manager - Redis GUI management tool for Windows, Mac OS X, Ubuntu and Debian. Redis-Commander Medis - GUI Manager for Redis  </description>
+    </item>
+    
+    <item>
+      <title>安裝 Nginx</title>
+      <link>https://laravel5-book.kejyun.com/hosting/nginx/hosting-install-nginx/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/hosting/nginx/hosting-install-nginx/</guid>
+      <description>安裝 Nginx 更新系統套件 sudo apt-get update 安裝 Nginx 使用 Ubuntu 內建的 nginx 套件安裝，安裝完後預設的 nginx 設定檔是 /etc/nginx/sites-available/default，網站目錄會在 /usr/share/nginx/html
+sudo apt-get install nginx  設定虛擬主機 Virtualhost 設定 編輯新的 virtualhost 設定檔案
+在這裡通常我會用主機網域名稱當作他的檔案名稱，如果我有一個網域是 kejyun.dev，則我就會用 kejyun.dev 當作虛擬主機設定檔名稱
+sudo vim /etc/nginx/sites-available/kejyun.dev 設定 Listen 的 port 設定主機要使用哪一個 port 傾聽 HTTP 請求
+listen 80; 設定服務主機名稱 設定你申請的網域名稱，nginx 會以 HTTP Request 的網域不同導向不同的 Virtualhost，所以一定要設定，以下以 kejyun.dev 為例
+server_name kejyun.dev; 設定網站根目錄路徑 我們將 Laravel 5 的程式放在使用者 kejyun 的家目錄下，而我們必須要將網站路徑指定到 Laravel 專案下的 public 目錄下才可以正常執行 Laravel 專案</description>
+    </item>
+    
+    <item>
+      <title>官方</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-official/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-official/</guid>
+      <description>官方學習資源 Framework  Laravel - The PHP Framework For Web Artisans Lumen - PHP Micro-Framework By Laravel  最新消息  Laravel News Laravel Weekly  文件 (Document)  Welcome! - Laravel PHP Framework Laravel wiki   API  Laravel 5 API Documentation  套件清單  Packalyst :: Packages for Laravel Packagist - tag laravel Laravel Collective Arsenal :: Cartalyst  作者  Taylor Otwell | Twitter  </description>
+    </item>
     
     <item>
       <title>AMP 文章</title>
@@ -355,6 +402,55 @@ Migration 指令 建立 Migration $ php artisan make:migration create_users_tabl
     </item>
     
     <item>
+      <title>安裝 php 7</title>
+      <link>https://laravel5-book.kejyun.com/hosting/php/hosting-install-php7/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/hosting/php/hosting-install-php7/</guid>
+      <description>安裝 php 7 加入 php 7 套件資源庫 目前（2016/03） php7 沒有在 Ubuntu 的預設套件庫中，所以若要使用 php7 的話，則必須要自行加入此套件庫，這樣我們才能在 Ubuntu 安裝 php7
+sudo add-apt-repository ppa:ondrej/php 更新套件資源庫 加入新的套件資源庫後，必須進行系統套件清單更新，才能夠讀取到新的套件設定
+sudo apt-get update  安裝 php7 套件  php7.0-fpm ： Nginx 解析 php 檔案的工具 php7.0-mysql ： 連線 mysql php7.0-mcrypt ： Laravel 加解密工具   其他套件是我在 Laravel 專案中需要的套件，可以依照自己需求去進行安裝
+ sudo apt-get install php7.0-fpm php7.0-mysql php7.0-mcrypt php7.0-gd php7.0-cli php7.0-curl php7.0-imap 設定 php7.0-fpm 若有需要變更任何 php7.0-fpm 的任何設定，可以修改下列設定檔案
+sudo vim /etc/php/7.0/fpm/pool.d/www.conf 像是您如果想要把異動傾聽 php 的執行擁有者變更為 kejyun，您可以做以下的設定</description>
+    </item>
+    
+    <item>
+      <title>社群</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-community/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-community/</guid>
+      <description>社群 Facebook  PHP 台灣 Laravel 台灣 PHP 也有 Day Laravel (@laravelphp) | Twitter Laravel - 社群 - Google+ Laravel - Reddit Laravel - Quora Laravel - Facebook Laravel - LinkedIn  共享文件  歡迎來到 Laravel 台灣 - laraveltw.hackpad.com  活動  Laravel 台灣 - KKTIX   論壇  SitePoint PHP Scotch - Laravel http://www.codetutorial.io/tag/laravel/ Forum - Laravel.IO Laravel Forum - Laracssts The Laravel Podcast Laravel Slack laravel/laravel - Gitter  Blog  MattStauffer.</description>
+    </item>
+    
+    <item>
+      <title>變更專案目錄名稱導致 View 無法讀取</title>
+      <link>https://laravel5-book.kejyun.com/qa/qa-change-app-directory-name-cause-view-can-not-readable/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/qa/qa-change-app-directory-name-cause-view-can-not-readable/</guid>
+      <description>變更專案目錄名稱導致 View 無法讀取 在想要變更原先 Laravel 5 的專案目錄時，Laravel 5 會告訴你你沒辦法讀取到 view 的目錄，看了錯誤的訊息發現這個 view 的目錄是在原先舊專案的目錄名稱下
+錯誤訊息長得像這樣：
+InvalidArgumentException in FileViewFinder.php line 137: View [welcome] not found.  這個原因是 Laravel 5 會將設定檔作快取存下來到 bootstrap/cache/config.php 目錄下面，而這個快取的檔案是原本舊專案的設定，所以我們必須要清除這個快取，才可以讓 Laravel 5 可以讀取到新的設定，這時候我們可以在 artisan 下這些指令，清除原先專案的快取設定：
+$ php artisan config:clear $ php artisan view:clear 執行清除這些快取資料後，我們就可以正常的的獨到新專案目錄下的 view 資料摟！</description>
+    </item>
+    
+    <item>
+      <title>讓編輯器識別 Facade 類別</title>
+      <link>https://laravel5-book.kejyun.com/editor/tips/editor-tips-recognize-facade-class/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/editor/tips/editor-tips-recognize-facade-class/</guid>
+      <description>Call to undefined method getCachedCompilePath() 我在使用 Laravel 5.0.x 時，使用 composer update 去更新目前的套件時，跳出了這樣的訊息：
+（PS:也有人在執行 php artisan clear-compiled 出現這樣的狀況）
+ PHP Fatal error: Call to undefined method Illuminate\Foundation\Application::getCachedCompilePath()
+ 這個是因為 Laravel 5 在執行時會把整個 Framework 編譯到 storage/framework/compiled.php，若這個檔案已產生，Laravel 5 在更新套件時執行一些相關 Laravel 的功能時，會預設執行 compiled.php 檔案中的類別函式，而更新的檔案中有 getCachedCompilePath() 這個方法，所以呼叫時 Laravel 會在舊的 compiled.php 找不到這個方法
+解決方式
+直接把 storage/framework/compiled.php 刪除即可，Laravel 5 會自動重新產生這個 compiled.php 檔案！
+ 參考資料  RuntimeException on fresh install  </description>
+    </item>
+    
+    <item>
       <title>Artisan tail</title>
       <link>https://laravel5-book.kejyun.com/package/debug/package-debug-artisan-tail/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
@@ -599,6 +695,40 @@ class User extends Model { protected $fillable = [&amp;#39;id&amp;#39;, &amp;#39
     </item>
     
     <item>
+      <title>Segmentation fault: 11 when seeding</title>
+      <link>https://laravel5-book.kejyun.com/qa/qa-segmentation-fault-11-when-seeding/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/qa/qa-segmentation-fault-11-when-seeding/</guid>
+      <description>Segmentation fault: 11 when seeding 在使用 Laravel 的 Pagination 的時候，因為畫面有些許異動需要改 Pagination 的結構樣式，所以需要使用 artisan 產生預設的樣板
+php artisan vendor:publish --tag=laravel-pagination 在執行完指令後，跑出了 Segmentation fault: 11 的訊息
+Segmentation fault: 11  經查詢後，發現這個是 PHP 版本的問題
+因為我用 Homestead，專案目錄與 Homestead 同步，所以索性我在 OSX 下這個指令，但我 OSX 的 PHP 版本似乎過舊，所以就 ssh 到 Homestead 中去下這個命令就好了～
+vagrant ssh cd ~/Code/project ~/Code/project$ php artisan vendor:publish --tag=laravel-pagination Copied Directory [/vendor/laravel/framework/src/Illuminate/Pagination/resources/views] To [/resources/views/vendor/pagination] Publishing complete. 參考資料  Database: Pagination Segmentation fault: 11 when seeding · Issue #3921 · laravel/framework  </description>
+    </item>
+    
+    <item>
+      <title>安裝 composer</title>
+      <link>https://laravel5-book.kejyun.com/hosting/composer/hosting-install-composer/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/hosting/composer/hosting-install-composer/</guid>
+      <description>安裝 composer 下載 composer php -r &amp;#34;copy(&amp;#39;https://getcomposer.org/installer&amp;#39;, &amp;#39;composer-setup.php&amp;#39;);&amp;#34; php -r &amp;#34;if (hash_file(&amp;#39;sha384&amp;#39;, &amp;#39;composer-setup.php&amp;#39;) === &amp;#39;756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3&amp;#39;) { echo &amp;#39;Installer verified&amp;#39;; } else { echo &amp;#39;Installer corrupt&amp;#39;; unlink(&amp;#39;composer-setup.php&amp;#39;); } echo PHP_EOL;&amp;#34; php composer-setup.php php -r &amp;#34;unlink(&amp;#39;composer-setup.php&amp;#39;);&amp;#34; 將 composer 執行檔移動到系統環境變數路徑 移動過去系統環境變數路徑中，這樣所有系統的使用者才都可以執行
+sudo mv composer.phar /usr/bin/composer 安裝所有 Laravel 專案套件 在我們將程式使用 git 推送到主機時，vendor 下所有的套件都不會被推送到主機，所以程式碼上去主機後，需要自己作安裝套件的動作
+cd /home/kejyun/laravel55 composer install 這樣我們就完成了 composer 的安裝跟安裝 Laravel 專案套件了
+ proc_open(): fork failed - Cannot allocate memory 無法配置記憶體安裝套件 1. 可以將 php.ini 的 memory_limit 提高</description>
+    </item>
+    
+    <item>
+      <title>會議議程</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-conference/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-conference/</guid>
+      <description>會議議程 會議  Laracon US Laracon EU ArtisanConf  會議影片  Laracon EU 2014 Laracon US 2014 Laracon EU 2013 Laracon US 2013  </description>
+    </item>
+    
+    <item>
       <title>Password Grant</title>
       <link>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-password-grant/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
@@ -776,6 +906,29 @@ class User extends CustomBaseModel { protected $fillable = [&amp;#39;first_name&
     </item>
     
     <item>
+      <title>安裝 MySQL 5.7</title>
+      <link>https://laravel5-book.kejyun.com/hosting/mysql/hosting-install-mysql57/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/hosting/mysql/hosting-install-mysql57/</guid>
+      <description>安裝 MySQL 5.7 設定 MySQL 5.7 套件資源庫 目前（2016/03） MySQL 5.7 沒有在 Ubuntu 的預設套件庫中，所以若要使用 MySQL 5.7 的話，則必須要設定加入此套件庫，這樣我們才能在 Ubuntu 安裝 MySQL 5.7
+wget http://dev.mysql.com/get/mysql-apt-config_0.6.0-1_all.deb sudo dpkg -i mysql-apt-config_0.6.0-1_all.deb sudo dpkg-reconfigure mysql-apt-config 設定使用 MySQL 當作預設安裝版本
+設定完成點 Apply 完成設定
+ 更新套件資源庫 加入新的套件資源庫後，必須進行系統套件清單更新，才能夠讀取到新的套件設定
+sudo apt-get update 安裝 MySQL sudo apt-get install mysql-server-5.7 這樣就完成 MySQL 5.7 的安裝了！
+參考資料  MySQL :: A Quick Guide to Using the MySQL APT Repository MySQL :: Download MySQL APT Repository  </description>
+    </item>
+    
+    <item>
+      <title>工作</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-jobs/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-jobs/</guid>
+      <description>工作  LaraJobs Laravel Consultants and Freelancers + Laravel Gurus WithLaravel - The job board for Laravel projects and developers  </description>
+    </item>
+    
+    <item>
       <title>Refresh Token</title>
       <link>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-refresh-token/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
@@ -857,6 +1010,27 @@ try { throw new Exception(&amp;#39;Hello there is something wrong&amp;#39;); } c
     </item>
     
     <item>
+      <title>安裝 Memcached</title>
+      <link>https://laravel5-book.kejyun.com/hosting/memcached/hosting-install-memcached/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/hosting/memcached/hosting-install-memcached/</guid>
+      <description>安裝 Memcached 安裝 直接安裝 Ubuntu 的 Memcached 套件
+sudo apt-get install memcached sudo apt-get install libmemcached-dev libmemcached11 設定 php 7 Memcached 套件 php 7 讀取 Memcached 的套件還是在開發版，沒辦法直接使用 apt-get 去完成安裝，所以我們要自行下載開發版套件去進行編譯安裝
+安裝 php 7 套件編譯軟體 php7.0-dev 是為了執行 php7 的 phpize 而安裝的
+sudo apt-get install pkg-config sudo apt-get install php7.0-dev  下載 php Memcached 套件 git clone https://github.com/php-memcached-dev/php-memcached 切換開發版套件路徑 cd php-memcached git checkout -b php7 origin/php7 編譯 php7 Memcached 套件 phpize ./configure make make test sudo make install  設定載入 php7 memcached 套件 sudo vim /etc/php/7.</description>
+    </item>
+    
+    <item>
+      <title>文件</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-document/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-document/</guid>
+      <description>文件 Laravel  A Laravel 5 Boilerplate Project Laravel Book Web development, design, and other nerdy topics! | Dayle Rees Laravel-簡潔、優雅的PHP開發框架(PHP Web Framework)。 - Laravel中文網Laravel中國社區 Simple Laravel ♥ Scotch Awesome Laravel Curso de Laravel 5 en español desde cero | styde.net Laravel Collective  PHP  Awesome PHP PHP-Tools SitePoint PHP – Learn PHP, MySQL, SOAP &amp;amp; more  設計模式  PSR 繁體中文   安裝  How to Setup Laravel 4 - Tuts+ Code Tutorial  指令函式  Laravel Cheat Sheet Laravel-Tricks.</description>
+    </item>
+    
+    <item>
       <title>Password Grant with Scope</title>
       <link>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-password-grant-with-scope/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
@@ -900,6 +1074,27 @@ INSERT INTO &amp;#34;oauth_scopes&amp;#34; (&amp;#34;id&amp;#34;, &amp;#34;descr
     </item>
     
     <item>
+      <title>安裝 Redis</title>
+      <link>https://laravel5-book.kejyun.com/hosting/redis/hosting-install-redis/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/hosting/redis/hosting-install-redis/</guid>
+      <description>安裝 Redis 設定 Redis 套件資源庫 sudo add-apt-repository ppa:chris-lea/redis-server sudo apt-get update 安裝 sudo apt-get install redis-server 設定 Redis Redis 設定檔放在/etc/redis/redis.conf
+sudo vim /etc/redis/redis.conf 設定設定檔
+requirepass 你的 Redis 連線密碼 #bind 127.0.0.1 不要限定只有本機才能連線 maxmemory-policy noeviction appendonly yes appendfilename redis-staging-ao.aof  重新啟動 Redis sudo service redis-server restart 這樣我們就完成 Redis 的安裝了！！
+參考資料  How To Configure a Redis Cluster on Ubuntu 14.04 | DigitalOcean  </description>
+    </item>
+    
+    <item>
+      <title>文章</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-article/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-article/</guid>
+      <description>文章 部落格  MattStauffer.co  文件  Awesome Laravel  除錯  Debugging Queries in Laravel  IoC  神奇的服务容器  事件  Step by Step Guide to Installing Socket.io and Broadcasting Events with Laravel 5.1  </description>
+    </item>
+    
+    <item>
       <title>驗證 Access Token</title>
       <link>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-access-token-authentication/</link>
       <pubDate>Sun, 07 Mar 2021 21:24:42 +0800</pubDate>
@@ -919,6 +1114,27 @@ INSERT INTO &amp;#34;oauth_scopes&amp;#34; (&amp;#34;id&amp;#34;, &amp;#34;descr
       <description>Eloquent 小技巧 取得主鍵名稱 - getKeyName() User Eloquent 物件
 &amp;lt;?php use Illuminate\Database\Eloquent\Model; class User extends Model { protected $table = &amp;#39;user&amp;#39;; protected $primaryKey = &amp;#39;user_id&amp;#39;; } 取得主鍵名稱
 &amp;lt;?php $User = new User; $primary_key_name = $User-&amp;gt;getKeyName(); // user_id </description>
+    </item>
+    
+    <item>
+      <title>套件</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-packages/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-packages/</guid>
+      <description>套件 清單  Packalyst :: Packages for Laravel Packagist - tag laravel Laravel Collective Arsenal :: Cartalyst Built with Laravel  時間  Carbon - A simple PHP API extension for DateTime.  編輯器  Laravel Markdown  檔案  Laravel Flysystem  除錯  The missing tail command for Laravel 5 Laravel Exceptions Laravel Debugbar  條碼  Simple QrCode   社群  Laravel GitHub  CMS  Wardrobe Bootstrap CMS TypiCMS PHPHub Cachet Paperwork  Open Source  laravel-tricks  </description>
+    </item>
+    
+    <item>
+      <title>安裝 Memcached</title>
+      <link>https://laravel5-book.kejyun.com/hosting/lets-encrypt/hosting-install-lets-encrypt/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/hosting/lets-encrypt/hosting-install-lets-encrypt/</guid>
+      <description>安裝 Let&amp;rsquo;s Encrypt 為了推廣 SSL 憑證，Let&amp;rsquo;s Encrypt 提供了免費的 SSL 憑證，可以讓你們的主機也有 SSL 加密的保障
+但是 Let&amp;rsquo;s Encrypt 提供的憑證有效期限每次只有 90 天的效期，若過期之後需要重新更新憑證方可繼續使用
+下載 wget https://dl.eff.org/certbot-auto chmod a+x certbot-auto 安裝 SSL 憑證 在安裝 SSL 憑證時需要將您的 Nginx 主機服務關閉，才能進行憑證驗證
+How would you like to authenticate with the ACME CA? ------------------------------------------------------------------------------- 1: Place files in webroot directory (webroot) 2: Spin up a temporary webserver (standalone) ------------------------------------------------------------------------------- Select the appropriate number [1-2] then [enter] (press &amp;#39;c&amp;#39; to cancel): 用 nginx 選擇 standalone，若是 apache 則選擇用 webroot</description>
     </item>
     
     <item>
@@ -946,6 +1162,24 @@ $count = DB::table( DB::raw(&amp;#34;({$SubQuery-&amp;gt;toSql()}) as sub&amp;#3
     </item>
     
     <item>
+      <title>教學影片</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-learning-video/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-learning-video/</guid>
+      <description>教學影片 English 初學  Laravel 5 Fundamentals What&amp;rsquo;s New in Laravel 5.1 Laravel Basics Course Laravel From Scratch  進階  The Best Laravel and PHP Screencasts PHP Academy Anthony Vipond muukrls Lynda Laravel Tuts+ Code Courses - Laravel  繁體中文  Laravel 台灣 - Youtube  </description>
+    </item>
+    
+    <item>
+      <title>服務工具</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-laravel-service/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-laravel-service/</guid>
+      <description>佈署程式  Laravel Forge  ForgeRecipes   Envoyer - Zero Downtime PHP Deployment Laravel hosting in the cloud Rocketeer  </description>
+    </item>
+    
+    <item>
       <title>雜湊（Hashing）</title>
       <link>https://laravel5-book.kejyun.com/services/hashing/hashing-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
@@ -956,6 +1190,15 @@ $count = DB::table( DB::raw(&amp;#34;({$SubQuery-&amp;gt;toSql()}) as sub&amp;#3
 設定 在 Laravel 做「雜湊」演算法時，會使用 config/app.php 中的 key 值去當作雜湊的 salt，自己的應用需要設定自己的 key 值，若沒有設定的話被加密過的值還是有可能被暴力破解出來，所以要記得去設定，而這個 key 值若變更了，雜湊的驗證也不會相同喔～
  使用 雜湊 // 雜湊 $original_password = &amp;#39;密碼明碼&amp;#39;; $hash_password = Hash::make($original_password); 驗證 // 雜湊 $original_password = &amp;#39;密碼明碼&amp;#39;; $hash_password = Hash::make($original_password); // 驗證 $check_result = Hash::check($original_password, $hash_password); // true var_dump($check_result); 備註 重複雜湊相同的資料得到的密文不會一樣，所以不要使用像 md5 的方式去比對密文資料是否相同
  使用 md5 比較密文 $original_password = &amp;#39;密碼明碼&amp;#39;; // 第 1 次使用 md5 加密的資料 $first_md5_hash_password = md5($original_password); // 第 2 次使用 md5 加密的資料 $second_md5_hash_password = md5($original_password); // 資料相同 // true var_dump($first_md5_encrypt_password === $second_md5_encrypt_password); 雖然每次雜湊的結果都不一樣，但你可以放心的將任何一次雜湊的資料存放到資料庫中，因為雖然密文不同，但 Laravel 的雜湊演算法，還是可以比對出來是不是由相同的資料去做雜湊的</description>
+    </item>
+    
+    <item>
+      <title>教學網站</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-learning-website/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-learning-website/</guid>
+      <description>教學網站 英文  Laravel Recipes Laravel-Tricks.com Web development, design, and other nerdy topics! | Dayle Rees Laravel Book PHP: The Right Way  中文  Laravel 初體驗 - 實作 Blog 系統 | Laravel Dojo PHP: The Right Way 繁體中文  </description>
     </item>
     
     <item>
@@ -971,6 +1214,15 @@ Route::group([&amp;#39;middleware&amp;#39; =&amp;gt; [&amp;#39;force-json-respon
     </item>
     
     <item>
+      <title>編輯開發</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-editor-tool/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-editor-tool/</guid>
+      <description>Sublime  Pro Workflow in Laravel and Sublime Text - Tuts+ Code Tutorial  </description>
+    </item>
+    
+    <item>
       <title>任務排程（Scheduling）</title>
       <link>https://laravel5-book.kejyun.com/services/scheduling/scheduling-intro/</link>
       <pubDate>Sun, 30 Aug 2020 21:24:42 +0800</pubDate>
@@ -982,6 +1234,24 @@ $ crontab -e 在用到 crontab 的時候，我們需要瞭解怎麼設定排程�
 # 每天凌晨 3 點統計昨天的 Pageview 0 3 * * * /usr/bin/php /home/kejyun/laravel4/artisan cronjob:statisticYesterdayPageview 在前方可以看到有 5 個數字可以做設定，依序分別代表的意思為：
  分鐘 (0-59) 小時 (0-23) 每個月第幾天 (1-31) 月份 (1-12) 每週的第幾天 (0-6) 0：星期日 1：星期一 2：星期二 3：星期三 4：星期四 5：星期五 6：星期六  這 5 個參數之間用空白隔開，每個參數除了設定單一個數字，也可以用逗號(,)去隔開設定相同單位的時間設定，像是：
 # 每天凌晨 4 點及 16 點寄送廣告信 0 4,16 * * * /usr/bin/php /home/kejyun/laravel4/artisan cronjob:sendCommercialMail  這裏有一些相關的設定範例可以當作參考：</description>
+    </item>
+    
+    <item>
+      <title>主機</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-hosting/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-hosting/</guid>
+      <description>主機 Hosting  Amazon Web Services (AWS) Google Cloud Computing Services (GCP) Microsoft Azure DigitalOcean Linode Heroku OpenShift Vultr  教學  Run Laravel 5.1 on OpenShift Installing a Laravel app on Heroku Laravel 5 - Pagoda Box Documentation  </description>
+    </item>
+    
+    <item>
+      <title>成功案例</title>
+      <link>https://laravel5-book.kejyun.com/resource/resource-laravel-case/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/resource/resource-laravel-case/</guid>
+      <description>案例  VDemocracy.tw - 群眾募資‧群眾集資網站 Crowdfunding Platform in Taiwan Builtwithlaravel.com  </description>
     </item>
     
     <item>

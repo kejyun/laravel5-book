@@ -1,5 +1,40 @@
 [
 {
+	"uri": "https://laravel5-book.kejyun.com/qa/qa-call-undefined-method-getcachedcompilepath/",
+	"title": "Call to undefined method getCachedCompilePath()",
+	"tags": [],
+	"description": "",
+	"content": "Call to undefined method getCachedCompilePath() 我在使用 Laravel 5.0.x 時，使用 composer update 去更新目前的套件時，跳出了這樣的訊息：\n（PS:也有人在執行 php artisan clear-compiled 出現這樣的狀況）\n PHP Fatal error: Call to undefined method Illuminate\\Foundation\\Application::getCachedCompilePath()\n 這個是因為 Laravel 5 在執行時會把整個 Framework 編譯到 storage/framework/compiled.php，若這個檔案已產生，Laravel 5 在更新套件時執行一些相關 Laravel 的功能時，會預設執行 compiled.php 檔案中的類別函式，而更新的檔案中有 getCachedCompilePath() 這個方法，所以呼叫時 Laravel 會在舊的 compiled.php 找不到這個方法\n 解決方式\n直接把 storage/framework/compiled.php 刪除即可，Laravel 5 會自動重新產生這個 compiled.php 檔案！\n參考資料  RuntimeException on fresh install  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/software/software-redis/",
+	"title": "Redis",
+	"tags": [],
+	"description": "",
+	"content": "Redis 管理  Redis Desktop Manager - Redis GUI management tool for Windows, Mac OS X, Ubuntu and Debian. Redis-Commander Medis - GUI Manager for Redis  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/hosting/nginx/hosting-install-nginx/",
+	"title": "安裝 Nginx",
+	"tags": [],
+	"description": "",
+	"content": "安裝 Nginx 更新系統套件 sudo apt-get update 安裝 Nginx 使用 Ubuntu 內建的 nginx 套件安裝，安裝完後預設的 nginx 設定檔是 /etc/nginx/sites-available/default，網站目錄會在 /usr/share/nginx/html\nsudo apt-get install nginx  設定虛擬主機 Virtualhost 設定 編輯新的 virtualhost 設定檔案\n在這裡通常我會用主機網域名稱當作他的檔案名稱，如果我有一個網域是 kejyun.dev，則我就會用 kejyun.dev 當作虛擬主機設定檔名稱\nsudo vim /etc/nginx/sites-available/kejyun.dev 設定 Listen 的 port 設定主機要使用哪一個 port 傾聽 HTTP 請求\nlisten 80; 設定服務主機名稱 設定你申請的網域名稱，nginx 會以 HTTP Request 的網域不同導向不同的 Virtualhost，所以一定要設定，以下以 kejyun.dev 為例\nserver_name kejyun.dev; 設定網站根目錄路徑 我們將 Laravel 5 的程式放在使用者 kejyun 的家目錄下，而我們必須要將網站路徑指定到 Laravel 專案下的 public 目錄下才可以正常執行 Laravel 專案\nroot \u0026quot;/home/kejyun/laravel52/public\u0026quot;; 設定 Log 路徑 設定當 Request 發生錯誤的時候，本 Virtualhost 要將 Log 存放在哪個檔案\nerror_log /var/log/nginx/kejyun.dev-error.log error; 完整虛擬主機設定 設定檔中有包括設定 php 檔案處理方式，在這邊我們可以先設定，等之後安裝完 php 7 時就可以直接使用\nserver { # 設定 Listen 的 port listen 80; # 設定服務主機名稱 server_name kejyun.dev; # 設定網站根目錄路徑 root \u0026quot;/home/kejyun/laravel52/public\u0026quot;; # 設定讀取檔案優先順序 index index.html index.htm index.php; # 設定網站編碼 charset utf-8; location / { try_files $uri $uri/ /index.php?$query_string; } location = /favicon.ico { access_log off; log_not_found off; } location = /robots.txt { access_log off; log_not_found off; } access_log off; # 設定 Log 路徑 error_log /var/log/nginx/kejyun.dev-error.log error; sendfile off; client_max_body_size 100m; # 設定 php 檔案處理方式 location ~ \\.php$ { fastcgi_split_path_info ^(.+\\.php)(/.+)$; fastcgi_pass unix:/var/run/php/php7.0-fpm.sock; fastcgi_index index.php; include fastcgi_params; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; fastcgi_intercept_errors off; fastcgi_buffer_size 16k; fastcgi_buffers 4 16k; fastcgi_connect_timeout 300; fastcgi_send_timeout 300; fastcgi_read_timeout 300; } location ~ /\\.ht { deny all; } } 連結虛擬主機 Virtualhost 設定 Nginx 虛擬主機設定主要是讀取 /etc/nginx/sites-enabled/ 目錄下的所有檔案，如果要讓此設定檔案啟用，則必須要將原設定檔目錄 /etc/nginx/sites-available/ 的設定檔案使用軟連結連結過去\nsudo ln -s /etc/nginx/sites-available/kejyun.dev /etc/nginx/sites-enabled/kejyun.dev 重新啟動 nginx 重新啟動 nginx 以讀取新的設定\nsudo service nginx restart 這樣我們就完成了 Nginx Server 的設定了！！\n參考資料  How To Set Up nginx Virtual Hosts (Server Blocks) on Ubuntu 12.04 LTS php - How do I change the NGINX user? - Server Fault  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-official/",
+	"title": "官方",
+	"tags": [],
+	"description": "",
+	"content": "官方學習資源 Framework  Laravel - The PHP Framework For Web Artisans Lumen - PHP Micro-Framework By Laravel  最新消息  Laravel News Laravel Weekly  文件 (Document)  Welcome! - Laravel PHP Framework Laravel wiki   API  Laravel 5 API Documentation  套件清單  Packalyst :: Packages for Laravel Packagist - tag laravel Laravel Collective Arsenal :: Cartalyst  作者  Taylor Otwell | Twitter  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/editor/tips/",
+	"title": "小技巧",
+	"tags": [],
+	"description": "",
+	"content": "這裡會介紹一些開發 Laravel 的編輯器小技巧\n"
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/package/html/package-html-amp-readme/",
 	"title": "AMP 文章",
 	"tags": [],
@@ -217,6 +252,34 @@
 	"content": "資料庫常見問題：無法取得查詢 Log 在 Laravel 4 為了要確定下的 SQL 語法有符合我們預期，我們常常在做完資料庫查詢後，使用 DB::getQueryLog(); 去取得做資料庫查詢的 Qeury Log，但因為 Laravel 會把這些 Log 都記錄在記憶體中，如果做了大量的新增的查詢，記憶體會使用過多可能會造成系統 Crash。\n所以 Laravel 5 預設把記錄 Query Log 的機制關閉，若需要做 Query Debug，需要自行打開 Qeury Log 功能\n\u0026lt;?php // 啟用 Query Log 功能 DB::connection()-\u0026gt;enableQueryLog(); 這樣我們就可以使用 DB::getQueryLog(); 去取得做資料庫查詢的 Qeury Log 摟！！ 要得到執行過的查詢紀錄陣列，你可以使用 getQueryLog 方法：\n\u0026lt;?php // 取得資料庫查詢的 Qeury Log $queries = DB::getQueryLog(); var_dump($queries); 參考資料  資料庫使用基礎 查詢日誌記錄 - Laravel.tw How to get the query executed in Laravel 5 ? DB::getQueryLog returning empty array  "
 },
 {
+	"uri": "https://laravel5-book.kejyun.com/hosting/php/hosting-install-php7/",
+	"title": "安裝 php 7",
+	"tags": [],
+	"description": "",
+	"content": "安裝 php 7 加入 php 7 套件資源庫 目前（2016/03） php7 沒有在 Ubuntu 的預設套件庫中，所以若要使用 php7 的話，則必須要自行加入此套件庫，這樣我們才能在 Ubuntu 安裝 php7\nsudo add-apt-repository ppa:ondrej/php 更新套件資源庫 加入新的套件資源庫後，必須進行系統套件清單更新，才能夠讀取到新的套件設定\nsudo apt-get update  安裝 php7 套件  php7.0-fpm ： Nginx 解析 php 檔案的工具 php7.0-mysql ： 連線 mysql php7.0-mcrypt ： Laravel 加解密工具   其他套件是我在 Laravel 專案中需要的套件，可以依照自己需求去進行安裝\n sudo apt-get install php7.0-fpm php7.0-mysql php7.0-mcrypt php7.0-gd php7.0-cli php7.0-curl php7.0-imap 設定 php7.0-fpm 若有需要變更任何 php7.0-fpm 的任何設定，可以修改下列設定檔案\nsudo vim /etc/php/7.0/fpm/pool.d/www.conf 像是您如果想要把異動傾聽 php 的執行擁有者變更為 kejyun，您可以做以下的設定\nuser = kejyun group = kejyun listen.owner = kejyun listen.group = kejyun listen.mode = 0660  設定 Nginx php 檔案處理方式 設定虛擬主機 Virtualhost 設定檔 sudo vim /etc/nginx/sites-available/kejyun.dev 設定 php 檔案處理方式 server { # ... # 設定 php 檔案處理方式 location ~ \\.php$ { fastcgi_split_path_info ^(.+\\.php)(/.+)$; fastcgi_pass unix:/var/run/php/php7.0-fpm.sock; fastcgi_index index.php; include fastcgi_params; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; fastcgi_intercept_errors off; fastcgi_buffer_size 16k; fastcgi_buffers 4 16k; fastcgi_connect_timeout 300; fastcgi_send_timeout 300; fastcgi_read_timeout 300; } # ... } 重新啟動 php 如果有異動任何 php7.0-fpm 的任何設定的話，必須要將 php7.0-fpm 服務重新啟動，才能夠讀取到新的設定\nsudo service php7.0-fpm restart 這樣我們就完成 php7 的設定了！\n參考資料  Install PHP 7 on Ubuntu 14.04 | Enrico Zimuel kasparsd/php-7-debian: Install PHP 7 on Debian/Ubuntu Installing php7-fpm with phpredis extension on Ubuntu 14.04  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-community/",
+	"title": "社群",
+	"tags": [],
+	"description": "",
+	"content": "社群 Facebook  PHP 台灣 Laravel 台灣 PHP 也有 Day Laravel (@laravelphp) | Twitter Laravel - 社群 - Google+ Laravel - Reddit Laravel - Quora Laravel - Facebook Laravel - LinkedIn  共享文件  歡迎來到 Laravel 台灣 - laraveltw.hackpad.com  活動  Laravel 台灣 - KKTIX   論壇  SitePoint PHP Scotch - Laravel http://www.codetutorial.io/tag/laravel/ Forum - Laravel.IO Laravel Forum - Laracssts The Laravel Podcast Laravel Slack laravel/laravel - Gitter  Blog  MattStauffer.co CodeHeaps Vluzrmos Graham Campbell  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/qa/qa-change-app-directory-name-cause-view-can-not-readable/",
+	"title": "變更專案目錄名稱導致 View 無法讀取",
+	"tags": [],
+	"description": "",
+	"content": "變更專案目錄名稱導致 View 無法讀取 在想要變更原先 Laravel 5 的專案目錄時，Laravel 5 會告訴你你沒辦法讀取到 view 的目錄，看了錯誤的訊息發現這個 view 的目錄是在原先舊專案的目錄名稱下\n錯誤訊息長得像這樣：\nInvalidArgumentException in FileViewFinder.php line 137: View [welcome] not found.  這個原因是 Laravel 5 會將設定檔作快取存下來到 bootstrap/cache/config.php 目錄下面，而這個快取的檔案是原本舊專案的設定，所以我們必須要清除這個快取，才可以讓 Laravel 5 可以讀取到新的設定，這時候我們可以在 artisan 下這些指令，清除原先專案的快取設定：\n$ php artisan config:clear $ php artisan view:clear 執行清除這些快取資料後，我們就可以正常的的獨到新專案目錄下的 view 資料摟！\n"
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/editor/tips/editor-tips-recognize-facade-class/",
+	"title": "讓編輯器識別 Facade 類別",
+	"tags": [],
+	"description": "",
+	"content": "Call to undefined method getCachedCompilePath() 我在使用 Laravel 5.0.x 時，使用 composer update 去更新目前的套件時，跳出了這樣的訊息：\n（PS:也有人在執行 php artisan clear-compiled 出現這樣的狀況）\n PHP Fatal error: Call to undefined method Illuminate\\Foundation\\Application::getCachedCompilePath()\n 這個是因為 Laravel 5 在執行時會把整個 Framework 編譯到 storage/framework/compiled.php，若這個檔案已產生，Laravel 5 在更新套件時執行一些相關 Laravel 的功能時，會預設執行 compiled.php 檔案中的類別函式，而更新的檔案中有 getCachedCompilePath() 這個方法，所以呼叫時 Laravel 會在舊的 compiled.php 找不到這個方法\n解決方式\n直接把 storage/framework/compiled.php 刪除即可，Laravel 5 會自動重新產生這個 compiled.php 檔案！\n 參考資料  RuntimeException on fresh install  "
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/package/debug/package-debug-artisan-tail/",
 	"title": "Artisan tail",
 	"tags": [],
@@ -392,6 +455,27 @@
 	"content": "使用大量資料的方式新增（Mass Assignment）時無法新增 在 Laravel 若沒有在模型（Model）中同時設定「可以新增的欄位變數 $fillable」及「需要保護的欄位變數 $guarded」時，為了安全性著想，在做大量的新增或異動資料時（Mass Assignment），會無法正確的去新增或異動資料。\n設定「可以新增的欄位變數 $fillable」 設定你覺得允許做大量新增的欄位名稱\nclass User extends Model { protected $fillable = [\u0026#39;first_name\u0026#39;, \u0026#39;last_name\u0026#39;, \u0026#39;email\u0026#39;]; }  設定「需要保護的欄位變數 $guarded」 我們可以指定某些欄位，不能被使用大量新增或異動，去變更欄位的資料值\nclass User extends Model { protected $guarded = [\u0026#39;id\u0026#39;, \u0026#39;password\u0026#39;]; } 若我們想要讓模型（Model）可以被大量新增，且我們沒有需要保護的欄位時，我們還是需要設定 $guarded 變數為空陣列 []，否則 Laravel 預會保護所有的欄位資料，讓你無法進行大量的新增或異動資料\nclass User extends Model { protected $fillable = [\u0026#39;id\u0026#39;, \u0026#39;password\u0026#39;, \u0026#39;first_name\u0026#39;, \u0026#39;last_name\u0026#39;, \u0026#39;email\u0026#39;]; protected $guarded = []; } 參考資料  Eloquent ORM 新增、更新、刪除 - Laravel.tw Laravel Eloquent Save to DB Using Create - Unhelpful Error Eloquent Create Method - Always inserts blank entries. Unable to create a model with Eloquent create method. Error telling MassAssignMentException  "
 },
 {
+	"uri": "https://laravel5-book.kejyun.com/qa/qa-segmentation-fault-11-when-seeding/",
+	"title": "Segmentation fault: 11 when seeding",
+	"tags": [],
+	"description": "",
+	"content": "Segmentation fault: 11 when seeding 在使用 Laravel 的 Pagination 的時候，因為畫面有些許異動需要改 Pagination 的結構樣式，所以需要使用 artisan 產生預設的樣板\nphp artisan vendor:publish --tag=laravel-pagination 在執行完指令後，跑出了 Segmentation fault: 11 的訊息\nSegmentation fault: 11  經查詢後，發現這個是 PHP 版本的問題\n因為我用 Homestead，專案目錄與 Homestead 同步，所以索性我在 OSX 下這個指令，但我 OSX 的 PHP 版本似乎過舊，所以就 ssh 到 Homestead 中去下這個命令就好了～\nvagrant ssh cd ~/Code/project ~/Code/project$ php artisan vendor:publish --tag=laravel-pagination Copied Directory [/vendor/laravel/framework/src/Illuminate/Pagination/resources/views] To [/resources/views/vendor/pagination] Publishing complete. 參考資料  Database: Pagination Segmentation fault: 11 when seeding · Issue #3921 · laravel/framework  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/hosting/composer/hosting-install-composer/",
+	"title": "安裝 composer",
+	"tags": [],
+	"description": "",
+	"content": "安裝 composer 下載 composer php -r \u0026#34;copy(\u0026#39;https://getcomposer.org/installer\u0026#39;, \u0026#39;composer-setup.php\u0026#39;);\u0026#34; php -r \u0026#34;if (hash_file(\u0026#39;sha384\u0026#39;, \u0026#39;composer-setup.php\u0026#39;) === \u0026#39;756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3\u0026#39;) { echo \u0026#39;Installer verified\u0026#39;; } else { echo \u0026#39;Installer corrupt\u0026#39;; unlink(\u0026#39;composer-setup.php\u0026#39;); } echo PHP_EOL;\u0026#34; php composer-setup.php php -r \u0026#34;unlink(\u0026#39;composer-setup.php\u0026#39;);\u0026#34; 將 composer 執行檔移動到系統環境變數路徑 移動過去系統環境變數路徑中，這樣所有系統的使用者才都可以執行\nsudo mv composer.phar /usr/bin/composer 安裝所有 Laravel 專案套件 在我們將程式使用 git 推送到主機時，vendor 下所有的套件都不會被推送到主機，所以程式碼上去主機後，需要自己作安裝套件的動作\ncd /home/kejyun/laravel55 composer install 這樣我們就完成了 composer 的安裝跟安裝 Laravel 專案套件了\n proc_open(): fork failed - Cannot allocate memory 無法配置記憶體安裝套件 1. 可以將 php.ini 的 memory_limit 提高\nvim /etc/php/7.1/fpm/php.ini vim /etc/php/7.1/cli/php.ini memory_limit = 1024M 2. 使用 SWAP 增加系統虛擬記憶體\nsudo -s cd /var fallocate -l 4G swapfile.1 chmod 600 swapfile.1 mkswap /var/swapfile.1 swapon /var/swapfile.1  虛擬記憶體（SWAP） · ubuntu 學習筆記  參考資料  Composer Download  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-conference/",
+	"title": "會議議程",
+	"tags": [],
+	"description": "",
+	"content": "會議議程 會議  Laracon US Laracon EU ArtisanConf  會議影片  Laracon EU 2014 Laracon US 2014 Laracon EU 2013 Laracon US 2013  "
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-password-grant/",
 	"title": "Password Grant",
 	"tags": [],
@@ -525,6 +609,20 @@
 	"content": "資料庫常見問題 這裏會列出一些 Laravel 在處理資料庫會遇到的一些常見的問題\n"
 },
 {
+	"uri": "https://laravel5-book.kejyun.com/hosting/mysql/hosting-install-mysql57/",
+	"title": "安裝 MySQL 5.7",
+	"tags": [],
+	"description": "",
+	"content": "安裝 MySQL 5.7 設定 MySQL 5.7 套件資源庫 目前（2016/03） MySQL 5.7 沒有在 Ubuntu 的預設套件庫中，所以若要使用 MySQL 5.7 的話，則必須要設定加入此套件庫，這樣我們才能在 Ubuntu 安裝 MySQL 5.7\nwget http://dev.mysql.com/get/mysql-apt-config_0.6.0-1_all.deb sudo dpkg -i mysql-apt-config_0.6.0-1_all.deb sudo dpkg-reconfigure mysql-apt-config 設定使用 MySQL 當作預設安裝版本\n設定完成點 Apply 完成設定\n 更新套件資源庫 加入新的套件資源庫後，必須進行系統套件清單更新，才能夠讀取到新的套件設定\nsudo apt-get update 安裝 MySQL sudo apt-get install mysql-server-5.7 這樣就完成 MySQL 5.7 的安裝了！\n參考資料  MySQL :: A Quick Guide to Using the MySQL APT Repository MySQL :: Download MySQL APT Repository  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-jobs/",
+	"title": "工作",
+	"tags": [],
+	"description": "",
+	"content": "工作  LaraJobs Laravel Consultants and Freelancers + Laravel Gurus WithLaravel - The job board for Laravel projects and developers  "
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/package/line-bot/",
 	"title": "Line Bot",
 	"tags": [],
@@ -616,6 +714,20 @@
 	"content": "環境除錯 Laravel 5 : Parse error: syntax error, unexpected \u0026lsquo;?\u0026rsquo;, expecting variable (T_VARIABLE) 當安裝 Laravel 5.5 時，出現 Parse error: syntax error, unexpected '?', expecting variable (T_VARIABLE) 的訊息\n You need to install PHP version 7.1 because nullable types were introduced in 7.1:\n ?string $value 要解決這個問題只需要使用 php \u0026gt; 7.1.3 版本即可\n參考資料  php - Laravel 5 : Parse error: syntax error, unexpected \u0026lsquo;?\u0026rsquo;, expecting variable (T_VARIABLE) - Stack Overflow  "
 },
 {
+	"uri": "https://laravel5-book.kejyun.com/hosting/memcached/hosting-install-memcached/",
+	"title": "安裝 Memcached",
+	"tags": [],
+	"description": "",
+	"content": "安裝 Memcached 安裝 直接安裝 Ubuntu 的 Memcached 套件\nsudo apt-get install memcached sudo apt-get install libmemcached-dev libmemcached11 設定 php 7 Memcached 套件 php 7 讀取 Memcached 的套件還是在開發版，沒辦法直接使用 apt-get 去完成安裝，所以我們要自行下載開發版套件去進行編譯安裝\n安裝 php 7 套件編譯軟體 php7.0-dev 是為了執行 php7 的 phpize 而安裝的\nsudo apt-get install pkg-config sudo apt-get install php7.0-dev  下載 php Memcached 套件 git clone https://github.com/php-memcached-dev/php-memcached 切換開發版套件路徑 cd php-memcached git checkout -b php7 origin/php7 編譯 php7 Memcached 套件 phpize ./configure make make test sudo make install  設定載入 php7 memcached 套件 sudo vim /etc/php/7.0/cli/conf.d/20-memcached.ini sudo vim /etc/php/7.0/fpm/conf.d/20-memcached.ini 在 20-memcached.ini 檔案內設定\nextension=memcached.so 設定檔分別要在 cli 與 fpm 兩個地方\n cli 指的是 command line 的 php 執行擋 fpm 指的是 nginx 解析 php 的解譯器  記得兩邊都要設定\n重新啟動 php7.0-fpm 重新啟動之後，在網頁部分可以用 phpinfo(); 確認看看有沒有看到 Memcached 套件\nsudo service php7.0-fpm restart  查詢安裝結果 查詢 phpinfo Memcached 安裝結果\n查詢 php command line Memcached 安裝結果\n$ php -i | grep memcached /etc/php/7.0/cli/conf.d/20-memcached.ini, memcached memcached support =\u0026gt; enabled libmemcached version =\u0026gt; 1.0.18 memcached.compression_factor =\u0026gt; 1.3 =\u0026gt; 1.3 memcached.compression_threshold =\u0026gt; 2000 =\u0026gt; 2000 memcached.compression_type =\u0026gt; fastlz =\u0026gt; fastlz memcached.default_binary_protocol =\u0026gt; 0 =\u0026gt; 0 memcached.default_connect_timeout =\u0026gt; 0 =\u0026gt; 0 memcached.default_consistent_hash =\u0026gt; 0 =\u0026gt; 0 memcached.serializer =\u0026gt; php =\u0026gt; php memcached.sess_binary_protocol =\u0026gt; 1 =\u0026gt; 1 memcached.sess_connect_timeout =\u0026gt; 0 =\u0026gt; 0 memcached.sess_consistent_hash =\u0026gt; 1 =\u0026gt; 1 memcached.sess_lock_expire =\u0026gt; 0 =\u0026gt; 0 memcached.sess_lock_max_wait =\u0026gt; not set =\u0026gt; not set memcached.sess_lock_retries =\u0026gt; 5 =\u0026gt; 5 memcached.sess_lock_wait =\u0026gt; not set =\u0026gt; not set memcached.sess_lock_wait_max =\u0026gt; 2000 =\u0026gt; 2000 memcached.sess_lock_wait_min =\u0026gt; 1000 =\u0026gt; 1000 memcached.sess_locking =\u0026gt; 1 =\u0026gt; 1 memcached.sess_number_of_replicas =\u0026gt; 0 =\u0026gt; 0 memcached.sess_persistent =\u0026gt; 0 =\u0026gt; 0 memcached.sess_prefix =\u0026gt; memc.sess. =\u0026gt; memc.sess. memcached.sess_randomize_replica_read =\u0026gt; 0 =\u0026gt; 0 memcached.sess_remove_failed_servers =\u0026gt; 0 =\u0026gt; 0 memcached.sess_sasl_password =\u0026gt; no value =\u0026gt; no value memcached.sess_sasl_username =\u0026gt; no value =\u0026gt; no value memcached.sess_server_failure_limit =\u0026gt; 0 =\u0026gt; 0 memcached.store_retry_count =\u0026gt; 2 =\u0026gt; 2 Registered save handlers =\u0026gt; files user memcached 這樣我們就完成 Memcached 及在 php 7.0 Memcached 套件的安裝了\n參考資料  php-memcached-dev/php-memcached: memcached extension based on libmemcached library kasparsd/php-7-debian: Install PHP 7 on Debian/Ubuntu ServerPilot | How to Install the PHP Memcache Extension Installing PHP-7 with Memcached - Servers for Hackers  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-document/",
+	"title": "文件",
+	"tags": [],
+	"description": "",
+	"content": "文件 Laravel  A Laravel 5 Boilerplate Project Laravel Book Web development, design, and other nerdy topics! | Dayle Rees Laravel-簡潔、優雅的PHP開發框架(PHP Web Framework)。 - Laravel中文網Laravel中國社區 Simple Laravel ♥ Scotch Awesome Laravel Curso de Laravel 5 en español desde cero | styde.net Laravel Collective  PHP  Awesome PHP PHP-Tools SitePoint PHP – Learn PHP, MySQL, SOAP \u0026amp; more  設計模式  PSR 繁體中文   安裝  How to Setup Laravel 4 - Tuts+ Code Tutorial  指令函式  Laravel Cheat Sheet Laravel-Tricks.com  "
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/package/debug/",
 	"title": "Debug 套件",
 	"tags": [],
@@ -672,6 +784,20 @@
 	"content": "鎖定資料 Lock 鎖定資料有 shared lock (sharedLock) 與 lock for update (lockForUpdate)，兩者都可以避面同一行資料被其他的 transaction update\n在 Laravel 鎖定資料庫資料 範例 sharedLock DB::table(\u0026#39;users\u0026#39;) -\u0026gt;where(\u0026#39;votes\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 100) -\u0026gt;sharedLock() -\u0026gt;get(); select * from `users` where `votes` \u0026gt; \u0026#39;100\u0026#39; lock in share mode DB::table(\u0026#39;tasks\u0026#39;) -\u0026gt;select(\u0026#39;details\u0026#39;, \u0026#39;created_at\u0026#39;) -\u0026gt;whereDate(\u0026#39;created_at\u0026#39;, \u0026#39;=\u0026#39;, \u0026#39;2011-11-11\u0026#39;) -\u0026gt;sharedLock() -\u0026gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = \u0026#39;2011-11-11\u0026#39; lock in share mode 可以使用 -\u0026gt;sharedLock() 或 -\u0026gt;lock(false) 去做 sharedLock\n lockForUpdate DB::table(\u0026#39;users\u0026#39;)-\u0026gt;where(\u0026#39;votes\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, 100)-\u0026gt;lockForUpdate()-\u0026gt;get(); select * from `users` where `votes` \u0026gt; \u0026#39;100\u0026#39; for update DB::table(\u0026#39;tasks\u0026#39;) -\u0026gt;select(\u0026#39;details\u0026#39;, \u0026#39;created_at\u0026#39;) -\u0026gt;whereDate(\u0026#39;created_at\u0026#39;, \u0026#39;\u0026gt;\u0026#39;, \u0026#39;2016-11-24\u0026#39;) -\u0026gt;lockForUpdate() -\u0026gt;get(); select `details`, `created_at` from `tasks` where date(`created_at`) = \u0026#39;2016-11-24\u0026#39; for update 可以使用 -\u0026gt;lockForUpdate() 或 -\u0026gt;lock(true) 去做 lockForUpdate\n 不同的地方 定義  sharedLock locks only for write, lockForUpdate also prevents them from being selected\n shared lock (sharedLock) 與 lock for update (lockForUpdate) 兩者都是鎖定類型的 transaction，但這兩個鎖定類型的 transaction 不會避免非鎖定的 transaction 去讀取到資料。\nsharedLock 其他的 Session 可以 Select，但無法 Update 資料\n如果 Session_1 使用 sharedLock 去讀取資料並對資料進行修改，而 Session_2 也使用 sharedLock 去讀取資料並對資料進行修改，則 Session_2 會等到 Session_1 commit 之後，才能對資料進行 update，若 Session_1 與 Session_2 都有修改到同樣欄位資料，則會變成最後修改的 Session_2 的資料。\n使用情境\n有 parent 及 child 兩個資料表，而兩者資料是有關聯性的，當要新增資料至 child 資料表時，必須確保 parent 資料表有資料，才不會讓 child 找不到他的 parent，此時可以使用 sharedLock 去避免資料被異動（刪除、更新）\nSELECT * FROM parent WHERE NAME = \u0026#39;Jones\u0026#39; FOR SHARE;  lockForUpdate 可以避免被其他鎖定型 transaction 進行 Select\n當需要對同一欄位確保資料 update 是正確的，如計數器，則必須使用 lockForUpdate 來鎖定資料\n當 parent 內有一個計數器欄位紀錄總共有多少 child，則為了數字正確更新，必須避免其他鎖定型的 transaction 進行資料異動\nSELECT counter_field FROM child_codes FOR UPDATE; UPDATE child_codes SET counter_field = counter_field + 1; 參考資料  Database: Query Builder - Laravel - The PHP Framework For Web Artisans Laravel 5: Query Builder Helpers – locks – Jeff\u0026rsquo;s Reference Pessimistic Locking in Laravel 5 使用 Laravel sharedLock 与 lockForUpdate 进行数据表行锁 - Laravel - 大象笔记 MySQL :: MySQL 8.0 Reference Manual :: 15.5.2.4 Locking Reads transactions - MySQL InnoDB: Difference Between FOR UPDATE and LOCK IN SHARE MODE - Stack Overflow MySQL InnoDB Transaction – 交易指南 (SELECT … FOR UPDATE) – YIDAS Code Pessimistic vs Optimistic Locking in Laravel – Ali AslRousta – Medium  "
 },
 {
+	"uri": "https://laravel5-book.kejyun.com/hosting/redis/hosting-install-redis/",
+	"title": "安裝 Redis",
+	"tags": [],
+	"description": "",
+	"content": "安裝 Redis 設定 Redis 套件資源庫 sudo add-apt-repository ppa:chris-lea/redis-server sudo apt-get update 安裝 sudo apt-get install redis-server 設定 Redis Redis 設定檔放在/etc/redis/redis.conf\nsudo vim /etc/redis/redis.conf 設定設定檔\nrequirepass 你的 Redis 連線密碼 #bind 127.0.0.1 不要限定只有本機才能連線 maxmemory-policy noeviction appendonly yes appendfilename redis-staging-ao.aof  重新啟動 Redis sudo service redis-server restart 這樣我們就完成 Redis 的安裝了！！\n參考資料  How To Configure a Redis Cluster on Ubuntu 14.04 | DigitalOcean  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-article/",
+	"title": "文章",
+	"tags": [],
+	"description": "",
+	"content": "文章 部落格  MattStauffer.co  文件  Awesome Laravel  除錯  Debugging Queries in Laravel  IoC  神奇的服务容器  事件  Step by Step Guide to Installing Socket.io and Broadcasting Events with Laravel 5.1  "
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/package/tool/",
 	"title": "工具",
 	"tags": [],
@@ -714,6 +840,20 @@
 	"content": "這裏介紹一些 Laravel 的設計模式\n"
 },
 {
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-packages/",
+	"title": "套件",
+	"tags": [],
+	"description": "",
+	"content": "套件 清單  Packalyst :: Packages for Laravel Packagist - tag laravel Laravel Collective Arsenal :: Cartalyst Built with Laravel  時間  Carbon - A simple PHP API extension for DateTime.  編輯器  Laravel Markdown  檔案  Laravel Flysystem  除錯  The missing tail command for Laravel 5 Laravel Exceptions Laravel Debugbar  條碼  Simple QrCode   社群  Laravel GitHub  CMS  Wardrobe Bootstrap CMS TypiCMS PHPHub Cachet Paperwork  Open Source  laravel-tricks  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/hosting/lets-encrypt/hosting-install-lets-encrypt/",
+	"title": "安裝 Memcached",
+	"tags": [],
+	"description": "",
+	"content": "安裝 Let\u0026rsquo;s Encrypt 為了推廣 SSL 憑證，Let\u0026rsquo;s Encrypt 提供了免費的 SSL 憑證，可以讓你們的主機也有 SSL 加密的保障\n但是 Let\u0026rsquo;s Encrypt 提供的憑證有效期限每次只有 90 天的效期，若過期之後需要重新更新憑證方可繼續使用\n下載 wget https://dl.eff.org/certbot-auto chmod a+x certbot-auto 安裝 SSL 憑證 在安裝 SSL 憑證時需要將您的 Nginx 主機服務關閉，才能進行憑證驗證\nHow would you like to authenticate with the ACME CA? ------------------------------------------------------------------------------- 1: Place files in webroot directory (webroot) 2: Spin up a temporary webserver (standalone) ------------------------------------------------------------------------------- Select the appropriate number [1-2] then [enter] (press \u0026#39;c\u0026#39; to cancel): 用 nginx 選擇 standalone，若是 apache 則選擇用 webroot\n 輸入驗證 SSL 的網址 Please enter in your domain name(s) (comma and/or space separated) (Enter \u0026#39;c\u0026#39; to cancel): kejyun.dev 憑證檔案 安裝完的憑證會依照你申請的 domain 當作資料夾名稱放到 /etc/letsencrypt/live/ 目錄下\n如果我同時申請了 kejyun.dev 與 www.kejyun.dev，那麼憑證檔案就會分別放在 /etc/letsencrypt/live/kejyun.dev/ 及 /etc/letsencrypt/live/www.kejyun.dev/ 目錄下\n憑證檔案分別會有 4 個\n   檔案名稱 說明     cert.pem 申請網域的憑證   chain.pem Let\u0026rsquo;s Encrypt 的憑證   fullchain.pem cert.pem 及 chain.pem 合併檔案   privkey.pem 申請網域的憑證密鑰     設定 nginx 使用 SSL 憑證 server { # 設定監聽的 port 為 443 listen 443 ssl; # 設定憑證檔案 ssl_certificate /etc/letsencrypt/live/kejyun.dev/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/kejyun.dev/privkey.pem; ssl_protocols TLSv1 TLSv1.1 TLSv1.2; ssl_prefer_server_ciphers on; ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH'; } 設定 nginx 80 port 自動轉址導向 SSL 443 port server { listen 80; server_name kejyun.dev; return 301 https://$host$request_uri; } 重新啟動 Nginx sudo service nginx restart 設定完成後就可以看到自己的網站有做 SSL 加密了！\n自動更新 Let\u0026rsquo;s Encrypt 憑證 自動更新憑證 ./path/to/certbot renew --pre-hook \u0026#34;service nginx stop\u0026#34; --post-hook \u0026#34;service nginx start\u0026#34; 在更新憑證的時候，還是需要把 web server 停掉，所以可以在 --pre-hook 更新前關掉 nginx，在 --post-hook 更新後啟動 nginx\n加入 Cronjob 排程執行憑證更新 編輯 crontab\nsudo crontab -e 設定每個禮拜一的凌晨 2:30 進行一次憑證的檢查及更新\n30 2 * * 1 ./path/to/certbot renew --pre-hook \u0026#34;service nginx stop\u0026#34; --post-hook \u0026#34;service nginx start\u0026#34; \u0026gt;\u0026gt; /var/log/letsencrypt-renewal.log 這樣我們就有了一個半永久的 SSL 憑證了！！\n參考資料  Certbot - Nginx on Ubuntu 14.04 Certbot documentation - Renewing certificates letsencrypt/letsencrypt How To Secure Nginx with Let\u0026rsquo;s Encrypt on Ubuntu 14.04 | DigitalOcean  "
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/package/design-pattern/",
 	"title": "設計模式",
 	"tags": [],
@@ -742,6 +882,20 @@
 	"content": "這裏介紹一些 Laravel 的程式架構規範\n"
 },
 {
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-learning-video/",
+	"title": "教學影片",
+	"tags": [],
+	"description": "",
+	"content": "教學影片 English 初學  Laravel 5 Fundamentals What\u0026rsquo;s New in Laravel 5.1 Laravel Basics Course Laravel From Scratch  進階  The Best Laravel and PHP Screencasts PHP Academy Anthony Vipond muukrls Lynda Laravel Tuts+ Code Courses - Laravel  繁體中文  Laravel 台灣 - Youtube  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-laravel-service/",
+	"title": "服務工具",
+	"tags": [],
+	"description": "",
+	"content": "佈署程式  Laravel Forge  ForgeRecipes   Envoyer - Zero Downtime PHP Deployment Laravel hosting in the cloud Rocketeer  "
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/package/html/",
 	"title": "HTML",
 	"tags": [],
@@ -763,11 +917,25 @@
 	"content": "雜湊（Hashing） 使用情境 使用者輸入的密碼，通常我們將其加密再存到資料庫中，但這類的資料我們通常不需要反解回來處理，所以我們不需要使用加密的演算法去加密資料\n因為加密演算法需要完整的解回原先的資料，所以若資料越長密文也會越長，但雜湊不需要解回原先的資料，只需要驗證原先的資料，經過再雜湊的檢查是相同的就好（輸入的密碼雜湊驗證與原先存在資料庫的雜湊資料相同），所以雜湊的資料可以有固定的長度，像是 md5 的雜湊資料長度固定為 32，而 Laravel 提供的 Hash 雜湊演算法，資料長度固定為 60。\n設定 在 Laravel 做「雜湊」演算法時，會使用 config/app.php 中的 key 值去當作雜湊的 salt，自己的應用需要設定自己的 key 值，若沒有設定的話被加密過的值還是有可能被暴力破解出來，所以要記得去設定，而這個 key 值若變更了，雜湊的驗證也不會相同喔～\n 使用 雜湊 // 雜湊 $original_password = \u0026#39;密碼明碼\u0026#39;; $hash_password = Hash::make($original_password); 驗證 // 雜湊 $original_password = \u0026#39;密碼明碼\u0026#39;; $hash_password = Hash::make($original_password); // 驗證 $check_result = Hash::check($original_password, $hash_password); // true var_dump($check_result); 備註 重複雜湊相同的資料得到的密文不會一樣，所以不要使用像 md5 的方式去比對密文資料是否相同\n 使用 md5 比較密文 $original_password = \u0026#39;密碼明碼\u0026#39;; // 第 1 次使用 md5 加密的資料 $first_md5_hash_password = md5($original_password); // 第 2 次使用 md5 加密的資料 $second_md5_hash_password = md5($original_password); // 資料相同 // true var_dump($first_md5_encrypt_password === $second_md5_encrypt_password); 雖然每次雜湊的結果都不一樣，但你可以放心的將任何一次雜湊的資料存放到資料庫中，因為雖然密文不同，但 Laravel 的雜湊演算法，還是可以比對出來是不是由相同的資料去做雜湊的\n使用雜湊演算法比較資料是否相同 $original_password = \u0026#39;密碼明碼\u0026#39;; // 第 1 次使用雜湊演算法雜湊的資料 $first_hash_password = Hash::make($original_password); // 第 2 次使用雜湊演算法雜湊的資料 $second_hash_password = Hash::make($original_password); // 資料不相同 // false var_dump($first_encrypt_password === $second_encrypt_password); // 驗證雜湊資料 true $first_check_result = Hash::check($original_password, $first_hash_password); $second_check_result = Hash::check($original_password, $second_hash_password); 參考資料  雜湊 - Laravel.tw  "
 },
 {
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-learning-website/",
+	"title": "教學網站",
+	"tags": [],
+	"description": "",
+	"content": "教學網站 英文  Laravel Recipes Laravel-Tricks.com Web development, design, and other nerdy topics! | Dayle Rees Laravel Book PHP: The Right Way  中文  Laravel 初體驗 - 實作 Blog 系統 | Laravel Dojo PHP: The Right Way 繁體中文  "
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/package/text/",
 	"title": "文字",
 	"tags": [],
 	"description": "",
 	"content": "文字處理 文字發音  Laravel-pinyin  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/software/",
+	"title": "軟體",
+	"tags": [],
+	"description": "",
+	"content": "這裏介紹一些 Laravel 一些常用的軟體\n"
 },
 {
 	"uri": "https://laravel5-book.kejyun.com/services/response/response-intro/",
@@ -777,6 +945,13 @@
 	"content": "回應（Response） 強制回應 JSON 建立 Middleware\nnamespace App\\Http\\Middleware; use Closure; class ForceJsonMiddleware { /** * Handle an incoming request. * * @param \\Illuminate\\Http\\Request $request * @param \\Closure $next * @return mixed */ public function handle($request, Closure $next) { $request-\u0026gt;headers-\u0026gt;set(\u0026#39;accept\u0026#39;, \u0026#39;application/json\u0026#39;); return $next($request); } } 在 Kernel.php 加入此 Middleware\n\u0026#39;force-json-response\u0026#39; =\u0026gt; \\App\\Http\\Middleware\\ForceJsonMiddleware::class, 設定使用 Middleware\nRoute::group([\u0026#39;middleware\u0026#39; =\u0026gt; [\u0026#39;force-json-response\u0026#39;, \u0026#39;auth:api\u0026#39;]], function () { }); 參考資料  Laravel 响应：永远返回 JSON 响应 | Laravel China 社区  "
 },
 {
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-editor-tool/",
+	"title": "編輯開發",
+	"tags": [],
+	"description": "",
+	"content": "Sublime  Pro Workflow in Laravel and Sublime Text - Tuts+ Code Tutorial  "
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/package/api/",
 	"title": "API",
 	"tags": [],
@@ -784,11 +959,39 @@
 	"content": "API 套件 "
 },
 {
+	"uri": "https://laravel5-book.kejyun.com/hosting/",
+	"title": "主機環境建置",
+	"tags": [],
+	"description": "",
+	"content": "主機環境建置 程式寫完後，我們要上線測試時，還是需要一個完整的正式環境可以執行 Laravel，這裡會介紹大家如何不使用 Homestead，在正式主機把 Laravel 執行環境建置起來\n環境  Ubuntu 14.04 LTS\n  Nginx\n  MySQL 5.7\n  PHP 7.0\n  Redis\n  Memcached\n  Let\u0026rsquo;s Encrypt SSL\n "
+},
+{
 	"uri": "https://laravel5-book.kejyun.com/services/scheduling/scheduling-intro/",
 	"title": "任務排程（Scheduling）",
 	"tags": [],
 	"description": "",
 	"content": "任務排程（Scheduling） 我們通常會把一些每小時、每 6 小時、每日、每週、每月等等之類固定時間要做的工作丟到 Linux 系統的 crontab 中去執行，通常像是每日要統計昨天網站的活動資訊做數據分析之類的工作，這類的工作通常會花費比較久的時間\n在 Linux 設定排程工作 我們通常會在命令列用 $ crontab -e 的方式去編輯排程工作\n$ crontab -e 在用到 crontab 的時候，我們需要瞭解怎麼設定排程工作的執行時間，整個的 crontab 的設定可能會像這樣：\n# 每天凌晨 3 點統計昨天的 Pageview 0 3 * * * /usr/bin/php /home/kejyun/laravel4/artisan cronjob:statisticYesterdayPageview 在前方可以看到有 5 個數字可以做設定，依序分別代表的意思為：\n 分鐘 (0-59) 小時 (0-23) 每個月第幾天 (1-31) 月份 (1-12) 每週的第幾天 (0-6) 0：星期日 1：星期一 2：星期二 3：星期三 4：星期四 5：星期五 6：星期六  這 5 個參數之間用空白隔開，每個參數除了設定單一個數字，也可以用逗號(,)去隔開設定相同單位的時間設定，像是：\n# 每天凌晨 4 點及 16 點寄送廣告信 0 4,16 * * * /usr/bin/php /home/kejyun/laravel4/artisan cronjob:sendCommercialMail  這裏有一些相關的設定範例可以當作參考：\n# 每小時的第 18 分鐘執行 18 * * * * # 8 點 10 分執行 10 8 * * * # 8 點的每分鐘執行一次（共執行 60 次） * 8 * * * # 在每個禮拜二每小時的第 18 分鐘執行 18 * * * 2 # 你也可以每隔一段時間去執行 crontab # 如果我們每 15 分鐘要去執行，你可以用這樣的格式 */15 # 這樣的意思是將分鐘數，切割成（除以）每 15 分鐘執行 */15 * * * * # 每 2 小時執行 0 */2 * * * # 每 2 小時又 20 分鐘執行 */20 */2 * * * 小提醒\n 系統的 crontab 運作方式是每分鐘會到設定的 crontab 找看看有沒有符合現在這個時間的排程工作，所以像是 * 8 * * * 這樣的設定，因為沒有明確指定分鐘，在 8 點每分鐘檢查的 60 次都符合條件，所以會執行 60 次，若僅要 8 點時執行一次，請明確設定要執行的分鐘條件，像是 0 8 * * *\n  使用 Laravel 5.2 Scheduling 設定排程工作 因為 Linux 每分鐘都會去檢查當時是否有排程需要執行的工作，符合條件的時間就會執行，Laravel 利用這個特性，告訴排程每分鐘都要執行 Laravel 的 schedule:run 的指令\n* * * * * php /path/to/artisan schedule:run \u0026gt;\u0026gt; /dev/null 2\u0026gt;\u0026amp;1 之後 Laravel 每分鐘就會執行 app/Console/Command/Kernal@schedule 的程式，Laravel 會依照 schedule 裡面的設定時間，執行符合條件的排程工作\n排程範例 假如我們有一個排程每分鐘都會紀錄他執行的時間，程式碼會放在 app/Console/Command/TestLog.php，程式碼會像是：\n\u0026lt;?php namespace App\\Console\\Commands; use Illuminate\\Console\\Command; use File; class TestLog extends Command { // 命令名稱  protected $signature = \u0026#39;test:Log\u0026#39;; // 說明文字  protected $description = \u0026#39;[測試] Log 檔案\u0026#39;; public function __construct() { parent::__construct(); } // Console 執行的程式  public function handle() { // 檔案紀錄在 storage/test.log  $log_file_path = storage_path(\u0026#39;test.log\u0026#39;); // 記錄當時的時間  $log_info = [ \u0026#39;date\u0026#39;=\u0026gt;date(\u0026#39;Y-m-d H:i:s\u0026#39;) ]; // 記錄 JSON 字串  $log_info_json = json_encode($log_info) . \u0026#34;\\r\\n\u0026#34;; // 記錄 Log  File::append($log_file_path, $log_info_json); } } 以上排程的命令是 php artisan test:Log，執行之後就會記錄當時執行的時間\n排程程式建立好之後，在 app/Console/Command/Kernal.php 定義此排程的工作，並設定每分鐘執行一次，程式碼會像是：\n\u0026lt;?php namespace App\\Console; use Illuminate\\Console\\Scheduling\\Schedule; use Illuminate\\Foundation\\Console\\Kernel as ConsoleKernel; class Kernel extends ConsoleKernel { // 定義應用程式的 Artisan 指令  protected $commands = [ \\App\\Console\\Commands\\TestLog::class, ]; // 定義應用程式的排程  protected function schedule(Schedule $schedule) { // 每分鐘執行 Artisan 命令 test:Log  $schedule-\u0026gt;command(\u0026#39;test:Log\u0026#39;)-\u0026gt;everyMinute(); } } 這樣你就可以在 storage/test.log 每分鐘看到像這樣的紀錄，這樣就表示你的排程設定成功了！！\n{\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:12:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:13:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:14:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:15:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:16:05\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:17:07\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:18:09\u0026quot;} {\u0026quot;date\u0026quot;:\u0026quot;2016-01-11 22:19:05\u0026quot;}  你也可以使用其他 Laravel 提供的時間方法去定義要執行的時間\n   方法 說明     -\u0026gt;cron('* * * * * *'); 自訂 Cron 排成時間   -\u0026gt;everyMinute(); 每分鐘執行   -\u0026gt;everyFiveMinutes(); 每 5 分鐘執行   -\u0026gt;everyTenMinutes(); 每 10 分鐘執行   -\u0026gt;everyThirtyMinutes(); 每 30 分鐘執行   -\u0026gt;hourly(); 每小時執行   -\u0026gt;daily(); 每天執行   -\u0026gt;dailyAt(\u0026lsquo;13:00\u0026rsquo;); 每天 13:00 執行   -\u0026gt;twiceDaily(1, 13); 每天 1:00 及 13:00 執行   -\u0026gt;weekly(); 每週執行   -\u0026gt;monthly(); 每月執行   -\u0026gt;yearly(); 每年執行   -\u0026gt;sundays() 每週日執行   -\u0026gt;mondays() 每週一執行   -\u0026gt;tuesdays() 每週二執行   -\u0026gt;wednesdays() 每週三執行   -\u0026gt;thursdays() 每週四執行   -\u0026gt;fridays() 每週五執行   -\u0026gt;saturdays() 每週六執行   -\u0026gt;when(Closure) 每當符合條件就執行（return true）     避免重複執行排程 排程預設每次符合條件就要執行，但若我們執行一個需要跑很久的程式，在下一次符合條件的時間若上一個同樣的工作還沒有執行完，我們就不執行的話，我們可以用 -\u0026gt;withoutOverlapping() 方法去避免排程程式重複執行，像是\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;)-\u0026gt;withoutOverlapping(); 輸出執行結果 我們的在執行 Artisan 指令時，我們通常會在畫面上列印一些執行狀態，像是 $this-\u0026gt;info('把我顯示在畫面上');，如果我們想要知道排程執行時，這些顯示在畫面的文字記錄下來，我們可以用\n   方法 說明     -\u0026gt;sendOutputTo($filePath); 將結果輸出到檔案（複寫該檔案）   -\u0026gt;appendOutputTo($filePath); 將結果附加在檔案後面（不複寫檔案）   -\u0026gt;emailOutputTo('foo@example.com'); 將結果寄送到指定 Email    *** 將結果輸出到檔案（複寫該檔案） ***\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;sendOutputTo($filePath); *** 將結果附加在檔案後面（不複寫檔案） ***\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;appendOutputTo($filePath); *** 將結果寄送到指定 Email ***\n$schedule-\u0026gt;command(\u0026#39;foo\u0026#39;) -\u0026gt;daily() -\u0026gt;sendOutputTo($filePath) -\u0026gt;emailOutputTo(\u0026#39;foo@example.com\u0026#39;);  排程觸發 我們可以在排程執行前後，分別使用 -\u0026gt;before() 或 -\u0026gt;after() 去執行排程其他的工作\n$schedule-\u0026gt;command(\u0026#39;emails:send\u0026#39;) -\u0026gt;daily() -\u0026gt;before(function () { // 在排程執行前觸發 }) -\u0026gt;after(function () { // 在排程執行完成後觸發 }); 參考資料  crontab.guru - the cron schedule expression editor A visual crontab editor Task Scheduling - Laravel 5.2  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-hosting/",
+	"title": "主機",
+	"tags": [],
+	"description": "",
+	"content": "主機 Hosting  Amazon Web Services (AWS) Google Cloud Computing Services (GCP) Microsoft Azure DigitalOcean Linode Heroku OpenShift Vultr  教學  Run Laravel 5.1 on OpenShift Installing a Laravel app on Heroku Laravel 5 - Pagoda Box Documentation  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/qa/",
+	"title": "其他常見問題",
+	"tags": [],
+	"description": "",
+	"content": "這裏會介紹一些在開發 Laravel 遇到的常見問題\n Call to undefined method getCachedCompilePath()  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/editor/",
+	"title": "編輯器",
+	"tags": [],
+	"description": "",
+	"content": "編輯器  PhpStorm: Lightning-Smart IDE for PHP Programming by JetBrains Visual Studio Code - Code Editing. Redefined Sublime Text - A sophisticated text editor for code, markup and prose Atom  "
 },
 {
 	"uri": "https://laravel5-book.kejyun.com/package/view/",
@@ -803,6 +1006,20 @@
 	"tags": [],
 	"description": "",
 	"content": "這裏介紹 Laravel 提供的 Laravel Mix 功能\n"
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/resource/resource-laravel-case/",
+	"title": "成功案例",
+	"tags": [],
+	"description": "",
+	"content": "案例  VDemocracy.tw - 群眾募資‧群眾集資網站 Crowdfunding Platform in Taiwan Builtwithlaravel.com  "
+},
+{
+	"uri": "https://laravel5-book.kejyun.com/resource/",
+	"title": "學習資源",
+	"tags": [],
+	"description": "",
+	"content": "學習資源  KeJyun學習日誌: Laravel 4  "
 },
 {
 	"uri": "https://laravel5-book.kejyun.com/package/mail/",
@@ -851,7 +1068,7 @@
 	"title": "首頁",
 	"tags": [],
 	"description": "",
-	"content": "Laravel 學習筆記 "
+	"content": "Laravel 5 學習筆記 "
 },
 {
 	"uri": "https://laravel5-book.kejyun.com/categories/",

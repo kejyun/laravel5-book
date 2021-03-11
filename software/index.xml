@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>軟體 on Laravel 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/software/</link>
+    <description>Recent content in 軟體 on Laravel 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 07 Mar 2021 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/software/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Redis</title>
+      <link>https://laravel5-book.kejyun.com/software/software-redis/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/software/software-redis/</guid>
+      <description>Redis 管理  Redis Desktop Manager - Redis GUI management tool for Windows, Mac OS X, Ubuntu and Debian. Redis-Commander Medis - GUI Manager for Redis  </description>
+    </item>
+    
+  </channel>
+</rss>

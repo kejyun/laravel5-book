@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>小技巧 on Laravel 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/editor/tips/</link>
+    <description>Recent content in 小技巧 on Laravel 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Thu, 11 Mar 2021 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/editor/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>讓編輯器識別 Facade 類別</title>
+      <link>https://laravel5-book.kejyun.com/editor/tips/editor-tips-recognize-facade-class/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/editor/tips/editor-tips-recognize-facade-class/</guid>
+      <description>Call to undefined method getCachedCompilePath() 我在使用 Laravel 5.0.x 時，使用 composer update 去更新目前的套件時，跳出了這樣的訊息：
+（PS:也有人在執行 php artisan clear-compiled 出現這樣的狀況）
+ PHP Fatal error: Call to undefined method Illuminate\Foundation\Application::getCachedCompilePath()
+ 這個是因為 Laravel 5 在執行時會把整個 Framework 編譯到 storage/framework/compiled.php，若這個檔案已產生，Laravel 5 在更新套件時執行一些相關 Laravel 的功能時，會預設執行 compiled.php 檔案中的類別函式，而更新的檔案中有 getCachedCompilePath() 這個方法，所以呼叫時 Laravel 會在舊的 compiled.php 找不到這個方法
+解決方式
+直接把 storage/framework/compiled.php 刪除即可，Laravel 5 會自動重新產生這個 compiled.php 檔案！
+ 參考資料  RuntimeException on fresh install  </description>
+    </item>
+    
+  </channel>
+</rss>

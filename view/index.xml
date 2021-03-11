@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>視圖 (View) on Laravel 5 學習筆記</title>
+    <title>視圖 (View) on Laravel 學習筆記</title>
     <link>https://laravel5-book.kejyun.com/view/</link>
-    <description>Recent content in 視圖 (View) on Laravel 5 學習筆記</description>
+    <description>Recent content in 視圖 (View) on Laravel 學習筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <lastBuildDate>Tue, 30 Jun 2020 21:24:42 +0800</lastBuildDate>

@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://laravel5-book.kejyun.com/qa/qa-call-undefined-method-getcachedcompilepath/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/software/software-redis/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/hosting/nginx/hosting-install-nginx/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-official/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/editor/tips/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://laravel5-book.kejyun.com/package/html/package-html-amp-readme/</loc>
     <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
@@ -158,6 +183,26 @@
   </url>
   
   <url>
+    <loc>https://laravel5-book.kejyun.com/hosting/php/hosting-install-php7/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-community/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/qa/qa-change-app-directory-name-cause-view-can-not-readable/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/editor/tips/editor-tips-recognize-facade-class/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://laravel5-book.kejyun.com/package/debug/package-debug-artisan-tail/</loc>
     <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
@@ -283,6 +328,21 @@
   </url>
   
   <url>
+    <loc>https://laravel5-book.kejyun.com/qa/qa-segmentation-fault-11-when-seeding/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/hosting/composer/hosting-install-composer/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-conference/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://laravel5-book.kejyun.com/package/auth/oauth/package-auth-oauth2-password-grant/</loc>
     <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
@@ -378,6 +438,16 @@
   </url>
   
   <url>
+    <loc>https://laravel5-book.kejyun.com/hosting/mysql/hosting-install-mysql57/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-jobs/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://laravel5-book.kejyun.com/package/line-bot/</loc>
     <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
@@ -443,6 +513,16 @@
   </url>
   
   <url>
+    <loc>https://laravel5-book.kejyun.com/hosting/memcached/hosting-install-memcached/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-document/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://laravel5-book.kejyun.com/package/debug/</loc>
     <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
@@ -483,6 +563,16 @@
   </url>
   
   <url>
+    <loc>https://laravel5-book.kejyun.com/hosting/redis/hosting-install-redis/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-article/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://laravel5-book.kejyun.com/package/tool/</loc>
     <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
@@ -513,6 +603,16 @@
   </url>
   
   <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-packages/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/hosting/lets-encrypt/hosting-install-lets-encrypt/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://laravel5-book.kejyun.com/package/design-pattern/</loc>
     <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
@@ -533,6 +633,16 @@
   </url>
   
   <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-learning-video/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-laravel-service/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://laravel5-book.kejyun.com/package/html/</loc>
     <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
@@ -548,7 +658,17 @@
   </url>
   
   <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-learning-website/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://laravel5-book.kejyun.com/package/text/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/software/</loc>
     <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
   
@@ -558,13 +678,38 @@
   </url>
   
   <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-editor-tool/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://laravel5-book.kejyun.com/package/api/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/hosting/</loc>
     <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://laravel5-book.kejyun.com/services/scheduling/scheduling-intro/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-hosting/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/qa/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/editor/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
   
   <url>
@@ -575,6 +720,16 @@
   <url>
     <loc>https://laravel5-book.kejyun.com/services/laravel-mix/</loc>
     <lastmod>2020-08-30T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/resource/resource-laravel-case/</loc>
+    <lastmod>2021-03-11T21:24:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://laravel5-book.kejyun.com/resource/</loc>
+    <lastmod>2021-03-07T21:24:42+08:00</lastmod>
   </url>
   
   <url>

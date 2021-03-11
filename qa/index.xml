@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>其他常見問題 on Laravel 學習筆記</title>
+    <link>https://laravel5-book.kejyun.com/qa/</link>
+    <description>Recent content in 其他常見問題 on Laravel 學習筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 07 Mar 2021 21:24:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://laravel5-book.kejyun.com/qa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Call to undefined method getCachedCompilePath()</title>
+      <link>https://laravel5-book.kejyun.com/qa/qa-call-undefined-method-getcachedcompilepath/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/qa/qa-call-undefined-method-getcachedcompilepath/</guid>
+      <description>Call to undefined method getCachedCompilePath() 我在使用 Laravel 5.0.x 時，使用 composer update 去更新目前的套件時，跳出了這樣的訊息：
+（PS:也有人在執行 php artisan clear-compiled 出現這樣的狀況）
+ PHP Fatal error: Call to undefined method Illuminate\Foundation\Application::getCachedCompilePath()
+ 這個是因為 Laravel 5 在執行時會把整個 Framework 編譯到 storage/framework/compiled.php，若這個檔案已產生，Laravel 5 在更新套件時執行一些相關 Laravel 的功能時，會預設執行 compiled.php 檔案中的類別函式，而更新的檔案中有 getCachedCompilePath() 這個方法，所以呼叫時 Laravel 會在舊的 compiled.php 找不到這個方法
+ 解決方式
+直接把 storage/framework/compiled.php 刪除即可，Laravel 5 會自動重新產生這個 compiled.php 檔案！
+參考資料  RuntimeException on fresh install  </description>
+    </item>
+    
+    <item>
+      <title>變更專案目錄名稱導致 View 無法讀取</title>
+      <link>https://laravel5-book.kejyun.com/qa/qa-change-app-directory-name-cause-view-can-not-readable/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/qa/qa-change-app-directory-name-cause-view-can-not-readable/</guid>
+      <description>變更專案目錄名稱導致 View 無法讀取 在想要變更原先 Laravel 5 的專案目錄時，Laravel 5 會告訴你你沒辦法讀取到 view 的目錄，看了錯誤的訊息發現這個 view 的目錄是在原先舊專案的目錄名稱下
+錯誤訊息長得像這樣：
+InvalidArgumentException in FileViewFinder.php line 137: View [welcome] not found.  這個原因是 Laravel 5 會將設定檔作快取存下來到 bootstrap/cache/config.php 目錄下面，而這個快取的檔案是原本舊專案的設定，所以我們必須要清除這個快取，才可以讓 Laravel 5 可以讀取到新的設定，這時候我們可以在 artisan 下這些指令，清除原先專案的快取設定：
+$ php artisan config:clear $ php artisan view:clear 執行清除這些快取資料後，我們就可以正常的的獨到新專案目錄下的 view 資料摟！</description>
+    </item>
+    
+    <item>
+      <title>Segmentation fault: 11 when seeding</title>
+      <link>https://laravel5-book.kejyun.com/qa/qa-segmentation-fault-11-when-seeding/</link>
+      <pubDate>Thu, 11 Mar 2021 21:24:42 +0800</pubDate>
+      
+      <guid>https://laravel5-book.kejyun.com/qa/qa-segmentation-fault-11-when-seeding/</guid>
+      <description>Segmentation fault: 11 when seeding 在使用 Laravel 的 Pagination 的時候，因為畫面有些許異動需要改 Pagination 的結構樣式，所以需要使用 artisan 產生預設的樣板
+php artisan vendor:publish --tag=laravel-pagination 在執行完指令後，跑出了 Segmentation fault: 11 的訊息
+Segmentation fault: 11  經查詢後，發現這個是 PHP 版本的問題
+因為我用 Homestead，專案目錄與 Homestead 同步，所以索性我在 OSX 下這個指令，但我 OSX 的 PHP 版本似乎過舊，所以就 ssh 到 Homestead 中去下這個命令就好了～
+vagrant ssh cd ~/Code/project ~/Code/project$ php artisan vendor:publish --tag=laravel-pagination Copied Directory [/vendor/laravel/framework/src/Illuminate/Pagination/resources/views] To [/resources/views/vendor/pagination] Publishing complete. 參考資料  Database: Pagination Segmentation fault: 11 when seeding · Issue #3921 · laravel/framework  </description>
+    </item>
+    
+  </channel>
+</rss>
